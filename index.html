@@ -939,6 +939,55 @@ section,header{
   }
 }
 </style>
+
+<style id="journal-video-small-natural-size">
+/* Keep the product video small, centered, and fully visible. */
+.journal-video-thumb{
+  width:min(760px,92vw)!important;
+  max-width:760px!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  padding:14px 22px!important;
+  margin:0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:visible!important;
+}
+.journal-video-thumb video{
+  display:block!important;
+  width:min(640px,86vw)!important;
+  max-width:640px!important;
+  height:auto!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:0 auto!important;
+  padding:0!important;
+}
+@media(max-width:900px){
+  .journal-video-thumb{
+    width:min(700px,94vw)!important;
+    padding:12px 16px!important;
+  }
+  .journal-video-thumb video{
+    width:min(600px,88vw)!important;
+    max-width:600px!important;
+  }
+}
+@media(max-width:560px){
+  .journal-video-thumb{
+    width:94vw!important;
+    padding:8px!important;
+  }
+  .journal-video-thumb video{
+    width:88vw!important;
+    max-width:88vw!important;
+    height:auto!important;
+  }
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
