@@ -876,6 +876,69 @@ section,header{
   }
 }
 </style>
+
+<style id="journal-video-16x9-replacement">
+.journal-video-thumb{
+  width:min(1040px,96vw)!important;
+  max-width:1040px!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:16/9!important;
+  padding:18px!important;
+  margin:0 auto!important;
+  display:block!important;
+  overflow:hidden!important;
+  border-radius:28px!important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0) 0%,
+      rgba(70,76,73,.62) 8%,
+      rgba(80,85,82,.92) 18%,
+      rgba(80,85,82,.98) 50%,
+      rgba(80,85,82,.92) 82%,
+      rgba(70,76,73,.62) 92%,
+      rgba(0,0,0,0) 100%
+    )!important;
+}
+.journal-video-thumb video{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  height:auto!important;
+  max-height:none!important;
+  aspect-ratio:16/9!important;
+  object-fit:contain!important;
+  margin:0!important;
+  padding:0!important;
+  border-radius:12px!important;
+  background:transparent!important;
+}
+@media(max-width:900px){
+  .journal-video-thumb{
+    width:96vw!important;
+    padding:12px!important;
+    aspect-ratio:16/9!important;
+  }
+  .journal-video-thumb video{
+    width:100%!important;
+    aspect-ratio:16/9!important;
+  }
+}
+@media(max-width:560px){
+  .journal-video-thumb{
+    width:96vw!important;
+    padding:8px!important;
+    aspect-ratio:16/9!important;
+    border-radius:20px!important;
+  }
+  .journal-video-thumb video{
+    width:100%!important;
+    max-width:100%!important;
+    aspect-ratio:16/9!important;
+  }
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -993,7 +1056,7 @@ section,header{
   <div class="wrap journal-card-build10 fade-up">
     <div class="journal-topline">
       <div class="journal-heading"><div class="kicker">The Complete Cannabis Logbook</div><h2>Go beyond one session. Build your full cannabis record.</h2></div>
-      <div class="journal-video-thumb"><video autoplay muted loop playsinline preload="metadata"><source src="assets/journal-tour.mp4" type="video/mp4"></video></div>
+      <div class="journal-video-thumb"><video autoplay muted loop playsinline preload="metadata"><source src="assets/Cannabis Logbook Product Mockup.mp4" type="video/mp4"></video></div>
     </div>
     <div class="journal-details">
       <h3>Medical &amp; Recreational Cannabis Logbook — Full Color</h3>
@@ -1373,17 +1436,15 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 </script>
 
-<script id="journal-loop-polish-20260925">
+
+
+<script id="journal-video-normal-loop">
 document.addEventListener('DOMContentLoaded',()=>{
   const journalVideo=document.querySelector('.journal-video-thumb video');
   if(journalVideo){
-    const loopEnd=25.0;
-    journalVideo.loop=false;
-    const restartProductTour=()=>{
-      try{journalVideo.currentTime=0.05; journalVideo.play().catch(()=>{});}catch(e){}
-    };
-    journalVideo.addEventListener('timeupdate',()=>{if(journalVideo.currentTime>=loopEnd) restartProductTour();});
-    journalVideo.addEventListener('ended',restartProductTour);
+    journalVideo.loop=true;
+    journalVideo.muted=true;
+    journalVideo.playsInline=true;
   }
 });
 </script>
