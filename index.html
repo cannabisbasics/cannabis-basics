@@ -581,6 +581,87 @@ input,select,textarea{cursor:text!important} select{cursor:pointer!important}
   .contact-send-btn{align-self:flex-end!important;width:min(190px,100%)!important}
 }
 </style>
+
+<style id="slim-sticky-header-20260925">
+/* Slim, always-visible header */
+.nav{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  z-index:1000!important;
+  min-height:56px!important;
+  height:56px!important;
+  padding:4px clamp(12px,2.2vw,30px)!important;
+  gap:12px!important;
+  background:rgba(2,7,3,.96)!important;
+  border-bottom:1px solid rgba(125,255,87,.10)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.20)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+.brand{height:48px!important;align-items:center!important}
+.brand-mark-clean{width:38px!important;height:38px!important}
+.brand-mark-clean img{width:38px!important;height:38px!important}
+.brand-copy{transform:translateY(-1px)}
+.brand-copy .brand-script{font-size:.98rem!important;line-height:1!important}
+.brand-copy small{font-size:.45rem!important;margin-top:3px!important;letter-spacing:.13em!important}
+.navlinks{gap:clamp(8px,1.05vw,16px)!important}
+.navlinks a{font-size:clamp(.62rem,.72vw,.72rem)!important;line-height:1!important}
+.nav-actions{gap:7px!important}
+.tool-nav{min-height:34px!important;padding:6px 10px!important;font-size:.61rem!important}
+.music-btn{width:34px!important;height:34px!important}
+.menu-btn{width:34px!important;height:34px!important;padding:7px!important}
+
+/* Pull hero up under slimmer fixed header */
+.hero{padding-top:68px!important}
+
+/* Anchor jumps should not hide under sticky header */
+section,header{scroll-margin-top:66px!important}
+
+@media(max-width:1050px){
+  .nav{height:54px!important;min-height:54px!important;padding:3px 10px!important}
+  .brand{height:46px!important}
+  .brand-mark-clean{width:34px!important;height:34px!important}
+  .brand-mark-clean img{width:34px!important;height:34px!important}
+  .brand-copy .brand-script{font-size:.88rem!important}
+  .brand-copy small{font-size:.41rem!important}
+  .navlinks{gap:7px!important}
+  .navlinks a{font-size:.60rem!important}
+  .tool-nav{font-size:.57rem!important;padding:5px 8px!important}
+  .music-btn,.menu-btn{width:32px!important;height:32px!important}
+  .hero{padding-top:64px!important}
+  section,header{scroll-margin-top:62px!important}
+}
+@media(max-width:900px){
+  .nav{height:52px!important;min-height:52px!important}
+  .navlinks{
+    top:52px!important;
+    left:8px!important;
+    right:8px!important;
+    max-height:calc(100vh - 64px)!important;
+    overflow:auto!important;
+  }
+  .brand-copy .brand-script{font-size:.84rem!important}
+  .brand-copy small{font-size:.39rem!important}
+  .tool-nav{min-height:31px!important}
+  .hero{padding-top:62px!important}
+  section,header{scroll-margin-top:60px!important}
+}
+@media(max-width:560px){
+  .nav{height:50px!important;min-height:50px!important;padding:2px 7px!important}
+  .brand{height:44px!important;gap:6px!important}
+  .brand-mark-clean{width:31px!important;height:31px!important}
+  .brand-mark-clean img{width:31px!important;height:31px!important}
+  .brand-copy .brand-script{font-size:.78rem!important}
+  .brand-copy small{font-size:.36rem!important;letter-spacing:.09em!important}
+  .tool-nav{font-size:.51rem!important;padding:5px 7px!important}
+  .music-btn,.menu-btn{width:30px!important;height:30px!important}
+  .navlinks{top:50px!important}
+  .hero{padding-top:58px!important}
+  section,header{scroll-margin-top:58px!important}
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
