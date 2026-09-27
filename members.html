@@ -416,6 +416,11 @@ body.light-theme .members-topbar .theme-text-toggle{color:#111!important}
   .side{top:58px!important;height:calc(100vh - 58px)!important}
 }
 </style>
+
+<style id="members-music-bright-green-20260927">
+#musicBtn{color:#c2cf32!important}
+#musicBtn .eq i{background:#c2cf32!important;box-shadow:0 0 7px rgba(194,207,50,.35)!important}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -570,6 +575,22 @@ document.addEventListener('DOMContentLoaded',()=>{
     const next=document.body.classList.contains('light-theme')?'dark':'light';
     localStorage.setItem('cb_theme',next);
     applyTheme(next);
+  });
+});
+</script>
+
+<script id="members-autoplay-retry-20260927">
+document.addEventListener('DOMContentLoaded',()=>{
+  const audio=document.getElementById('siteMusic');
+  const btn=document.getElementById('musicBtn');
+  if(!audio)return;
+  audio.volume=.35;
+  const attempt=async()=>{try{await audio.play();btn?.classList.add('playing');return true}catch(e){return false}};
+  attempt().then(ok=>{
+    if(ok)return;
+    const unlock=async()=>{const played=await attempt();if(played){document.removeEventListener('pointerdown',unlock);document.removeEventListener('keydown',unlock)}};
+    document.addEventListener('pointerdown',unlock,{passive:true});
+    document.addEventListener('keydown',unlock);
   });
 });
 </script>
