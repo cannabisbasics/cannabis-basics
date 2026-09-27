@@ -1076,6 +1076,147 @@ section,header{
 }
 </style>
 
+
+<style id="cannabis-sitewide-polish-20260927">
+:root{
+  --green:#145a32!important;
+  --green2:#145a32!important;
+  --green3:#145a32!important;
+  --money:#145a32;
+  --money2:#0f4426;
+  --white:#ffffff;
+}
+
+/* PUBLIC HEADER — member-style lockup, canonical transparent leaf */
+.nav{
+  background:rgba(2,7,3,.96)!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+}
+.brand-mark-clean,.brand-mark{
+  background:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.brand-mark-clean img,.brand-mark img{
+  width:46px!important;
+  height:46px!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 0 9px rgba(205,219,65,.28))!important;
+}
+.brand-script{
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:1.48rem!important;
+  font-weight:400!important;
+  line-height:.95!important;
+  color:#fff!important;
+  text-shadow:none!important;
+}
+.brand-copy small{color:#fff!important;opacity:.82!important}
+
+/* Brilliant white text throughout public UI, except white form controls */
+body,.hero-copy,.lead,.kicker,.eyebrow,.title,
+.navlinks a,.members-only-link,.tool-name,.tool-intro p,
+.tool-result-card,.tool-result-card p,.result-list,.result-chips span,
+.basic,.basic small,.watch-copy,.watch-copy p,.product-copy,.product-copy p,
+.free-copy,.free-copy p,.article-card,.article-card p,.article-view,.article-view p,
+.about-copy,.about-copy p,.footer,.footer p,.footer a,.footer button,
+.faq-question,.faq-copy,.contact-shell,.contact-shell p,.legal-note{
+  color:#fff!important;
+}
+.kicker,.eyebrow,.tool-name,.basic b,.read-link,.article-cat,
+.hero h1 em,.feature strong,.result-chips span,.member-price strong{
+  color:var(--money)!important;
+}
+
+/* All fill-in controls: bright white with black type */
+input,select,textarea,
+.field-group input,.field-group select,
+.free-email-field input,
+.contact-shell input,.contact-shell select,.contact-shell textarea{
+  background:#fff!important;
+  color:#050505!important;
+  border-color:#d7d7d7!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.08)!important;
+}
+input::placeholder,textarea::placeholder{color:#555!important}
+select option{background:#fff!important;color:#050505!important}
+
+/* Deep money green buttons and highlight surfaces */
+.btn.primary,.tool-nav,.tool-badge,.members-only-link{
+  background:var(--money)!important;
+  color:#fff!important;
+  border-color:var(--money)!important;
+}
+.btn,.tool-nav,.members-only-link,.music-btn,.menu-btn{
+  color:#fff!important;
+}
+
+/* Bare sound icon + three uninterrupted menu lines */
+#musicBtn,#menuBtn{
+  background:none!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;min-width:0!important;min-height:0!important;
+  width:auto!important;height:auto!important;padding:3px!important;
+  overflow:visible!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+}
+#musicBtn::before,#musicBtn::after,#menuBtn::before,#menuBtn::after{content:none!important;display:none!important}
+#musicBtn.playing{animation:none!important;box-shadow:none!important}
+#menuBtn{flex-direction:column!important;gap:4px!important}
+#menuBtn span{
+  display:block!important;width:24px!important;height:2px!important;
+  min-width:24px!important;min-height:2px!important;margin:0!important;
+  padding:0!important;background:#fff!important;border:0!important;
+  border-radius:1px!important;box-shadow:none!important;transform:none!important;
+  opacity:1!important;flex:0 0 2px!important;
+}
+#menuBtn.open span:nth-child(1),
+#menuBtn.open span:nth-child(2),
+#menuBtn.open span:nth-child(3){
+  transform:none!important;opacity:1!important;
+}
+
+/* Mobile menu: tighter, bright white, easy to scan */
+@media(max-width:900px){
+  .navlinks.open{
+    gap:2px!important;
+    padding:7px!important;
+    background:rgba(3,8,4,.985)!important;
+    border:1px solid rgba(255,255,255,.08)!important;
+  }
+  .navlinks.open a{
+    color:#fff!important;
+    font-size:.78rem!important;
+    line-height:1.15!important;
+    padding:7px 9px!important;
+    margin:0!important;
+    border-radius:8px!important;
+  }
+  .navlinks.open a:hover{background:rgba(20,90,50,.26)!important}
+}
+
+/* Motion + occasional glare on cards/buttons */
+.btn,.tool-nav,.members-only-link,.basic,.article-card,.feature,.tool-result-card,
+.free-card,.journal-showcase,.faq-item,.contact-shell,.about-grid,.watch-card{
+  position:relative!important;overflow:hidden!important;
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease!important;
+}
+.btn:hover,.tool-nav:hover,.members-only-link:hover,.basic:hover,.article-card:hover,.feature:hover,
+.tool-result-card:hover,.free-card:hover,.journal-showcase:hover,.faq-item:hover,.contact-shell:hover,
+.about-grid:hover,.watch-card:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.45),0 0 24px rgba(20,90,50,.20)!important;
+}
+.btn::after,.tool-nav::after,.members-only-link::after,.basic::after,.article-card::after,.feature::after,
+.tool-result-card::after,.free-card::after,.journal-showcase::after,.faq-item::after,.contact-shell::after,
+.about-grid::after,.watch-card::after{
+  content:""!important;position:absolute!important;inset:-80% auto -80% -35%!important;width:30%!important;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.16),transparent)!important;
+  transform:translateX(-220%) rotate(12deg)!important;pointer-events:none!important;
+  animation:cbGlare 10s ease-in-out infinite!important;
+}
+@keyframes cbGlare{0%,72%,100%{transform:translateX(-220%) rotate(12deg)}82%{transform:translateX(520%) rotate(12deg)}}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -1088,7 +1229,7 @@ section,header{
 
 <nav class="nav">
   <a class="brand" href="#top" aria-label="Cannabis Basics home">
-    <span class="brand-mark brand-mark-clean"><img src="data:image/webp;base64,UklGRiISAABXRUJQVlA4TBYSAAAvP8APECrL2ba9jeuwp7Nz0s4521QapUnMCTkQwA+AIAGCWcOhsk5Oztleuwb3I+kMh8SILuAtxaWpJnfgPqYVZ3vNQrxCDY5br/+WTw12O27BHakA93TadkIHfwunElQzjaiqKZbSAABLYonfs9e+ve7pGZVxBItQJKRD8UMQEbFreuZ1TG93d5y6e/fW+wegbdvW8rbZ0Xf4fN//CSyjGOxYCpuS8n17m+fJo1cCJNum7eS9d9+3zdi2bdu2bdu2bdu2bdvJV/B19jkzAfihnwlhW7kVfxDChlrD0tbqUhsEwL5K2Qgc4FtaSW7TKhAAa5W+sAcHvF1p4t+ko1ivEnkdFkb7NGzvyfIJK51icr9s2jsp5vv/IxjxCmUg2OJwvdzv7BJvvFcqZyCkWa8OxZcOxuksR/7WqyPCIY1i6eqs8dpJL6CJykVshK7SWpw5BWuVrFqM0ljl09eKaXfktrIHX8ZWhqGS7I8KF52tuKnRTaFuUjEkq5KgolspAa9JdZT0Bs7K7bDxb/AirB+Pk3i5NZPb0YWLJjJD8plFks5YsCd8nuzBhUZAowDYUgSCHRUyDxp5R1eKXE6q4SuF4R1OOcdpetDlIqQoACrO1TwSdImY8WOLrnPxTFwWWg3SH5semfYamb09MhWLmyFZhqIIOC/YMiesUtIMBVk2SFvwZnSxBHyLCwiUILNsmqXCRoLxNljdOiKUgFYiXSJHwImCQWMKZqkBugwS5AhrV6Hs3IMQjgwEe7yEOuBmckFT7ArpTpvM2egIb4P1jbuM7suOqwBulC10ioJOw7fzsg4Jlk+Qh+2FXaN9SE4WSVGiazcFV0yD1XCTuAwzis/6/jHhbdNjMCyaQuqPOl5B1bT1DGU0AnIKFnOQWk8niBvHZSlOF2Ds3w3TV3JkaGIVMxgK52YYd8j6/rNkzKbcEfqSM6YLpLj/EeoU2EJ13hbhzClYiJCxByHcHJRe+YFw4yB7gwC4HAaGXKzd4OYNr0MStIUyktibRLjKevYUkdetFLJ7cBxGACx8+fVJbjWQxDpTUr/3lGRnNAqkmPptkMuwmI4mypZ3Q3oISziAgAbXtvCwYBokk51CjnxHRWEzPWScJn+v9Tgv6CFvo2RzLrdpjySLabl5ABSRUgzfRLimROLFmYYiVOR6tMN6HoW4yXmLi2NKU4EJCp7HbMaMK8VCQ2F19znWckfWIJ1HQUaaucjny0vxiig5eztaha2jQfzcw3Babr+uuNXUKBJVToRuLYtkDtitEM7cwuRa4xqjiyTDdeYc+o6PXC0YXdL+UESuahWs58RP7r4D77IUTzcLzGeuVSVQPYZb9UjEEaUQ2Jjj62E2cU+R2TCS7AmVoGcAPUAhrUqWet5+VxcVwyjGrTHbiPIpmLiSKRKORWkTGTmPJSiKfqrKJZ+MSvLVqMAxcREZCHZEnKDebCVaTEVYTlNjWZtqwGv+ttqHD2IAjE1CuBbh+lCMMxKlerjFXKUK73uiEPZE7j1PulKWhvMoKqauL7HBZo5l48ogItLgzKE3S6NibMuHt2/ms0nBuTI/aLPmYoqKaOcy8jlcEgCU8S3J2qDjHZdUo8tkTFnYQoIa69w4Ju0FkqROpO8cCmPgDa/llLrm+vxCM3U4jdfO/0Ivc4NGhRSa4xtuG444o6rBKa7rSiEam+l5aSRAnIFg4+/UoFqSP4pJpqmwDidEUXDySsFviTz/KqF0pB9SgGIr8+C9Sea/Am9aqKg5f82kWXQ03+/jAQQbIk9gtq3crBpJIap6+0I1XleNjKmIYrtVA5w3oYiZsg5fXsobKiumqbIOWkJRIfJZMzePWA92+B/X1OpYgyXVW/ARym3xZ+YcuS7mWrRyZUbEb7nY6zbiZB0dO86sw9nU+st7kiFcUF1dqRhVUyZhFOLjOTgFY9yvcC8n8q4YFxyHdW+VqMlBjhcG6yy3niFVd6Uh1khxmegN84yyxYiq0c7npthIpGF6Te8oHgUaHRKUC1fl+1KL7aZcV043Y1VUK4yKVvQPDYE7g4JCsnW9QgiGQjJYZWplocKqmT0g3AH/KgWWDpSygo0CZdFPfTamwpsim5cHNq+5uNVMFkoXY59QHOHJcXYTAYHt327LgjhlugQP6JXUXrnA4fFdP4zwhH4hAgcakiyScUHjRfprDG85u5SYyQYT3qKfG4xHgf79QQj7BlaPFfnCNmdSwSrZBTYSpabVDVNzOTeSowCFJM/qT7X818dNpKUwtkMYpqcavMFruhNpCqMl/VxD0WSWoMXUdENUTN85IcwuPUhwiqJB3TeJMJdJTZUcZhdNclMpnuuphj9Z/OHLB1eKI2U0E8LRc+31i4pgzag0Mh3SSKMWWDQ54uuOlsfvIFSjhpu0xHaRdbjFSI7zL0Fn6jofSr6wB0dCJggpKX7/coooyyENsfL5CBuVEbyhSc6IcBwR6BO91oqPy8OXAW6iTLshQJDEQUxREKW8ST6Bxym46x5pSvKps8Smr5LhLDXbBGvV5FQy5K74EQpCzM2zyiaWSnSJK6iTu+TK8zPRHtcRZwCsBEe9hhPo/Odrhhu3FA6e4XUcgXJli0qDzulItjeHAI205z7K+AhrTjZ2cBGhzEoOuBOwK0aNHKup52BVfCVMmZ2wMWvKsxWrb7cQswgoXYzlCDjJLtzarVwxNRx9RpVKTXBaXXNJ1U3Jv9fVLM+gOrqphShBhlW56GYrzSiAkqevR9g/Gh2EN4y4cB5hSvwgcr1yYc5FzRruIB60b3JuAmBRLBwnB4Bs5KeDgL+tdTz3BECMD7YR4Nv15ERy1OkUW6+QIOW3Qq49fBDCorwU7R1UpZNmyedNtlMKJ/NlIYAndiVbtk0wBTGUNlIuRQepR83YQfxu+FYGbwPIQLDFc9cE/G29CwCM4xfutUp0aNiZCwseP4D+t6VPT5EJYfU8vTyTDDOaqR1XEeVBGZTSoOs4qFtWQsy67qXZ7JCqcmlF92kTNDkr1Bj9t4FWZY6UXSSUwAqtriUprSiAvz1Nj4+xYB1o+ko52pYAvFhMAOw1Mwo16/2oqL6dVcFvA1+80Su/9hUiLgUI2agh/J1cB+HiCGHZPXhh7i0Cztz6jUe7G2OnhtJcqFrVqmqQzSiMf6u5mftUSdnZIMVcQUzKtCQ6AyqTA/BQeT9dWm5UnVSb0SFVyylex0/q61EQFAc//C1c1Tvw395EwMUJ/C+0EHTRg/9X/kPg6/tW0qi9dJa1t/3N2uR0HdSylILhB+HJpcL/sV6k/6VX+JOQv4vrqTdxgXybEOjXsZ5+E28pyxhLuP1gi9Mjtn51om1Op3vavDfpomzuKXgA5HVYTnvoGYiq9dlGja9Jcn6gkZ4sgsbo1hAXriREl2X5N/kTPjXyoqaEdGpapmxEm/mp7eUeZVfTA9kQDjJAUc+Ytu+Up+Ps0nyvLY93W8L1S0u9+9bSbn76xtX3jnId09dufvbEm+9d6jdk+j/K3J8Hv/DyzhcMAAXa7qpxwD68ClJbWotLeuiRPn1kXDzhMq9YyhMt6StEeIbwbxDmBVc5YhvLp4HZl4pNrQqY/riMI/grI97ZTrekZjESjHLLpqhafiiI7KSVisInsu2Fu0L5g0KqqyvJpJoN9MowDmh0rEynMsywS3d3bHmPxTxh86/Y4hMt8StEecLlXpkIZwbsPf3UkfbSiiC5JaBPXz173xlIcJC9i5dCeJqGbOrSTphI+mhXrdhM27G1MQpd1+k7kYsnMa2lkvSjNo33pmWemZYfaMofsey70yQYuqN81AKHVt1C8kERmeGpbWXelsYOaRSyYq7m6chsFB1FbMYW6Rh8feustTqw/KGZ5VwfUMUz++YDXvmMZTwiqQ/aBGuR+bPU6JUY7KDt2Fa7sbnuoePUMJ6EucBU9MCtrxEEAn7ZYxz6hb2fDoAraRei+utuIemiSQC7BAspI9jMGDVto4qBKSpjaGLXmngtqvBV+/Znxr09nWY8NVxpjBe7OcXIGWWk0/JnrUyCHl+DCUnzadVM/76dcjrNvHLjV0Q2nVLeb8atUXdD4HxCk74ZTboVXe5a5cw0CcNOKYOkm+GymWAxJYiFdJEgpBJHjC+iaYMBcupvC4ueJHhHtm2cUMivzUyjizRG2SREGiMk1TiTMlxOCWOpvXjTVnrQenatLHqjArvT9Zywx7u0p5E7tOoaNVup4LF4f1jG84T+GQ1jxE6soTrxvH0fFfwuL/pnzx0gxY1o2FaZmbH2VpruwqmHcMo4nTJOpOohlXEmCBMNM90QqYiRKjavFFi6DIQ0Tx6EsGHJp4D/Kfw5Xbupks2tZ/OrhuU3N19xVyqddKOHV0Z4ZZZxxmjShjtWdIqeuMDlLnCsAa1Sj/iWrMil4vVgm8eHa3Yul7MbYlFfGJV6zTBbsifO0NELzOgULzZmhCSztDPGK32s4qcbrZVGK1fRMhnTyGSCKvlqUbGB3vMIBwiAheVjCmDyHHykDhUW2RjX4Gw3L9hBgYvbIh7vm2w8VQsR1yQzxiYzxibqJz01fOKWe7yEdQbe+OV0e3yGd+wpX+eYdnOcPPImL3m8IyS6qMjwxcLqF0JmvElmvE5losnmewnLrzzjTwXBTnGMHxYLPltytQLZRRgAShHpSfoAgg1zyS34ZELYz7wOt79eXkdas4sSXqt39aoX+xz+9uWodI9pPL6V7P7b6Fhs05vv7DgPXwfKAUu4edT25itsf9xG6aF0doSw97wD70wI59Wf4Db5Fq6Ym8aI/oSmT0+BMWtpx0Zv9Hxtsb6nPj4wuK/xJvHFePgzHvaESzzcHFnTg7Ptd1NnT5WV+/UypefsOrTzp7th/oVW9hkr90XM4rfvff10/b69WDEFQ/WJjmDg9JTGGQg2HCmjgKwgqideLe+Lh7jn9Q+8LJ24RZ0wE5+w8e943MdXTnU2vCuOL/v56b3vvs25br086tnj+rA9ef5GkaRBYK06tdiP/6zMGzb6kbv0iVeUM/f1M31p97UnXs1RPfgDFEdLgZ8Y/HREqG5f9rlP9PEzzspR5MTHlGr6DVv6Dad03GfY0XGkby7ddpdo+d7wG38gaP+QBj8HPTlD5fL31Fr/t7jrbu07yG5r729Z4u9Ukq9GSZxT3MRR+vgHeuxHQm39sClNupF1eOA4Pop3kQG/7C2ndvKU1Q8r/4iaOGNFlslmZKvyxD/Uin+gaB/j/fasteL18oGy+32nccSX7rZjelMz7+1TL4RgXnWvsmPP3mHwuynwGrejROXz/yr3F/nsn3SxY6qDbFM05IyZe8RVlh/bjdoYyEbgiO73uB4gQ0emvUHmmnb0hAkfdDO+5wXnjMG9URWevvHl7YTn9xBW5PcVOub996G3pS1vPiigpz++vqcZ9o9HndiJoyzWjd0dXXuvVeE4F6MxcvCl49xq8Tm2pfzgrvmIFtlC4kfpwI/4xCW+Tmvv9BAKAv62IqLkFCxsU9+rq9h9HIGnyJevIPA1TvaGQW359KWby4WidNPl668gFBy1yKwau19BcKBV2qfo/rIwMD2wdPvHo04g4G+rCqY+buV4fOQfIM49orAYDDx/D+kledFz5s9XB9riZQu/xYpeI126wklMUYn3nza5t2L4RRwJYKmvvdTkM/yVBTtTV6eUYls0aGg3v4nKXwjhAJCN/HQx7P353uoJw94my/qqE1LcO9CMs2PuCgLgAsm+yGKUd086wwOO+5CqVhdFMtD/NgBfCOHS8Uvdoef9RLav2L16dVmaWiMgz1jaWzNEeZzoxFB4pN+sGAuLezOGhvUBsuPgA/DLPukfXDHcHoZf311gN+7jmtZ1O/wixqsvSZa9Q+qPL+zBkUBRNb3jHW6F4yPd1dmDH6e/oDjoqyiwX/ApI2HxeGjczCFkzUnZUsg+BBcN88aTai0HgD1LnzLKvrCHsNkupczuxctma14aOeLJiRhfeF6y7R/RWKxB0bsJz/Zksv/Vp4TZJvVFCrZOnwGIJ2CormWl4RkIVgQHn1EcTNAaj473N0cnnj+GH9ZAjFefkuzTfZ6DNUCB4SYN7YxLkr+r6UFxkD5DxAnF/IRJDrdpdspUIMGB55+JsOkRdwEJYQcQJ3Anpa4a0ErJh/c8gCVJJIv+pQG0MuIYy6bgypyPszkf6LzHkeJwdgiye3DgcaaIlLLH6LEG" alt="Cannabis Basics transparent leaf logo"></span>
+    <span class="brand-mark brand-mark-clean"><img src="assets/logo-green.webp" alt="Cannabis Basics transparent leaf logo"></span>
     <span class="brand-copy"><span class="brand-script">Cannabis Basics</span><small>Learn • Track • Understand</small></span>
   </a>
   <div class="navlinks" aria-label="Primary navigation">
