@@ -328,6 +328,42 @@ body::after{opacity:.34!important}
   82%,100%{transform:translateX(270%)}
 }
 </style>
+
+<style id="members-logo-green-theme-sync-20260927">
+:root{
+  --green:#c2cf32!important;--green2:#c2cf32!important;--deep:#aab91e!important;--money:#c2cf32!important;
+}
+.eyebrow,.nav-btn.active,.mobile-nav button.active,.module button{color:#c2cf32!important}
+.primary,.action,.chip.active,.rating button.active,.member-pill{
+  background:#c2cf32!important;color:#111600!important;border-color:#c2cf32!important;
+}
+.hero-card,.module,.paper,.account-card,.dispensary-card,.record,.stat,.member-price{
+  box-shadow:0 18px 46px rgba(0,0,0,.42),0 0 18px rgba(194,207,50,.16)!important;
+}
+.field input:focus,.field select:focus,.field textarea:focus,.list-toolbar input:focus{
+  border-color:#c2cf32!important;box-shadow:0 0 0 3px rgba(194,207,50,.14)!important;
+}
+body.light-theme{
+  background:#f5f6f1!important;color:#151915!important;
+}
+body.light-theme::after{opacity:.08!important;mix-blend-mode:multiply!important}
+body.light-theme .site-bg{filter:saturate(.75) brightness(1.25) contrast(.9)!important;opacity:.18!important}
+body.light-theme .topbar{background:rgba(249,250,245,.97)!important;border-bottom-color:rgba(20,30,20,.10)!important}
+body.light-theme .brand-title,body.light-theme .brand-title small,body.light-theme .home-link,body.light-theme .profile-btn{color:#151915!important}
+body.light-theme .side{background:rgba(244,246,239,.94)!important;border-right-color:#d8ddd2!important}
+body.light-theme .side-intro strong,body.light-theme .side-intro span,body.light-theme .nav-btn,body.light-theme .member-price,body.light-theme .member-price b,body.light-theme .member-price span{color:#151915!important}
+body.light-theme .mobile-nav{background:rgba(244,246,239,.97)!important}
+body.light-theme .mobile-nav button{background:#fff!important;color:#151915!important;border-color:#d3d9ce!important}
+body.light-theme .hero-card,body.light-theme .module,body.light-theme .paper,body.light-theme .account-card,
+body.light-theme .dispensary-card,body.light-theme .record,body.light-theme .stat,body.light-theme .member-price,
+body.light-theme .privacy,body.light-theme .empty{
+  background:#fff!important;color:#151915!important;border-color:#d9ded4!important;box-shadow:0 16px 40px rgba(40,50,40,.10)!important;
+}
+body.light-theme .screen h1,body.light-theme .lede,body.light-theme .hero-card h2,body.light-theme .module h3,
+body.light-theme .module p,body.light-theme .paper h2,body.light-theme .paper-intro,body.light-theme .record strong,
+body.light-theme .record small,body.light-theme .account-card b,body.light-theme .account-card span{color:#151915!important}
+body.light-theme .field label{color:#151915!important}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -418,5 +454,12 @@ addWish.onclick=()=>{if(!wishProduct.value.trim())return;const arr=load('cb_wish
 addStore.onclick=()=>{if(!storeName.value.trim())return;const arr=load('cb_stores');arr.unshift({id:Date.now(),name:storeName.value.trim(),location:storeLocation.value.trim(),notes:storeNotes.value.trim()});save('cb_stores',arr);storeName.value=storeLocation.value=storeNotes.value='';renderAll()};
 function renderAll(){const inv=load('cb_inventory'),wish=load('cb_wishlist'),sessions=load('cb_sessions'),stores=load('cb_stores');statSessions.textContent=sessions.length;statInventory.textContent=inv.length;statWishlist.textContent=wish.length;statFavorites.textContent=sessions.filter(x=>x.rating>=4).length;inventoryList.innerHTML=inv.length?inv.map(x=>`<div class="record"><div><strong>${escapeHTML(x.product)}</strong><small>${escapeHTML(x.amount||'Amount not entered')} • ${escapeHTML(x.store||'Store not entered')}</small></div></div>`).join(''):'<div class="empty">Your inventory is empty.</div>';wishList.innerHTML=wish.length?wish.map(x=>`<div class="record"><div><strong>${escapeHTML(x.product)}</strong><small>${escapeHTML(x.priority)} • ${escapeHTML(x.where||'Source not entered')}</small></div></div>`).join(''):'<div class="empty">Nothing on the wish list yet.</div>';storeList.innerHTML=stores.length?stores.map(x=>`<div class="dispensary-card"><div><strong>${escapeHTML(x.name)}</strong><span>${escapeHTML(x.location||'Location not entered')} ${x.notes?'• '+escapeHTML(x.notes):''}</span></div><span>Saved</span></div>`).join(''):'<div class="empty">No dispensaries saved yet.</div>';renderSessions()}
 updatePDF({});renderAll();
+</script>
+
+<script id="members-theme-sync-20260927">
+document.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('cb_theme')||'dark';
+  document.body.classList.toggle('light-theme',saved==='light');
+});
 </script>
 </body></html>
