@@ -364,17 +364,75 @@ body.light-theme .module p,body.light-theme .paper h2,body.light-theme .paper-in
 body.light-theme .record small,body.light-theme .account-card b,body.light-theme .account-card span{color:#151915!important}
 body.light-theme .field label{color:#151915!important}
 </style>
+
+<style id="members-firstrow-match-home-20260927">
+.members-topbar{
+  position:sticky!important;top:0!important;z-index:90!important;
+  height:62px!important;min-height:62px!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  gap:18px!important;padding:6px 14px!important;
+  background:rgba(2,7,3,.96)!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+  backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;
+}
+.members-topbar .brand{display:flex!important;align-items:center!important;gap:12px!important;min-width:max-content!important}
+.members-topbar .brand-mark,.members-topbar .brand-mark-clean{
+  width:42px!important;height:42px!important;min-width:42px!important;
+  background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+.members-topbar .brand-mark img,.members-topbar .brand-mark-clean img{
+  width:42px!important;height:42px!important;object-fit:contain!important;
+  filter:drop-shadow(0 0 10px rgba(194,207,50,.30))!important;
+}
+.members-topbar .brand-script{
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:1.22rem!important;line-height:.95!important;font-weight:400!important;
+  color:#fff!important;letter-spacing:0!important;text-shadow:none!important;
+}
+.members-topbar .brand-copy small{
+  display:block!important;margin-top:4px!important;font-size:.49rem!important;letter-spacing:.16em!important;
+  color:#fff!important;opacity:.82!important;text-transform:uppercase!important;
+}
+.members-topbar .public-top-actions{display:flex!important;align-items:center!important;gap:10px!important}
+.members-topbar #musicBtn{color:#c2cf32!important}
+.members-topbar #musicBtn .eq i{background:#c2cf32!important}
+.members-topbar .theme-text-toggle{
+  appearance:none!important;border:0!important;background:transparent!important;color:#fff!important;
+  font:700 .82rem Georgia,"Times New Roman",serif!important;letter-spacing:.04em!important;padding:4px 2px!important;
+}
+body.light-theme .members-topbar{background:rgba(249,250,245,.96)!important;border-bottom-color:rgba(20,30,20,.10)!important}
+body.light-theme .members-topbar .brand-script,
+body.light-theme .members-topbar .brand-copy small,
+body.light-theme .members-topbar .theme-text-toggle{color:#111!important}
+.mobile-nav{top:62px!important}
+.side{top:62px!important;height:calc(100vh - 62px)!important}
+@media(max-width:640px){
+  .members-topbar{height:58px!important;min-height:58px!important;padding:5px 10px!important}
+  .members-topbar .brand-mark,.members-topbar .brand-mark-clean{width:38px!important;height:38px!important;min-width:38px!important}
+  .members-topbar .brand-mark img,.members-topbar .brand-mark-clean img{width:38px!important;height:38px!important}
+  .members-topbar .brand-script{font-size:1.08rem!important}
+  .members-topbar .brand-copy small{font-size:.43rem!important;margin-top:3px!important}
+  .mobile-nav{top:58px!important}
+  .side{top:58px!important;height:calc(100vh - 58px)!important}
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
 <svg viewBox="0 0 200 300"><path d="M99 274c-6-72 0-137 2-198M101 121C70 88 48 57 38 19c37 23 60 54 63 102ZM103 151c42-33 66-65 79-106-42 18-70 49-79 106ZM98 183c-35-23-63-38-92-41 22 29 52 48 92 41ZM105 203c34-16 60-17 86-12-25 20-52 28-86 12Z"/></svg>
 <svg viewBox="0 0 200 300"><path d="M99 274c-6-72 0-137 2-198M101 121C70 88 48 57 38 19c37 23 60 54 63 102ZM103 151c42-33 66-65 79-106-42 18-70 49-79 106ZM98 183c-35-23-63-38-92-41 22 29 52 48 92 41ZM105 203c34-16 60-17 86-12-25 20-52 28-86 12Z"/></svg>
 </div>
-<header class="topbar">
-  <a class="brand" href="index.html"><img src="assets/logo-green.webp" alt="Cannabis Basics transparent yellow-green leaf logo"><span class="brand-title">Cannabis Basics<small>My Personal Record Book</small></span></a>
-  <span class="member-pill">Members Only</span>
-  <div class="top-actions"><a class="home-link" href="index.html">← Public Site</a><button class="profile-btn" data-go="account">My Account</button></div>
+<header class="public-topbar members-topbar" id="membersTopbar">
+  <a class="brand" href="index.html" aria-label="Cannabis Basics home">
+    <span class="brand-mark brand-mark-clean"><img src="assets/logo-green.webp" alt="Cannabis Basics transparent yellow-green leaf logo"></span>
+    <span class="brand-copy"><span class="brand-script">Cannabis Basics</span><small>My Personal Record Book</small></span>
+  </a>
+  <div class="public-top-actions">
+    <button class="music-btn" id="musicBtn" aria-label="Play Slow Like the Smoke" title="Play Slow Like the Smoke"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    <button class="theme-text-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">Light</button>
+  </div>
 </header>
+<audio id="siteMusic" loop preload="auto"><source src="assets/slow-like-the-smoke.mp3" type="audio/mpeg"></audio>
 <nav class="mobile-nav" id="mobileNav"></nav>
 <div class="shell">
 <aside class="side">
@@ -460,6 +518,59 @@ updatePDF({});renderAll();
 document.addEventListener('DOMContentLoaded',()=>{
   const saved=localStorage.getItem('cb_theme')||'dark';
   document.body.classList.toggle('light-theme',saved==='light');
+});
+</script>
+
+<script id="members-music-theme-controls-20260927">
+document.addEventListener('DOMContentLoaded',()=>{
+  const audio=document.getElementById('siteMusic');
+  const musicBtn=document.getElementById('musicBtn');
+  const themeBtn=document.getElementById('themeToggle');
+  let playing=false;
+
+  const syncMusic=()=>{ if(musicBtn) musicBtn.classList.toggle('playing',playing); };
+
+  async function startMusic(){
+    if(!audio)return;
+    try{
+      audio.volume=.35;
+      await audio.play();
+      playing=true;
+      syncMusic();
+    }catch(e){
+      playing=false;
+      syncMusic();
+    }
+  }
+
+  // Attempt autoplay on page entry. Browsers may block audible autoplay until a user gesture.
+  startMusic();
+
+  musicBtn?.addEventListener('click',async()=>{
+    if(!audio)return;
+    if(audio.paused){
+      try{await audio.play();playing=true;}catch(e){playing=false;}
+    }else{
+      audio.pause();playing=false;
+    }
+    syncMusic();
+  });
+
+  const saved=localStorage.getItem('cb_theme')||'dark';
+  const applyTheme=mode=>{
+    const light=mode==='light';
+    document.body.classList.toggle('light-theme',light);
+    if(themeBtn){
+      themeBtn.textContent=light?'Dark':'Light';
+      themeBtn.setAttribute('aria-label',light?'Switch to dark theme':'Switch to light theme');
+    }
+  };
+  applyTheme(saved);
+  themeBtn?.addEventListener('click',()=>{
+    const next=document.body.classList.contains('light-theme')?'dark':'light';
+    localStorage.setItem('cb_theme',next);
+    applyTheme(next);
+  });
 });
 </script>
 </body></html>
