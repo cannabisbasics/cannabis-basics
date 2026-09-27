@@ -142,6 +142,114 @@ body::before{
 }
 
 </style>
+
+<style id="members-money-green-polish-20260927">
+:root{
+  --green:#145a32!important;
+  --green2:#145a32!important;
+  --deep:#0f4426!important;
+  --money:#145a32;
+}
+
+/* Signature home-page cannabis background, stronger on Members */
+body{
+  color:#fff!important;
+  background:
+    radial-gradient(circle at 16% 7%,rgba(20,90,50,.22),transparent 30%),
+    radial-gradient(circle at 88% 34%,rgba(20,90,50,.16),transparent 28%),
+    linear-gradient(180deg,#030504 0%,#061008 48%,#030504 100%)!important;
+}
+body::after{
+  content:"";position:fixed;inset:-7%;z-index:-4;pointer-events:none;
+  background:url("assets/leaf-pattern.png") center/520px auto repeat!important;
+  opacity:.27!important;mix-blend-mode:screen!important;
+  animation:memberPatternFloat 68s ease-in-out infinite alternate!important;
+}
+@keyframes memberPatternFloat{
+  0%{transform:scale(1) translate3d(0,0,0)}
+  50%{transform:scale(1.09) translate3d(-22px,-14px,0)}
+  100%{transform:scale(1.035) translate3d(18px,10px,0)}
+}
+.page-art{display:none!important}
+
+/* Canonical header logo + brilliant white typography */
+.topbar{background:rgba(2,7,3,.96)!important;border-bottom:1px solid rgba(255,255,255,.08)!important}
+.brand img{background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;filter:drop-shadow(0 0 9px rgba(205,219,65,.28))!important}
+.brand-title{font-family:Georgia,"Times New Roman",serif!important;color:#fff!important;font-weight:400!important}
+.brand-title small{color:#fff!important;opacity:.82!important}
+.member-pill{background:var(--money)!important;color:#fff!important;border-color:var(--money)!important}
+.home-link,.profile-btn{color:#fff!important}
+
+/* Brilliant white member text */
+body,.screen h1,.lede,.hero-card,.hero-card h2,.module,.module h3,.module p,
+.paper,.paper h2,.paper-intro,.side-intro,.side-intro strong,.side-intro span,
+.nav-btn,.member-price,.member-price b,.member-price span,.record,.record strong,.record small,
+.account-card,.account-card b,.account-card span,.dispensary-card,.privacy,.empty,
+.mobile-nav button{
+  color:#fff!important;
+}
+.eyebrow,.module button,.member-price strong,.nav-btn.active,.mobile-nav button.active{
+  color:var(--money)!important;
+}
+
+/* Cards/dropdowns stand out */
+.hero-card,.module,.paper,.account-card,.dispensary-card,.record,.stat,.member-price{
+  border:1px solid rgba(255,255,255,.11)!important;
+  box-shadow:0 18px 46px rgba(0,0,0,.42),0 0 18px rgba(20,90,50,.17)!important;
+}
+.stat b{color:#fff!important}
+.stat span{color:#fff!important;opacity:.8!important}
+
+/* All editable fields are white with black text */
+.field input,.field select,.field textarea,.list-toolbar input{
+  background:#fff!important;
+  color:#050505!important;
+  border:1px solid #d5d5d5!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.08)!important;
+}
+.field input::placeholder,.field textarea::placeholder,.list-toolbar input::placeholder{color:#555!important}
+.field select option{background:#fff!important;color:#050505!important}
+.field label{color:#fff!important}
+
+/* Deep old-school money green instead of mint */
+.primary,.action,.chip.active,.rating button.active{
+  background:var(--money)!important;
+  color:#fff!important;
+  border-color:var(--money)!important;
+}
+.nav-btn.active,.mobile-nav button.active{
+  background:rgba(20,90,50,.24)!important;
+  border-color:rgba(20,90,50,.5)!important;
+}
+.module button{color:#fff!important;text-decoration:underline;text-decoration-color:rgba(20,90,50,.7)!important}
+.member-price strong{color:#fff!important}
+
+/* Hover motion + periodic glare */
+.action,.primary,.secondary,.chip,.rating button,.nav-btn,.mobile-nav button,
+.hero-card,.module,.paper,.account-card,.dispensary-card,.record,.stat,.member-price{
+  position:relative!important;overflow:hidden!important;
+  transition:transform .34s ease,box-shadow .34s ease,border-color .34s ease!important;
+}
+.action:hover,.primary:hover,.secondary:hover,.chip:hover,.rating button:hover,.nav-btn:hover,.mobile-nav button:hover,
+.hero-card:hover,.module:hover,.paper:hover,.account-card:hover,.dispensary-card:hover,.record:hover,.stat:hover,.member-price:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 20px 50px rgba(0,0,0,.46),0 0 25px rgba(20,90,50,.25)!important;
+}
+.action::after,.primary::after,.secondary::after,.chip::after,.rating button::after,
+.hero-card::after,.module::after,.paper::after,.account-card::after,.dispensary-card::after,.record::after,.stat::after,.member-price::after{
+  content:""!important;position:absolute!important;top:-70%!important;bottom:-70%!important;left:-34%!important;width:28%!important;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.17),transparent)!important;
+  transform:translateX(-220%) rotate(12deg)!important;pointer-events:none!important;
+  animation:memberGlare 10.5s ease-in-out infinite!important;
+}
+@keyframes memberGlare{0%,72%,100%{transform:translateX(-220%) rotate(12deg)}82%{transform:translateX(540%) rotate(12deg)}}
+
+/* Tighter bright-white member navigation */
+.nav-btn{padding:9px 10px!important;gap:9px!important}
+.nav-group{gap:2px!important}
+.mobile-nav{gap:4px!important;padding:7px 10px!important;background:rgba(3,8,4,.96)!important}
+.mobile-nav button{padding:7px 10px!important;color:#fff!important;border-color:rgba(255,255,255,.10)!important;background:#101612!important}
+</style>
 </head>
 <body>
 <div class="page-art" aria-hidden="true">
