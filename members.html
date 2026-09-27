@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f6f1e8">
+<meta name="theme-color" content="#040605">
 <title>Cannabis Basics Members | Personal Record Book</title>
 <style>
 :root{
@@ -29,6 +29,99 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;
 @media(max-width:980px){.shell{grid-template-columns:1fr}.side{display:none}.main{padding:24px 16px 50px}.hero-grid{grid-template-columns:1fr}.section-grid{grid-template-columns:1fr 1fr}.mobile-nav{position:sticky;top:78px;z-index:40;display:flex;gap:8px;overflow-x:auto;padding:9px 12px;background:rgba(255,253,248,.94);border-bottom:1px solid #ddd8ce;scrollbar-width:none}.mobile-nav button{flex:0 0 auto;border:1px solid #d7ddd2;border-radius:999px;background:#fff;padding:8px 12px;color:#526356}.mobile-nav button.active{background:#dce9d7;color:#2d4e32}.member-menu-btn{display:block}.top-actions .home-link{display:none}}
 @media(max-width:640px){.topbar{padding:9px 12px;height:70px}.brand img{width:44px;height:44px}.brand-title{font-size:1.25rem}.brand-title small{font-size:.52rem}.member-pill{display:none}.mobile-nav{top:70px}.screen h1{font-size:2.65rem}.form-grid,.section-grid,.pdf-grid{grid-template-columns:1fr}.hero-card,.paper{padding:20px}.stat-stack{grid-template-columns:1fr 1fr}.pdf-preview{min-height:720px;padding:22px}.account-card{grid-template-columns:1fr}.main{padding-top:20px}}
 @media print{body{background:white}.topbar,.mobile-nav,.side,.screen:not(#screen-log),#screen-log>.eyebrow,#screen-log>h1,#screen-log>.lede,#screen-log>.paper:first-of-type,#savedRecords,.print-hide{display:none!important}.shell,.main{display:block;padding:0}.screen{display:block!important}.pdf-preview{display:block!important;width:8.5in;min-height:11in;margin:0;border:0;box-shadow:none;padding:.45in;page-break-after:always}}
+
+/* DARK MEMBER THEME — match Cannabis Basics public site */
+:root{
+  --paper:#111814;--paper2:#0d130f;--ink:#f3f0e7;--muted:#a8b2aa;--line:rgba(125,255,87,.16);
+  --green:#7dff57;--green2:#8fda78;--deep:#1e3a24;--sage:#d9dedb;--sage2:#cfd5d1;
+  --gold:#d8c18b;--lav:#292b2e;--rose:#2d2928;--shadow:0 24px 70px rgba(0,0,0,.46);
+}
+body{
+  background:
+    radial-gradient(circle at 16% 7%,rgba(71,223,90,.10),transparent 30%),
+    radial-gradient(circle at 88% 34%,rgba(94,255,85,.055),transparent 28%),
+    linear-gradient(180deg,#030504 0%,#061008 48%,#030504 100%)!important;
+  color:var(--ink)!important;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-3;
+  background:linear-gradient(180deg,rgba(1,4,2,.12),rgba(1,4,2,.42));
+}
+.page-art{z-index:-2;filter:drop-shadow(0 0 22px rgba(96,255,86,.035))}
+.page-art svg{opacity:.055!important;stroke:#87ff70!important;animation:memberLeafDrift 34s ease-in-out infinite alternate}
+.page-art svg:nth-child(2){animation-duration:45s;animation-direction:alternate-reverse}
+@keyframes memberLeafDrift{0%{translate:0 0;rotate:-1deg;scale:1}50%{translate:20px -24px;rotate:2deg;scale:1.025}100%{translate:-10px 12px;rotate:-2deg;scale:.99}}
+
+.topbar{
+  background:linear-gradient(180deg,rgba(2,5,3,.96),rgba(2,5,3,.84))!important;
+  border-bottom:1px solid rgba(125,255,87,.10)!important;
+  color:#eef3ed!important;
+}
+.brand-title{color:#eef3ed!important}.brand-title small{color:#93a197!important}
+.member-pill{background:rgba(125,255,87,.13)!important;color:#cfffad!important;border:1px solid rgba(125,255,87,.28)}
+.home-link,.profile-btn{
+  background:#151a17!important;color:#dbe5dc!important;border:1px solid rgba(125,255,87,.18)!important
+}
+.profile-btn{background:#1a281d!important}
+.side{
+  background:rgba(5,10,7,.86)!important;
+  border-right:1px solid rgba(125,255,87,.10)!important;
+  backdrop-filter:blur(12px)
+}
+.side-intro strong{color:#edf3ed}.side-intro span{color:#87968b}
+.nav-btn{color:#aebbb1!important}.nav-btn:hover{background:rgba(125,255,87,.055)!important}
+.nav-btn.active{background:rgba(125,255,87,.10)!important;color:#cfffad!important;box-shadow:inset 0 0 0 1px rgba(125,255,87,.18)!important}
+.nav-btn .ico{background:#121914!important;border-color:rgba(125,255,87,.13)!important;color:#baff9e!important}
+.nav-sep{background:rgba(125,255,87,.09)!important}
+.member-price{background:#101612!important;border-color:rgba(125,255,87,.14)!important;box-shadow:var(--shadow)!important}
+.member-price b{color:#dff2d7!important}.member-price span{color:#87968b!important}.member-price strong{color:#d8c18b!important}
+.main{background:transparent!important}
+.eyebrow{color:#9ce789!important}.screen h1{color:#f2efe6!important}.lede{color:#aeb9af!important}
+.hero-card,.module,.paper,.account-card,.dispensary-card{
+  background:linear-gradient(145deg,rgba(14,25,16,.95),rgba(5,9,6,.96))!important;
+  border-color:rgba(125,255,87,.16)!important;
+  box-shadow:var(--shadow)!important;
+  color:#eef3ed!important
+}
+.hero-card::after{background:radial-gradient(circle,rgba(125,255,87,.12),transparent 65%)!important}
+.action{background:#5c8f4f!important;color:white!important;box-shadow:0 10px 24px rgba(60,130,65,.18)!important}
+.action.alt,.secondary{background:#151a17!important;border-color:rgba(125,255,87,.16)!important;color:#dce9dc!important}
+.stat{background:#111713!important;border-color:rgba(125,255,87,.12)!important}.stat b{color:#baff9f!important}.stat span{color:#8b978d!important}
+.module::after{background:rgba(125,255,87,.055)!important}.module h3{color:#edf3ed!important}.module p{color:#96a39a!important}.module button{color:#aef59a!important}
+.paper .corner{color:#87ff70!important}.paper h2{color:#f2efe6!important}.paper-intro{color:#95a29a!important}
+.field label{color:#aab6ad!important}
+.field input,.field select,.field textarea,
+.list-toolbar input{
+  background:#d6d9d7!important;
+  color:#172019!important;
+  border:1px solid #aeb5b0!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.08)!important
+}
+.field input::placeholder,.field textarea::placeholder,.list-toolbar input::placeholder{color:#5f6862!important}
+.field input:focus,.field select:focus,.field textarea:focus,.list-toolbar input:focus{
+  background:#e2e4e2!important;border-color:#87b97c!important;box-shadow:0 0 0 3px rgba(125,255,87,.11)!important
+}
+.chip,.rating button,.tiny{
+  background:#222826!important;color:#dce5dd!important;border-color:#454d48!important
+}
+.chip.active,.rating button.active{background:#5f8f55!important;color:white!important;border-color:#79aa6d!important}
+.primary{background:#6fa85f!important;color:#071008!important;font-weight:700!important;box-shadow:0 10px 24px rgba(125,255,87,.13)!important}
+.record{background:#121815!important;border-color:rgba(125,255,87,.11)!important}.record strong{color:#eef3ed!important}.record small{color:#89958c!important}
+.empty{background:#0e1410!important;border-color:rgba(125,255,87,.15)!important;color:#89958c!important}
+.dispensary-card span{color:#8f9b92!important}
+.privacy{background:rgba(125,255,87,.055)!important;border-color:rgba(125,255,87,.14)!important;color:#aeb9af!important}
+.account-card span{color:#89958c!important}
+.mobile-nav{
+  background:rgba(3,7,4,.94)!important;border-bottom:1px solid rgba(125,255,87,.10)!important
+}
+.mobile-nav button{background:#151a17!important;border-color:rgba(125,255,87,.12)!important;color:#aeb9af!important}
+.mobile-nav button.active{background:rgba(125,255,87,.12)!important;color:#cfffad!important;border-color:rgba(125,255,87,.24)!important}
+
+/* PDF stays intentionally paper-white */
+.pdf-preview{background:#fffdf8!important;color:#253127!important;border-color:#cfc9bb!important}
+.pdf-preview .eyebrow{color:#5f8f55!important}.pdf-preview h2{color:#345438!important}
+.pdf-item b{color:#788178!important}.pdf-item span{color:#253127!important}
+
 </style>
 </head>
 <body>
