@@ -1010,6 +1010,72 @@ section,header{
   }
 }
 </style>
+
+<style id="utility-icons-no-circles-final">
+/* FINAL OVERRIDE: bare utility icons, no circular container or animated ring */
+#musicBtn,
+#menuBtn{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  background:none!important;
+  background-color:transparent!important;
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:0!important;
+  padding:3px!important;
+  margin:0!important;
+  overflow:visible!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#musicBtn::before,
+#musicBtn::after,
+#menuBtn::before,
+#menuBtn::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+#musicBtn.playing{
+  animation:none!important;
+  box-shadow:none!important;
+}
+#musicBtn:hover,
+#menuBtn:hover{
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+#musicBtn .eq{
+  position:static!important;
+  width:auto!important;
+  height:18px!important;
+  padding:0!important;
+  margin:0!important;
+  background:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+#menuBtn span{
+  width:22px!important;
+  height:2px!important;
+  margin:4px 0!important;
+  background:var(--green)!important;
+  border:0!important;
+  border-radius:2px!important;
+  box-shadow:none!important;
+}
+</style>
+
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
