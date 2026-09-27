@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050706">
+<title>Cannabis Basics Members Only</title>
+<style>
+:root{--green:#c2cf32;--ink:#fff;--muted:#cbd2cb}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Georgia,"Times New Roman",serif}
+body{
+  min-height:100vh;color:var(--ink);background:#040605;overflow-x:hidden;
+  display:grid;place-items:center;padding:34px 18px;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(118,135,113,.18),transparent 34%),
+    radial-gradient(circle at 85% 35%,rgba(82,108,86,.14),transparent 30%),
+    linear-gradient(180deg,rgba(8,15,10,.90),rgba(18,30,22,.88),rgba(5,10,7,.95));
+}
+body::after{
+  content:"";position:fixed;inset:-6%;z-index:-2;pointer-events:none;
+  background:url("assets/leaf-pattern.png") center/560px auto repeat;
+  opacity:.25;mix-blend-mode:screen;
+  animation:bgmove 64s ease-in-out infinite alternate;
+}
+@keyframes bgmove{to{transform:scale(1.06) translate3d(18px,-10px,0)}}
+.gate{width:min(980px,100%);border:1px solid rgba(194,207,50,.20);border-radius:34px;padding:clamp(24px,5vw,54px);background:linear-gradient(145deg,rgba(7,15,9,.93),rgba(3,8,5,.96));box-shadow:0 35px 100px rgba(0,0,0,.52),0 0 32px rgba(194,207,50,.08);position:relative;overflow:hidden}
+.gate::after{content:"";position:absolute;inset:-70% auto -70% -25%;width:24%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.12),transparent);animation:glare 8s ease-in-out infinite}
+@keyframes glare{0%,70%,100%{transform:translateX(-250%) rotate(12deg)}82%{transform:translateX(650%) rotate(12deg)}}
+.top{display:flex;align-items:center;gap:14px;margin-bottom:26px;position:relative;z-index:1}
+.top img{width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(194,207,50,.28))}
+.brand{font-size:1.8rem;line-height:.95}.brand small{display:block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;opacity:.75;margin-top:7px}
+.eyebrow{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(194,207,50,.12);border:1px solid rgba(194,207,50,.25);color:var(--green);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16px 0 14px;max-width:780px}
+.lede{font-size:1.05rem;line-height:1.75;color:#fff;opacity:.88;max-width:760px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0}
+.feature{padding:16px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+.feature b{display:block;color:#fff;margin-bottom:5px}.feature span{color:#fff;opacity:.72;font-size:.84rem;line-height:1.5}
+.offer{margin-top:24px;padding:22px;border-radius:22px;background:rgba(194,207,50,.07);border:1px solid rgba(194,207,50,.20)}
+.price{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.price s{font-size:1.4rem;opacity:.45}.price strong{font-size:3rem;line-height:1;color:var(--green)}.price span{font-size:.86rem;opacity:.8;padding-bottom:5px}
+.preview{margin-top:8px;color:#fff;opacity:.8}
+.join-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.join-form input{flex:1 1 260px;min-height:52px;border-radius:14px;border:1px solid #d7d7d7;background:#fff;color:#050505;padding:0 15px;font:inherit}
+.join-form button{min-height:52px;border:0;border-radius:14px;padding:0 20px;background:var(--green);color:#111600;font:700 .95rem Georgia,serif;cursor:pointer;box-shadow:0 10px 28px rgba(194,207,50,.14);animation:shimmy 6.2s ease-in-out infinite}
+@keyframes shimmy{0%,82%,100%{transform:translateX(0)}87%{transform:translateX(4px)}92%{transform:translateX(-3px)}96%{transform:translateX(2px)}}
+.note{margin-top:12px;color:#fff;opacity:.65;font-size:.78rem;line-height:1.55}
+.back{display:inline-block;margin-top:20px;color:#fff;opacity:.8}
+.status{margin-top:10px;color:#fff;font-size:.84rem;min-height:1.2em}
+@media(max-width:760px){.features{grid-template-columns:1fr}.gate{border-radius:26px}.join-form button{width:100%}}
+</style>
+</head>
+<body>
+<main class="gate">
+  <div class="top"><img src="assets/logo-green.webp" alt="Cannabis Basics transparent leaf logo"><div class="brand">Cannabis Basics<small>Members Only</small></div></div>
+  <span class="eyebrow">Private Member Preview</span>
+  <h1>Your personal cannabis record book, built for your phone.</h1>
+  <p class="lede">Members Only is the private side of Cannabis Basics—a personal workspace for session logs, inventory, wish lists, saved products, dispensaries, favorites, and printable records. The goal is simple: help you build a useful cannabis history you can actually return to.</p>
+  <div class="features">
+    <div class="feature"><b>Track sessions</b><span>Record what you used, how much, how it felt, and what you want to remember.</span></div>
+    <div class="feature"><b>Build your record</b><span>Keep inventory, products, wish lists, favorites, dispensaries, and future PDF exports together.</span></div>
+    <div class="feature"><b>Mobile first</b><span>Designed for quick phone entry while still producing clean printable records later.</span></div>
+  </div>
+  <div class="offer">
+    <div class="price"><s>$69</s><strong>$27</strong><span>planned lifetime founding price</span></div>
+    <p class="preview"><strong>Preview access is free right now.</strong> Join during development and explore the member experience before payment is connected.</p>
+    <form class="join-form" id="joinForm">
+      <input id="joinEmail" type="email" autocomplete="email" placeholder="Enter your email" required>
+      <button type="submit">Join Free Preview →</button>
+    </form>
+    <div class="status" id="joinStatus" aria-live="polite"></div>
+    <p class="note">Stripe and PayPal are not connected yet. During this preview, your email is saved only on this device so the prototype can open the Members area. The production signup will use secure account authentication and payment processing.</p>
+  </div>
+  <a class="back" href="index.html">← Back to Cannabis Basics</a>
+</main>
+<script>
+document.getElementById('joinForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const email=document.getElementById('joinEmail').value.trim();
+  if(!email)return;
+  localStorage.setItem('cb_preview_email',email);
+  localStorage.setItem('cb_preview_member','yes');
+  document.getElementById('joinStatus').textContent='Welcome to the preview. Opening Members Only…';
+  setTimeout(()=>{location.href='members.html'},350);
+});
+</script>
+</body></html>
