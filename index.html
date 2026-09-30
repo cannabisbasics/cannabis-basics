@@ -1758,6 +1758,146 @@ body.light-theme .footer-brand-copy small{color:#151915!important}
   .hero-free-resource .free-copy{text-align:left!important}
 }
 </style>
+<style id="hero-free-no-card-product-polish-20260929">
+/* Hero free resource: no card, no container, directly on cannabis background */
+.hero-wrap-sales{
+  grid-template-columns:minmax(0,1fr) minmax(390px,.92fr)!important;
+  align-items:center!important;
+}
+.hero-free-resource{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  padding:0!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-sheet{
+  width:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-sheet img{
+  display:block!important;
+  width:min(100%,430px)!important;
+  max-height:520px!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.32))!important;
+}
+.hero-free-copy{
+  width:min(100%,430px)!important;
+  text-align:left!important;
+  padding:0 4px!important;
+}
+.hero-free-copy .kicker{
+  margin-bottom:3px!important;
+  color:#c2cf32!important;
+}
+.hero-free-copy h2{
+  margin:0 0 9px!important;
+  font:400 1.4rem/1.05 Georgia,"Times New Roman",serif!important;
+  color:#fff!important;
+}
+.hero-free-email{
+  margin:0 0 8px!important;
+  padding:8px 10px!important;
+  border-radius:12px!important;
+}
+.hero-free-email input{
+  min-height:40px!important;
+  background:#fff!important;
+  color:#050505!important;
+}
+.hero-free-copy #freebieInlineBtn{
+  width:100%!important;
+  min-height:42px!important;
+  font-size:.8rem!important;
+}
+
+/* Product section color/CTA treatment */
+.journal-product-title{
+  color:#83b83f!important;
+}
+.journal-feature-buttons span{
+  background:#fff!important;
+  color:#111!important;
+  border:1px solid rgba(255,255,255,.88)!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.14)!important;
+}
+.journal-feature-buttons span:hover{
+  color:#111!important;
+  background:#f5f5f5!important;
+}
+#amazonBtn,.btn.amazon{
+  background:#1f5f32!important;
+  color:#fff!important;
+  border-color:#2b7441!important;
+  box-shadow:0 12px 28px rgba(14,70,35,.26),0 0 18px rgba(51,118,65,.14)!important;
+}
+#amazonBtn:hover,.btn.amazon:hover{
+  background:#286f3d!important;
+  color:#fff!important;
+}
+
+/* Contact focus/selection green instead of browser blue */
+#contact input:focus,
+#contact select:focus,
+#contact textarea:focus{
+  outline:none!important;
+  background:#dce8c8!important;
+  color:#050505!important;
+  border-color:#7ba640!important;
+  box-shadow:0 0 0 3px rgba(123,166,64,.25)!important;
+}
+#contact input::selection,
+#contact textarea::selection{
+  background:#c2cf32!important;
+  color:#111!important;
+}
+#contact select{
+  accent-color:#7ba640!important;
+}
+
+/* Light theme adjustments */
+body.light-theme .hero-free-copy h2{color:#151915!important}
+body.light-theme .journal-product-title{color:#4f7726!important}
+body.light-theme #amazonBtn,body.light-theme .btn.amazon{
+  background:#1f5f32!important;color:#fff!important;
+}
+
+@media(max-width:900px){
+  .hero-wrap-sales{
+    grid-template-columns:1fr 1fr!important;
+    gap:22px!important;
+  }
+  .hero-free-sheet img{
+    width:min(100%,370px)!important;
+    max-height:440px!important;
+  }
+}
+@media(max-width:620px){
+  .hero-wrap-sales{display:block!important}
+  .hero-copy-wrap{margin-bottom:20px!important}
+  .hero-free-resource{
+    width:100%!important;
+    gap:10px!important;
+  }
+  .hero-free-sheet img{
+    width:min(92vw,430px)!important;
+    max-height:none!important;
+  }
+  .hero-free-copy{
+    width:min(92vw,430px)!important;
+  }
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -1802,9 +1942,19 @@ body.light-theme .footer-brand-copy small{color:#151915!important}
       <div class="trust-row"><span>Educational</span><span>Beginner-friendly</span><span>Medical + adult-use context</span><span>Track your own experience</span></div>
     </div>
     <div class="hero-free-resource fade-up" id="free">
-      <div class="free-card free-card-build10">
-      <div class="free-image"><img src="assets/free-log-worksheet.webp" alt="Cannabis Basics free cannabis log worksheet"></div>
-      <div class="free-copy"><div class="kicker">Free Resource</div><h2>Your Free Cannabis Log Worksheet.</h2><p>Use this one-page worksheet to record the strain or product, THC/CBD, consumption method, desired results, symptoms relieved, positives, negatives, ratings, and notes from a session.</p><div class="free-points"><span>Printable PDF</span><span>Quick session tracking</span><span>Free download</span></div><div class="free-gate"><label class="free-email-field" for="freebieEmail"><span>Enter your email</span><input type="email" id="freebieEmail" placeholder="you@example.com" autocomplete="email"></label><button class="btn primary" id="freebieInlineBtn" type="button">Get Your Free Cannabis Log</button><p id="freebieInlineStatus" class="free-status" aria-live="polite"></p></div></div>
+      <div class="hero-free-sheet">
+        <img src="assets/free-log-worksheet.webp" alt="Cannabis Basics free cannabis log worksheet">
+      </div>
+      <div class="hero-free-copy">
+        <div class="kicker">Free Resource</div>
+        <h2>Cannabis Logbook Worksheet.</h2>
+        <label class="free-email-field hero-free-email" for="freebieEmail">
+          <span>Enter your email</span>
+          <input type="email" id="freebieEmail" placeholder="you@example.com" autocomplete="email">
+        </label>
+        <button class="btn primary" id="freebieInlineBtn" type="button">Get Your Cannabis Logbook</button>
+        <p id="freebieInlineStatus" class="free-status" aria-live="polite"></p>
+      </div>
     </div>
   </div>
 </header>
@@ -1843,10 +1993,10 @@ body.light-theme .footer-brand-copy small{color:#151915!important}
       <div class="journal-video-thumb"><video autoplay muted loop playsinline preload="metadata"><source src="assets/Cannabis Logbook Product Mockup.mp4" type="video/mp4"></video></div>
     </div>
     <div class="journal-details">
-      <h3>Medical &amp; Recreational Cannabis Logbook — Full Color</h3>
+      <h3 class="journal-product-title">Medical &amp; Recreational Cannabis Logbook — Full Color</h3>
       <p>A complete tracking system with detailed session logs, inventory pages, wish lists, product and dispensary details, favorites, and room to build a personal cannabis reference over time.</p>
       <div class="journal-feature-buttons"><span>Full Color Session Logs</span><span>Inventory Pages</span><span>Wish List</span><span>Products</span></div>
-      <div class="journal-amazon"><a class="btn amazon" id="amazonBtn" href="https://www.amazon.com/Medical-Recreational-Cannabis-Logbook-FULL-COLOR/dp/B0BLG5T1ZP/" target="_blank" rel="noopener sponsored">See More Details on Amazon ↗</a></div>
+      <div class="journal-amazon"><a class="btn amazon" id="amazonBtn" href="https://www.amazon.com/Medical-Recreational-Cannabis-Logbook-FULL-COLOR/dp/B0BLG5T1ZP/" target="_blank" rel="noopener sponsored">Details on Amazon ↗</a></div>
     </div>
   </div>
 </section>
