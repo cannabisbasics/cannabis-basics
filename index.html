@@ -2990,6 +2990,19 @@ body.light-theme .about-price-stack{background:#fff}
 }
 </style>
 
+
+<style id="member-deals-copy-fix-20260930">
+.about-member-grid span:last-child{
+  grid-column:1 / -1;
+  justify-content:center;
+  text-align:center;
+  border-color:rgba(194,207,50,.18);
+  background:rgba(194,207,50,.055);
+}
+@media(max-width:780px){
+  .about-member-grid span:last-child{grid-column:auto;justify-content:flex-start;text-align:left}
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -3169,6 +3182,7 @@ body.light-theme .about-price-stack{background:#fff}
           <span>Favorites</span>
           <span>Personal observations</span>
           <span>Future PDF records</span>
+          <span>Member deals & partner savings</span>
         </div>
         <p class="about-member-line"><strong>The public tools help you learn. The member area helps you remember.</strong></p>
       </div>
@@ -3282,7 +3296,7 @@ body.light-theme .about-price-stack{background:#fff}
         </div>
       </div>
 
-      <div class="member-invite-callout">No monthly subscription. No annual renewal. Build session records, inventory, wish lists, saved products, dispensary notes, favorites, and your personal cannabis history in one private workspace.</div>
+      <div class="member-invite-callout">No monthly subscription. No annual renewal. Build session records, inventory, wish lists, saved products, dispensary notes, favorites, and your personal cannabis history in one private workspace.<br><br><strong>Member Deals & Partner Savings:</strong> access member-focused offers, discount codes, and eligible cannabis-related partner promotions where available. Some offers may use affiliate links, which can earn Cannabis Basics a commission at no extra cost to you.</div>
 
       <form class="member-invite-form" id="memberInviteForm">
         <input id="memberInviteEmail" type="email" autocomplete="email" placeholder="Enter your email" aria-label="Email address" required>
@@ -3639,13 +3653,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   let qualifiedByScroll = false;
   let delayedOpenTimer = null;
   const started = Date.now();
-  const minimumEngagementMs = 12000;
-  const fallbackMs = 35000;
+  const minimumEngagementMs = 7000;
+  const fallbackMs = 10000;
 
   function shouldSuppress(){
-    return safeSessionGet('cb_members_popup_dismissed') === '1' ||
-           safeSessionGet('cb_members_popup_joined') === '1' ||
-           safeLocalGet('cb_preview_member') === 'yes';
+    return safeSessionGet('cb_members_popup_dismissed_v2') === '1' ||
+           safeSessionGet('cb_members_popup_joined_v2') === '1';
   }
 
   function showInvite(){
@@ -3663,7 +3676,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     invite.classList.remove('open');
     invite.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
-    if (markDismissed) safeSessionSet('cb_members_popup_dismissed','1');
+    if (markDismissed) safeSessionSet('cb_members_popup_dismissed_v2','1');
   }
 
   function qualifyAndSchedule(){
@@ -3690,7 +3703,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }, {passive:true});
   }
 
-  // Friendly fallback for visitors who read slowly without scrolling far.
+  // Guaranteed early invitation: show by about 10 seconds if the visitor has not already seen it.
   setTimeout(() => {
     if (document.visibilityState === 'visible') showInvite();
   }, fallbackMs);
@@ -3716,7 +3729,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     safeLocalSet('cb_preview_email', email);
     safeLocalSet('cb_preview_member', 'yes');
     safeLocalSet('cb_founder_offer', 'first100-free');
-    safeSessionSet('cb_members_popup_joined','1');
+    safeSessionSet('cb_members_popup_joined_v2','1');
     status.textContent = 'Welcome. Opening your Members Only workspace…';
 
     // Central member storage will plug into this flow next; the current static build
