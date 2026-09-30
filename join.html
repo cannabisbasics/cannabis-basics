@@ -54,7 +54,7 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
 <body>
 <main class="gate">
   <div class="top"><img src="assets/logo-green.webp" alt="Cannabis Basics transparent leaf logo"><div class="brand">Cannabis Basics<small>Members Only</small></div></div>
-  <span class="eyebrow">Private Member Preview</span>
+  <span class="eyebrow">Founding Members Only</span>
   <h1>Your personal cannabis record book, built for your phone.</h1>
   <p class="lede">Members Only is the private side of Cannabis Basics—a personal workspace for session logs, inventory, wish lists, saved products, dispensaries, favorites, and printable records. The goal is simple: help you build a useful cannabis history you can actually return to.</p>
   <div class="features">
@@ -63,14 +63,14 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
     <div class="feature"><b>Mobile first</b><span>Designed for quick phone entry while still producing clean printable records later.</span></div>
   </div>
   <div class="offer">
-    <div class="price"><s>$69</s><strong>$27</strong><span>planned lifetime founding price</span></div>
-    <p class="preview"><strong>Preview access is free right now.</strong> Join during development and explore the member experience before payment is connected.</p>
+    <div class="price"><s>$69</s><strong>$27</strong><span>grand-opening lifetime price</span></div>
+    <p class="preview"><strong>The first 100 founding members join for $0 lifetime.</strong> No monthly subscription and no annual renewal while opening spots remain.</p>
     <form class="join-form" id="joinForm">
       <input id="joinEmail" type="email" autocomplete="email" placeholder="Enter your email" required>
-      <button type="submit">Join Free Preview →</button>
+      <button type="submit">Claim Free Lifetime Access →</button>
     </form>
     <div class="status" id="joinStatus" aria-live="polite"></div>
-    <p class="note">Stripe and PayPal are not connected yet. During this preview, your email is saved only on this device so the prototype can open the Members area. The production signup will use secure account authentication and payment processing.</p>
+    <p class="note">Current opening offer: first 100 members free for lifetime. This static build saves your email on this device so the member workspace can open immediately; central signup storage and automated spot counting are the next backend connection.</p>
   </div>
   <a class="back" href="index.html">← Back to Cannabis Basics</a>
 </main>
@@ -81,7 +81,8 @@ document.getElementById('joinForm').addEventListener('submit',e=>{
   if(!email)return;
   localStorage.setItem('cb_preview_email',email);
   localStorage.setItem('cb_preview_member','yes');
-  document.getElementById('joinStatus').textContent='Welcome to the preview. Opening Members Only…';
+  localStorage.setItem('cb_founder_offer','first100-free');
+  document.getElementById('joinStatus').textContent='Welcome. Opening your Members Only workspace…';
   setTimeout(()=>{location.href='members.html'},350);
 });
 </script>
