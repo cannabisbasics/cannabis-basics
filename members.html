@@ -546,6 +546,113 @@ body.light-theme .emoji-choice.active{background:#dce8d4;color:#25422b;border-co
 }
 </style>
 
+
+<style id="members-profile-upgrade-20260930">
+/* MEMBER PROFILE UPGRADE — optional, member-controlled personalization */
+.side-profile{
+  display:flex;align-items:center;gap:10px;margin:0 7px 16px;padding:11px;border-radius:16px;
+  background:rgba(125,255,87,.045);border:1px solid rgba(125,255,87,.09)
+}
+.side-profile-copy{min-width:0}
+.side-profile-copy strong{display:block;color:#eef3ed;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side-profile-copy span{display:block;margin-top:3px;color:#839188;font-size:.68rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.profile-avatar,.dashboard-avatar,.profile-avatar-large{
+  overflow:hidden;display:grid;place-items:center;flex:0 0 auto;
+  background:linear-gradient(145deg,#294532,#101912);
+  border:1px solid rgba(125,255,87,.2);color:#dff5d7;text-transform:uppercase
+}
+.profile-avatar{width:42px;height:42px;border-radius:50%;font-size:.8rem;font-weight:800}
+.dashboard-avatar{width:68px;height:68px;border-radius:22px;font-size:1.2rem;font-weight:800;box-shadow:0 12px 28px rgba(0,0,0,.25)}
+.profile-avatar-large{width:150px;height:150px;border-radius:34px;font-size:2.2rem;font-weight:800;box-shadow:0 18px 45px rgba(0,0,0,.28)}
+.profile-avatar img,.dashboard-avatar img,.profile-avatar-large img{width:100%;height:100%;object-fit:cover;display:block}
+
+.dashboard-personal{display:flex;align-items:center;gap:16px}
+.dashboard-personal-copy{min-width:0}
+.dashboard-personal-copy h2{margin:3px 0 7px!important}
+.profile-kicker{font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:#a8e994}
+.local-member-card{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;margin-top:16px;padding:18px 20px;
+  border-radius:22px;background:linear-gradient(145deg,rgba(18,30,20,.94),rgba(7,12,8,.96));
+  border:1px solid rgba(125,255,87,.13);box-shadow:0 12px 35px rgba(0,0,0,.2)
+}
+.local-member-card h3{margin:0 0 6px;font:400 1.25rem Georgia,"Times New Roman",serif;color:#edf3ed}
+.local-member-card p{margin:0;color:#8fa092;font-size:.82rem;line-height:1.55}
+.local-member-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.local-member-actions button,.local-member-actions a{white-space:nowrap}
+
+.profile-shell{
+  display:grid;grid-template-columns:220px minmax(0,1fr);gap:26px;margin-top:22px;padding:25px;border-radius:28px;
+  background:linear-gradient(145deg,rgba(14,25,16,.95),rgba(5,9,6,.96));
+  border:1px solid rgba(125,255,87,.16);box-shadow:var(--shadow)
+}
+.profile-photo-panel{display:flex;flex-direction:column;align-items:center;text-align:center}
+.profile-photo-panel h3{font-weight:400;margin:14px 0 4px;color:#edf3ed}
+.profile-photo-panel p{margin:0;color:#829087;font-size:.72rem;line-height:1.5}
+.profile-photo-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.profile-photo-actions button{font-size:.72rem;padding:8px 10px}
+.profile-photo-input{display:none}
+.profile-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.profile-form .full{grid-column:1/-1}
+.profile-form label{display:grid;gap:6px;color:#aab6ad;font-size:.73rem;letter-spacing:.05em;text-transform:uppercase}
+.profile-form label small{font-size:.65rem;letter-spacing:0;text-transform:none;color:#7f8d83}
+.profile-form input,.profile-form select{
+  width:100%;min-height:46px;border-radius:13px;padding:0 13px;background:#d6d9d7;color:#172019;
+  border:1px solid #aeb5b0;outline:none
+}
+.profile-form input:focus,.profile-form select:focus{background:#e2e4e2;border-color:#87b97c;box-shadow:0 0 0 3px rgba(125,255,87,.11)}
+.location-benefit{
+  grid-column:1/-1;padding:16px;border-radius:18px;background:rgba(194,207,50,.07);border:1px solid rgba(194,207,50,.17)
+}
+.location-benefit strong{display:block;color:#edf3ed;margin-bottom:5px;font-weight:400}
+.location-benefit p{margin:0;color:#96a39a;font-size:.8rem;line-height:1.55}
+.preference-toggle{display:flex;align-items:flex-start;gap:10px;margin-top:12px;color:#d8e1da;font-size:.79rem;line-height:1.45}
+.preference-toggle input{width:18px!important;height:18px!important;min-height:0!important;margin-top:1px;accent-color:#7dff57}
+.profile-interest-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:9px}
+.profile-interest{
+  position:relative;display:flex!important;align-items:center;justify-content:center;min-height:42px!important;padding:8px 9px!important;
+  border-radius:13px!important;background:#202723!important;color:#dce5dd!important;border:1px solid #454d48!important;
+  text-align:center!important;cursor:pointer;text-transform:none!important;letter-spacing:0!important;font-size:.72rem!important
+}
+.profile-interest input{position:absolute;opacity:0;pointer-events:none}
+.profile-interest:has(input:checked){background:#5f8f55!important;color:#fff!important;border-color:#79aa6d!important}
+.profile-save-row{grid-column:1/-1;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:2px}
+.profile-save-note{font-size:.73rem;color:#849188;line-height:1.45}
+
+.member-identity-card{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px
+}
+.identity-item{padding:14px;border-radius:16px;background:#101612;border:1px solid rgba(125,255,87,.11)}
+.identity-item span{display:block;font-size:.62rem;letter-spacing:.11em;text-transform:uppercase;color:#7f9084}
+.identity-item strong{display:block;margin-top:6px;color:#eef3ed;font-weight:400;font-size:.9rem;word-break:break-word}
+.profile-progress{height:8px;border-radius:999px;background:#161e18;overflow:hidden;margin-top:7px}
+.profile-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5f8f55,#c2cf32);border-radius:inherit;transition:width .35s ease}
+.profile-status-line{margin-top:8px;font-size:.72rem;color:#87958b}
+
+body.light-theme .side-profile,body.light-theme .local-member-card,body.light-theme .profile-shell,body.light-theme .identity-item{background:#fff!important;border-color:#d6ded1!important}
+body.light-theme .side-profile-copy strong,body.light-theme .local-member-card h3,body.light-theme .profile-photo-panel h3,
+body.light-theme .location-benefit strong,body.light-theme .identity-item strong{color:#151915!important}
+body.light-theme .profile-interest{background:#fff!important;color:#27342a!important;border-color:#cdd7ca!important}
+body.light-theme .profile-interest:has(input:checked){background:#dce8d4!important;color:#25422b!important;border-color:#a9c6a4!important}
+body.light-theme .preference-toggle{color:#2f3c31}
+body.light-theme .location-benefit{background:#f4f8e7}
+
+@media(max-width:900px){
+  .profile-shell{grid-template-columns:1fr}
+  .profile-photo-panel{padding-bottom:8px;border-bottom:1px solid rgba(125,255,87,.10)}
+  .member-identity-card{grid-template-columns:1fr 1fr}
+  .profile-interest-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+  .dashboard-personal{align-items:flex-start}
+  .dashboard-avatar{width:58px;height:58px;border-radius:18px}
+  .local-member-card{grid-template-columns:1fr}
+  .local-member-actions{justify-content:flex-start}
+  .profile-form{grid-template-columns:1fr}
+  .profile-form .full,.location-benefit,.profile-save-row{grid-column:auto}
+  .member-identity-card{grid-template-columns:1fr}
+}
+</style>
+
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -567,6 +674,10 @@ body.light-theme .emoji-choice.active{background:#dce8d4;color:#25422b;border-co
 <div class="shell">
 <aside class="side">
   <div class="side-intro"><strong>My Cannabis Record Book</strong><span>Private member workspace</span></div>
+  <div class="side-profile" id="sideProfile">
+    <div class="profile-avatar" id="sideAvatar">CB</div>
+    <div class="side-profile-copy"><strong id="sideMemberName">Cannabis Basics Member</strong><span id="sideMemberLocation">Add your location</span></div>
+  </div>
   <div class="nav-group" id="sideNav"></div>
   <div class="nav-sep"></div>
   <div class="member-price"><b>Founding Lifetime Member</b><span>First 100 members join free. Grand-opening lifetime price after that: $27.</span><strong>$0 for first 100</strong></div>
@@ -574,11 +685,18 @@ body.light-theme .emoji-choice.active{background:#dce8d4;color:#25422b;border-co
 <main class="main">
 <section class="screen active" id="screen-dashboard">
   <div class="eyebrow">Member Dashboard</div><h1>Your cannabis record, in one place.</h1><p class="lede">A bright, private workspace modeled after the Cannabis Basics journal—built for quick phone entry, searchable records, and clean printable exports.</p>
-  <div class="hero-card"><div class="hero-grid"><div><h2>Good to see you.</h2><p class="lede">Start a session, update what you have on hand, save something you want to try, or review what has worked best for you.</p><div class="quick-actions"><button class="action" data-go="log">+ Log a Session</button><button class="action alt" data-go="inventory">Update Inventory</button><button class="action alt" data-go="wishlist">Add to Wish List</button></div></div><div class="stat-stack"><div class="stat"><b id="statSessions">0</b><span>Saved sessions</span></div><div class="stat"><b id="statInventory">0</b><span>Inventory items</span></div><div class="stat"><b id="statWishlist">0</b><span>Wish list items</span></div><div class="stat"><b id="statFavorites">0</b><span>Favorites</span></div></div></div></div>
+  <div class="hero-card"><div class="hero-grid"><div>
+    <div class="dashboard-personal"><div class="dashboard-avatar" id="dashboardAvatar">CB</div><div class="dashboard-personal-copy"><span class="profile-kicker" id="dashboardMemberLabel">Founding Member</span><h2 id="dashboardGreeting">Good to see you.</h2><p class="lede">Start a session, update what you have on hand, save something you want to try, or review what has worked best for you.</p></div></div>
+    <div class="quick-actions"><button class="action" data-go="log">+ Log a Session</button><button class="action alt" data-go="inventory">Update Inventory</button><button class="action alt" data-go="wishlist">Add to Wish List</button></div>
+  </div><div class="stat-stack"><div class="stat"><b id="statSessions">0</b><span>Saved sessions</span></div><div class="stat"><b id="statInventory">0</b><span>Inventory items</span></div><div class="stat"><b id="statWishlist">0</b><span>Wish list items</span></div><div class="stat"><b id="statFavorites">0</b><span>Favorites</span></div></div></div></div>
   <div class="journal-pulse">
     <div class="pulse-card"><span>Average rating</span><strong id="pulseAvg">—</strong><small>Your rated sessions</small></div>
     <div class="pulse-card"><span>Most logged</span><strong id="pulseTopProduct">—</strong><small>Product / strain appearing most often</small></div>
     <div class="pulse-card"><span>Latest vibe</span><strong id="pulseMood">—</strong><small>How your most recent session felt</small></div>
+  </div>
+  <div class="local-member-card" id="localMemberCard">
+    <div><h3 id="localMemberTitle">Localize your Cannabis Basics experience.</h3><p id="localMemberCopy">Add a city, state, or ZIP to make nearby dispensary discovery easier and prepare your account for location-relevant member offers. Nothing is required.</p></div>
+    <div class="local-member-actions"><button class="secondary" data-go="account" id="completeProfileBtn">Add Profile & Location</button><a class="secondary" id="nearbyDispensaries" href="index.html#locator">Dispensary Locator</a></div>
   </div>
   <div class="dashboard-recent">
     <div class="dashboard-recent-head"><h3>Recent journal entries</h3><button data-go="log">See all →</button></div>
@@ -695,18 +813,69 @@ body.light-theme .emoji-choice.active{background:#dce8d4;color:#25422b;border-co
 </section>
 
 <section class="screen" id="screen-pdf"><div class="eyebrow">PDF Library</div><h1>Printable records.</h1><p class="lede">The long-term version will keep generated PDFs in the member account. In this prototype, open a saved session and use Print / Save PDF.</p><div class="paper"><div class="empty">Your generated Cannabis Basics PDFs will appear here once cloud storage is connected.</div><div class="privacy">PDF exports should be treated as private personal records. The production membership should give users control over download, deletion, and account export.</div></div></section>
-<section class="screen" id="screen-account"><div class="eyebrow">Member Account</div><h1>Your membership.</h1><p class="lede">Your journal currently lives on this device. The production account system will move these records into secure private member storage.</p>
-    <div class="account-card"><div><b>Founding Lifetime Membership</b><span>First 100 members join free. Grand-opening lifetime price after that: $27.</span></div><strong>$0 first 100</strong></div>
-    <div class="account-card"><div><b>Journal Backup</b><span>Download a copy of your current sessions, inventory, wish list, and saved dispensaries as a JSON backup.</span></div><span>Local backup</span></div>
-    <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
-    <div class="backup-status" id="backupStatus" aria-live="polite"></div>
-    <div class="account-card"><div><b>Account Privacy</b><span>The production version should use authenticated accounts, row-level security, and member-controlled export/delete tools.</span></div><span>Backend phase</span></div>
-    <div class="privacy">This build intentionally keeps journal records on the member’s own browser. It is useful for testing the experience, but it is not a substitute for the secure cloud account system we will connect before treating this as permanent cross-device storage.</div>
-  </section>
+<section class="screen" id="screen-account">
+  <div class="eyebrow">Member Profile & Account</div><h1>Make Cannabis Basics yours.</h1><p class="lede">Everything on this profile is optional. The more you choose to add, the more useful we can make nearby dispensary tools, your journal experience, and future member partner savings.</p>
+
+  <div class="profile-shell">
+    <div class="profile-photo-panel">
+      <div class="profile-avatar-large" id="profileAvatarLarge">CB</div>
+      <h3 id="profileDisplayName">Cannabis Basics Member</h3>
+      <p>Upload a profile photo or keep your initials. In this build, the photo stays on this device.</p>
+      <div class="profile-photo-actions"><button class="secondary" type="button" id="chooseProfilePhoto">Upload Photo</button><button class="secondary" type="button" id="removeProfilePhoto">Remove</button></div>
+      <input class="profile-photo-input" id="profilePhotoInput" type="file" accept="image/*">
+    </div>
+
+    <form class="profile-form" id="memberProfileForm">
+      <label>Preferred name <small>What should the dashboard call you?</small><input id="profileName" autocomplete="nickname" placeholder="Example: Wayne"></label>
+      <label>Email <small>Optional in this prototype; your join email will appear if available.</small><input id="profileEmail" type="email" autocomplete="email" placeholder="you@example.com"></label>
+      <label>City <small>Optional, but helpful for local recommendations.</small><input id="profileCity" autocomplete="address-level2" placeholder="Example: Waldorf"></label>
+      <label>State <small>Recommended for dispensary and legal context.</small><select id="profileState"><option value="">Choose state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></label>
+      <label>ZIP code <small>Optional. Helps narrow nearby dispensaries and local partner offers.</small><input id="profileZip" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="Example: 20601"></label>
+      <label>Favorite strain / product <small>Optional personal preference.</small><input id="profileFavorite" placeholder="Example: Blue Dream"></label>
+
+      <div class="location-benefit">
+        <strong>Why location helps</strong>
+        <p>We do not need a street address. City, state, or ZIP can help Cannabis Basics point you toward nearby dispensaries, state-relevant resources, and—when available—member partner offers that actually apply where you live.</p>
+        <label class="preference-toggle"><input id="profileLocalize" type="checkbox">Use the location I provide to personalize nearby dispensary shortcuts and location-relevant member/partner offers.</label>
+      </div>
+
+      <div class="full">
+        <label>What are you interested in? <small>Optional. These preferences can help organize future member content and deals. Affiliate-supported offers will still be labeled as partner offers.</small></label>
+        <div class="profile-interest-grid" id="profileInterests">
+          <label class="profile-interest"><input type="checkbox" value="Flower">Flower</label>
+          <label class="profile-interest"><input type="checkbox" value="Pre-rolls">Pre-rolls</label>
+          <label class="profile-interest"><input type="checkbox" value="Vapes">Vapes</label>
+          <label class="profile-interest"><input type="checkbox" value="Edibles">Edibles</label>
+          <label class="profile-interest"><input type="checkbox" value="Concentrates">Concentrates</label>
+          <label class="profile-interest"><input type="checkbox" value="Accessories">Accessories</label>
+          <label class="profile-interest"><input type="checkbox" value="Education">Education</label>
+          <label class="profile-interest"><input type="checkbox" value="Dispensary deals">Dispensary deals</label>
+        </div>
+      </div>
+
+      <div class="profile-save-row"><button class="primary" type="submit">Save My Profile</button><span class="profile-save-note">No profile field is required. Save only what you want Cannabis Basics to remember on this device.</span></div>
+    </form>
+  </div>
+
+  <div class="member-identity-card">
+    <div class="identity-item"><span>Membership</span><strong>Founding Lifetime Member</strong></div>
+    <div class="identity-item"><span>Member ID</span><strong id="profileMemberId">—</strong></div>
+    <div class="identity-item"><span>Member since</span><strong id="profileJoined">—</strong></div>
+    <div class="identity-item"><span>Profile completion</span><strong id="profileCompletion">0%</strong><div class="profile-progress"><i id="profileProgressBar"></i></div></div>
+  </div>
+  <div class="profile-status-line" id="profileStatus" aria-live="polite"></div>
+
+  <div class="account-card"><div><b>Founding Lifetime Membership</b><span>First 100 members join free. Grand-opening lifetime price after that: $27.</span></div><strong>$0 first 100</strong></div>
+  <div class="account-card"><div><b>Journal Backup</b><span>Download a copy of your current profile, sessions, inventory, wish list, and saved dispensaries as a JSON backup.</span></div><span>Local backup</span></div>
+  <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
+  <div class="backup-status" id="backupStatus" aria-live="polite"></div>
+  <div class="account-card"><div><b>Secure cloud account</b><span>The next backend phase will turn this local profile into a real login with private cross-device records and photo storage.</span></div><span>Next phase</span></div>
+  <div class="privacy">This build keeps profile and journal information in the member’s browser. The production membership should move it into authenticated private storage, use row-level database security, and give members clear export/delete controls.</div>
+</section>
 </main>
 </div>
 <script>
-const navItems=[['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','Saved Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library'],['account','⚙','Account']];
+const navItems=[['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','Saved Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library'],['account','⚙','Profile']];
 const side=document.getElementById('sideNav'),mobile=document.getElementById('mobileNav');
 navItems.forEach(([id,ico,label])=>{const b=document.createElement('button');b.className='nav-btn'+(id==='dashboard'?' active':'');b.dataset.go=id;b.innerHTML=`<span class="ico">${ico}</span><span>${label}</span>`;side.appendChild(b);const m=document.createElement('button');m.textContent=label;m.dataset.go=id;if(id==='dashboard')m.classList.add('active');mobile.appendChild(m)});
 
@@ -920,7 +1089,97 @@ function renderInsights(sessions){
   insightTopProducts.innerHTML=products.length?products.slice(0,8).map(([name,count],i)=>`<div class="top-list-row"><b>${i+1}. ${esc(name)}</b><span>${count} log${count===1?'':'s'}</span></div>`).join(''):'<div class="empty">Log a few sessions and this leaderboard will build itself.</div>';
 }
 
+
+const PROFILE_KEY='cb_member_profile';
+function loadProfile(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}catch(e){return{}}}
+function saveProfile(p){localStorage.setItem(PROFILE_KEY,JSON.stringify(p))}
+function ensureMemberIdentity(){
+  let p=loadProfile();
+  if(!p.memberId)p.memberId='CB-'+new Date().getFullYear()+'-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  if(!p.joinedAt)p.joinedAt=new Date().toISOString();
+  if(!p.email){const joinedEmail=localStorage.getItem('cb_preview_email');if(joinedEmail)p.email=joinedEmail}
+  saveProfile(p);return p;
+}
+function profileInitials(p){
+  const n=(p.name||'Cannabis Basics').trim().split(/\s+/).filter(Boolean);
+  return ((n[0]?.[0]||'C')+(n[1]?.[0]||'B')).toUpperCase();
+}
+function setAvatar(el,p){
+  if(!el)return;
+  if(p.photo){el.innerHTML='<img src="'+esc(p.photo)+'" alt="Member profile photo">'}
+  else{el.textContent=profileInitials(p)}
+}
+function locationText(p){
+  return [p.city,p.state,p.zip].filter(Boolean).join(', ').replace(/, ([0-9]{5})$/, ' $1');
+}
+function profileCompletion(p){
+  const checks=[p.name,p.email,p.photo,p.state,(p.city||p.zip),p.localize,(p.interests||[]).length];
+  return Math.round(checks.filter(Boolean).length/checks.length*100);
+}
+function renderProfile(){
+  const p=ensureMemberIdentity();
+  profileName.value=p.name||'';profileEmail.value=p.email||'';profileCity.value=p.city||'';profileState.value=p.state||'';profileZip.value=p.zip||'';profileFavorite.value=p.favorite||'';
+  profileLocalize.checked=!!p.localize;
+  document.querySelectorAll('#profileInterests input').forEach(cb=>cb.checked=(p.interests||[]).includes(cb.value));
+  setAvatar(profileAvatarLarge,p);setAvatar(dashboardAvatar,p);setAvatar(sideAvatar,p);
+  const display=p.name||'Cannabis Basics Member';
+  profileDisplayName.textContent=display;sideMemberName.textContent=display;
+  dashboardGreeting.textContent=p.name?'Good to see you, '+p.name+'.':'Good to see you.';
+  const loc=locationText(p);
+  sideMemberLocation.textContent=loc||'Add your location';
+  profileMemberId.textContent=p.memberId||'—';
+  profileJoined.textContent=p.joinedAt?new Date(p.joinedAt).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—';
+  const pc=profileCompletion(p);profileCompletion.textContent=pc+'%';profileProgressBar.style.width=pc+'%';
+
+  if(loc){
+    localMemberTitle.textContent='Your local Cannabis Basics: '+loc;
+    localMemberCopy.textContent=p.localize
+      ?'Location personalization is on. We can use this area for nearby dispensaries, state-relevant resources, and clearly labeled local partner offers as they become available.'
+      :'Your location is saved, but personalization is off. Turn it on in Profile if you want location-relevant dispensary shortcuts and member offers.';
+    completeProfileBtn.textContent='Edit Profile';
+    const q=encodeURIComponent('dispensary near '+[p.city,p.state,p.zip].filter(Boolean).join(' '));
+    nearbyDispensaries.href='https://www.google.com/maps/search/?api=1&query='+q;
+    nearbyDispensaries.target='_blank';nearbyDispensaries.rel='noopener';
+    nearbyDispensaries.textContent='Find Nearby Dispensaries ↗';
+  }else{
+    localMemberTitle.textContent='Localize your Cannabis Basics experience.';
+    localMemberCopy.textContent='Add a city, state, or ZIP to make nearby dispensary discovery easier and prepare your account for location-relevant member offers. Nothing is required.';
+    completeProfileBtn.textContent='Add Profile & Location';
+    nearbyDispensaries.href='index.html#locator';nearbyDispensaries.removeAttribute('target');nearbyDispensaries.textContent='Dispensary Locator';
+  }
+}
+memberProfileForm?.addEventListener('submit',e=>{
+  e.preventDefault();
+  const current=ensureMemberIdentity();
+  const interests=[...document.querySelectorAll('#profileInterests input:checked')].map(x=>x.value);
+  const next={...current,name:profileName.value.trim(),email:profileEmail.value.trim(),city:profileCity.value.trim(),state:profileState.value,zip:profileZip.value.trim(),favorite:profileFavorite.value.trim(),localize:profileLocalize.checked,interests};
+  saveProfile(next);renderProfile();profileStatus.textContent='Profile saved on this device.';toast('Profile updated.');
+});
+chooseProfilePhoto?.addEventListener('click',()=>profilePhotoInput.click());
+profilePhotoInput?.addEventListener('change',()=>{
+  const file=profilePhotoInput.files?.[0];if(!file)return;
+  if(!file.type.startsWith('image/')){profileStatus.textContent='Choose an image file.';return}
+  if(file.size>6*1024*1024){profileStatus.textContent='Please choose an image smaller than 6 MB.';return}
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const img=new Image();
+    img.onload=()=>{
+      const max=512;let w=img.width,h=img.height;
+      if(w>h&&w>max){h=Math.round(h*max/w);w=max}else if(h>=w&&h>max){w=Math.round(w*max/h);h=max}
+      const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+      const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
+      const p=ensureMemberIdentity();p.photo=canvas.toDataURL('image/jpeg',.82);saveProfile(p);renderProfile();profileStatus.textContent='Profile photo saved on this device.';toast('Profile photo updated.');
+    };
+    img.src=reader.result;
+  };
+  reader.readAsDataURL(file);profilePhotoInput.value='';
+});
+removeProfilePhoto?.addEventListener('click',()=>{
+  const p=ensureMemberIdentity();delete p.photo;saveProfile(p);renderProfile();profileStatus.textContent='Profile photo removed.';toast('Profile photo removed.');
+});
+
 function renderAll(){
+  renderProfile();
   const inv=load('cb_inventory'),wish=load('cb_wishlist'),sessions=load('cb_sessions'),stores=load('cb_stores');
   statSessions.textContent=sessions.length;statInventory.textContent=inv.length;statWishlist.textContent=wish.length;statFavorites.textContent=sessions.filter(x=>x.favorite||x.rating>=4).length;
 
@@ -936,13 +1195,13 @@ function renderAll(){
 }
 
 exportMemberData?.addEventListener('click',()=>{
-  const data={version:1,exportedAt:new Date().toISOString(),sessions:load('cb_sessions'),inventory:load('cb_inventory'),wishlist:load('cb_wishlist'),stores:load('cb_stores')};
+  const data={version:2,exportedAt:new Date().toISOString(),profile:loadProfile(),sessions:load('cb_sessions'),inventory:load('cb_inventory'),wishlist:load('cb_wishlist'),stores:load('cb_stores')};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Cannabis-Basics-Member-Backup.json';a.click();URL.revokeObjectURL(url);backupStatus.textContent='Backup downloaded.';toast('Member backup created.');
 });
 importMemberData?.addEventListener('click',()=>importMemberFile.click());
 importMemberFile?.addEventListener('change',async()=>{
   const file=importMemberFile.files?.[0];if(!file)return;
-  try{const data=JSON.parse(await file.text());if(Array.isArray(data.sessions))save('cb_sessions',data.sessions);if(Array.isArray(data.inventory))save('cb_inventory',data.inventory);if(Array.isArray(data.wishlist))save('cb_wishlist',data.wishlist);if(Array.isArray(data.stores))save('cb_stores',data.stores);backupStatus.textContent='Backup imported successfully.';renderAll();toast('Journal backup restored.')}catch(e){backupStatus.textContent='That file could not be imported.'}
+  try{const data=JSON.parse(await file.text());if(data.profile&&typeof data.profile==='object')saveProfile(data.profile);if(Array.isArray(data.sessions))save('cb_sessions',data.sessions);if(Array.isArray(data.inventory))save('cb_inventory',data.inventory);if(Array.isArray(data.wishlist))save('cb_wishlist',data.wishlist);if(Array.isArray(data.stores))save('cb_stores',data.stores);backupStatus.textContent='Backup imported successfully.';renderAll();toast('Member backup restored.')}catch(e){backupStatus.textContent='That file could not be imported.'}
   importMemberFile.value='';
 });
 clearMemberData?.addEventListener('click',()=>{
