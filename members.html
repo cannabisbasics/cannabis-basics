@@ -1112,7 +1112,7 @@ function setAvatar(el,p){
 function locationText(p){
   return [p.city,p.state,p.zip].filter(Boolean).join(', ').replace(/, ([0-9]{5})$/, ' $1');
 }
-function profileCompletion(p){
+function profileCompletionPercent(p){
   const checks=[p.name,p.email,p.photo,p.state,(p.city||p.zip),p.localize,(p.interests||[]).length];
   return Math.round(checks.filter(Boolean).length/checks.length*100);
 }
@@ -1129,7 +1129,7 @@ function renderProfile(){
   sideMemberLocation.textContent=loc||'Add your location';
   profileMemberId.textContent=p.memberId||'—';
   profileJoined.textContent=p.joinedAt?new Date(p.joinedAt).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—';
-  const pc=profileCompletion(p);profileCompletion.textContent=pc+'%';profileProgressBar.style.width=pc+'%';
+  const pc=profileCompletionPercent(p);document.getElementById('profileCompletion').textContent=pc+'%';profileProgressBar.style.width=pc+'%';
 
   if(loc){
     localMemberTitle.textContent='Your local Cannabis Basics: '+loc;
