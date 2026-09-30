@@ -2633,6 +2633,137 @@ body.light-theme .hero-free-email span{color:#151915!important}
 }
 </style>
 
+
+<style id="hero-free-isolated-rebuild-20260930">
+/* ISOLATED WORKSHEET REBUILD — deliberately avoids all legacy hero-free-* layout selectors. */
+.hero-free-vnext{
+  align-self:start!important;
+  justify-self:center!important;
+  width:min(100%,390px)!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-vnext-sheet{
+  position:static!important;
+  display:block!important;
+  width:min(100%,350px)!important;
+  height:auto!important;
+  min-height:0!important;
+  max-width:100%!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:0!important;
+  clip-path:none!important;
+  transform:none!important;
+  overflow:visible!important;
+  filter:drop-shadow(0 14px 24px rgba(0,0,0,.28))!important;
+}
+.hero-free-vnext-kicker{
+  margin:9px 0 0!important;
+  padding:0!important;
+  font:700 1.15rem/1.1 Georgia,"Times New Roman",serif!important;
+  letter-spacing:.07em!important;
+  color:#c2cf32!important;
+  text-align:center!important;
+}
+.hero-free-vnext-copy{
+  width:min(100%,350px)!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  margin:7px auto 0!important;
+  padding:0!important;
+  text-align:center!important;
+}
+.hero-free-vnext-copy h2{
+  margin:0 0 10px!important;
+  padding:0!important;
+  font:400 1.68rem/1.08 Georgia,"Times New Roman",serif!important;
+  color:#fff!important;
+}
+.hero-free-vnext-email{
+  display:block!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-vnext-email span{
+  display:block!important;
+  margin:0 0 5px!important;
+  color:#fff!important;
+  font-size:.79rem!important;
+  line-height:1.2!important;
+  text-align:left!important;
+}
+.hero-free-vnext-email input{
+  display:block!important;
+  width:100%!important;
+  min-height:42px!important;
+  margin:0!important;
+  padding:9px 11px!important;
+  box-sizing:border-box!important;
+  background:#fff!important;
+  color:#050505!important;
+  border:1px solid rgba(255,255,255,.92)!important;
+  border-radius:10px!important;
+}
+.hero-free-vnext-copy #freebieInlineBtn{
+  width:100%!important;
+  min-height:39px!important;
+  margin:6px 0 0!important;
+  padding:8px 12px!important;
+}
+.hero-free-vnext-copy .free-status{
+  margin:4px 0 0!important;
+  min-height:0!important;
+}
+body.light-theme .hero-free-vnext-copy h2,
+body.light-theme .hero-free-vnext-email span{color:#151915!important}
+
+@media(max-width:980px){
+  .hero-free-vnext{width:min(100%,370px)!important}
+  .hero-free-vnext-sheet{width:min(100%,335px)!important}
+}
+@media(max-width:680px){
+  .hero-free-vnext{
+    width:min(94vw,380px)!important;
+    margin:0 auto!important;
+  }
+  .hero-free-vnext-sheet{
+    width:min(88vw,345px)!important;
+    max-width:100%!important;
+    height:auto!important;
+    max-height:none!important;
+  }
+  .hero-free-vnext-copy{
+    width:min(92vw,355px)!important;
+    margin-top:7px!important;
+  }
+}
+</style>
+
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -2676,16 +2807,12 @@ body.light-theme .hero-free-email span{color:#151915!important}
       <div class="hero-actions"><a class="btn primary" href="#locator">Try the Tool <span>↘</span></a><a class="btn" href="#decoder">Cannabis Decoder</a><a class="btn" href="#free">Free Resource</a></div>
       <div class="trust-row"><span>Educational</span><span>Beginner-friendly</span><span>Medical + adult-use context</span><span>Track your own experience</span></div>
     </div>
-    <div class="hero-free-resource fade-up" id="free">
-      <div class="hero-free-top">
-        <div class="hero-free-sheet">
-          <img src="assets/free-resource-cannabis-worksheet.png?v=20260930-full2" alt="Cannabis Basics free cannabis log worksheet">
-        </div>
-        <div class="kicker hero-free-kicker">Free Resource</div>
-      </div>
-      <div class="hero-free-copy">
+    <div class="hero-free-vnext fade-up" id="free">
+      <img class="hero-free-vnext-sheet" src="assets/free-resource-cannabis-worksheet.png?v=20260930-isolated1" alt="Cannabis Basics free cannabis log worksheet">
+      <div class="hero-free-vnext-kicker">Free Resource</div>
+      <div class="hero-free-vnext-copy">
         <h2>Cannabis Logbook Worksheet</h2>
-        <label class="free-email-field hero-free-email" for="freebieEmail">
+        <label class="hero-free-vnext-email" for="freebieEmail">
           <span>Enter your email</span>
           <input type="email" id="freebieEmail" placeholder="you@example.com" autocomplete="email">
         </label>
