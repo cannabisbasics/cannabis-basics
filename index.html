@@ -2280,6 +2280,200 @@ body.light-theme .journal-amazon .btn{color:#fff!important}
   .journal-card-build10{padding:22px 0!important}
 }
 </style>
+<style id="hero-worksheet-uniform-final-20260930">
+/* FINAL HERO GEOMETRY — complete worksheet, maximum usable size, even desktop columns */
+.sales-hero{
+  overflow:visible!important;
+  min-height:100vh!important;
+  padding-bottom:58px!important;
+}
+.hero-wrap-sales{
+  width:min(1220px,100%)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.04fr) minmax(340px,.78fr)!important;
+  gap:42px!important;
+  align-items:stretch!important;
+}
+.hero-copy-wrap{
+  align-self:stretch!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.hero-copy-wrap .trust-row{
+  margin-top:auto!important;
+  padding-top:22px!important;
+}
+
+/* Right column intentionally mirrors the full usable height of the left hero. */
+.hero-free-resource{
+  align-self:stretch!important;
+  height:100%!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-top{
+  width:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  gap:6px!important;
+  margin:0!important;
+  padding:0!important;
+}
+.hero-free-sheet{
+  width:100%!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+.hero-free-sheet img{
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:min(100%,315px)!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center top!important;
+  margin:0 auto!important;
+  padding:0!important;
+  clip-path:none!important;
+  transform:none!important;
+  filter:drop-shadow(0 14px 24px rgba(0,0,0,.28))!important;
+}
+.hero-free-kicker{
+  margin:0!important;
+  font:700 1.16rem/1.1 Georgia,"Times New Roman",serif!important;
+  letter-spacing:.07em!important;
+  color:#c2cf32!important;
+  text-transform:none!important;
+  animation:freeOfferPulse 6s ease-in-out infinite!important;
+}
+.hero-free-copy{
+  width:min(100%,350px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:0!important;
+  margin:18px auto 0!important;
+  padding:0!important;
+  text-align:center!important;
+}
+.hero-free-copy h2{
+  margin:0 0 16px!important;
+  font:400 1.72rem/1.08 Georgia,"Times New Roman",serif!important;
+  color:#fff!important;
+}
+.hero-free-email{
+  display:block!important;
+  margin:0 0 9px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-email span{
+  display:block!important;
+  margin:0 0 7px!important;
+  color:#fff!important;
+  font-size:.79rem!important;
+  text-align:left!important;
+}
+.hero-free-email input{
+  width:100%!important;
+  min-height:42px!important;
+  padding:9px 11px!important;
+  margin:0!important;
+  background:#fff!important;
+  color:#050505!important;
+  border:1px solid rgba(255,255,255,.92)!important;
+  border-radius:10px!important;
+}
+.hero-free-copy #freebieInlineBtn{
+  width:100%!important;
+  min-height:39px!important;
+  margin:0!important;
+  padding:8px 12px!important;
+}
+.hero-free-copy .free-status{
+  margin:5px 0 0!important;
+  min-height:1em!important;
+}
+
+/* Light theme */
+body.light-theme .hero-free-copy h2,
+body.light-theme .hero-free-email span{color:#151915!important}
+
+/* Tablet: keep the two-column balance until a true mobile breakpoint. */
+@media(max-width:980px) and (min-width:681px){
+  .hero-wrap-sales{
+    grid-template-columns:minmax(0,1fr) minmax(300px,.72fr)!important;
+    gap:28px!important;
+  }
+  .hero-free-sheet img{
+    max-width:min(100%,285px)!important;
+  }
+}
+
+/* Mobile: hero copy first, then a large COMPLETE worksheet + offer. */
+@media(max-width:680px){
+  .sales-hero{
+    min-height:auto!important;
+    overflow:visible!important;
+    padding-bottom:44px!important;
+  }
+  .hero-wrap-sales{
+    display:block!important;
+  }
+  .hero-copy-wrap{
+    display:block!important;
+    margin-bottom:30px!important;
+  }
+  .hero-copy-wrap .trust-row{
+    margin-top:14px!important;
+    padding-top:0!important;
+  }
+  .hero-free-resource{
+    width:100%!important;
+    height:auto!important;
+    display:flex!important;
+    justify-content:flex-start!important;
+  }
+  .hero-free-top{
+    gap:8px!important;
+  }
+  .hero-free-sheet img{
+    width:auto!important;
+    height:auto!important;
+    max-width:min(82vw,340px)!important;
+    max-height:none!important;
+  }
+  .hero-free-copy{
+    width:min(92vw,360px)!important;
+    margin-top:20px!important;
+  }
+  .hero-free-copy h2{
+    margin-bottom:17px!important;
+    font-size:1.65rem!important;
+  }
+  .hero-free-email{
+    margin-bottom:10px!important;
+  }
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -2324,11 +2518,13 @@ body.light-theme .journal-amazon .btn{color:#fff!important}
       <div class="trust-row"><span>Educational</span><span>Beginner-friendly</span><span>Medical + adult-use context</span><span>Track your own experience</span></div>
     </div>
     <div class="hero-free-resource fade-up" id="free">
-      <div class="hero-free-sheet">
-        <img src="assets/free-resource-cannabis-worksheet.png" alt="Cannabis Basics free cannabis log worksheet">
+      <div class="hero-free-top">
+        <div class="hero-free-sheet">
+          <img src="assets/free-resource-cannabis-worksheet.png" alt="Cannabis Basics free cannabis log worksheet">
+        </div>
+        <div class="kicker hero-free-kicker">Free Resource</div>
       </div>
       <div class="hero-free-copy">
-        <div class="kicker">Free Resource</div>
         <h2>Cannabis Logbook Worksheet</h2>
         <label class="free-email-field hero-free-email" for="freebieEmail">
           <span>Enter your email</span>
