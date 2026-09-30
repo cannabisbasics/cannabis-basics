@@ -421,6 +421,131 @@ body.light-theme .members-topbar .theme-text-toggle{color:#111!important}
 #musicBtn{color:#c2cf32!important}
 #musicBtn .eq i{background:#c2cf32!important;box-shadow:0 0 7px rgba(194,207,50,.35)!important}
 </style>
+
+<style id="members-journal-upgrade-20260930">
+/* MEMBER JOURNAL UPGRADE — richer personal record book, mobile-first */
+.journal-pulse{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px
+}
+.pulse-card{
+  min-height:112px;padding:17px;border-radius:20px;
+  background:linear-gradient(145deg,rgba(18,31,20,.96),rgba(7,12,8,.98));
+  border:1px solid rgba(125,255,87,.14);box-shadow:0 12px 32px rgba(0,0,0,.22)
+}
+.pulse-card span{display:block;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#8fa092;margin-bottom:8px}
+.pulse-card strong{display:block;font:400 1.45rem/1.05 Georgia,"Times New Roman",serif;color:#f4f0e8}
+.pulse-card small{display:block;margin-top:6px;color:#8d9b90;font-size:.72rem;line-height:1.4}
+.dashboard-recent{margin-top:18px;padding:18px;border-radius:22px;background:rgba(9,15,10,.72);border:1px solid rgba(125,255,87,.11)}
+.dashboard-recent-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.dashboard-recent-head h3{margin:0;font:400 1.25rem Georgia,"Times New Roman",serif;color:#eef3ed}
+.dashboard-recent-head button{border:0;background:none;color:#aef59a;font-weight:700}
+
+.emoji-row{display:flex;flex-wrap:wrap;gap:8px}
+.emoji-choice{
+  display:flex;align-items:center;gap:6px;min-height:44px;padding:8px 11px;border-radius:14px;
+  border:1px solid #454d48;background:#222826;color:#dce5dd;transition:.2s
+}
+.emoji-choice .emoji{font-size:1.35rem;line-height:1}
+.emoji-choice small{font-size:.68rem}
+.emoji-choice:hover{transform:translateY(-2px);border-color:#66806d}
+.emoji-choice.active{background:#5f8f55;color:#fff;border-color:#79aa6d;box-shadow:0 8px 18px rgba(95,143,85,.18)}
+.custom-emoji-wrap{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.custom-emoji-wrap input{max-width:110px;text-align:center;font-size:1.35rem}
+.helper{font-size:.72rem;color:#87968b;line-height:1.45;margin-top:5px}
+
+.journal-subhead{
+  grid-column:1/-1;margin:7px 0 -2px;padding-top:12px;border-top:1px solid rgba(125,255,87,.10);
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#92a394
+}
+.journal-filterbar{
+  display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:9px;margin:15px 0
+}
+.journal-filterbar input,.journal-filterbar select{
+  min-height:44px;border-radius:13px;border:1px solid #aeb5b0;background:#d6d9d7;color:#172019;padding:0 12px
+}
+.session-card{
+  position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;
+  padding:15px;border-radius:18px;border:1px solid rgba(125,255,87,.11);background:#121815
+}
+.session-emoji{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.55rem;background:rgba(125,255,87,.06);border:1px solid rgba(125,255,87,.12)}
+.session-main strong{display:block;font-size:1.08rem;font-weight:400;color:#eef3ed}
+.session-main small{display:block;color:#89958c;margin-top:4px;line-height:1.45}
+.session-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.session-tags span{font-size:.62rem;padding:4px 7px;border-radius:999px;background:rgba(125,255,87,.07);color:#b6c7b9;border:1px solid rgba(125,255,87,.08)}
+.session-card-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.favorite-toggle{font-size:1rem}
+.favorite-toggle.on{color:#d8c18b;border-color:rgba(216,193,139,.38)}
+.editing-banner{
+  display:none;margin:0 0 15px;padding:11px 13px;border-radius:14px;
+  background:rgba(194,207,50,.11);border:1px solid rgba(194,207,50,.22);color:#e9efc4;font-size:.82rem
+}
+.editing-banner.on{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.editing-banner button{border:0;background:none;color:#dff59d;text-decoration:underline}
+
+.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.insight-card{
+  min-height:150px;padding:20px;border-radius:22px;
+  background:linear-gradient(145deg,rgba(14,25,16,.95),rgba(5,9,6,.96));
+  border:1px solid rgba(125,255,87,.16);box-shadow:var(--shadow)
+}
+.insight-card .big{font:400 clamp(2rem,4vw,3.5rem)/1 Georgia,"Times New Roman",serif;color:#eff4ec;margin:8px 0}
+.insight-card span{font-size:.68rem;text-transform:uppercase;letter-spacing:.13em;color:#8ca090}
+.insight-card p{color:#96a39a;font-size:.82rem;line-height:1.5;margin-bottom:0}
+.top-list{display:grid;gap:9px;margin-top:16px}
+.top-list-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:12px;border-radius:14px;background:#111713;border:1px solid rgba(125,255,87,.10)}
+.top-list-row b{font-weight:400;color:#edf3ed}.top-list-row span{color:#a7b5a9;font-size:.78rem}
+
+.product-library{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product-card{padding:17px;border-radius:18px;background:#111713;border:1px solid rgba(125,255,87,.11)}
+.product-card strong{display:block;font-weight:400;font-size:1.08rem;color:#eef3ed}
+.product-card small{display:block;margin-top:6px;color:#89958c;line-height:1.45}
+.product-card .product-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.product-card .product-meta span{font-size:.63rem;padding:5px 7px;border-radius:999px;background:rgba(125,255,87,.07);color:#b8c7ba}
+
+.deals-intro{padding:20px;border-radius:22px;background:linear-gradient(145deg,rgba(194,207,50,.08),rgba(125,255,87,.025));border:1px solid rgba(194,207,50,.18);margin-top:20px}
+.deals-intro h2{margin:0 0 8px;font-weight:400}.deals-intro p{color:#aeb9af;line-height:1.6;margin:0}
+.deals-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.deal-placeholder{padding:18px;border-radius:20px;background:#0f1611;border:1px solid rgba(125,255,87,.11)}
+.deal-placeholder b{display:block;font-weight:400;color:#eef3ed}.deal-placeholder span{display:block;margin-top:6px;color:#88968b;font-size:.78rem;line-height:1.5}
+.partner-disclosure{margin-top:16px;font-size:.72rem;color:#829086;line-height:1.55}
+
+.backup-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.backup-file{display:none}
+.backup-status{margin-top:9px;color:#a7b5a9;font-size:.8rem}
+.danger-button{border-color:rgba(220,105,105,.3)!important;color:#efb5b5!important}
+
+.toast{
+  position:fixed;right:18px;bottom:18px;z-index:9999;max-width:min(380px,calc(100vw - 36px));
+  padding:12px 15px;border-radius:14px;background:#111a13;color:#eef3ed;border:1px solid rgba(125,255,87,.22);
+  box-shadow:0 18px 55px rgba(0,0,0,.5);opacity:0;transform:translateY(12px);pointer-events:none;transition:.25s
+}
+.toast.show{opacity:1;transform:none}
+
+body.light-theme .pulse-card,body.light-theme .dashboard-recent,body.light-theme .session-card,
+body.light-theme .insight-card,body.light-theme .top-list-row,body.light-theme .product-card,
+body.light-theme .deal-placeholder{background:#fff!important;border-color:#d6ded1!important}
+body.light-theme .pulse-card strong,body.light-theme .dashboard-recent-head h3,body.light-theme .session-main strong,
+body.light-theme .insight-card .big,body.light-theme .top-list-row b,body.light-theme .product-card strong,
+body.light-theme .deal-placeholder b{color:#151915!important}
+body.light-theme .session-tags span,body.light-theme .product-card .product-meta span{color:#38503c;background:#eef4e9}
+body.light-theme .deals-intro{background:#f4f8e7!important}
+body.light-theme .emoji-choice{background:#fff;color:#27342a;border-color:#cdd7ca}
+body.light-theme .emoji-choice.active{background:#dce8d4;color:#25422b;border-color:#a9c6a4}
+
+@media(max-width:900px){
+  .journal-pulse,.insight-grid,.deals-grid{grid-template-columns:1fr 1fr}
+  .product-library{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .journal-pulse,.insight-grid,.deals-grid{grid-template-columns:1fr}
+  .journal-filterbar{grid-template-columns:1fr}
+  .session-card{grid-template-columns:auto minmax(0,1fr)}
+  .session-card-actions{grid-column:1/-1;justify-content:flex-start}
+  .emoji-choice{flex:1 1 calc(33.333% - 8px);justify-content:center;min-width:92px}
+  .emoji-choice small{display:none}
+}
+</style>
+
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -450,12 +575,24 @@ body.light-theme .members-topbar .theme-text-toggle{color:#111!important}
 <section class="screen active" id="screen-dashboard">
   <div class="eyebrow">Member Dashboard</div><h1>Your cannabis record, in one place.</h1><p class="lede">A bright, private workspace modeled after the Cannabis Basics journal—built for quick phone entry, searchable records, and clean printable exports.</p>
   <div class="hero-card"><div class="hero-grid"><div><h2>Good to see you.</h2><p class="lede">Start a session, update what you have on hand, save something you want to try, or review what has worked best for you.</p><div class="quick-actions"><button class="action" data-go="log">+ Log a Session</button><button class="action alt" data-go="inventory">Update Inventory</button><button class="action alt" data-go="wishlist">Add to Wish List</button></div></div><div class="stat-stack"><div class="stat"><b id="statSessions">0</b><span>Saved sessions</span></div><div class="stat"><b id="statInventory">0</b><span>Inventory items</span></div><div class="stat"><b id="statWishlist">0</b><span>Wish list items</span></div><div class="stat"><b id="statFavorites">0</b><span>Favorites</span></div></div></div></div>
+  <div class="journal-pulse">
+    <div class="pulse-card"><span>Average rating</span><strong id="pulseAvg">—</strong><small>Your rated sessions</small></div>
+    <div class="pulse-card"><span>Most logged</span><strong id="pulseTopProduct">—</strong><small>Product / strain appearing most often</small></div>
+    <div class="pulse-card"><span>Latest vibe</span><strong id="pulseMood">—</strong><small>How your most recent session felt</small></div>
+  </div>
+  <div class="dashboard-recent">
+    <div class="dashboard-recent-head"><h3>Recent journal entries</h3><button data-go="log">See all →</button></div>
+    <div id="dashboardRecent"></div>
+  </div>
   <div class="section-grid">
     <article class="module"><h3>Session Log</h3><p>Record what you used, how much, what you expected, and how it actually felt.</p><button data-go="log">Open Log →</button></article>
     <article class="module"><h3>My Inventory</h3><p>Keep a current list of products you own, amount remaining, price, and dispensary.</p><button data-go="inventory">View Inventory →</button></article>
     <article class="module"><h3>Wish List</h3><p>Save strains, products, brands, or formats you want to try next.</p><button data-go="wishlist">Open Wish List →</button></article>
     <article class="module"><h3>Saved Products</h3><p>Build a personal product library from your Decoder results and purchases.</p><button data-go="products">My Products →</button></article>
     <article class="module"><h3>Dispensaries</h3><p>Keep your preferred shops, addresses, notes, and what you usually buy there.</p><button data-go="dispensaries">My Stores →</button></article>
+    
+    <article class="module"><h3>My Insights</h3><p>See your most logged products, ratings, moods, and patterns at a glance.</p><button data-go="insights">View Insights →</button></article>
+    <article class="module"><h3>Member Deals</h3><p>A home for clearly labeled partner savings, discounts, courses, and useful member offers.</p><button data-go="deals">Member Deals →</button></article>
     <article class="module"><h3>PDF Library</h3><p>Turn saved sessions into a clean 8.5×11 record for download, printing, or archiving.</p><button data-go="pdf">PDF Library →</button></article>
   </div>
 </section>
@@ -463,6 +600,7 @@ body.light-theme .members-topbar .theme-text-toggle{color:#111!important}
 <section class="screen" id="screen-log">
   <div class="eyebrow">My Session Log</div><h1>Log what happened.</h1><p class="lede">The mobile entry is the master record. Save it here first; then generate a clean 8.5×11 Cannabis Basics page whenever you want.</p>
   <div class="paper print-hide"><span class="corner">☘</span><h2>New Cannabis Log</h2><p class="paper-intro">Fast enough to use after a session, detailed enough to be useful later.</p>
+    <div class="editing-banner" id="editingBanner"><span>Editing a saved session.</span><button type="button" id="cancelEdit">Cancel edit</button></div>
     <div class="form-grid">
       <div class="field"><label>Date</label><input id="logDate" type="date"></div>
       <div class="field"><label>Time</label><input id="logTime" type="time"></div>
@@ -475,6 +613,44 @@ body.light-theme .members-topbar .theme-text-toggle{color:#111!important}
       <div class="field"><label>Dispensary</label><input id="logDispensary" placeholder="Where did it come from?"></div>
       <div class="field full"><label>Dominant Terpenes</label><input id="logTerpenes" placeholder="Example: Myrcene, limonene, caryophyllene"></div>
       <div class="field full"><label>Desired Result</label><div class="choice-row" id="desiredChips"><button class="chip" type="button">Relax</button><button class="chip" type="button">Sleep</button><button class="chip" type="button">Focus</button><button class="chip" type="button">Mood</button><button class="chip" type="button">Creativity</button><button class="chip" type="button">Body comfort</button><button class="chip" type="button">Social</button></div></div>
+      <div class="journal-subhead">Make the entry yours</div>
+      <div class="field full"><label>How were you feeling before?</label>
+        <div class="emoji-row" id="moodBefore">
+          <button class="emoji-choice" type="button" data-emoji="😐"><span class="emoji">😐</span><small>Neutral</small></button>
+          <button class="emoji-choice" type="button" data-emoji="😟"><span class="emoji">😟</span><small>Stressed</small></button>
+          <button class="emoji-choice" type="button" data-emoji="😣"><span class="emoji">😣</span><small>Uncomfortable</small></button>
+          <button class="emoji-choice" type="button" data-emoji="😴"><span class="emoji">😴</span><small>Tired</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🙂"><span class="emoji">🙂</span><small>Good</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🤗"><span class="emoji">🤗</span><small>Social</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🧠"><span class="emoji">🧠</span><small>Focused</small></button>
+        </div>
+      </div>
+      <div class="field full"><label>How did you feel after?</label>
+        <div class="emoji-row" id="moodAfter">
+          <button class="emoji-choice" type="button" data-emoji="😌"><span class="emoji">😌</span><small>Relaxed</small></button>
+          <button class="emoji-choice" type="button" data-emoji="😊"><span class="emoji">😊</span><small>Happy</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🧠"><span class="emoji">🧠</span><small>Focused</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🎨"><span class="emoji">🎨</span><small>Creative</small></button>
+          <button class="emoji-choice" type="button" data-emoji="😴"><span class="emoji">😴</span><small>Sleepy</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🤝"><span class="emoji">🤝</span><small>Social</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🍿"><span class="emoji">🍿</span><small>Hungry</small></button>
+          <button class="emoji-choice" type="button" data-emoji="🤩"><span class="emoji">🤩</span><small>Uplifted</small></button>
+          <button class="emoji-choice" type="button" data-emoji="😵"><span class="emoji">😵</span><small>Too much</small></button>
+        </div>
+      </div>
+      <div class="field full"><label>Add your own emoji</label><div class="custom-emoji-wrap"><input id="logCustomEmoji" maxlength="4" placeholder="✨"><span class="helper">Use any emoji that captures the session.</span></div></div>
+      <div class="field full"><label>Experience tags</label><div class="choice-row" id="experienceChips">
+        <button class="chip" type="button">Relaxed</button><button class="chip" type="button">Happy</button><button class="chip" type="button">Focused</button><button class="chip" type="button">Creative</button><button class="chip" type="button">Sleepy</button><button class="chip" type="button">Social</button><button class="chip" type="button">Hungry</button><button class="chip" type="button">Uplifted</button><button class="chip" type="button">Body comfort</button>
+      </div></div>
+      <div class="field full"><label>Setting</label><div class="choice-row" id="settingChips">
+        <button class="chip" type="button">Home</button><button class="chip" type="button">Outdoors</button><button class="chip" type="button">Social</button><button class="chip" type="button">Daytime</button><button class="chip" type="button">Evening</button><button class="chip" type="button">Before bed</button>
+      </div></div>
+      <div class="field"><label>Onset</label><input id="logOnset" placeholder="Example: 10 min"></div>
+      <div class="field"><label>Duration</label><input id="logDuration" placeholder="Example: 2.5 hours"></div>
+      <div class="field"><label>What did it cost?</label><input id="logCost" placeholder="Optional"></div>
+      <div class="field"><label>Would you use it again?</label><div class="choice-row" id="returnChips">
+        <button class="chip" type="button" data-value="Yes">Yes</button><button class="chip" type="button" data-value="Maybe">Maybe</button><button class="chip" type="button" data-value="No">No</button>
+      </div></div>
       <div class="field full"><label>How did it actually feel?</label><textarea id="logEffects" placeholder="Describe the effects in your own words..."></textarea></div>
       <div class="field"><label>Positives</label><textarea id="logPositives" placeholder="What worked well?"></textarea></div>
       <div class="field"><label>Negatives</label><textarea id="logNegatives" placeholder="Anything you did not like?"></textarea></div>
@@ -483,39 +659,297 @@ body.light-theme .members-topbar .theme-text-toggle{color:#111!important}
     </div>
     <div class="form-actions"><button class="primary" id="saveSession">Save Session</button><button class="secondary" id="clearSession">Clear</button><button class="secondary" id="printSession">Print / Save PDF</button></div>
   </div>
-  <div id="savedRecords" class="paper print-hide"><h2>Saved Sessions</h2><p class="paper-intro">Stored locally in this prototype. The live membership backend will move these into each member’s private account.</p><div class="records" id="recordsList"></div></div>
+  <div id="savedRecords" class="paper print-hide"><h2>Saved Sessions</h2><p class="paper-intro">Search your journal, reopen entries, mark favorites, or duplicate something you want to compare next time.</p>
+    <div class="journal-filterbar"><input id="sessionSearch" placeholder="Search strain, product, dispensary, tags..."><select id="sessionFilter"><option value="all">All sessions</option><option value="favorites">Favorites</option><option value="rated5">5-star sessions</option><option value="recent">Last 30 days</option></select></div>
+    <div class="records" id="recordsList"></div></div>
   <div class="pdf-preview" id="pdfPreview"><div class="pdf-head"><div><div class="eyebrow">Cannabis Basics</div><h2>Cannabis Log</h2></div><img src="assets/logo-green.webp" alt="Cannabis Basics logo"></div><div class="pdf-grid" id="pdfGrid"></div></div>
 </section>
 
 <section class="screen" id="screen-inventory"><div class="eyebrow">My Inventory</div><h1>What you have on hand.</h1><p class="lede">Track products, amount remaining, purchase price, and where they came from.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Product</label><input id="invProduct" placeholder="Product or strain"></div><div class="field"><label>Amount Remaining</label><input id="invAmount" placeholder="Example: 2.5 g"></div><div class="field"><label>Dispensary</label><input id="invStore" placeholder="Store"></div></div><div class="form-actions"><button class="primary" id="addInventory">Add to Inventory</button></div><div class="records" id="inventoryList"></div></div></section>
 <section class="screen" id="screen-wishlist"><div class="eyebrow">Wish List</div><h1>What you want to try next.</h1><p class="lede">Save strains, products, brands, or formats that catch your attention.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Product / Strain</label><input id="wishProduct" placeholder="What do you want to try?"></div><div class="field"><label>Where you saw it</label><input id="wishWhere" placeholder="Dispensary, article, friend, etc."></div><div class="field"><label>Priority</label><select id="wishPriority"><option>Want to try</option><option>High priority</option><option>Someday</option></select></div></div><div class="form-actions"><button class="primary" id="addWish">Add to Wish List</button></div><div class="records" id="wishList"></div></div></section>
-<section class="screen" id="screen-products"><div class="eyebrow">Saved Products</div><h1>Your personal cannabis library.</h1><p class="lede">This is where saved Decoder results and products you have actually used will eventually meet.</p><div class="paper"><div class="list-toolbar"><input id="productSearch" placeholder="Search saved products..."><button class="secondary" data-go="log">+ Add through a Session</button></div><div class="empty">No saved products yet. Save a session or future Decoder result to begin your library.</div></div></section>
+<section class="screen" id="screen-products"><div class="eyebrow">Saved Products</div><h1>Your personal cannabis library.</h1><p class="lede">Products are automatically organized from your saved sessions so the things you actually use become easier to compare.</p><div class="paper"><div class="list-toolbar"><input id="productSearch" placeholder="Search saved products..."><button class="secondary" data-go="log">+ Add through a Session</button></div><div class="product-library" id="productLibrary"></div></div></section>
 <section class="screen" id="screen-dispensaries"><div class="eyebrow">Saved Dispensaries</div><h1>Your stores and locations.</h1><p class="lede">Keep the places you trust, along with notes about products, pricing, service, and what you usually buy there.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Dispensary Name</label><input id="storeName" placeholder="Dispensary"></div><div class="field"><label>Location</label><input id="storeLocation" placeholder="City / State"></div><div class="field"><label>Notes</label><input id="storeNotes" placeholder="What do you like about it?"></div></div><div class="form-actions"><button class="primary" id="addStore">Save Dispensary</button><a class="secondary" href="index.html#locator">Use Public Locator</a></div><div id="storeList"></div></div></section>
 <section class="screen" id="screen-favorites"><div class="eyebrow">Favorites</div><h1>The ones worth remembering.</h1><p class="lede">Products rated highly in your session history can be promoted into a clean favorites list.</p><div class="paper"><div class="records" id="favoritesList"></div></div></section>
+<section class="screen" id="screen-insights">
+  <div class="eyebrow">My Cannabis Insights</div><h1>See your own patterns.</h1><p class="lede">These are simple summaries of the records you save—not medical conclusions. The goal is to make your own journal easier to learn from.</p>
+  <div class="insight-grid">
+    <div class="insight-card"><span>Sessions logged</span><div class="big" id="insightSessions">0</div><p>Your total journal history on this device.</p></div>
+    <div class="insight-card"><span>Average rating</span><div class="big" id="insightAvg">—</div><p>Average across sessions you chose to rate.</p></div>
+    <div class="insight-card"><span>Favorite type</span><div class="big" id="insightType">—</div><p>The product type you have logged most often.</p></div>
+    <div class="insight-card"><span>Common vibe</span><div class="big" id="insightMood">—</div><p>Your most frequently selected after-session emoji.</p></div>
+    <div class="insight-card"><span>Top desired result</span><div class="big" id="insightDesired">—</div><p>The goal appearing most often in your entries.</p></div>
+    <div class="insight-card"><span>Would use again</span><div class="big" id="insightReturn">—</div><p>How many sessions you marked “Yes.”</p></div>
+  </div>
+  <div class="paper"><h2>Your most logged products</h2><p class="paper-intro">A quick leaderboard based only on your saved journal entries.</p><div class="top-list" id="insightTopProducts"></div></div>
+</section>
+
+<section class="screen" id="screen-deals">
+  <div class="eyebrow">Member Deals & Partner Savings</div><h1>Useful offers, clearly labeled.</h1><p class="lede">This area is being prepared for member-focused savings from approved Cannabis Basics partners. We will only show real offers after the partnership is active and the terms are verified.</p>
+  <div class="deals-intro"><h2>Your savings area is ready.</h2><p>As affiliate relationships are approved, this is where members can find relevant discounts, education offers, hardware/accessories, and other legal cannabis-related services without cluttering the journal itself.</p></div>
+  <div class="deals-grid">
+    <div class="deal-placeholder"><b>Education & Training</b><span>Courses, certifications, and learning resources that fit Cannabis Basics.</span></div>
+    <div class="deal-placeholder"><b>Accessories & Hardware</b><span>Approved devices and accessories with verified partner terms.</span></div>
+    <div class="deal-placeholder"><b>Member Partner Offers</b><span>Discount codes and savings from vetted partners as they become active.</span></div>
+  </div>
+  <p class="partner-disclosure"><strong>Partner disclosure:</strong> Some future offers may use affiliate links. When they do, Cannabis Basics will label the relationship clearly and may earn a commission at no additional cost to the member.</p>
+</section>
+
 <section class="screen" id="screen-pdf"><div class="eyebrow">PDF Library</div><h1>Printable records.</h1><p class="lede">The long-term version will keep generated PDFs in the member account. In this prototype, open a saved session and use Print / Save PDF.</p><div class="paper"><div class="empty">Your generated Cannabis Basics PDFs will appear here once cloud storage is connected.</div><div class="privacy">PDF exports should be treated as private personal records. The production membership should give users control over download, deletion, and account export.</div></div></section>
-<section class="screen" id="screen-account"><div class="eyebrow">Member Account</div><h1>Your membership.</h1><p class="lede">This preview shows the structure. Production login, payment verification, and private record storage come when Stripe and Supabase are connected.</p><div class="account-card"><div><b>Founding Lifetime Membership</b><span>One-time access price planned for launch.</span></div><strong>$27</strong></div><div class="account-card"><div><b>Account Privacy</b><span>Your records should be protected so authenticated members only access their own rows.</span></div><span>Backend phase</span></div><div class="account-card"><div><b>Payments</b><span>Stripe + PayPal can unlock the same member entitlement.</span></div><span>Not connected yet</span></div><div class="privacy">Production recommendation: email-based sign-in or magic link, row-level database security, account export/delete controls, and no unnecessary health or identity information.</div></section>
+<section class="screen" id="screen-account"><div class="eyebrow">Member Account</div><h1>Your membership.</h1><p class="lede">Your journal currently lives on this device. The production account system will move these records into secure private member storage.</p>
+    <div class="account-card"><div><b>Founding Lifetime Membership</b><span>First 100 members join free. Grand-opening lifetime price after that: $27.</span></div><strong>$0 first 100</strong></div>
+    <div class="account-card"><div><b>Journal Backup</b><span>Download a copy of your current sessions, inventory, wish list, and saved dispensaries as a JSON backup.</span></div><span>Local backup</span></div>
+    <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
+    <div class="backup-status" id="backupStatus" aria-live="polite"></div>
+    <div class="account-card"><div><b>Account Privacy</b><span>The production version should use authenticated accounts, row-level security, and member-controlled export/delete tools.</span></div><span>Backend phase</span></div>
+    <div class="privacy">This build intentionally keeps journal records on the member’s own browser. It is useful for testing the experience, but it is not a substitute for the secure cloud account system we will connect before treating this as permanent cross-device storage.</div>
+  </section>
 </main>
 </div>
 <script>
-const navItems=[['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','Saved Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['pdf','▤','PDF Library'],['account','⚙','Account']];
+const navItems=[['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','Saved Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library'],['account','⚙','Account']];
 const side=document.getElementById('sideNav'),mobile=document.getElementById('mobileNav');
 navItems.forEach(([id,ico,label])=>{const b=document.createElement('button');b.className='nav-btn'+(id==='dashboard'?' active':'');b.dataset.go=id;b.innerHTML=`<span class="ico">${ico}</span><span>${label}</span>`;side.appendChild(b);const m=document.createElement('button');m.textContent=label;m.dataset.go=id;if(id==='dashboard')m.classList.add('active');mobile.appendChild(m)});
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===`screen-${id}`));document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));window.scrollTo({top:0,behavior:'smooth'});renderAll()}
+
+const load=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
+const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const esc=(v)=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+let rating=0;
+let editingSessionId=null;
+
+function toast(message){
+  let el=document.getElementById('memberToast');
+  if(!el){el=document.createElement('div');el.id='memberToast';el.className='toast';document.body.appendChild(el)}
+  el.textContent=message;el.classList.add('show');clearTimeout(window.__cbToast);window.__cbToast=setTimeout(()=>el.classList.remove('show'),2400);
+}
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',x.id===`screen-${id}`));
+  document.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('active',b.dataset.go===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderAll();
+}
 document.addEventListener('click',e=>{const el=e.target.closest('[data-go]');if(el){e.preventDefault();go(el.dataset.go)}});
-const load=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}},save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
-let rating=0;document.querySelectorAll('#ratingBtns button').forEach(b=>b.onclick=()=>{rating=+b.dataset.rating;document.querySelectorAll('#ratingBtns button').forEach(x=>x.classList.toggle('active',+x.dataset.rating<=rating))});document.querySelectorAll('#desiredChips .chip').forEach(b=>b.onclick=()=>b.classList.toggle('active'));
-const vals=()=>({id:Date.now(),date:logDate.value,time:logTime.value,product:logProduct.value.trim(),type:logType.value,variety:logVariety.value,thc:logTHC.value.trim(),cbd:logCBD.value.trim(),amount:logAmount.value,dispensary:logDispensary.value.trim(),terpenes:logTerpenes.value.trim(),desired:[...document.querySelectorAll('#desiredChips .chip.active')].map(x=>x.textContent),effects:logEffects.value.trim(),positives:logPositives.value.trim(),negatives:logNegatives.value.trim(),rating,notes:logNotes.value.trim()});
-function clearForm(){document.querySelectorAll('#screen-log input,#screen-log textarea').forEach(x=>x.value='');document.querySelectorAll('#desiredChips .chip,#ratingBtns button').forEach(x=>x.classList.remove('active'));rating=0;setDefaults();updatePDF({})}
-function setDefaults(){const d=new Date();if(!logDate.value)logDate.value=d.toISOString().slice(0,10);if(!logTime.value)logTime.value=d.toTimeString().slice(0,5)}setDefaults();
-saveSession.onclick=()=>{const o=vals();if(!o.product){logProduct.focus();return}const arr=load('cb_sessions');arr.unshift(o);save('cb_sessions',arr);updatePDF(o);renderAll()};clearSession.onclick=clearForm;printSession.onclick=()=>{updatePDF(vals());window.print()};
-function updatePDF(o){const items=[['Date',o.date||'—'],['Time',o.time||'—'],['Product',o.product||'—'],['Type',o.type||'—'],['Variety',o.variety||'—'],['THC',o.thc||'—'],['CBD',o.cbd||'—'],['Amount',o.amount||'—'],['Dispensary',o.dispensary||'—'],['Terpenes',o.terpenes||'—'],['Desired Result',(o.desired||[]).join(', ')||'—'],['Rating',o.rating?o.rating+' / 5':'—'],['Effects',o.effects||'—'],['Positives',o.positives||'—'],['Negatives',o.negatives||'—'],['Notes',o.notes||'—']];pdfGrid.innerHTML=items.map(([a,b])=>`<div class="pdf-item"><b>${a}</b><span>${escapeHTML(String(b))}</span></div>`).join('')}
-function escapeHTML(s){return s.replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-function renderSessions(){const arr=load('cb_sessions');recordsList.innerHTML=arr.length?arr.map(o=>`<div class="record"><div><strong>${escapeHTML(o.product)}</strong><small>${escapeHTML(o.date||'No date')} • ${escapeHTML(o.type)} • ${o.rating?o.rating+'/5':'Unrated'}</small></div><div class="record-actions"><button class="tiny" data-open-session="${o.id}">Open</button><button class="tiny" data-delete-session="${o.id}">Delete</button></div></div>`).join(''):'<div class="empty">No sessions saved yet.</div>';favoritesList.innerHTML=arr.filter(x=>x.rating>=4).length?arr.filter(x=>x.rating>=4).map(o=>`<div class="record"><div><strong>${escapeHTML(o.product)}</strong><small>${o.rating}/5 • ${escapeHTML(o.variety)}</small></div><button class="tiny" data-open-session="${o.id}">Open</button></div>`).join(''):'<div class="empty">Rate a saved session 4 or 5 to build your favorites.</div>'}
-document.addEventListener('click',e=>{const open=e.target.closest('[data-open-session]');if(open){const o=load('cb_sessions').find(x=>x.id==open.dataset.openSession);if(o){updatePDF(o);go('log')}}const del=e.target.closest('[data-delete-session]');if(del){save('cb_sessions',load('cb_sessions').filter(x=>x.id!=del.dataset.deleteSession));renderAll()}});
-addInventory.onclick=()=>{if(!invProduct.value.trim())return;const arr=load('cb_inventory');arr.unshift({id:Date.now(),product:invProduct.value.trim(),amount:invAmount.value.trim(),store:invStore.value.trim()});save('cb_inventory',arr);invProduct.value=invAmount.value=invStore.value='';renderAll()};
-addWish.onclick=()=>{if(!wishProduct.value.trim())return;const arr=load('cb_wishlist');arr.unshift({id:Date.now(),product:wishProduct.value.trim(),where:wishWhere.value.trim(),priority:wishPriority.value});save('cb_wishlist',arr);wishProduct.value=wishWhere.value='';renderAll()};
-addStore.onclick=()=>{if(!storeName.value.trim())return;const arr=load('cb_stores');arr.unshift({id:Date.now(),name:storeName.value.trim(),location:storeLocation.value.trim(),notes:storeNotes.value.trim()});save('cb_stores',arr);storeName.value=storeLocation.value=storeNotes.value='';renderAll()};
-function renderAll(){const inv=load('cb_inventory'),wish=load('cb_wishlist'),sessions=load('cb_sessions'),stores=load('cb_stores');statSessions.textContent=sessions.length;statInventory.textContent=inv.length;statWishlist.textContent=wish.length;statFavorites.textContent=sessions.filter(x=>x.rating>=4).length;inventoryList.innerHTML=inv.length?inv.map(x=>`<div class="record"><div><strong>${escapeHTML(x.product)}</strong><small>${escapeHTML(x.amount||'Amount not entered')} • ${escapeHTML(x.store||'Store not entered')}</small></div></div>`).join(''):'<div class="empty">Your inventory is empty.</div>';wishList.innerHTML=wish.length?wish.map(x=>`<div class="record"><div><strong>${escapeHTML(x.product)}</strong><small>${escapeHTML(x.priority)} • ${escapeHTML(x.where||'Source not entered')}</small></div></div>`).join(''):'<div class="empty">Nothing on the wish list yet.</div>';storeList.innerHTML=stores.length?stores.map(x=>`<div class="dispensary-card"><div><strong>${escapeHTML(x.name)}</strong><span>${escapeHTML(x.location||'Location not entered')} ${x.notes?'• '+escapeHTML(x.notes):''}</span></div><span>Saved</span></div>`).join(''):'<div class="empty">No dispensaries saved yet.</div>';renderSessions()}
+
+function singleSelect(containerSelector,buttonSelector='.chip'){
+  document.querySelectorAll(`${containerSelector} ${buttonSelector}`).forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll(`${containerSelector} ${buttonSelector}`).forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  }));
+}
+function multiSelect(containerSelector){
+  document.querySelectorAll(`${containerSelector} .chip`).forEach(b=>b.addEventListener('click',()=>b.classList.toggle('active')));
+}
+function emojiSelect(containerSelector){
+  document.querySelectorAll(`${containerSelector} .emoji-choice`).forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll(`${containerSelector} .emoji-choice`).forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  }));
+}
+
+document.querySelectorAll('#ratingBtns button').forEach(b=>b.addEventListener('click',()=>{
+  rating=+b.dataset.rating;
+  document.querySelectorAll('#ratingBtns button').forEach(x=>x.classList.toggle('active',+x.dataset.rating<=rating));
+}));
+multiSelect('#desiredChips');
+multiSelect('#experienceChips');
+multiSelect('#settingChips');
+singleSelect('#returnChips');
+emojiSelect('#moodBefore');
+emojiSelect('#moodAfter');
+
+function activeText(selector){return [...document.querySelectorAll(selector+' .chip.active')].map(x=>x.textContent.trim())}
+function activeEmoji(selector){return document.querySelector(selector+' .emoji-choice.active')?.dataset.emoji||''}
+
+const vals=()=>({
+  id:editingSessionId||Date.now(),
+  date:logDate.value,time:logTime.value,product:logProduct.value.trim(),type:logType.value,variety:logVariety.value,
+  thc:logTHC.value.trim(),cbd:logCBD.value.trim(),amount:logAmount.value,dispensary:logDispensary.value.trim(),terpenes:logTerpenes.value.trim(),
+  desired:activeText('#desiredChips'),
+  moodBefore:activeEmoji('#moodBefore'),moodAfter:activeEmoji('#moodAfter'),customEmoji:logCustomEmoji?.value.trim()||'',
+  experienceTags:activeText('#experienceChips'),setting:activeText('#settingChips'),
+  onset:logOnset?.value.trim()||'',duration:logDuration?.value.trim()||'',cost:logCost?.value.trim()||'',
+  wouldUseAgain:document.querySelector('#returnChips .chip.active')?.dataset.value||'',
+  effects:logEffects.value.trim(),positives:logPositives.value.trim(),negatives:logNegatives.value.trim(),rating,notes:logNotes.value.trim()
+});
+
+function setDefaults(){
+  const d=new Date();
+  if(!logDate.value)logDate.value=d.toISOString().slice(0,10);
+  if(!logTime.value)logTime.value=d.toTimeString().slice(0,5);
+}
+function clearSelections(){
+  document.querySelectorAll('#desiredChips .chip,#experienceChips .chip,#settingChips .chip,#returnChips .chip,#ratingBtns button,.emoji-choice').forEach(x=>x.classList.remove('active'));
+}
+function clearForm(){
+  document.querySelectorAll('#screen-log input,#screen-log textarea').forEach(x=>x.value='');
+  document.querySelectorAll('#screen-log select').forEach(x=>x.selectedIndex=0);
+  clearSelections();rating=0;editingSessionId=null;
+  editingBanner?.classList.remove('on');saveSession.textContent='Save Session';
+  setDefaults();updatePDF({});
+}
+setDefaults();
+
+function selectByText(container,texts){
+  const set=new Set(texts||[]);
+  document.querySelectorAll(container+' .chip').forEach(b=>b.classList.toggle('active',set.has(b.textContent.trim())));
+}
+function selectEmoji(container,val){
+  document.querySelectorAll(container+' .emoji-choice').forEach(b=>b.classList.toggle('active',b.dataset.emoji===val));
+}
+function loadSessionIntoForm(o){
+  editingSessionId=o.id;
+  logDate.value=o.date||'';logTime.value=o.time||'';logProduct.value=o.product||'';logType.value=o.type||'Flower';logVariety.value=o.variety||'Not sure';
+  logTHC.value=o.thc||'';logCBD.value=o.cbd||'';logAmount.value=o.amount||'Not sure';logDispensary.value=o.dispensary||'';logTerpenes.value=o.terpenes||'';
+  logEffects.value=o.effects||'';logPositives.value=o.positives||'';logNegatives.value=o.negatives||'';logNotes.value=o.notes||'';
+  if(logCustomEmoji)logCustomEmoji.value=o.customEmoji||'';
+  if(logOnset)logOnset.value=o.onset||'';if(logDuration)logDuration.value=o.duration||'';if(logCost)logCost.value=o.cost||'';
+  selectByText('#desiredChips',o.desired);selectByText('#experienceChips',o.experienceTags);selectByText('#settingChips',o.setting);
+  selectEmoji('#moodBefore',o.moodBefore);selectEmoji('#moodAfter',o.moodAfter);
+  document.querySelectorAll('#returnChips .chip').forEach(b=>b.classList.toggle('active',b.dataset.value===o.wouldUseAgain));
+  rating=Number(o.rating)||0;document.querySelectorAll('#ratingBtns button').forEach(x=>x.classList.toggle('active',+x.dataset.rating<=rating));
+  editingBanner?.classList.add('on');saveSession.textContent='Update Session';
+  updatePDF(o);
+}
+cancelEdit?.addEventListener('click',clearForm);
+
+saveSession.onclick=()=>{
+  const o=vals();if(!o.product){logProduct.focus();toast('Add a strain or product name first.');return}
+  const arr=load('cb_sessions');
+  if(editingSessionId){
+    const i=arr.findIndex(x=>String(x.id)===String(editingSessionId));
+    if(i>=0){o.favorite=!!arr[i].favorite;arr[i]=o}else arr.unshift(o);
+    toast('Session updated.');
+  }else{
+    o.favorite=false;arr.unshift(o);toast('Session saved to your journal.');
+  }
+  save('cb_sessions',arr);updatePDF(o);clearForm();renderAll();
+};
+clearSession.onclick=clearForm;
+printSession.onclick=()=>{updatePDF(vals());window.print()};
+
+function updatePDF(o){
+  const items=[
+    ['Date',o.date||'—'],['Time',o.time||'—'],['Product',o.product||'—'],['Type',o.type||'—'],['Variety',o.variety||'—'],
+    ['THC',o.thc||'—'],['CBD',o.cbd||'—'],['Amount',o.amount||'—'],['Dispensary',o.dispensary||'—'],['Terpenes',o.terpenes||'—'],
+    ['Desired Result',(o.desired||[]).join(', ')||'—'],['Before',o.moodBefore||'—'],['After',(o.customEmoji||o.moodAfter)||'—'],
+    ['Experience Tags',(o.experienceTags||[]).join(', ')||'—'],['Setting',(o.setting||[]).join(', ')||'—'],
+    ['Onset',o.onset||'—'],['Duration',o.duration||'—'],['Cost',o.cost||'—'],['Use Again?',o.wouldUseAgain||'—'],
+    ['Rating',o.rating?o.rating+' / 5':'—'],['Effects',o.effects||'—'],['Positives',o.positives||'—'],['Negatives',o.negatives||'—'],['Notes',o.notes||'—']
+  ];
+  pdfGrid.innerHTML=items.map(([a,b])=>`<div class="pdf-item"><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('');
+}
+
+function daysAgo(dateString){
+  if(!dateString)return Infinity;
+  const d=new Date(dateString+'T12:00:00');return (Date.now()-d.getTime())/86400000;
+}
+function sessionMatches(o,q){
+  if(!q)return true;
+  const hay=[o.product,o.type,o.variety,o.dispensary,o.terpenes,o.notes,o.effects,...(o.desired||[]),...(o.experienceTags||[]),...(o.setting||[])].join(' ').toLowerCase();
+  return hay.includes(q.toLowerCase());
+}
+function sessionEmoji(o){return o.customEmoji||o.moodAfter||o.moodBefore||'🌿'}
+
+function renderSessions(){
+  const all=load('cb_sessions');
+  let arr=all.slice();
+  const q=sessionSearch?.value.trim()||'';
+  const filter=sessionFilter?.value||'all';
+  arr=arr.filter(o=>sessionMatches(o,q));
+  if(filter==='favorites')arr=arr.filter(o=>o.favorite||o.rating>=4);
+  if(filter==='rated5')arr=arr.filter(o=>Number(o.rating)===5);
+  if(filter==='recent')arr=arr.filter(o=>daysAgo(o.date)<=30);
+
+  recordsList.innerHTML=arr.length?arr.map(o=>`<div class="session-card">
+    <div class="session-emoji">${esc(sessionEmoji(o))}</div>
+    <div class="session-main"><strong>${esc(o.product||'Unnamed session')}</strong><small>${esc(o.date||'No date')} • ${esc(o.type||'Product')} • ${o.rating?esc(o.rating)+'/5':'Unrated'}${o.wouldUseAgain?' • Use again: '+esc(o.wouldUseAgain):''}</small>
+      <div class="session-tags">${[...(o.experienceTags||[]),...(o.desired||[])].slice(0,5).map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+    </div>
+    <div class="session-card-actions"><button class="tiny favorite-toggle ${o.favorite?'on':''}" data-favorite-session="${o.id}" title="Favorite">${o.favorite?'★':'☆'}</button><button class="tiny" data-open-session="${o.id}">Edit</button><button class="tiny" data-duplicate-session="${o.id}">Duplicate</button><button class="tiny" data-delete-session="${o.id}">Delete</button></div>
+  </div>`).join(''):'<div class="empty">No sessions match this view yet.</div>';
+
+  const fav=all.filter(x=>x.favorite||x.rating>=4);
+  favoritesList.innerHTML=fav.length?fav.map(o=>`<div class="record"><div><strong>${esc(sessionEmoji(o))} ${esc(o.product)}</strong><small>${o.rating?esc(o.rating)+'/5':'Favorite'} • ${esc(o.variety||'')}</small></div><button class="tiny" data-open-session="${o.id}">Open</button></div>`).join(''):'<div class="empty">Tap ☆ on any session—or rate it 4 or 5—to build your favorites.</div>';
+
+  const recent=all.slice(0,3);
+  dashboardRecent.innerHTML=recent.length?recent.map(o=>`<div class="record"><div><strong>${esc(sessionEmoji(o))} ${esc(o.product)}</strong><small>${esc(o.date||'No date')} • ${o.rating?esc(o.rating)+'/5':'Unrated'}</small></div><button class="tiny" data-open-session="${o.id}">Open</button></div>`).join(''):'<div class="empty">Your recent journal entries will appear here.</div>';
+}
+sessionSearch?.addEventListener('input',renderSessions);
+sessionFilter?.addEventListener('change',renderSessions);
+
+document.addEventListener('click',e=>{
+  const open=e.target.closest('[data-open-session]');
+  if(open){const o=load('cb_sessions').find(x=>String(x.id)===String(open.dataset.openSession));if(o){loadSessionIntoForm(o);go('log')}}
+  const fav=e.target.closest('[data-favorite-session]');
+  if(fav){const arr=load('cb_sessions');const o=arr.find(x=>String(x.id)===String(fav.dataset.favoriteSession));if(o){o.favorite=!o.favorite;save('cb_sessions',arr);renderAll();toast(o.favorite?'Added to favorites.':'Removed from favorites.')}}
+  const dup=e.target.closest('[data-duplicate-session]');
+  if(dup){const arr=load('cb_sessions');const o=arr.find(x=>String(x.id)===String(dup.dataset.duplicateSession));if(o){const copy={...o,id:Date.now(),date:new Date().toISOString().slice(0,10),favorite:false,notes:(o.notes||'')};arr.unshift(copy);save('cb_sessions',arr);renderAll();toast('Session duplicated for comparison.')}}
+  const del=e.target.closest('[data-delete-session]');
+  if(del&&confirm('Delete this journal entry?')){save('cb_sessions',load('cb_sessions').filter(x=>String(x.id)!==String(del.dataset.deleteSession)));renderAll();toast('Session deleted.')}
+});
+
+addInventory.onclick=()=>{if(!invProduct.value.trim())return;const arr=load('cb_inventory');arr.unshift({id:Date.now(),product:invProduct.value.trim(),amount:invAmount.value.trim(),store:invStore.value.trim()});save('cb_inventory',arr);invProduct.value=invAmount.value=invStore.value='';renderAll();toast('Inventory updated.')};
+addWish.onclick=()=>{if(!wishProduct.value.trim())return;const arr=load('cb_wishlist');arr.unshift({id:Date.now(),product:wishProduct.value.trim(),where:wishWhere.value.trim(),priority:wishPriority.value});save('cb_wishlist',arr);wishProduct.value=wishWhere.value='';renderAll();toast('Added to your wish list.')};
+addStore.onclick=()=>{if(!storeName.value.trim())return;const arr=load('cb_stores');arr.unshift({id:Date.now(),name:storeName.value.trim(),location:storeLocation.value.trim(),notes:storeNotes.value.trim()});save('cb_stores',arr);storeName.value=storeLocation.value=storeNotes.value='';renderAll();toast('Dispensary saved.')};
+
+function countBy(items,fn){
+  const m=new Map();items.forEach(x=>{const k=fn(x);if(k)m.set(k,(m.get(k)||0)+1)});
+  return [...m.entries()].sort((a,b)=>b[1]-a[1]);
+}
+function renderProducts(sessions){
+  const q=(productSearch?.value||'').trim().toLowerCase();
+  const groups=new Map();
+  sessions.forEach(o=>{
+    const name=(o.product||'').trim();if(!name)return;
+    const key=name.toLowerCase();
+    if(!groups.has(key))groups.set(key,{name,count:0,ratings:[],type:o.type||'',lastEmoji:'🌿',lastDate:''});
+    const g=groups.get(key);g.count++;if(Number(o.rating))g.ratings.push(Number(o.rating));g.type=o.type||g.type;g.lastEmoji=sessionEmoji(o);g.lastDate=o.date||g.lastDate;
+  });
+  let list=[...groups.values()].filter(g=>!q||g.name.toLowerCase().includes(q)).sort((a,b)=>b.count-a.count);
+  productLibrary.innerHTML=list.length?list.map(g=>{const avg=g.ratings.length?(g.ratings.reduce((a,b)=>a+b,0)/g.ratings.length).toFixed(1):'—';return `<div class="product-card"><strong>${esc(g.lastEmoji)} ${esc(g.name)}</strong><small>${esc(g.type)} • Last logged ${esc(g.lastDate||'—')}</small><div class="product-meta"><span>${g.count} session${g.count===1?'':'s'}</span><span>Avg ${avg}/5</span></div></div>`}).join(''):'<div class="empty">Your product library builds automatically as you save sessions.</div>';
+}
+productSearch?.addEventListener('input',()=>renderProducts(load('cb_sessions')));
+
+function renderInsights(sessions){
+  const rated=sessions.filter(x=>Number(x.rating)>0);
+  const avg=rated.length?(rated.reduce((sum,x)=>sum+Number(x.rating),0)/rated.length).toFixed(1):'—';
+  const types=countBy(sessions,x=>x.type);const moods=countBy(sessions,x=>x.moodAfter||x.customEmoji);const desired=countBy(sessions.flatMap(x=>(x.desired||[]).map(v=>({v}))),x=>x.v);
+  const useAgain=sessions.filter(x=>x.wouldUseAgain==='Yes').length;
+  insightSessions.textContent=sessions.length;insightAvg.textContent=avg==='—'?'—':avg+'/5';insightType.textContent=types[0]?.[0]||'—';insightMood.textContent=moods[0]?.[0]||'—';insightDesired.textContent=desired[0]?.[0]||'—';insightReturn.textContent=useAgain;
+  const products=countBy(sessions,x=>x.product?.trim());
+  insightTopProducts.innerHTML=products.length?products.slice(0,8).map(([name,count],i)=>`<div class="top-list-row"><b>${i+1}. ${esc(name)}</b><span>${count} log${count===1?'':'s'}</span></div>`).join(''):'<div class="empty">Log a few sessions and this leaderboard will build itself.</div>';
+}
+
+function renderAll(){
+  const inv=load('cb_inventory'),wish=load('cb_wishlist'),sessions=load('cb_sessions'),stores=load('cb_stores');
+  statSessions.textContent=sessions.length;statInventory.textContent=inv.length;statWishlist.textContent=wish.length;statFavorites.textContent=sessions.filter(x=>x.favorite||x.rating>=4).length;
+
+  const rated=sessions.filter(x=>Number(x.rating)>0);
+  pulseAvg.textContent=rated.length?(rated.reduce((a,x)=>a+Number(x.rating),0)/rated.length).toFixed(1)+'/5':'—';
+  const products=countBy(sessions,x=>x.product?.trim());pulseTopProduct.textContent=products[0]?.[0]||'—';
+  pulseMood.textContent=sessions[0]?sessionEmoji(sessions[0]):'—';
+
+  inventoryList.innerHTML=inv.length?inv.map(x=>`<div class="record"><div><strong>${esc(x.product)}</strong><small>${esc(x.amount||'Amount not entered')} • ${esc(x.store||'Store not entered')}</small></div></div>`).join(''):'<div class="empty">Your inventory is empty.</div>';
+  wishList.innerHTML=wish.length?wish.map(x=>`<div class="record"><div><strong>${esc(x.product)}</strong><small>${esc(x.priority)} • ${esc(x.where||'Source not entered')}</small></div></div>`).join(''):'<div class="empty">Nothing on the wish list yet.</div>';
+  storeList.innerHTML=stores.length?stores.map(x=>`<div class="dispensary-card"><div><strong>${esc(x.name)}</strong><span>${esc(x.location||'Location not entered')} ${x.notes?'• '+esc(x.notes):''}</span></div><span>Saved</span></div>`).join(''):'<div class="empty">No dispensaries saved yet.</div>';
+  renderSessions();renderProducts(sessions);renderInsights(sessions);
+}
+
+exportMemberData?.addEventListener('click',()=>{
+  const data={version:1,exportedAt:new Date().toISOString(),sessions:load('cb_sessions'),inventory:load('cb_inventory'),wishlist:load('cb_wishlist'),stores:load('cb_stores')};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Cannabis-Basics-Member-Backup.json';a.click();URL.revokeObjectURL(url);backupStatus.textContent='Backup downloaded.';toast('Member backup created.');
+});
+importMemberData?.addEventListener('click',()=>importMemberFile.click());
+importMemberFile?.addEventListener('change',async()=>{
+  const file=importMemberFile.files?.[0];if(!file)return;
+  try{const data=JSON.parse(await file.text());if(Array.isArray(data.sessions))save('cb_sessions',data.sessions);if(Array.isArray(data.inventory))save('cb_inventory',data.inventory);if(Array.isArray(data.wishlist))save('cb_wishlist',data.wishlist);if(Array.isArray(data.stores))save('cb_stores',data.stores);backupStatus.textContent='Backup imported successfully.';renderAll();toast('Journal backup restored.')}catch(e){backupStatus.textContent='That file could not be imported.'}
+  importMemberFile.value='';
+});
+clearMemberData?.addEventListener('click',()=>{
+  if(!confirm('Clear all journal, inventory, wish list, and saved dispensary data on this device?'))return;
+  ['cb_sessions','cb_inventory','cb_wishlist','cb_stores'].forEach(k=>localStorage.removeItem(k));clearForm();renderAll();backupStatus.textContent='Local journal data cleared.';toast('Local journal cleared.');
+});
+
 updatePDF({});renderAll();
 </script>
 
