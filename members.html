@@ -653,6 +653,51 @@ body.light-theme .location-benefit{background:#f4f8e7}
 }
 </style>
 
+
+<style id="members-visible-music-toggle-20260930">
+/* Visible member-page music control: same equalizer behavior as the public homepage */
+.members-topbar #musicBtn{
+  appearance:none!important;-webkit-appearance:none!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:34px!important;height:28px!important;min-width:34px!important;min-height:28px!important;
+  padding:4px 5px!important;margin:0!important;overflow:visible!important;
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+  cursor:pointer!important;color:#c2cf32!important;
+}
+.members-topbar #musicBtn::before,
+.members-topbar #musicBtn::after{content:none!important;display:none!important}
+.members-topbar #musicBtn .eq{
+  position:static!important;z-index:auto!important;
+  display:flex!important;align-items:flex-end!important;justify-content:center!important;gap:3px!important;
+  width:22px!important;height:18px!important;margin:0!important;padding:0!important;
+}
+.members-topbar #musicBtn .eq i{
+  display:block!important;width:3px!important;border-radius:4px!important;
+  background:#7f8b82!important;box-shadow:none!important;
+  transform-origin:center bottom!important;opacity:.72!important;
+  animation:none!important;transition:height .18s ease,background .18s ease,opacity .18s ease!important;
+}
+.members-topbar #musicBtn .eq i:nth-child(1){height:6px!important}
+.members-topbar #musicBtn .eq i:nth-child(2){height:10px!important}
+.members-topbar #musicBtn .eq i:nth-child(3){height:7px!important}
+.members-topbar #musicBtn.playing .eq i{
+  background:#c2cf32!important;opacity:1!important;
+  box-shadow:0 0 7px rgba(194,207,50,.35)!important;
+  animation:memberEqBounce .72s ease-in-out infinite alternate!important;
+}
+.members-topbar #musicBtn.playing .eq i:nth-child(2){animation-delay:.15s!important}
+.members-topbar #musicBtn.playing .eq i:nth-child(3){animation-delay:.3s!important}
+@keyframes memberEqBounce{
+  from{transform:scaleY(.55)}
+  to{transform:scaleY(1.35)}
+}
+.members-topbar #musicBtn:focus-visible{
+  outline:2px solid #c2cf32!important;outline-offset:4px!important;border-radius:5px!important;
+}
+body.light-theme .members-topbar #musicBtn .eq i{background:#687168!important}
+body.light-theme .members-topbar #musicBtn.playing .eq i{background:#145a32!important;box-shadow:none!important}
+</style>
+
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -665,7 +710,7 @@ body.light-theme .location-benefit{background:#f4f8e7}
     <span class="brand-copy"><span class="brand-script">Cannabis Basics</span><small>My Personal Record Book</small></span>
   </a>
   <div class="public-top-actions">
-    <button class="music-btn" id="musicBtn" aria-label="Play Slow Like the Smoke" title="Play Slow Like the Smoke"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    <button class="music-btn" id="musicBtn" type="button" aria-label="Turn music on" aria-pressed="false" title="Turn music on"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
     <button class="theme-text-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">Light</button>
   </div>
 </header>
@@ -826,11 +871,11 @@ body.light-theme .location-benefit{background:#f4f8e7}
     </div>
 
     <form class="profile-form" id="memberProfileForm">
-      <label>Preferred name <small>What should the dashboard call you?</small><input id="profileName" autocomplete="nickname" placeholder="Example: Wayne"></label>
+      <label>Preferred name <small>What should the dashboard call you?</small><input id="profileName" autocomplete="nickname" placeholder="Example: Alex"></label>
       <label>Email <small>Optional in this prototype; your join email will appear if available.</small><input id="profileEmail" type="email" autocomplete="email" placeholder="you@example.com"></label>
-      <label>City <small>Optional, but helpful for local recommendations.</small><input id="profileCity" autocomplete="address-level2" placeholder="Example: Waldorf"></label>
+      <label>City <small>Optional, but helpful for local recommendations.</small><input id="profileCity" autocomplete="address-level2" placeholder="Example: Denver"></label>
       <label>State <small>Recommended for dispensary and legal context.</small><select id="profileState"><option value="">Choose state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></label>
-      <label>ZIP code <small>Optional. Helps narrow nearby dispensaries and local partner offers.</small><input id="profileZip" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="Example: 20601"></label>
+      <label>ZIP code <small>Optional. Helps narrow nearby dispensaries and local partner offers.</small><input id="profileZip" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="Example: 80202"></label>
       <label>Favorite strain / product <small>Optional personal preference.</small><input id="profileFavorite" placeholder="Example: Blue Dream"></label>
 
       <div class="location-benefit">
@@ -1226,7 +1271,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   const themeBtn=document.getElementById('themeToggle');
   let playing=false;
 
-  const syncMusic=()=>{ if(musicBtn) musicBtn.classList.toggle('playing',playing); };
+  const syncMusic=()=>{
+    if(!musicBtn)return;
+    musicBtn.classList.toggle('playing',playing);
+    musicBtn.setAttribute('aria-pressed',playing?'true':'false');
+    musicBtn.setAttribute('aria-label',playing?'Turn music off':'Turn music on');
+    musicBtn.title=playing?'Turn music off':'Turn music on';
+  };
 
   async function startMusic(){
     if(!audio)return;
@@ -1278,7 +1329,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const btn=document.getElementById('musicBtn');
   if(!audio)return;
   audio.volume=.35;
-  const attempt=async()=>{try{await audio.play();btn?.classList.add('playing');return true}catch(e){return false}};
+  const attempt=async()=>{try{await audio.play();if(btn){btn.classList.add('playing');btn.setAttribute('aria-pressed','true');btn.setAttribute('aria-label','Turn music off');btn.title='Turn music off'}return true}catch(e){return false}};
   attempt().then(ok=>{
     if(ok)return;
     const unlock=async()=>{const played=await attempt();if(played){document.removeEventListener('pointerdown',unlock);document.removeEventListener('keydown',unlock)}};
