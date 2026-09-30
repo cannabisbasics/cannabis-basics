@@ -698,6 +698,46 @@ body.light-theme .members-topbar #musicBtn .eq i{background:#687168!important}
 body.light-theme .members-topbar #musicBtn.playing .eq i{background:#145a32!important;box-shadow:none!important}
 </style>
 
+
+<style id="members-light-mode-readability-final-20260930">
+body.light-theme .stat,
+body.light-theme .pulse-card,
+body.light-theme .identity-item,
+body.light-theme .local-member-card,
+body.light-theme .dashboard-recent{
+  background:#fff!important;
+  color:#111!important;
+  border-color:#d4dbd1!important;
+}
+body.light-theme .stat b,
+body.light-theme .stat span,
+body.light-theme .pulse-card span,
+body.light-theme .pulse-card strong,
+body.light-theme .pulse-card small,
+body.light-theme .identity-item span,
+body.light-theme .identity-item strong,
+body.light-theme .local-member-card h3,
+body.light-theme .local-member-card p,
+body.light-theme .dashboard-recent-head h3{
+  color:#111!important;
+  opacity:1!important;
+}
+body.light-theme .mobile-nav button,
+body.light-theme .nav-btn{
+  color:#111!important;
+}
+body.light-theme .mobile-nav button.active,
+body.light-theme .nav-btn.active{
+  color:#0f4426!important;
+  background:#dce8d4!important;
+  border-color:#aebfa9!important;
+}
+body.light-theme .nav-btn .ico{
+  color:#111!important;
+  background:#fff!important;
+  border-color:#cdd6ca!important;
+}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -767,7 +807,7 @@ body.light-theme .members-topbar #musicBtn.playing .eq i{background:#145a32!impo
     <div class="form-grid">
       <div class="field"><label>Date</label><input id="logDate" type="date"></div>
       <div class="field"><label>Time</label><input id="logTime" type="time"></div>
-      <div class="field full"><label>Strain / Product</label><input id="logProduct" placeholder="Example: Blue Dream"></div>
+      <div class="field full"><label>Strain / Product</label><input id="logProduct" placeholder="Enter strain or product name"></div>
       <div class="field"><label>Product Type</label><select id="logType"><option>Flower</option><option>Pre-roll</option><option>Vape</option><option>Edible</option><option>Beverage</option><option>Concentrate</option><option>Tincture / Oil</option><option>Topical</option><option>Other</option></select></div>
       <div class="field"><label>Variety</label><select id="logVariety"><option>Not sure</option><option>Indica</option><option>Sativa</option><option>Hybrid</option><option>Indica-dominant hybrid</option><option>Sativa-dominant hybrid</option></select></div>
       <div class="field"><label>THC</label><input id="logTHC" placeholder="Example: 24% or 10 mg"></div>
@@ -872,11 +912,11 @@ body.light-theme .members-topbar #musicBtn.playing .eq i{background:#145a32!impo
 
     <form class="profile-form" id="memberProfileForm">
       <label>Preferred name <small>What should the dashboard call you?</small><input id="profileName" autocomplete="nickname" placeholder="Example: Alex"></label>
-      <label>Email <small>Optional in this prototype; your join email will appear if available.</small><input id="profileEmail" type="email" autocomplete="email" placeholder="you@example.com"></label>
+      
       <label>City <small>Optional, but helpful for local recommendations.</small><input id="profileCity" autocomplete="address-level2" placeholder="Example: Denver"></label>
       <label>State <small>Recommended for dispensary and legal context.</small><select id="profileState"><option value="">Choose state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></label>
       <label>ZIP code <small>Optional. Helps narrow nearby dispensaries and local partner offers.</small><input id="profileZip" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="Example: 80202"></label>
-      <label>Favorite strain / product <small>Optional personal preference.</small><input id="profileFavorite" placeholder="Example: Blue Dream"></label>
+      <label>Favorite strain / product <small>Optional personal preference.</small><input id="profileFavorite" placeholder="Enter strain or product name"></label>
 
       <div class="location-benefit">
         <strong>Why location helps</strong>
@@ -1142,7 +1182,7 @@ function ensureMemberIdentity(){
   let p=loadProfile();
   if(!p.memberId)p.memberId='CB-'+new Date().getFullYear()+'-'+Math.random().toString(36).slice(2,8).toUpperCase();
   if(!p.joinedAt)p.joinedAt=new Date().toISOString();
-  if(!p.email){const joinedEmail=localStorage.getItem('cb_preview_email');if(joinedEmail)p.email=joinedEmail}
+  if(Object.prototype.hasOwnProperty.call(p,'email'))delete p.email;
   saveProfile(p);return p;
 }
 function profileInitials(p){
@@ -1158,12 +1198,12 @@ function locationText(p){
   return [p.city,p.state,p.zip].filter(Boolean).join(', ').replace(/, ([0-9]{5})$/, ' $1');
 }
 function profileCompletionPercent(p){
-  const checks=[p.name,p.email,p.photo,p.state,(p.city||p.zip),p.localize,(p.interests||[]).length];
+  const checks=[p.name,p.photo,p.state,(p.city||p.zip),p.localize,(p.interests||[]).length];
   return Math.round(checks.filter(Boolean).length/checks.length*100);
 }
 function renderProfile(){
   const p=ensureMemberIdentity();
-  profileName.value=p.name||'';profileEmail.value=p.email||'';profileCity.value=p.city||'';profileState.value=p.state||'';profileZip.value=p.zip||'';profileFavorite.value=p.favorite||'';
+  profileName.value=p.name||'';profileCity.value=p.city||'';profileState.value=p.state||'';profileZip.value=p.zip||'';profileFavorite.value=p.favorite||'';
   profileLocalize.checked=!!p.localize;
   document.querySelectorAll('#profileInterests input').forEach(cb=>cb.checked=(p.interests||[]).includes(cb.value));
   setAvatar(profileAvatarLarge,p);setAvatar(dashboardAvatar,p);setAvatar(sideAvatar,p);
@@ -1196,8 +1236,9 @@ function renderProfile(){
 memberProfileForm?.addEventListener('submit',e=>{
   e.preventDefault();
   const current=ensureMemberIdentity();
+  delete current.email;
   const interests=[...document.querySelectorAll('#profileInterests input:checked')].map(x=>x.value);
-  const next={...current,name:profileName.value.trim(),email:profileEmail.value.trim(),city:profileCity.value.trim(),state:profileState.value,zip:profileZip.value.trim(),favorite:profileFavorite.value.trim(),localize:profileLocalize.checked,interests};
+  const next={...current,name:profileName.value.trim(),city:profileCity.value.trim(),state:profileState.value,zip:profileZip.value.trim(),favorite:profileFavorite.value.trim(),localize:profileLocalize.checked,interests};
   saveProfile(next);renderProfile();profileStatus.textContent='Profile saved on this device.';toast('Profile updated.');
 });
 chooseProfilePhoto?.addEventListener('click',()=>profilePhotoInput.click());
