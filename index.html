@@ -1758,19 +1758,26 @@ body.light-theme .footer-brand-copy small{color:#151915!important}
   .hero-free-resource .free-copy{text-align:left!important}
 }
 </style>
-<style id="hero-free-no-card-product-polish-20260929">
-/* Hero free resource: no card, no container, directly on cannabis background */
+<style id="hero-free-final-landing-20260929">
+/* FINAL HERO FREE-RESOURCE LANDING LAYOUT */
 .hero-wrap-sales{
-  grid-template-columns:minmax(0,1fr) minmax(390px,.92fr)!important;
-  align-items:center!important;
+  width:min(1220px,100%)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.78fr)!important;
+  gap:34px!important;
+  align-items:start!important;
 }
+.hero-copy-wrap,
+.hero-free-resource{align-self:start!important}
 .hero-free-resource{
   display:flex!important;
   flex-direction:column!important;
   align-items:center!important;
-  justify-content:center!important;
-  gap:12px!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
   padding:0!important;
+  margin:0!important;
   background:none!important;
   border:0!important;
   box-shadow:none!important;
@@ -1778,124 +1785,128 @@ body.light-theme .footer-brand-copy small{color:#151915!important}
 .hero-free-sheet{
   width:100%!important;
   display:flex!important;
-  align-items:center!important;
+  align-items:flex-start!important;
   justify-content:center!important;
+  margin:0!important;
+  padding:0!important;
+}
+.hero-free-sheet img{
+  display:block!important;
+  width:min(100%,260px)!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  margin:0 auto!important;
+  filter:drop-shadow(0 14px 24px rgba(0,0,0,.28))!important;
+}
+.hero-free-copy{
+  width:min(100%,360px)!important;
+  margin:2px auto 0!important;
+  padding:0!important;
+  text-align:center!important;
+}
+.hero-free-copy .kicker{
+  margin:0 0 4px!important;
+  font:700 1.08rem/1.1 Georgia,"Times New Roman",serif!important;
+  letter-spacing:.08em!important;
+  color:#c2cf32!important;
+  text-transform:none!important;
+  animation:freeResourceGlow 5.8s ease-in-out infinite!important;
+}
+@keyframes freeResourceGlow{
+  0%,100%{opacity:.78;text-shadow:0 0 0 rgba(194,207,50,0)}
+  50%{opacity:1;text-shadow:0 0 10px rgba(194,207,50,.30)}
+}
+.hero-free-copy h2{
+  margin:0 0 10px!important;
+  font:400 1.62rem/1.05 Georgia,"Times New Roman",serif!important;
+  color:#fff!important;
+}
+.hero-free-email{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
   background:none!important;
   border:0!important;
   box-shadow:none!important;
 }
-.hero-free-sheet img{
+.hero-free-email span{
   display:block!important;
-  width:min(100%,430px)!important;
-  max-height:520px!important;
-  object-fit:contain!important;
-  filter:drop-shadow(0 18px 28px rgba(0,0,0,.32))!important;
-}
-.hero-free-copy{
-  width:min(100%,430px)!important;
-  text-align:left!important;
-  padding:0 4px!important;
-}
-.hero-free-copy .kicker{
-  margin-bottom:3px!important;
-  color:#c2cf32!important;
-}
-.hero-free-copy h2{
-  margin:0 0 9px!important;
-  font:400 1.4rem/1.05 Georgia,"Times New Roman",serif!important;
+  margin:0 0 6px!important;
   color:#fff!important;
-}
-.hero-free-email{
-  margin:0 0 8px!important;
-  padding:8px 10px!important;
-  border-radius:12px!important;
+  font-size:.78rem!important;
+  text-align:left!important;
 }
 .hero-free-email input{
+  display:block!important;
+  width:100%!important;
   min-height:40px!important;
+  margin:0!important;
+  padding:9px 11px!important;
+  border-radius:10px!important;
   background:#fff!important;
   color:#050505!important;
+  border:1px solid rgba(255,255,255,.9)!important;
 }
 .hero-free-copy #freebieInlineBtn{
+  display:block!important;
   width:100%!important;
-  min-height:42px!important;
-  font-size:.8rem!important;
+  min-height:38px!important;
+  margin:7px 0 0!important;
+  padding:8px 12px!important;
+  font-size:.76rem!important;
 }
+.hero-free-copy .free-status{
+  margin:5px 0 0!important;
+  min-height:1em!important;
+  font-size:.7rem!important;
+}
+body.light-theme .hero-free-copy h2,
+body.light-theme .hero-free-email span{color:#151915!important}
 
-/* Product section color/CTA treatment */
-.journal-product-title{
-  color:#83b83f!important;
-}
+/* Keep journal sales treatment */
+.journal-product-title{color:#83b83f!important}
 .journal-feature-buttons span{
-  background:#fff!important;
-  color:#111!important;
-  border:1px solid rgba(255,255,255,.88)!important;
-  box-shadow:0 8px 20px rgba(0,0,0,.14)!important;
+  background:#fff!important;color:#111!important;border:1px solid rgba(255,255,255,.88)!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.14)!important
 }
-.journal-feature-buttons span:hover{
-  color:#111!important;
-  background:#f5f5f5!important;
-}
+.journal-feature-buttons span:hover{background:#f5f5f5!important;color:#111!important}
 #amazonBtn,.btn.amazon{
-  background:#1f5f32!important;
-  color:#fff!important;
-  border-color:#2b7441!important;
-  box-shadow:0 12px 28px rgba(14,70,35,.26),0 0 18px rgba(51,118,65,.14)!important;
+  background:#1f5f32!important;color:#fff!important;border-color:#2b7441!important;
+  box-shadow:0 12px 28px rgba(14,70,35,.26),0 0 18px rgba(51,118,65,.14)!important
 }
-#amazonBtn:hover,.btn.amazon:hover{
-  background:#286f3d!important;
-  color:#fff!important;
-}
+#amazonBtn:hover,.btn.amazon:hover{background:#286f3d!important;color:#fff!important}
 
-/* Contact focus/selection green instead of browser blue */
-#contact input:focus,
-#contact select:focus,
-#contact textarea:focus{
+/* Contact focus uses site green, never browser blue */
+#contact .contact-form input:focus,
+#contact .contact-form select:focus,
+#contact .contact-form textarea:focus{
   outline:none!important;
   background:#dce8c8!important;
   color:#050505!important;
-  border-color:#7ba640!important;
-  box-shadow:0 0 0 3px rgba(123,166,64,.25)!important;
+  border:2px solid #111!important;
+  box-shadow:0 0 0 3px rgba(194,207,50,.24)!important;
 }
-#contact input::selection,
-#contact textarea::selection{
-  background:#c2cf32!important;
-  color:#111!important;
-}
-#contact select{
-  accent-color:#7ba640!important;
-}
-
-/* Light theme adjustments */
-body.light-theme .hero-free-copy h2{color:#151915!important}
-body.light-theme .journal-product-title{color:#4f7726!important}
-body.light-theme #amazonBtn,body.light-theme .btn.amazon{
-  background:#1f5f32!important;color:#fff!important;
+#contact .contact-form input::selection,
+#contact .contact-form textarea::selection{
+  background:#c2cf32!important;color:#111!important
 }
 
 @media(max-width:900px){
   .hero-wrap-sales{
-    grid-template-columns:1fr 1fr!important;
-    gap:22px!important;
+    grid-template-columns:minmax(0,1fr) minmax(260px,.72fr)!important;
+    gap:24px!important;
   }
-  .hero-free-sheet img{
-    width:min(100%,370px)!important;
-    max-height:440px!important;
-  }
+  .hero-free-sheet img{width:min(100%,230px)!important}
+  .hero-free-copy{width:min(100%,330px)!important}
 }
 @media(max-width:620px){
   .hero-wrap-sales{display:block!important}
   .hero-copy-wrap{margin-bottom:20px!important}
-  .hero-free-resource{
-    width:100%!important;
-    gap:10px!important;
-  }
-  .hero-free-sheet img{
-    width:min(92vw,430px)!important;
-    max-height:none!important;
-  }
-  .hero-free-copy{
-    width:min(92vw,430px)!important;
-  }
+  .hero-free-resource{width:100%!important}
+  .hero-free-sheet img{width:min(78vw,300px)!important}
+  .hero-free-copy{width:min(90vw,360px)!important}
+  .hero-free-copy .kicker{font-size:1.05rem!important}
+  .hero-free-copy h2{font-size:1.5rem!important}
 }
 </style>
 </head>
@@ -1943,16 +1954,16 @@ body.light-theme #amazonBtn,body.light-theme .btn.amazon{
     </div>
     <div class="hero-free-resource fade-up" id="free">
       <div class="hero-free-sheet">
-        <img src="assets/free-log-worksheet.webp" alt="Cannabis Basics free cannabis log worksheet">
+        <img src="assets/free-resource-cannabis-worksheet.png" alt="Cannabis Basics free cannabis log worksheet">
       </div>
       <div class="hero-free-copy">
         <div class="kicker">Free Resource</div>
-        <h2>Cannabis Logbook Worksheet.</h2>
+        <h2>Cannabis Logbook Worksheet</h2>
         <label class="free-email-field hero-free-email" for="freebieEmail">
           <span>Enter your email</span>
           <input type="email" id="freebieEmail" placeholder="you@example.com" autocomplete="email">
         </label>
-        <button class="btn primary" id="freebieInlineBtn" type="button">Get Your Cannabis Logbook</button>
+        <button class="btn primary" id="freebieInlineBtn" type="button">Download Your Worksheet Today</button>
         <p id="freebieInlineStatus" class="free-status" aria-live="polite"></p>
       </div>
     </div>
