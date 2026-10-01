@@ -3277,9 +3277,9 @@ body.light-theme .about-price-stack{background:#fff}
   <div class="member-invite-card">
     <button class="member-invite-close" id="memberInviteClose" type="button" aria-label="Close membership invitation">×</button>
     <div class="member-invite-inner">
-      <span class="member-invite-badge">FOUNDING MEMBERSHIP • FIRST 100</span>
+      <span class="member-invite-badge" id="memberInviteSpots">FOUNDING MEMBERSHIP • 33 SPOTS REMAINING</span>
       <h2 id="memberInviteTitle">The doors are still open.</h2>
-      <p class="member-invite-lede">Be one of the first 100 Cannabis Basics members and activate your lifetime Members Only access for free.</p>
+      <p class="member-invite-lede">Claim free lifetime founding access while one of the remaining spots is available.</p>
 
       <div class="member-offer-steps" aria-label="Membership pricing">
         <div class="member-offer-step">
@@ -3291,7 +3291,7 @@ body.light-theme .about-price-stack{background:#fff}
           <strong>$27</strong>
         </div>
         <div class="member-offer-step free">
-          <span>First 100</span>
+          <span>Founding access</span>
           <strong>$0</strong>
         </div>
       </div>
@@ -3303,7 +3303,7 @@ body.light-theme .about-price-stack{background:#fff}
         <button class="member-invite-submit" type="submit">CLAIM FREE LIFETIME ACCESS</button>
       </form>
       <p class="member-invite-status" id="memberInviteStatus" aria-live="polite"></p>
-      <p class="member-invite-note">First 100 members only • Lifetime founding access • While opening spots remain</p>
+      <p class="member-invite-note" id="memberInviteNote">33 spots remaining • Lifetime founding access • While spots remain</p>
       <button class="member-invite-skip" id="memberInviteSkip" type="button">Maybe later — continue exploring Cannabis Basics</button>
     </div>
   </div>
@@ -3726,15 +3726,9 @@ document.addEventListener('DOMContentLoaded',()=>{
       return;
     }
 
-    safeLocalSet('cb_preview_email', email);
-    safeLocalSet('cb_preview_member', 'yes');
-    safeLocalSet('cb_founder_offer', 'first100-free');
     safeSessionSet('cb_members_popup_joined_v2','1');
-    status.textContent = 'Welcome. Opening your Members Only workspace…';
-
-    // Central member storage will plug into this flow next; the current static build
-    // saves the founding-member email locally so the member experience works now.
-    setTimeout(() => { window.location.href = 'members.html'; }, 650);
+    status.textContent = 'Opening secure account creation…';
+    setTimeout(() => { window.location.href = 'join.html?email=' + encodeURIComponent(email); }, 350);
   });
 })();
 </script>
@@ -3753,8 +3747,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
     if(!res.ok)return;
     const remaining=Number(await res.json());
+    const label=remaining+' SPOT'+(remaining===1?'':'S')+' REMAINING';
     const el=document.getElementById('aboutSpotsRemaining');
-    if(el&&Number.isFinite(remaining))el.textContent=remaining+' SPOT'+(remaining===1?'':'S')+' REMAINING';
+    if(el&&Number.isFinite(remaining))el.textContent=label;
+    const popup=document.getElementById('memberInviteSpots');
+    if(popup&&Number.isFinite(remaining))popup.textContent='FOUNDING MEMBERSHIP • '+label;
+    const note=document.getElementById('memberInviteNote');
+    if(note&&Number.isFinite(remaining))note.textContent=label+' • Lifetime founding access • While spots remain';
   }catch(e){}
 })();
 </script>
