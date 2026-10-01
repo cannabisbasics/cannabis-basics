@@ -103,6 +103,8 @@ let mode='signup';
 
 const params=new URLSearchParams(location.search);
 if(params.get('signin')==='1')mode='signin';
+const carriedEmail=params.get('email');
+if(carriedEmail)emailInput.value=carriedEmail;
 
 function setMode(next){
   mode=next;
