@@ -3015,6 +3015,12 @@ body.light-theme .about-price-stack{background:#fff}
 #musicBtn{min-width:38px!important;min-height:34px!important;width:38px!important;height:34px!important;padding:7px!important;cursor:pointer!important}
 #musicBtn .eq{pointer-events:none}
 </style>
+
+<style id="homepage-live365-radio-20261001">
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+#musicBtn.playing .eq i{animation-play-state:running!important}
+#musicBtn:not(.playing) .eq i{animation-play-state:paused!important;opacity:.62!important}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -3031,7 +3037,7 @@ body.light-theme .about-price-stack{background:#fff}
     <span class="brand-copy"><span class="brand-script">Cannabis Basics</span><small>Learn • Track • Understand</small></span>
   </a>
   <div class="public-top-actions">
-    <button class="music-btn" id="musicBtn" aria-label="Play Slow Like the Smoke" title="Play Slow Like the Smoke"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    <button class="music-btn" id="musicBtn" aria-label="Play live hip-hop and R&B radio" title="Play 870.1 Urban Hip Hop & R&B"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button><span id="radioStatus" class="sr-only" aria-live="polite"></span>
     <button class="theme-text-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">Light</button>
   </div>
 </header>
@@ -3047,7 +3053,7 @@ body.light-theme .about-price-stack{background:#fff}
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
 </nav>
-<audio id="siteMusic" loop preload="none"><source src="assets/slow-like-the-smoke.MP3" type="audio/mpeg"></audio>
+<div id="live365RadioMount" aria-hidden="true"></div>
 
 <header class="hero sales-hero" id="top">
   <div class="hero-wrap hero-wrap-sales">
@@ -3331,10 +3337,42 @@ const LEAD_ENDPOINT = null; // Optional: Google Apps Script / form service endpo
 
 document.getElementById('amazonBtn').href = AMAZON_URL;
 
-// Music
-const music=document.getElementById('siteMusic'), musicBtn=document.getElementById('musicBtn');
-let musicPlaying=false;
-musicBtn.addEventListener('click',async()=>{try{if(musicPlaying){music.pause();musicPlaying=false;musicBtn.classList.remove('playing');musicBtn.title='Play Slow Like the Smoke';}else{await music.play();musicPlaying=true;musicBtn.classList.add('playing');musicBtn.title='Pause Slow Like the Smoke';}}catch(e){musicBtn.title='Tap again to play music';}});
+// Live365 homepage radio — 870.1 Urban Hip Hop & R&B
+const musicBtn=document.getElementById('musicBtn');
+const radioMount=document.getElementById('live365RadioMount');
+const radioStatus=document.getElementById('radioStatus');
+const LIVE365_PLAYER='https://player.live365.com/a12370?autoplay=1&l=';
+let radioPlaying=false;
+
+function stopHomepageRadio(){
+  radioMount?.replaceChildren();
+  radioPlaying=false;
+  musicBtn?.classList.remove('playing');
+  musicBtn?.setAttribute('aria-pressed','false');
+  musicBtn?.setAttribute('aria-label','Play live hip-hop and R&B radio');
+  if(musicBtn)musicBtn.title='Play 870.1 Urban Hip Hop & R&B';
+  if(radioStatus)radioStatus.textContent='Live radio off';
+}
+function startHomepageRadio(){
+  if(!radioMount||!musicBtn)return;
+  const frame=document.createElement('iframe');
+  frame.src=LIVE365_PLAYER;
+  frame.title='870.1 Urban Hip Hop & R&B live radio player';
+  frame.allow='autoplay';
+  frame.loading='eager';
+  frame.tabIndex=-1;
+  frame.style.cssText='position:fixed;left:-10000px;bottom:0;width:1px;height:1px;border:0;opacity:.01;pointer-events:none;';
+  radioMount.replaceChildren(frame);
+  radioPlaying=true;
+  musicBtn.classList.add('playing');
+  musicBtn.setAttribute('aria-pressed','true');
+  musicBtn.setAttribute('aria-label','Turn live hip-hop and R&B radio off');
+  musicBtn.title='Turn 870.1 Urban Hip Hop & R&B off';
+  if(radioStatus)radioStatus.textContent='Live 870.1 Urban Hip Hop & R&B radio on';
+}
+musicBtn?.setAttribute('aria-pressed','false');
+musicBtn?.addEventListener('click',()=>{radioPlaying?stopHomepageRadio():startHomepageRadio()});
+window.addEventListener('pagehide',stopHomepageRadio);
 
 // Tool
 const priceNotes={
