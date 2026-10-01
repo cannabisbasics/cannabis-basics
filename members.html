@@ -1485,7 +1485,7 @@ if(!session){
   location.replace('join.html?signin=1');
 } else {
   const priorUser=localStorage.getItem('cb_cache_user_id');
-  if(priorUser && priorUser!==session.user.id){
+  if(!priorUser || priorUser!==session.user.id){
     clearMemberCache();
   }
   localStorage.setItem('cb_cache_user_id',session.user.id);
