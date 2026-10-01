@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add("cb-auth-pending")</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#040605">
@@ -738,6 +739,14 @@ body.light-theme .nav-btn .ico{
   border-color:#cdd6ca!important;
 }
 </style>
+
+<style id="members-cloud-auth-20261001">
+html.cb-auth-pending body{visibility:hidden}
+.cloud-status{display:flex;align-items:center;gap:8px;margin-top:10px;color:#8fa092;font-size:.74rem}
+.cloud-status i{width:8px;height:8px;border-radius:50%;background:#c2cf32;box-shadow:0 0 8px rgba(194,207,50,.35)}
+body.light-theme .cloud-status{color:#36443a}
+.signout-row{margin-top:14px}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -905,7 +914,7 @@ body.light-theme .nav-btn .ico{
     <div class="profile-photo-panel">
       <div class="profile-avatar-large" id="profileAvatarLarge">CB</div>
       <h3 id="profileDisplayName">Cannabis Basics Member</h3>
-      <p>Upload a profile photo or keep your initials. In this build, the photo stays on this device.</p>
+      <p>Upload a profile photo or keep your initials. Your profile photo is stored privately with your member account.</p>
       <div class="profile-photo-actions"><button class="secondary" type="button" id="chooseProfilePhoto">Upload Photo</button><button class="secondary" type="button" id="removeProfilePhoto">Remove</button></div>
       <input class="profile-photo-input" id="profilePhotoInput" type="file" accept="image/*">
     </div>
@@ -938,7 +947,7 @@ body.light-theme .nav-btn .ico{
         </div>
       </div>
 
-      <div class="profile-save-row"><button class="primary" type="submit">Save My Profile</button><span class="profile-save-note">No profile field is required. Save only what you want Cannabis Basics to remember on this device.</span></div>
+      <div class="profile-save-row"><button class="primary" type="submit">Save My Profile</button><span class="profile-save-note">No profile field is required. Save only what you want Cannabis Basics to remember in your private member profile.</span></div>
     </form>
   </div>
 
@@ -948,14 +957,14 @@ body.light-theme .nav-btn .ico{
     <div class="identity-item"><span>Member since</span><strong id="profileJoined">—</strong></div>
     <div class="identity-item"><span>Profile completion</span><strong id="profileCompletion">0%</strong><div class="profile-progress"><i id="profileProgressBar"></i></div></div>
   </div>
-  <div class="profile-status-line" id="profileStatus" aria-live="polite"></div>
+  <div class="profile-status-line" id="profileStatus" aria-live="polite"></div><div class="cloud-status" id="cloudStatus"><i></i><span>Secure member cloud connected</span></div>
 
   <div class="account-card"><div><b>Founding Lifetime Membership</b><span>First 100 members join free. Grand-opening lifetime price after that: $27.</span></div><strong>$0 first 100</strong></div>
-  <div class="account-card"><div><b>Journal Backup</b><span>Download a copy of your current profile, sessions, inventory, wish list, and saved dispensaries as a JSON backup.</span></div><span>Local backup</span></div>
+  <div class="account-card"><div><b>Journal Backup</b><span>Download a personal copy of your current profile, sessions, inventory, wish list, and saved dispensaries as a JSON backup.</span></div><span>Member backup</span></div>
   <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
-  <div class="backup-status" id="backupStatus" aria-live="polite"></div>
-  <div class="account-card"><div><b>Secure cloud account</b><span>The next backend phase will turn this local profile into a real login with private cross-device records and photo storage.</span></div><span>Next phase</span></div>
-  <div class="privacy">This build keeps profile and journal information in the member’s browser. The production membership should move it into authenticated private storage, use row-level database security, and give members clear export/delete controls.</div>
+  <div class="backup-status" id="backupStatus" aria-live="polite"></div><div class="signout-row"><button class="secondary" id="signOutBtn" type="button">Sign Out</button></div>
+  <div class="account-card"><div><b>Secure cloud account</b><span>Your profile and journal are connected to a private authenticated member account for cross-device access.</span></div><span>Connected</span></div>
+  <div class="privacy">Member profile and journal records are protected by authenticated access and row-level database security. Members keep export controls for their own records.</div>
 </section>
 </main>
 </div>
@@ -965,7 +974,7 @@ const side=document.getElementById('sideNav'),mobile=document.getElementById('mo
 navItems.forEach(([id,ico,label])=>{const b=document.createElement('button');b.className='nav-btn'+(id==='dashboard'?' active':'');b.dataset.go=id;b.innerHTML=`<span class="ico">${ico}</span><span>${label}</span>`;side.appendChild(b);const m=document.createElement('button');m.textContent=label;m.dataset.go=id;if(id==='dashboard')m.classList.add('active');mobile.appendChild(m)});
 
 const load=(k)=>{try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}};
-const save=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const save=(k,v)=>{localStorage.setItem(k,JSON.stringify(v));window.cbCloudSyncKey?.(k,v)};
 const esc=(v)=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 let rating=0;
 let editingSessionId=null;
@@ -1177,7 +1186,7 @@ function renderInsights(sessions){
 
 const PROFILE_KEY='cb_member_profile';
 function loadProfile(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}catch(e){return{}}}
-function saveProfile(p){localStorage.setItem(PROFILE_KEY,JSON.stringify(p))}
+function saveProfile(p){localStorage.setItem(PROFILE_KEY,JSON.stringify(p));window.cbCloudSyncProfile?.(p)}
 function ensureMemberIdentity(){
   let p=loadProfile();
   if(!p.memberId)p.memberId='CB-'+new Date().getFullYear()+'-'+Math.random().toString(36).slice(2,8).toUpperCase();
@@ -1245,7 +1254,8 @@ chooseProfilePhoto?.addEventListener('click',()=>profilePhotoInput.click());
 profilePhotoInput?.addEventListener('change',()=>{
   const file=profilePhotoInput.files?.[0];if(!file)return;
   if(!file.type.startsWith('image/')){profileStatus.textContent='Choose an image file.';return}
-  if(file.size>6*1024*1024){profileStatus.textContent='Please choose an image smaller than 6 MB.';return}
+  if(file.size>5*1024*1024){profileStatus.textContent='Please choose an image smaller than 5 MB.';return}
+  window.cbCloudUploadAvatar?.(file)
   const reader=new FileReader();
   reader.onload=()=>{
     const img=new Image();
@@ -1261,7 +1271,7 @@ profilePhotoInput?.addEventListener('change',()=>{
   reader.readAsDataURL(file);profilePhotoInput.value='';
 });
 removeProfilePhoto?.addEventListener('click',()=>{
-  const p=ensureMemberIdentity();delete p.photo;saveProfile(p);renderProfile();profileStatus.textContent='Profile photo removed.';toast('Profile photo removed.');
+  const p=ensureMemberIdentity();delete p.photo;saveProfile(p);window.cbCloudRemoveAvatar?.();renderProfile();profileStatus.textContent='Profile photo removed.';toast('Profile photo removed.');
 });
 
 function renderAll(){
@@ -1291,8 +1301,8 @@ importMemberFile?.addEventListener('change',async()=>{
   importMemberFile.value='';
 });
 clearMemberData?.addEventListener('click',()=>{
-  if(!confirm('Clear all journal, inventory, wish list, and saved dispensary data on this device?'))return;
-  ['cb_sessions','cb_inventory','cb_wishlist','cb_stores'].forEach(k=>localStorage.removeItem(k));clearForm();renderAll();backupStatus.textContent='Local journal data cleared.';toast('Local journal cleared.');
+  if(!confirm('Clear the local cached copy on this device? Your secure cloud records will remain available and can reload after sign-in.'))return;
+  ['cb_sessions','cb_inventory','cb_wishlist','cb_stores'].forEach(k=>localStorage.removeItem(k));clearForm();renderAll();backupStatus.textContent='Local cache cleared. Cloud records remain in your account.';toast('Local cache cleared.');
 });
 
 updatePDF({});renderAll();
@@ -1377,6 +1387,201 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.addEventListener('pointerdown',unlock,{passive:true});
     document.addEventListener('keydown',unlock);
   });
+});
+</script>
+
+<script type="module" id="members-supabase-cloud-20261001">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL='https://lwiwfgpgconkrahamedb.supabase.co';
+const SUPABASE_KEY='sb_publishable_7yLj43nCOjMAZ4BXHehGSw_V9D_8F4Q';
+const sb=createClient(SUPABASE_URL,SUPABASE_KEY);
+window.cbSupabase=sb;
+
+const {data:{session}}=await sb.auth.getSession();
+if(!session){
+  location.replace('join.html?signin=1');
+} else {
+  window.cbUser=session.user;
+  document.documentElement.classList.remove('cb-auth-pending');
+}
+
+const user=()=>window.cbUser;
+const cloudStatus=document.getElementById('cloudStatus');
+function setCloudStatus(message,ok=true){
+  if(!cloudStatus)return;
+  cloudStatus.querySelector('span').textContent=message;
+  cloudStatus.querySelector('i').style.background=ok?'#c2cf32':'#d88b6a';
+}
+function rawSet(key,value){
+  localStorage.setItem(key,JSON.stringify(value));
+}
+
+const queue={};
+function enqueue(name,work){
+  queue[name]=(queue[name]||Promise.resolve()).then(work).catch(err=>{
+    console.error('Cannabis Basics cloud sync',err);
+    setCloudStatus('Cloud sync needs attention',false);
+  });
+  return queue[name];
+}
+const maps={
+  cb_sessions:{
+    table:'sessions',
+    toRow:o=>({
+      user_id:user().id,client_id:String(o.id??Date.now()),session_date:o.date||null,session_time:o.time||null,
+      product:o.product||null,product_type:o.type||null,variety:o.variety||null,thc:o.thc||null,cbd:o.cbd||null,
+      amount:o.amount||null,dispensary:o.dispensary||null,terpenes:o.terpenes||null,desired:o.desired||[],
+      mood_before:o.moodBefore||null,mood_after:o.moodAfter||null,custom_emoji:o.customEmoji||null,
+      experience_tags:o.experienceTags||[],setting_tags:o.setting||[],onset:o.onset||null,duration:o.duration||null,
+      cost:o.cost||null,would_use_again:o.wouldUseAgain||null,effects:o.effects||null,positives:o.positives||null,
+      negatives:o.negatives||null,rating:Number(o.rating)||null,notes:o.notes||null,favorite:!!o.favorite
+    }),
+    fromRow:r=>({
+      id:r.client_id||r.id,date:r.session_date||'',time:(r.session_time||'').slice(0,5),product:r.product||'',
+      type:r.product_type||'Flower',variety:r.variety||'Not sure',thc:r.thc||'',cbd:r.cbd||'',amount:r.amount||'Not sure',
+      dispensary:r.dispensary||'',terpenes:r.terpenes||'',desired:r.desired||[],moodBefore:r.mood_before||'',
+      moodAfter:r.mood_after||'',customEmoji:r.custom_emoji||'',experienceTags:r.experience_tags||[],
+      setting:r.setting_tags||[],onset:r.onset||'',duration:r.duration||'',cost:r.cost||'',
+      wouldUseAgain:r.would_use_again||'',effects:r.effects||'',positives:r.positives||'',negatives:r.negatives||'',
+      rating:r.rating||0,notes:r.notes||'',favorite:!!r.favorite
+    })
+  },
+  cb_inventory:{
+    table:'inventory',
+    toRow:o=>({user_id:user().id,client_id:String(o.id??Date.now()),product:o.product||'',amount:o.amount||null,store:o.store||null,price:o.price||null,notes:o.notes||null}),
+    fromRow:r=>({id:r.client_id||r.id,product:r.product||'',amount:r.amount||'',store:r.store||'',price:r.price||'',notes:r.notes||''})
+  },
+  cb_wishlist:{
+    table:'wishlist',
+    toRow:o=>({user_id:user().id,client_id:String(o.id??Date.now()),product:o.product||'',priority:o.priority||null,source:o.where||o.source||null,notes:o.notes||null}),
+    fromRow:r=>({id:r.client_id||r.id,product:r.product||'',priority:r.priority||'',where:r.source||'',notes:r.notes||''})
+  },
+  cb_stores:{
+    table:'dispensaries',
+    toRow:o=>({user_id:user().id,client_id:String(o.id??Date.now()),name:o.name||'',location:o.location||null,notes:o.notes||null,favorite:!!o.favorite}),
+    fromRow:r=>({id:r.client_id||r.id,name:r.name||'',location:r.location||'',notes:r.notes||'',favorite:!!r.favorite})
+  }
+};
+
+window.cbCloudSyncKey=(key,value)=>{
+  const cfg=maps[key]; if(!cfg||!user())return;
+  enqueue(key,async()=>{
+    setCloudStatus('Saving securely…');
+    const {error:delErr}=await sb.from(cfg.table).delete().eq('user_id',user().id);
+    if(delErr)throw delErr;
+    if(Array.isArray(value)&&value.length){
+      const {error}=await sb.from(cfg.table).insert(value.map(cfg.toRow));
+      if(error)throw error;
+    }
+    setCloudStatus('Secure member cloud connected');
+  });
+};
+
+window.cbCloudSyncProfile=p=>{
+  if(!user())return;
+  enqueue('profile',async()=>{
+    setCloudStatus('Saving profile securely…');
+    const payload={
+      preferred_name:p.name||null,city:p.city||null,state:p.state||null,zip_code:p.zip||null,
+      favorite_product:p.favorite||null,location_personalization:!!p.localize,interests:p.interests||[]
+    };
+    const {error}=await sb.from('profiles').update(payload).eq('id',user().id);
+    if(error)throw error;
+    setCloudStatus('Secure member cloud connected');
+  });
+};
+
+window.cbCloudUploadAvatar=async file=>{
+  try{
+    setCloudStatus('Uploading profile photo…');
+    const ext=(file.name.split('.').pop()||'jpg').toLowerCase();
+    const path=user().id+'/avatar.'+ext;
+    const {error:upErr}=await sb.storage.from('profile-photos').upload(path,file,{upsert:true,contentType:file.type});
+    if(upErr)throw upErr;
+    const {error}=await sb.from('profiles').update({avatar_path:path}).eq('id',user().id);
+    if(error)throw error;
+    setCloudStatus('Profile photo stored securely');
+  }catch(err){console.error(err);setCloudStatus('Profile photo upload needs attention',false)}
+};
+window.cbCloudRemoveAvatar=async()=>{
+  try{
+    const {data:p}=await sb.from('profiles').select('avatar_path').eq('id',user().id).single();
+    if(p?.avatar_path)await sb.storage.from('profile-photos').remove([p.avatar_path]);
+    await sb.from('profiles').update({avatar_path:null}).eq('id',user().id);
+  }catch(err){console.error(err)}
+};
+
+async function loadCloud(){
+  setCloudStatus('Loading your secure account…');
+  const [profileRes,membershipRes,sessionsRes,inventoryRes,wishRes,storesRes]=await Promise.all([
+    sb.from('profiles').select('*').eq('id',user().id).single(),
+    sb.from('memberships').select('*').eq('user_id',user().id).single(),
+    sb.from('sessions').select('*').eq('user_id',user().id).order('created_at',{ascending:false}),
+    sb.from('inventory').select('*').eq('user_id',user().id).order('created_at',{ascending:false}),
+    sb.from('wishlist').select('*').eq('user_id',user().id).order('created_at',{ascending:false}),
+    sb.from('dispensaries').select('*').eq('user_id',user().id).order('created_at',{ascending:false})
+  ]);
+  const fatal=[profileRes,membershipRes,sessionsRes,inventoryRes,wishRes,storesRes].find(x=>x.error);
+  if(fatal?.error)throw fatal.error;
+
+  let photo='';
+  if(profileRes.data?.avatar_path){
+    const {data:signed}=await sb.storage.from('profile-photos').createSignedUrl(profileRes.data.avatar_path,3600);
+    photo=signed?.signedUrl||'';
+  }
+  const p=profileRes.data||{};
+  rawSet('cb_member_profile',{
+    name:p.preferred_name||'',city:p.city||'',state:p.state||'',zip:p.zip_code||'',favorite:p.favorite_product||'',
+    localize:!!p.location_personalization,interests:p.interests||[],memberId:p.member_code||'',joinedAt:p.joined_at||'',
+    ...(photo?{photo}:{})
+  });
+  rawSet('cb_sessions',(sessionsRes.data||[]).map(maps.cb_sessions.fromRow));
+  rawSet('cb_inventory',(inventoryRes.data||[]).map(maps.cb_inventory.fromRow));
+  rawSet('cb_wishlist',(wishRes.data||[]).map(maps.cb_wishlist.fromRow));
+  rawSet('cb_stores',(storesRes.data||[]).map(maps.cb_stores.fromRow));
+
+  const membership=membershipRes.data;
+  if(membership?.membership_type==='founding'){
+    const label=document.getElementById('dashboardMemberLabel');
+    if(label)label.textContent=membership.founding_number?'Founding Member #'+membership.founding_number:'Founding Member';
+    document.querySelectorAll('.member-price strong').forEach(el=>el.textContent=membership.founding_number?'Founding #'+membership.founding_number:'Founding Member');
+  }
+
+  window.renderAll?.();
+  setCloudStatus('Secure member cloud connected');
+}
+
+try{
+  // If cloud is empty but an older browser-local journal exists, migrate it once.
+  const {count}=await sb.from('sessions').select('*',{count:'exact',head:true}).eq('user_id',user().id);
+  const hasLegacy=(JSON.parse(localStorage.getItem('cb_sessions')||'[]').length+
+                   JSON.parse(localStorage.getItem('cb_inventory')||'[]').length+
+                   JSON.parse(localStorage.getItem('cb_wishlist')||'[]').length+
+                   JSON.parse(localStorage.getItem('cb_stores')||'[]').length)>0;
+  if((count||0)===0&&hasLegacy&&!localStorage.getItem('cb_cloud_migrated')){
+    for(const key of Object.keys(maps)){
+      const v=JSON.parse(localStorage.getItem(key)||'[]');
+      await window.cbCloudSyncKey(key,v);
+    }
+    const p=JSON.parse(localStorage.getItem('cb_member_profile')||'{}');
+    if(Object.keys(p).length)await window.cbCloudSyncProfile(p);
+    localStorage.setItem('cb_cloud_migrated','yes');
+  }
+  await Promise.all(Object.values(queue));
+  await loadCloud();
+}catch(err){
+  console.error(err);
+  setCloudStatus('Cloud account could not load. Please sign in again.',false);
+}
+
+document.getElementById('signOutBtn')?.addEventListener('click',async()=>{
+  await sb.auth.signOut();
+  location.replace('join.html');
+});
+
+sb.auth.onAuthStateChange((event)=>{
+  if(event==='SIGNED_OUT')location.replace('join.html');
 });
 </script>
 </body></html>
