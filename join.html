@@ -55,6 +55,29 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
 .auth-tab.active{background:var(--green);color:#111600;border-color:var(--green)}
 .join-form input{min-width:0}
 @media(max-width:760px){.join-form input{flex-basis:100%}}
+
+.password-wrap{position:relative;flex:1 1 260px;display:flex;min-width:0}
+.password-wrap input{width:100%;padding-right:50px}
+.password-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px!important;min-height:36px!important;height:36px;border:0!important;border-radius:50%!important;background:#eef1e7!important;color:#1c321f!important;padding:0!important;box-shadow:none!important;animation:none!important;font-size:1rem!important}
+.password-eye:hover{background:#dce7c9!important}
+.claim-panel{position:relative;margin-top:15px;padding:18px 18px 17px;border-radius:18px;background:linear-gradient(145deg,rgba(194,207,50,.16),rgba(20,65,35,.24));border:1px solid rgba(194,207,50,.38);overflow:hidden;box-shadow:0 18px 45px rgba(0,0,0,.28)}
+.claim-panel[hidden]{display:none}
+.claim-panel strong{display:block;color:#fff;font-size:1.12rem;font-weight:400}
+.claim-panel span{display:block;color:#e8eee5;font-size:.82rem;line-height:1.55;margin-top:6px}
+.claim-panel button{margin-top:12px;border:0;border-radius:999px;background:#c2cf32;color:#111600;font:700 .8rem Georgia,serif;padding:10px 14px;cursor:pointer}
+.claim-burst{position:absolute;right:20px;top:17px;width:44px;height:44px}
+.claim-burst i{position:absolute;left:20px;top:20px;width:5px;height:5px;border-radius:50%;background:#dfff72;animation:claimSpark .9s ease-out both}
+.claim-burst i:nth-child(1){--x:30px;--y:-18px}.claim-burst i:nth-child(2){--x:25px;--y:20px}.claim-burst i:nth-child(3){--x:-28px;--y:-15px}.claim-burst i:nth-child(4){--x:-24px;--y:23px}.claim-burst i:nth-child(5){--x:1px;--y:-31px}.claim-burst i:nth-child(6){--x:2px;--y:31px}
+@keyframes claimSpark{0%{transform:translate(0,0) scale(.4);opacity:0}25%{opacity:1}100%{transform:translate(var(--x),var(--y)) scale(1.5);opacity:0}}
+.auth-transition{position:fixed;inset:0;z-index:9999;pointer-events:none;display:grid;place-items:center;background:#020403;opacity:0;visibility:hidden;transition:opacity .22s ease}
+.auth-transition.on{opacity:1;visibility:visible}
+.auth-transition-copy{position:relative;z-index:3;text-align:center;color:#fff}
+.auth-transition-copy strong{display:block;font:400 clamp(2rem,7vw,4.8rem)/.95 Georgia,serif}
+.auth-transition-copy span{display:block;margin-top:8px;color:#c2cf32;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase}
+.smoke{position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(26px);background:radial-gradient(circle,rgba(225,238,204,.34),rgba(76,121,75,.19) 38%,transparent 70%);animation:smokePuff 1s ease-out forwards}
+.smoke.s1{transform:translate(-90px,20px);animation-delay:.02s}.smoke.s2{transform:translate(90px,-10px);animation-delay:.12s}.smoke.s3{transform:translate(0,80px);animation-delay:.2s}
+@keyframes smokePuff{0%{opacity:0;scale:.25}35%{opacity:.95}100%{opacity:0;scale:2.2}}
+@media(max-width:760px){.password-wrap{flex-basis:100%}}
 </style>
 </head>
 <body>
@@ -77,14 +100,21 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
     </div>
     <form class="join-form" id="joinForm">
       <input id="joinEmail" type="email" autocomplete="email" placeholder="Email for private account access" required>
-      <input id="joinPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Create a password (8+ characters)" required>
+      <div class="password-wrap"><input id="joinPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Create a password (8+ characters)" required><button class="password-eye" id="passwordEye" type="button" aria-label="Show password" title="Show password">◉</button></div>
       <button type="submit" id="joinSubmit">Claim Free Lifetime Access →</button>
     </form>
     <div class="status" id="joinStatus" aria-live="polite"></div>
+    <div class="claim-panel" id="claimPanel" aria-live="polite" hidden>
+      <div class="claim-burst" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <strong id="claimTitle">Your account is created.</strong>
+      <span id="claimCopy">Check your email to confirm your address, then return here to sign in.</span>
+      <button type="button" id="claimSignin">I Confirmed — Sign Me In</button>
+    </div>
     <p class="note">Your email is used privately for sign-in and account recovery. It is not displayed on your Cannabis Basics profile. Current opening offer: founding lifetime access is $0 while the remaining free spots last.</p>
   </div>
   <a class="back" href="index.html">← Back to Cannabis Basics</a>
 </main>
+<div class="auth-transition" id="authTransition" aria-hidden="true"><div class="smoke s1"></div><div class="smoke s2"></div><div class="smoke s3"></div><div class="auth-transition-copy"><strong>Welcome in.</strong><span>Your private record book is opening</span></div></div>
 <script type="module">
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
@@ -99,6 +129,12 @@ const status=document.getElementById('joinStatus');
 const submit=document.getElementById('joinSubmit');
 const signupTab=document.getElementById('signupTab');
 const signinTab=document.getElementById('signinTab');
+const passwordEye=document.getElementById('passwordEye');
+const claimPanel=document.getElementById('claimPanel');
+const claimSignin=document.getElementById('claimSignin');
+const claimTitle=document.getElementById('claimTitle');
+const claimCopy=document.getElementById('claimCopy');
+const authTransition=document.getElementById('authTransition');
 let mode='signup';
 
 const params=new URLSearchParams(location.search);
@@ -118,6 +154,14 @@ function setMode(next){
 }
 signupTab.addEventListener('click',()=>setMode('signup'));
 signinTab.addEventListener('click',()=>setMode('signin'));
+passwordEye?.addEventListener('click',()=>{
+  const showing=passwordInput.type==='text';
+  passwordInput.type=showing?'password':'text';
+  passwordEye.setAttribute('aria-label',showing?'Show password':'Hide password');
+  passwordEye.title=showing?'Show password':'Hide password';
+  passwordEye.textContent=showing?'◉':'◌';
+});
+claimSignin?.addEventListener('click',()=>{claimPanel.hidden=true;setMode('signin');passwordInput.focus()});
 setMode(mode);
 
 const {data:spotsData}=await supabase.rpc('founding_spots_remaining');
@@ -134,10 +178,28 @@ if(Number.isFinite(remaining)){
   }
 }
 
+function successSound(){
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const now=ctx.currentTime;
+    [523.25,659.25,783.99].forEach((freq,i)=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(0,now+i*.07);g.gain.linearRampToValueAtTime(.045,now+i*.07+.02);g.gain.exponentialRampToValueAtTime(.001,now+i*.07+.25);
+      o.connect(g);g.connect(ctx.destination);o.start(now+i*.07);o.stop(now+i*.07+.28);
+    });
+    setTimeout(()=>ctx.close(),900);
+  }catch(e){}
+}
+function enterMemberSpace(){
+  successSound();
+  authTransition?.classList.add('on');
+  sessionStorage.setItem('cb_member_entry_fx','1');
+  setTimeout(()=>{location.href='members.html'},900);
+}
 const { data:{ session } }=await supabase.auth.getSession();
 if(session){
   status.textContent='You are already signed in. Opening your member workspace…';
-  setTimeout(()=>location.href='members.html',350);
+  enterMemberSpace();
 }
 
 form.addEventListener('submit',async e=>{
@@ -151,20 +213,26 @@ form.addEventListener('submit',async e=>{
     if(mode==='signup'){
       const {data,error}=await supabase.auth.signUp({
         email,password,
-        options:{emailRedirectTo:'https://cannabisbasics.github.io/cannabis-basics/members.html'}
+        options:{emailRedirectTo:'https://cannabisbasics.github.io/cannabis-basics/join.html?confirmed=1'}
       });
       if(error)throw error;
       if(data.session){
-        status.textContent='Account created. Opening your Members Only workspace…';
-        setTimeout(()=>location.href='members.html',450);
+        status.textContent='Account created. Opening your private workspace…';
+        enterMemberSpace();
       }else{
-        status.textContent='Account created. Check your email to confirm your address, then return here and sign in.';
+        successSound();
+        status.textContent='Account created — check your email to activate it.';
+        claimTitle.textContent='Great — your account is created!';
+        claimCopy.textContent='One last step: open the confirmation email, click Confirm, then come back here and sign in. Your profile and journal stay private to your account.';
+        claimPanel.hidden=false;
+        claimPanel.querySelectorAll('.claim-burst i').forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation=''});
+        claimPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
       }
     }else{
       const {error}=await supabase.auth.signInWithPassword({email,password});
       if(error)throw error;
-      status.textContent='Signed in. Opening your Members Only workspace…';
-      setTimeout(()=>location.href='members.html',350);
+      status.textContent='Signed in. Opening your private workspace…';
+      enterMemberSpace();
     }
   }catch(err){
     status.textContent=err?.message||'We could not complete that request. Please try again.';
