@@ -1016,7 +1016,7 @@ body.light-theme .profile-photo-panel{background:#f0f4db!important;border-color:
   <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
   <div class="backup-status" id="backupStatus" aria-live="polite"></div><div class="signout-row"><button class="secondary" id="signOutBtn" type="button">Sign Out</button></div>
   <div class="account-card"><div><b>Secure cloud account</b><span>Your profile and journal are connected to a private authenticated member account for cross-device access.</span></div><span>Connected</span></div>
-  <div class="privacy">Member profile and journal records are protected by authenticated access and row-level database security. Members keep export controls for their own records.</div>
+  <div class="privacy">Member profile and journal records are protected by authenticated access and row-level database security. Browser cache is cleared when accounts change or sign out, so one member's cached profile cannot carry into another member's account. Members keep export controls for their own records.</div>
 </section>
 </main>
 </div>
@@ -1476,12 +1476,20 @@ const SUPABASE_KEY='sb_publishable_7yLj43nCOjMAZ4BXHehGSw_V9D_8F4Q';
 const sb=createClient(SUPABASE_URL,SUPABASE_KEY);
 window.cbSupabase=sb;
 
+const MEMBER_CACHE_KEYS=['cb_member_profile','cb_sessions','cb_inventory','cb_wishlist','cb_stores','cb_cloud_migrated'];
+function clearMemberCache(){
+  MEMBER_CACHE_KEYS.forEach(k=>localStorage.removeItem(k));
+}
 const {data:{session}}=await sb.auth.getSession();
 if(!session){
   location.replace('join.html?signin=1');
 } else {
+  const priorUser=localStorage.getItem('cb_cache_user_id');
+  if(priorUser && priorUser!==session.user.id){
+    clearMemberCache();
+  }
+  localStorage.setItem('cb_cache_user_id',session.user.id);
   window.cbUser=session.user;
-  document.documentElement.classList.remove('cb-auth-pending');
 }
 
 const user=()=>window.cbUser;
@@ -1631,35 +1639,32 @@ async function loadCloud(){
 }
 
 try{
-  // If cloud is empty but an older browser-local journal exists, migrate it once.
-  const {count}=await sb.from('sessions').select('*',{count:'exact',head:true}).eq('user_id',user().id);
-  const hasLegacy=(JSON.parse(localStorage.getItem('cb_sessions')||'[]').length+
-                   JSON.parse(localStorage.getItem('cb_inventory')||'[]').length+
-                   JSON.parse(localStorage.getItem('cb_wishlist')||'[]').length+
-                   JSON.parse(localStorage.getItem('cb_stores')||'[]').length)>0;
-  if((count||0)===0&&hasLegacy&&!localStorage.getItem('cb_cloud_migrated')){
-    for(const key of Object.keys(maps)){
-      const v=JSON.parse(localStorage.getItem(key)||'[]');
-      await window.cbCloudSyncKey(key,v);
-    }
-    const p=JSON.parse(localStorage.getItem('cb_member_profile')||'{}');
-    if(Object.keys(p).length)await window.cbCloudSyncProfile(p);
-    localStorage.setItem('cb_cloud_migrated','yes');
-  }
-  await Promise.all(Object.values(queue));
+  // The authenticated Supabase account is the source of truth.
+  // Never silently copy browser-local records into a different signed-in account.
   await loadCloud();
+  document.documentElement.classList.remove('cb-auth-pending');
 }catch(err){
   console.error(err);
   setCloudStatus('Cloud account could not load. Please sign in again.',false);
+  clearMemberCache();
+  localStorage.removeItem('cb_cache_user_id');
+  document.documentElement.classList.remove('cb-auth-pending');
 }
 
-document.getElementById('signOutBtn')?.addEventListener('click',async()=>{
+async function finishSignOut(){
+  clearMemberCache();
+  localStorage.removeItem('cb_cache_user_id');
   await sb.auth.signOut();
   location.replace('join.html');
-});
+}
+document.getElementById('signOutBtn')?.addEventListener('click',finishSignOut);
 
 sb.auth.onAuthStateChange((event)=>{
-  if(event==='SIGNED_OUT')location.replace('join.html');
+  if(event==='SIGNED_OUT'){
+    clearMemberCache();
+    localStorage.removeItem('cb_cache_user_id');
+    location.replace('join.html');
+  }
 });
 </script>
 </body></html>
