@@ -747,8 +747,55 @@ html.cb-auth-pending body{visibility:hidden}
 body.light-theme .cloud-status{color:#36443a}
 .signout-row{margin-top:14px}
 </style>
+
+<style id="members-polish-fixes-20261001">
+/* Always enter in dark mode; light remains a temporary viewing toggle. */
+.profile-avatar.no-avatar,.dashboard-avatar.no-avatar,.profile-avatar-large.no-avatar{display:none!important}
+.profile-shell{
+  border:1px solid rgba(194,207,50,.34)!important;
+  background:linear-gradient(145deg,rgba(18,33,21,.98),rgba(4,9,6,.98))!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.42),0 0 28px rgba(194,207,50,.06)!important
+}
+.profile-photo-panel{
+  padding:18px 14px!important;border-radius:20px!important;
+  background:rgba(194,207,50,.055)!important;border:1px solid rgba(194,207,50,.14)!important;
+  justify-content:center!important
+}
+.profile-photo-panel h3{margin:0 0 6px!important}
+.profile-photo-panel p{max-width:180px}
+.profile-photo-actions{margin-top:14px!important}
+.profile-photo-actions .secondary,
+.profile-save-row .primary,
+.backup-actions .secondary:not(.danger-button),
+.signout-row .secondary{
+  background:#d7e57a!important;color:#111600!important;border-color:#d7e57a!important;
+  box-shadow:0 9px 22px rgba(194,207,50,.10)!important
+}
+.profile-photo-actions .secondary:hover,
+.profile-save-row .primary:hover,
+.backup-actions .secondary:not(.danger-button):hover,
+.signout-row .secondary:hover{background:#edf5a7!important;transform:translateY(-1px)}
+.profile-form{padding:3px}
+.profile-form input,.profile-form select{border-color:#c5ccc6!important}
+.profile-save-row{padding-top:8px}
+#memberToast{font-weight:700!important;box-shadow:0 18px 45px rgba(0,0,0,.44)!important}
+.cb-poof{position:fixed;z-index:9998;pointer-events:none;width:16px;height:16px;border-radius:50%;background:#dfff80;box-shadow:0 0 0 0 rgba(223,255,128,.55);animation:cbPoofCore .72s ease-out forwards}
+.cb-poof::before,.cb-poof::after{content:"";position:absolute;inset:-22px;border-radius:50%;background:radial-gradient(circle,rgba(230,246,220,.46),rgba(117,159,104,.18) 42%,transparent 70%);filter:blur(5px);animation:cbPoofSmoke .85s ease-out forwards}
+.cb-poof::after{animation-delay:.08s;transform:scale(.7)}
+@keyframes cbPoofCore{0%{scale:.35;opacity:0}25%{opacity:1}100%{scale:4.8;opacity:0}}
+@keyframes cbPoofSmoke{0%{scale:.25;opacity:0}35%{opacity:.9}100%{scale:2.8;opacity:0}}
+.member-entry-fx{position:fixed;inset:0;z-index:9997;pointer-events:none;background:#020403;display:grid;place-items:center;opacity:1;animation:memberEntryFade 1.15s .35s ease forwards}
+.member-entry-fx[hidden]{display:none}
+.member-entry-fx span{position:relative;z-index:3;color:#c2cf32;font:400 clamp(1.5rem,6vw,3.6rem) Georgia,serif;letter-spacing:.03em}
+.member-entry-fx i{position:absolute;width:230px;height:230px;border-radius:50%;filter:blur(28px);background:radial-gradient(circle,rgba(230,240,216,.36),rgba(84,125,79,.17) 42%,transparent 72%);animation:memberSmoke 1.25s ease-out forwards}
+.member-entry-fx i:nth-child(1){transform:translate(-100px,15px)}.member-entry-fx i:nth-child(2){transform:translate(100px,-25px);animation-delay:.08s}.member-entry-fx i:nth-child(3){transform:translate(0,80px);animation-delay:.16s}
+@keyframes memberSmoke{0%{opacity:0;scale:.2}35%{opacity:1}100%{opacity:0;scale:2.35}}
+@keyframes memberEntryFade{to{opacity:0;visibility:hidden}}
+body.light-theme .profile-shell{background:#fff!important;border-color:#bdc99a!important;box-shadow:0 20px 55px rgba(55,65,48,.12)!important}
+body.light-theme .profile-photo-panel{background:#f0f4db!important;border-color:#cbd5a9!important}
+</style>
 </head>
-<body><div class="site-bg" aria-hidden="true"></div>
+<body><div class="member-entry-fx" id="memberEntryFx" hidden aria-hidden="true"><i></i><i></i><i></i><span>Welcome to your record book.</span></div><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
 <svg viewBox="0 0 200 300"><path d="M99 274c-6-72 0-137 2-198M101 121C70 88 48 57 38 19c37 23 60 54 63 102ZM103 151c42-33 66-65 79-106-42 18-70 49-79 106ZM98 183c-35-23-63-38-92-41 22 29 52 48 92 41ZM105 203c34-16 60-17 86-12-25 20-52 28-86 12Z"/></svg>
 <svg viewBox="0 0 200 300"><path d="M99 274c-6-72 0-137 2-198M101 121C70 88 48 57 38 19c37 23 60 54 63 102ZM103 151c42-33 66-65 79-106-42 18-70 49-79 106ZM98 183c-35-23-63-38-92-41 22 29 52 48 92 41ZM105 203c34-16 60-17 86-12-25 20-52 28-86 12Z"/></svg>
@@ -912,9 +959,9 @@ body.light-theme .cloud-status{color:#36443a}
 
   <div class="profile-shell">
     <div class="profile-photo-panel">
-      <div class="profile-avatar-large" id="profileAvatarLarge">CB</div>
-      <h3 id="profileDisplayName">Cannabis Basics Member</h3>
-      <p>Upload a profile photo or keep your initials. Your profile photo is stored privately with your member account.</p>
+      <div class="profile-avatar-large no-avatar" id="profileAvatarLarge"></div>
+      <h3 id="profileDisplayName">Member Profile</h3>
+      <p>Your profile photo is optional and stored privately with your member account.</p>
       <div class="profile-photo-actions"><button class="secondary" type="button" id="chooseProfilePhoto">Upload Photo</button><button class="secondary" type="button" id="removeProfilePhoto">Remove</button></div>
       <input class="profile-photo-input" id="profilePhotoInput" type="file" accept="image/*">
     </div>
@@ -969,7 +1016,7 @@ body.light-theme .cloud-status{color:#36443a}
 </main>
 </div>
 <script>
-const navItems=[['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','Saved Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library'],['account','⚙','Profile']];
+const navItems=[['account','⚙','Profile'],['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','Saved Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library']];
 const side=document.getElementById('sideNav'),mobile=document.getElementById('mobileNav');
 navItems.forEach(([id,ico,label])=>{const b=document.createElement('button');b.className='nav-btn'+(id==='dashboard'?' active':'');b.dataset.go=id;b.innerHTML=`<span class="ico">${ico}</span><span>${label}</span>`;side.appendChild(b);const m=document.createElement('button');m.textContent=label;m.dataset.go=id;if(id==='dashboard')m.classList.add('active');mobile.appendChild(m)});
 
@@ -982,7 +1029,22 @@ let editingSessionId=null;
 function toast(message){
   let el=document.getElementById('memberToast');
   if(!el){el=document.createElement('div');el.id='memberToast';el.className='toast';document.body.appendChild(el)}
-  el.textContent=message;el.classList.add('show');clearTimeout(window.__cbToast);window.__cbToast=setTimeout(()=>el.classList.remove('show'),2400);
+  el.textContent=message;el.classList.add('show');clearTimeout(window.__cbToast);window.__cbToast=setTimeout(()=>el.classList.remove('show'),2800);
+}
+window.cbSuccessPoof=(anchor)=>{
+  try{
+    const r=anchor?.getBoundingClientRect?.();
+    const p=document.createElement('div');p.className='cb-poof';
+    p.style.left=((r?r.left+r.width/2:window.innerWidth*.82)-8)+'px';
+    p.style.top=((r?r.top+r.height/2:80)-8)+'px';
+    document.body.appendChild(p);setTimeout(()=>p.remove(),950);
+    const ctx=new (window.AudioContext||window.webkitAudioContext)(),now=ctx.currentTime;
+    [659.25,783.99].forEach((freq,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=freq;o.type='sine';g.gain.setValueAtTime(.001,now+i*.05);g.gain.linearRampToValueAtTime(.04,now+i*.05+.02);g.gain.exponentialRampToValueAtTime(.001,now+i*.05+.2);o.connect(g);g.connect(ctx.destination);o.start(now+i*.05);o.stop(now+i*.05+.22)});setTimeout(()=>ctx.close(),600);
+  }catch(e){}
+}
+if(sessionStorage.getItem('cb_member_entry_fx')==='1'){
+  sessionStorage.removeItem('cb_member_entry_fx');
+  const fx=document.getElementById('memberEntryFx');if(fx){fx.hidden=false;setTimeout(()=>fx.remove(),1700)}
 }
 
 function go(id){
@@ -1186,7 +1248,7 @@ function renderInsights(sessions){
 
 const PROFILE_KEY='cb_member_profile';
 function loadProfile(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}catch(e){return{}}}
-function saveProfile(p){localStorage.setItem(PROFILE_KEY,JSON.stringify(p));window.cbCloudSyncProfile?.(p)}
+function saveProfile(p){localStorage.setItem(PROFILE_KEY,JSON.stringify(p));return window.cbCloudSyncProfile?.(p)||Promise.resolve()}
 function ensureMemberIdentity(){
   let p=loadProfile();
   if(!p.memberId)p.memberId='CB-'+new Date().getFullYear()+'-'+Math.random().toString(36).slice(2,8).toUpperCase();
@@ -1195,13 +1257,16 @@ function ensureMemberIdentity(){
   saveProfile(p);return p;
 }
 function profileInitials(p){
-  const n=(p.name||'Cannabis Basics').trim().split(/\s+/).filter(Boolean);
-  return ((n[0]?.[0]||'C')+(n[1]?.[0]||'B')).toUpperCase();
+  const n=(p.name||'').trim().split(/\s+/).filter(Boolean);
+  if(!n.length)return '';
+  return ((n[0]?.[0]||'')+(n[1]?.[0]||'')).toUpperCase();
 }
 function setAvatar(el,p){
   if(!el)return;
-  if(p.photo){el.innerHTML='<img src="'+esc(p.photo)+'" alt="Member profile photo">'}
-  else{el.textContent=profileInitials(p)}
+  const initials=profileInitials(p);
+  if(p.photo){el.classList.remove('no-avatar');el.innerHTML='<img src="'+esc(p.photo)+'" alt="Member profile photo">'}
+  else if(initials){el.classList.remove('no-avatar');el.textContent=initials}
+  else{el.classList.add('no-avatar');el.textContent=''}
 }
 function locationText(p){
   return [p.city,p.state,p.zip].filter(Boolean).join(', ').replace(/, ([0-9]{5})$/, ' $1');
@@ -1216,8 +1281,8 @@ function renderProfile(){
   profileLocalize.checked=!!p.localize;
   document.querySelectorAll('#profileInterests input').forEach(cb=>cb.checked=(p.interests||[]).includes(cb.value));
   setAvatar(profileAvatarLarge,p);setAvatar(dashboardAvatar,p);setAvatar(sideAvatar,p);
-  const display=p.name||'Cannabis Basics Member';
-  profileDisplayName.textContent=display;sideMemberName.textContent=display;
+  const display=p.name||'Member';
+  profileDisplayName.textContent=p.name||'Member Profile';sideMemberName.textContent=display;
   dashboardGreeting.textContent=p.name?'Good to see you, '+p.name+'.':'Good to see you.';
   const loc=locationText(p);
   sideMemberLocation.textContent=loc||'Add your location';
@@ -1242,20 +1307,29 @@ function renderProfile(){
     nearbyDispensaries.href='index.html#locator';nearbyDispensaries.removeAttribute('target');nearbyDispensaries.textContent='Dispensary Locator';
   }
 }
-memberProfileForm?.addEventListener('submit',e=>{
+memberProfileForm?.addEventListener('submit',async e=>{
   e.preventDefault();
   const current=ensureMemberIdentity();
   delete current.email;
   const interests=[...document.querySelectorAll('#profileInterests input:checked')].map(x=>x.value);
   const next={...current,name:profileName.value.trim(),city:profileCity.value.trim(),state:profileState.value,zip:profileZip.value.trim(),favorite:profileFavorite.value.trim(),localize:profileLocalize.checked,interests};
-  saveProfile(next);renderProfile();profileStatus.textContent='Profile saved on this device.';toast('Profile updated.');
+  const submitBtn=memberProfileForm.querySelector('button[type="submit"]');
+  profileStatus.textContent='Saving securely…';
+  if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='Saving…'}
+  await saveProfile(next);
+  renderProfile();
+  profileStatus.textContent='Profile saved securely to your private account.';
+  toast('✓ Profile saved securely');
+  window.cbSuccessPoof?.(submitBtn);
+  if(submitBtn){submitBtn.disabled=false;submitBtn.textContent='Save My Profile'}
 });
 chooseProfilePhoto?.addEventListener('click',()=>profilePhotoInput.click());
-profilePhotoInput?.addEventListener('change',()=>{
+profilePhotoInput?.addEventListener('change',async()=>{
   const file=profilePhotoInput.files?.[0];if(!file)return;
   if(!file.type.startsWith('image/')){profileStatus.textContent='Choose an image file.';return}
   if(file.size>5*1024*1024){profileStatus.textContent='Please choose an image smaller than 5 MB.';return}
-  window.cbCloudUploadAvatar?.(file)
+  profileStatus.textContent='Uploading profile photo securely…';
+  await window.cbCloudUploadAvatar?.(file);
   const reader=new FileReader();
   reader.onload=()=>{
     const img=new Image();
@@ -1264,7 +1338,7 @@ profilePhotoInput?.addEventListener('change',()=>{
       if(w>h&&w>max){h=Math.round(h*max/w);w=max}else if(h>=w&&h>max){w=Math.round(w*max/h);h=max}
       const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
       const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,w,h);
-      const p=ensureMemberIdentity();p.photo=canvas.toDataURL('image/jpeg',.82);saveProfile(p);renderProfile();profileStatus.textContent='Profile photo saved on this device.';toast('Profile photo updated.');
+      const p=ensureMemberIdentity();p.photo=canvas.toDataURL('image/jpeg',.82);await saveProfile(p);renderProfile();profileStatus.textContent='Profile photo saved securely.';toast('✓ Profile photo updated');window.cbSuccessPoof?.(chooseProfilePhoto);
     };
     img.src=reader.result;
   };
@@ -1310,8 +1384,8 @@ updatePDF({});renderAll();
 
 <script id="members-theme-sync-20260927">
 document.addEventListener('DOMContentLoaded',()=>{
-  const saved=localStorage.getItem('cb_theme')||'dark';
-  document.body.classList.toggle('light-theme',saved==='light');
+  localStorage.removeItem('cb_theme');
+  document.body.classList.remove('light-theme');
 });
 </script>
 
@@ -1356,7 +1430,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     syncMusic();
   });
 
-  const saved=localStorage.getItem('cb_theme')||'dark';
+  const saved='dark';
   const applyTheme=mode=>{
     const light=mode==='light';
     document.body.classList.toggle('light-theme',light);
@@ -1368,7 +1442,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   applyTheme(saved);
   themeBtn?.addEventListener('click',()=>{
     const next=document.body.classList.contains('light-theme')?'dark':'light';
-    localStorage.setItem('cb_theme',next);
     applyTheme(next);
   });
 });
@@ -1479,8 +1552,8 @@ window.cbCloudSyncKey=(key,value)=>{
 };
 
 window.cbCloudSyncProfile=p=>{
-  if(!user())return;
-  enqueue('profile',async()=>{
+  if(!user())return Promise.resolve();
+  return enqueue('profile',async()=>{
     setCloudStatus('Saving profile securely…');
     const payload={
       preferred_name:p.name||null,city:p.city||null,state:p.state||null,zip_code:p.zip||null,
