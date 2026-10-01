@@ -3003,6 +3003,13 @@ body.light-theme .about-price-stack{background:#fff}
   .about-member-grid span:last-child{grid-column:auto;justify-content:flex-start;text-align:left}
 }
 </style>
+
+<style id="landing-spacing-dark-default-fix-20261001">
+/* Give the fixed header/nav clear breathing room above the hero and worksheet. */
+.sales-hero{padding-top:178px!important}
+@media(max-width:900px){.sales-hero{padding-top:170px!important}}
+@media(max-width:620px){.sales-hero{padding-top:164px!important}}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -3024,7 +3031,7 @@ body.light-theme .about-price-stack{background:#fff}
   </div>
 </header>
 <nav class="public-bubble-nav" aria-label="Primary navigation">
-  <a href="join.html" class="members-bubble">Members Only</a>
+  <a href="members.html" class="members-bubble">Members Only</a>
   <a href="#learn">Learn</a>
   <a href="#locator">Locator</a>
   <a href="#decoder">Decoder</a>
@@ -3613,7 +3620,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script id="homepage-theme-toggle-20260927">
 document.addEventListener('DOMContentLoaded',()=>{
   const btn=document.getElementById('themeToggle');
-  const saved=localStorage.getItem('cb_theme')||'dark';
+  localStorage.removeItem('cb_theme');
+  const saved='dark';
   const apply=mode=>{
     const light=mode==='light';
     document.body.classList.toggle('light-theme',light);
@@ -3627,7 +3635,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   apply(saved);
   btn?.addEventListener('click',()=>{
     const next=document.body.classList.contains('light-theme')?'dark':'light';
-    localStorage.setItem('cb_theme',next);
     apply(next);
   });
 });
