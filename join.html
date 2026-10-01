@@ -70,7 +70,7 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
   </div>
   <div class="offer">
     <div class="price"><s>$69</s><strong>$27</strong><span>grand-opening lifetime price</span></div>
-    <p class="preview"><strong id="founderOfferCopy">The first 100 founding members join for $0 lifetime.</strong> <span id="founderSpotsCopy">Checking opening spots…</span></p>
+    <p class="preview"><strong id="founderOfferCopy">Limited founding access is free while spots remain.</strong> <span id="founderSpotsCopy">Checking opening spots…</span></p>
     <div class="auth-mode" role="tablist" aria-label="Member access">
       <button type="button" class="auth-tab active" id="signupTab">Create Account</button>
       <button type="button" class="auth-tab" id="signinTab">Sign In</button>
@@ -81,7 +81,7 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
       <button type="submit" id="joinSubmit">Claim Free Lifetime Access →</button>
     </form>
     <div class="status" id="joinStatus" aria-live="polite"></div>
-    <p class="note">Your email is used privately for sign-in and account recovery. It is not displayed on your Cannabis Basics profile. Current opening offer: the first 100 members receive founding lifetime access at $0 while spots remain.</p>
+    <p class="note">Your email is used privately for sign-in and account recovery. It is not displayed on your Cannabis Basics profile. Current opening offer: founding lifetime access is $0 while the remaining free spots last.</p>
   </div>
   <a class="back" href="index.html">← Back to Cannabis Basics</a>
 </main>
@@ -124,8 +124,8 @@ if(Number.isFinite(remaining)){
   const offer=document.getElementById('founderOfferCopy');
   const copy=document.getElementById('founderSpotsCopy');
   if(remaining>0){
-    offer.textContent='The first 100 founding members join for $0 lifetime.';
-    copy.textContent=remaining+' founding spot'+(remaining===1?' remains.':'s remain.');
+    offer.textContent='Limited founding access is free while spots remain.';
+    copy.textContent=remaining+' spot'+(remaining===1?' remains.':'s remain.');
   }else{
     offer.textContent='The founding free-access allotment has been claimed.';
     copy.textContent='New-member access will use the current Cannabis Basics membership offer.';
