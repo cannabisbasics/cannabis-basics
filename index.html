@@ -3188,7 +3188,7 @@ body.light-theme .about-price-stack{background:#fff}
       </div>
       <div class="about-member-action">
         <div class="about-price-stack">
-          <span class="about-first100">FIRST 100 MEMBERS</span>
+          <span class="about-first100" id="aboutSpotsRemaining">33 SPOTS REMAINING</span>
           <strong>FREE</strong>
           <small>Lifetime founding access</small>
         </div>
@@ -3739,5 +3739,24 @@ document.addEventListener('DOMContentLoaded',()=>{
 })();
 </script>
 
+
+<script id="cb-live-founding-spots-20261001">
+(async()=>{
+  try{
+    const res=await fetch('https://lwiwfgpgconkrahamedb.supabase.co/rest/v1/rpc/founding_spots_remaining',{
+      method:'POST',
+      headers:{
+        'apikey':'sb_publishable_7yLj43nCOjMAZ4BXHehGSw_V9D_8F4Q',
+        'Content-Type':'application/json'
+      },
+      body:'{}'
+    });
+    if(!res.ok)return;
+    const remaining=Number(await res.json());
+    const el=document.getElementById('aboutSpotsRemaining');
+    if(el&&Number.isFinite(remaining))el.textContent=remaining+' SPOT'+(remaining===1?'':'S')+' REMAINING';
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
