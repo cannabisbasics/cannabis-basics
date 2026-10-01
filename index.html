@@ -3021,6 +3021,26 @@ body.light-theme .about-price-stack{background:#fff}
 #musicBtn.playing .eq i{animation-play-state:running!important}
 #musicBtn:not(.playing) .eq i{animation-play-state:paused!important;opacity:.62!important}
 </style>
+
+<style id="homepage-radio-window-fix-20261001">
+.homepage-radio-panel{
+  position:fixed;z-index:88;right:18px;top:122px;
+  display:flex;align-items:center;gap:14px;
+  width:min(360px,calc(100vw - 30px));padding:12px 13px 12px 15px;
+  border:1px solid rgba(194,207,50,.28);border-radius:16px;
+  background:rgba(5,11,7,.97);box-shadow:0 16px 44px rgba(0,0,0,.38);
+  backdrop-filter:blur(12px)
+}
+.homepage-radio-panel[hidden]{display:none!important}
+.homepage-radio-copy{min-width:0;flex:1}
+.homepage-radio-copy strong{display:block;color:#fff;font:400 .92rem Georgia,serif}
+.homepage-radio-copy span{display:block;margin-top:4px;color:#aeb9af;font-size:.69rem;line-height:1.35}
+#homepageRadioClose{border:0;background:transparent;color:#c2cf32;font-size:1.25rem;line-height:1;cursor:pointer;padding:4px 6px}
+body.light-theme .homepage-radio-panel{background:rgba(248,250,244,.98);border-color:#cdd7a3;box-shadow:0 14px 34px rgba(60,70,50,.14)}
+body.light-theme .homepage-radio-copy strong{color:#151915}
+body.light-theme .homepage-radio-copy span{color:#4e5850}
+@media(max-width:680px){.homepage-radio-panel{top:116px;right:10px}}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -3053,7 +3073,13 @@ body.light-theme .about-price-stack{background:#fff}
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
 </nav>
-<div id="live365RadioMount" aria-hidden="true"></div>
+<div id="homepageRadioPanel" class="homepage-radio-panel" hidden>
+    <div class="homepage-radio-copy">
+      <strong>870.1 Urban Hip Hop & R&amp;B</strong>
+      <span id="homepageRadioCopy">Tap the sound bars to open the live player.</span>
+    </div>
+    <button type="button" id="homepageRadioClose" aria-label="Close radio">×</button>
+  </div>
 
 <header class="hero sales-hero" id="top">
   <div class="hero-wrap hero-wrap-sales">
@@ -3339,40 +3365,53 @@ document.getElementById('amazonBtn').href = AMAZON_URL;
 
 // Live365 homepage radio — 870.1 Urban Hip Hop & R&B
 const musicBtn=document.getElementById('musicBtn');
-const radioMount=document.getElementById('live365RadioMount');
-const radioStatus=document.getElementById('radioStatus');
-const LIVE365_PLAYER='https://player.live365.com/a12370?autoplay=1&l=';
+const radioPanel=document.getElementById('homepageRadioPanel');
+const radioCopy=document.getElementById('homepageRadioCopy');
+const radioClose=document.getElementById('homepageRadioClose');
+const LIVE365_PLAYER='https://player.live365.com/a12370';
+let radioWindow=null;
 let radioPlaying=false;
 
-function stopHomepageRadio(){
-  radioMount?.replaceChildren();
-  radioPlaying=false;
-  musicBtn?.classList.remove('playing');
-  musicBtn?.setAttribute('aria-pressed','false');
-  musicBtn?.setAttribute('aria-label','Play live hip-hop and R&B radio');
-  if(musicBtn)musicBtn.title='Play 870.1 Urban Hip Hop & R&B';
-  if(radioStatus)radioStatus.textContent='Live radio off';
+function syncHomepageRadio(on,message){
+  radioPlaying=on;
+  musicBtn?.classList.toggle('playing',on);
+  musicBtn?.setAttribute('aria-pressed',on?'true':'false');
+  musicBtn?.setAttribute('aria-label',on?'Close live hip-hop and R&B radio':'Open live hip-hop and R&B radio');
+  if(musicBtn)musicBtn.title=on?'Close 870.1 Urban Hip Hop & R&B':'Open 870.1 Urban Hip Hop & R&B';
+  if(radioPanel)radioPanel.hidden=false;
+  if(radioCopy)radioCopy.textContent=message;
 }
-function startHomepageRadio(){
-  if(!radioMount||!musicBtn)return;
-  const frame=document.createElement('iframe');
-  frame.src=LIVE365_PLAYER;
-  frame.title='870.1 Urban Hip Hop & R&B live radio player';
-  frame.allow='autoplay';
-  frame.loading='eager';
-  frame.tabIndex=-1;
-  frame.style.cssText='position:fixed;left:-10000px;bottom:0;width:1px;height:1px;border:0;opacity:.01;pointer-events:none;';
-  radioMount.replaceChildren(frame);
-  radioPlaying=true;
-  musicBtn.classList.add('playing');
-  musicBtn.setAttribute('aria-pressed','true');
-  musicBtn.setAttribute('aria-label','Turn live hip-hop and R&B radio off');
-  musicBtn.title='Turn 870.1 Urban Hip Hop & R&B off';
-  if(radioStatus)radioStatus.textContent='Live 870.1 Urban Hip Hop & R&B radio on';
+function closeHomepageRadio(){
+  try{if(radioWindow&&!radioWindow.closed)radioWindow.close()}catch(e){}
+  radioWindow=null;
+  syncHomepageRadio(false,'Radio off. Tap the sound bars to open the live player.');
+}
+function openHomepageRadio(){
+  radioWindow=window.open(
+    LIVE365_PLAYER,
+    'CannabisBasicsLiveRadio',
+    'popup=yes,width=460,height=720,resizable=yes,scrollbars=yes'
+  );
+  if(!radioWindow){
+    syncHomepageRadio(false,'Your browser blocked the radio window. Allow pop-ups for Cannabis Basics, then tap again.');
+    return;
+  }
+  try{radioWindow.focus()}catch(e){}
+  syncHomepageRadio(true,'Live365 player opened. If audio does not begin immediately, press Play once inside the radio window.');
 }
 musicBtn?.setAttribute('aria-pressed','false');
-musicBtn?.addEventListener('click',()=>{radioPlaying?stopHomepageRadio():startHomepageRadio()});
-window.addEventListener('pagehide',stopHomepageRadio);
+musicBtn?.addEventListener('click',()=>{
+  if(radioPlaying){
+    closeHomepageRadio();
+  }else{
+    openHomepageRadio();
+  }
+});
+radioClose?.addEventListener('click',()=>{
+  if(radioPlaying)closeHomepageRadio();
+  else if(radioPanel)radioPanel.hidden=true;
+});
+window.addEventListener('beforeunload',()=>{try{if(radioWindow&&!radioWindow.closed)radioWindow.close()}catch(e){}});
 
 // Tool
 const priceNotes={
