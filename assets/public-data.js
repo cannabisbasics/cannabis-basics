@@ -81,3 +81,16 @@ contactForm?.addEventListener('submit',async e=>{
 document.addEventListener('click',e=>{
   if(e.target.closest('#decodeBtn'))track('decoder_run');
 },{passive:true});
+
+
+const modalEmailForm=document.getElementById('emailForm');
+const modalEmailInput=document.getElementById('emailInput');
+modalEmailForm?.addEventListener('submit',async()=>{
+  const email=(modalEmailInput?.value||'').trim().toLowerCase();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return;
+  try{
+    const {error}=await sb.from('email_leads').insert({email,source:'free-log-modal'});
+    if(error&&error.code!=='23505')throw error;
+    await track('free_resource_modal_submit');
+  }catch(_){}
+},{passive:true});
