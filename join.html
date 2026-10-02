@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#145a32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cannabis Basics">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/logo-green.webp">
 <meta name="theme-color" content="#050706">
 <title>Cannabis Basics Members Only</title>
 <style>
@@ -139,7 +144,7 @@ let mode='signup';
 
 const params=new URLSearchParams(location.search);
 if(params.get('signin')==='1')mode='signin';
-const returnTarget=params.get('return')==='locator-save'?'locator-save':'';
+const returnTarget=['locator-save','decoder-product','decoder-log'].includes(params.get('return'))?params.get('return'):'';
 const carriedEmail=params.get('email');
 if(carriedEmail)emailInput.value=carriedEmail;
 
@@ -195,7 +200,7 @@ function enterMemberSpace(){
   successSound();
   authTransition?.classList.add('on');
   sessionStorage.setItem('cb_member_entry_fx','1');
-  const destination=returnTarget==='locator-save'?'index.html#locator':'members.html';
+  const destination=returnTarget==='locator-save'?'index.html#locator':(returnTarget==='decoder-product'?'members.html?screen=products&from=decoder':(returnTarget==='decoder-log'?'members.html?screen=log&from=decoder':'members.html'));
   setTimeout(()=>{location.href=destination},900);
 }
 const { data:{ session } }=await supabase.auth.getSession();
@@ -243,4 +248,6 @@ form.addEventListener('submit',async e=>{
   }
 });
 </script>
+<script src="assets/pwa.js?v=20261002-app1" defer></script>
+<script type="module" src="assets/public-data.js?v=20261002-free1"></script>
 </body></html>
