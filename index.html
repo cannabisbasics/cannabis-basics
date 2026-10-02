@@ -4,7 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Cannabis Basics — calm, practical cannabis education, a label decoder, session tracking, articles, videos, and The Cannabis Journal.">
-<meta name="theme-color" content="#050706">
+<meta name="theme-color" content="#145a32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cannabis Basics">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/logo-green.webp">
+<link rel="apple-touch-icon" href="assets/logo-green.webp">
+<meta property="og:title" content="Cannabis Basics | Learn • Track • Understand">
+<meta property="og:description" content="Understand cannabis products, find licensed dispensaries, decode labels, track experiences, and build a personal record.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cannabisbasics.github.io/cannabis-basics/">
 <title>Cannabis Basics | Learn • Track • Understand</title>
 <style>
 :root{
@@ -3347,6 +3357,7 @@ body.light-theme .decoder-preview-grid span{background:#f1f5ed;color:#57655b;bor
           <small>Lifetime founding access</small>
         </div>
         <a class="btn about-members-shimmer" href="join.html">Explore Members Only →</a>
+<button class="btn" type="button" data-pwa-install>Install App</button>
       </div>
     </div>
   </div>
@@ -3978,5 +3989,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script type="module" src="assets/locator.js?v=20261002-hybrid1"></script>
+<script src="assets/pwa.js?v=20261002-app1" defer></script>
+<script type="module" src="assets/public-data.js?v=20261002-free1"></script>
 </body>
 </html>
