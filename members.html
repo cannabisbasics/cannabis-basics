@@ -2022,10 +2022,11 @@ function renderProfile(){
       ?'Location personalization is on. We can use this area for nearby dispensaries, state-relevant resources, and clearly labeled local partner offers as they become available.'
       :'Your location is saved, but personalization is off. Turn it on in Profile if you want location-relevant dispensary shortcuts and member offers.';
     completeProfileBtn.textContent='Edit Profile';
-    const q=encodeURIComponent('dispensary near '+[p.city,p.state,p.zip].filter(Boolean).join(' '));
-    nearbyDispensaries.href='https://www.google.com/maps/search/?api=1&query='+q;
-    nearbyDispensaries.target='_blank';nearbyDispensaries.rel='noopener';
-    nearbyDispensaries.textContent='Find Nearby Dispensaries ↗';
+    const area=encodeURIComponent(p.zip||p.city||'');
+    const state=encodeURIComponent(p.state||'');
+    nearbyDispensaries.href='index.html?locatorArea='+area+'&locatorState='+state+'&autosearch=1#locator';
+    nearbyDispensaries.removeAttribute('target');nearbyDispensaries.removeAttribute('rel');
+    nearbyDispensaries.textContent='Find Nearby Dispensaries →';
   }else{
     localMemberTitle.textContent='Localize your Cannabis Basics experience.';
     localMemberCopy.textContent='Add a city, state, or ZIP to make nearby dispensary discovery easier and prepare your account for location-relevant member offers. Nothing is required.';
