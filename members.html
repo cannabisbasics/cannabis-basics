@@ -2545,6 +2545,27 @@ async function finishSignOut(){
 }
 document.getElementById('signOutBtn')?.addEventListener('click',finishSignOut);
 
+document.getElementById('deleteAccountBtn')?.addEventListener('click',async()=>{
+  const typed=prompt('This permanently deletes your Cannabis Basics account and cloud data. Type DELETE to continue.');
+  if(typed!=='DELETE')return;
+  const btn=document.getElementById('deleteAccountBtn');
+  btn.disabled=true;btn.textContent='Deleting…';setCloudStatus('Deleting your account and cloud records…',false);
+  try{
+    const {data,error}=await sb.functions.invoke('delete-account',{body:{confirm:'DELETE'}});
+    if(error)throw error;
+    if(!data?.ok)throw new Error(data?.error||'Account deletion did not complete.');
+    clearMemberCache();
+    localStorage.removeItem('cb_cache_user_id');
+    try{await sb.auth.signOut({scope:'global'})}catch(_){}
+    location.replace('index.html?account=deleted');
+  }catch(err){
+    console.error(err);
+    btn.disabled=false;btn.textContent='Delete Account';
+    setCloudStatus('Account deletion needs attention. Please try again.',false);
+    alert('Your account was not deleted. Please try again.');
+  }
+});
+
 sb.auth.onAuthStateChange((event)=>{
   if(event==='SIGNED_OUT'){
     clearMemberCache();
