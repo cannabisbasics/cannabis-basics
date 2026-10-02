@@ -992,6 +992,39 @@ body.light-theme .product-status-pill{color:#40503f;background:#eef4e8;border-co
   .product-editor{padding:16px}
 }
 </style>
+
+<style id="my-stash-phase3-20261001">
+.stash-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.stash-summary>div{padding:17px 18px;border-radius:18px;background:linear-gradient(145deg,#173420,#0d1d12);border:1px solid rgba(194,207,50,.16);box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.stash-summary span{display:block;color:#91a094;font-size:.65rem;text-transform:uppercase;letter-spacing:.11em}
+.stash-summary strong{display:block;margin-top:6px;color:#eef3ed;font:400 1.9rem/1 Georgia,"Times New Roman",serif}
+.stash-paper{margin-top:14px}.stash-list-paper{margin-top:16px}
+.stash-editor-head,.stash-list-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.stash-editor-head h2,.stash-list-head h2{margin:3px 0 0}
+.stash-list-head select{min-width:145px;border:1px solid rgba(194,207,50,.16);border-radius:12px;padding:10px 12px;background:#111713;color:#dce6dd}
+.stash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.stash-card{padding:17px;border-radius:20px;background:linear-gradient(145deg,#122217,#0d1510);border:1px solid rgba(125,255,87,.12);box-shadow:0 14px 34px rgba(0,0,0,.20)}
+.stash-card.low{border-color:rgba(216,193,139,.34)}
+.stash-card.finished{opacity:.78;background:#111512}
+.stash-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.stash-card-title{min-width:0}.stash-card-title strong{display:block;color:#eef3ed;font-weight:400;font-size:1.08rem}.stash-card-title small{display:block;margin-top:5px;color:#8d9b90;line-height:1.4}
+.stash-level{font-size:.65rem;padding:5px 8px;border-radius:999px;border:1px solid rgba(125,255,87,.14);background:rgba(125,255,87,.065);color:#c7d6c9;white-space:nowrap}
+.stash-level.low{background:rgba(216,193,139,.10);color:#e1cd9d;border-color:rgba(216,193,139,.28)}
+.stash-level.finished{background:rgba(255,255,255,.045);color:#9aa49c;border-color:rgba(255,255,255,.08)}
+.stash-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.stash-meta span{font-size:.63rem;padding:5px 7px;border-radius:999px;background:rgba(255,255,255,.035);color:#aebbb0;border:1px solid rgba(255,255,255,.045)}
+.stash-meter{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:13px}
+.stash-meter button{min-height:34px;border-radius:10px;border:1px solid rgba(125,255,87,.10);background:#111914;color:#89988d;font-size:.66rem;cursor:pointer}
+.stash-meter button.active{background:linear-gradient(145deg,#315f37,#1c4025);border-color:rgba(194,207,50,.34);color:#f0f6ed;box-shadow:0 6px 14px rgba(0,0,0,.18)}
+.stash-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.stash-actions .tiny.buy-again-on{color:#e6d596;border-color:rgba(216,193,139,.38);background:rgba(216,193,139,.08)}
+body.light-theme .stash-summary>div,body.light-theme .stash-card{background:#fff!important;border-color:#d6ded1!important}
+body.light-theme .stash-summary strong,body.light-theme .stash-card-title strong{color:#151915!important}
+body.light-theme .stash-summary span,body.light-theme .stash-card-title small{color:#667168!important}
+body.light-theme .stash-list-head select,body.light-theme .stash-meter button{background:#fff;color:#425046;border-color:#d5ddd2}
+body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;border-color:#a9c6a4}
+@media(max-width:900px){.stash-summary{grid-template-columns:1fr 1fr}.stash-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.stash-summary{grid-template-columns:1fr 1fr}.stash-list-head{flex-direction:column}.stash-list-head select{width:100%}.stash-meter{gap:4px}.stash-meter button{font-size:.61rem;padding:5px 2px}}
+</style>
 </head>
 <body><div class="member-entry-fx" id="memberEntryFx" hidden aria-hidden="true"><i></i><i></i><i></i><span>Welcome to your record book.</span></div><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -1026,8 +1059,8 @@ body.light-theme .product-status-pill{color:#40503f;background:#eef4e8;border-co
   <div class="eyebrow">Member Dashboard</div><h1>Your cannabis record, in one place.</h1><p class="lede">A bright, private workspace modeled after the Cannabis Basics journal—built for quick phone entry, searchable records, and clean printable exports.</p>
   <div class="hero-card"><div class="hero-grid"><div>
     <div class="dashboard-personal"><div class="dashboard-avatar" id="dashboardAvatar">CB</div><div class="dashboard-personal-copy"><span class="profile-kicker" id="dashboardMemberLabel">Founding Member</span><h2 id="dashboardGreeting">Good to see you.</h2><p class="lede">Start a session, update what you have on hand, save something you want to try, or review what has worked best for you.</p></div></div>
-    <div class="quick-actions"><button class="action" data-go="log">+ Log a Session</button><button class="action alt" data-go="inventory">Update Inventory</button><button class="action alt" data-go="wishlist">Add to Wish List</button></div>
-  </div><div class="stat-stack"><div class="stat"><b id="statSessions">0</b><span>Saved sessions</span></div><div class="stat"><b id="statInventory">0</b><span>Inventory items</span></div><div class="stat"><b id="statWishlist">0</b><span>Wish list items</span></div><div class="stat"><b id="statFavorites">0</b><span>Favorites</span></div></div></div></div>
+    <div class="quick-actions"><button class="action" data-go="log">+ Log a Session</button><button class="action alt" data-go="inventory">Update My Stash</button><button class="action alt" data-go="wishlist">Add to Wish List</button></div>
+  </div><div class="stat-stack"><div class="stat"><b id="statSessions">0</b><span>Saved sessions</span></div><div class="stat"><b id="statInventory">0</b><span>Stash items</span></div><div class="stat"><b id="statWishlist">0</b><span>Wish list items</span></div><div class="stat"><b id="statFavorites">0</b><span>Favorites</span></div></div></div></div>
   <div class="journal-pulse">
     <div class="pulse-card"><span>Average rating</span><strong id="pulseAvg">—</strong><small>Your rated sessions</small></div>
     <div class="pulse-card"><span>Most logged</span><strong id="pulseTopProduct">—</strong><small>Product / strain appearing most often</small></div>
@@ -1043,7 +1076,7 @@ body.light-theme .product-status-pill{color:#40503f;background:#eef4e8;border-co
   </div>
   <div class="section-grid">
     <article class="module"><h3>Session Log</h3><p>Use a 20–30 second Quick Log or open the Full Log when you want the complete record.</p><button data-go="log">Open Log →</button></article>
-    <article class="module"><h3>My Inventory</h3><p>Keep a current list of products you own, amount remaining, price, and dispensary.</p><button data-go="inventory">View Inventory →</button></article>
+    <article class="module"><h3>My Stash</h3><p>Track what is on hand, how much is left, what is running low, and what you want to buy again.</p><button data-go="inventory">Open My Stash →</button></article>
     <article class="module"><h3>Wish List</h3><p>Save strains, products, brands, or formats you want to try next.</p><button data-go="wishlist">Open Wish List →</button></article>
     <article class="module"><h3>My Products</h3><p>Your reusable product library combines saved details with what your own session history remembers.</p><button data-go="products">Open My Products →</button></article>
     <article class="module"><h3>Dispensaries</h3><p>Keep your preferred shops, addresses, notes, and what you usually buy there.</p><button data-go="dispensaries">My Stores →</button></article>
@@ -1133,7 +1166,45 @@ body.light-theme .product-status-pill{color:#40503f;background:#eef4e8;border-co
   <div class="pdf-preview" id="pdfPreview"><div class="pdf-head"><div><div class="eyebrow">Cannabis Basics</div><h2>Cannabis Log</h2></div><img src="assets/logo-green.webp" alt="Cannabis Basics logo"></div><div class="pdf-grid" id="pdfGrid"></div></div>
 </section>
 
-<section class="screen" id="screen-inventory"><div class="eyebrow">My Inventory</div><h1>What you have on hand.</h1><p class="lede">Track products, amount remaining, purchase price, and where they came from.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Product</label><input id="invProduct" placeholder="Product or strain"></div><div class="field"><label>Amount Remaining</label><input id="invAmount" placeholder="Example: 2.5 g"></div><div class="field"><label>Dispensary</label><input id="invStore" placeholder="Store"></div></div><div class="form-actions"><button class="primary" id="addInventory">Add to Inventory</button></div><div class="records" id="inventoryList"></div></div></section>
+<section class="screen" id="screen-inventory">
+  <div class="eyebrow">My Stash</div>
+  <h1>Know what you have on hand.</h1>
+  <p class="lede">Keep a simple personal stash record, move products from Full → Half → Low → Finished, and jump straight into a Quick Log without retyping the basics.</p>
+
+  <div class="stash-summary" aria-label="My Stash summary">
+    <div><span>On hand</span><strong id="stashActive">0</strong></div>
+    <div><span>Running low</span><strong id="stashLow">0</strong></div>
+    <div><span>Finished</span><strong id="stashFinished">0</strong></div>
+    <div><span>Buy again</span><strong id="stashBuyAgain">0</strong></div>
+  </div>
+
+  <div class="paper stash-paper">
+    <div class="stash-editor-head">
+      <div><span class="product-editor-kicker">Stash Item</span><h2 id="stashEditorTitle">Add to My Stash</h2></div>
+      <button class="tiny" type="button" id="cancelStashEdit" hidden>Cancel edit</button>
+    </div>
+    <div class="form-grid">
+      <div class="field full"><label>Product / Strain</label><input id="invProduct" list="stashProductSuggestions" placeholder="Product or strain"></div>
+      <datalist id="stashProductSuggestions"></datalist>
+      <div class="field"><label>Product Type</label><select id="invType"><option>Flower</option><option>Pre-roll</option><option>Vape</option><option>Edible</option><option>Beverage</option><option>Concentrate</option><option>Tincture / Oil</option><option>Topical</option><option>Other</option></select></div>
+      <div class="field"><label>Amount / Package</label><input id="invAmount" placeholder="Example: 3.5 g"></div>
+      <div class="field"><label>How much is left?</label><select id="invStatus"><option>Full</option><option>Half</option><option>Low</option><option>Finished</option></select></div>
+      <div class="field"><label>Dispensary</label><input id="invStore" placeholder="Optional"></div>
+      <div class="field"><label>Price Paid</label><input id="invPrice" placeholder="Optional"></div>
+      <div class="field"><label>Purchase Date</label><input id="invPurchaseDate" type="date"></div>
+      <div class="field full"><label>Notes</label><textarea id="invNotes" placeholder="Anything worth remembering about this item?"></textarea></div>
+    </div>
+    <div class="form-actions">
+      <button class="primary" id="addInventory" type="button">Add to My Stash</button>
+      <button class="secondary" id="stashFromProducts" type="button">Choose from My Products</button>
+    </div>
+  </div>
+
+  <div class="paper stash-list-paper">
+    <div class="stash-list-head"><div><h2>Your stash</h2><p class="paper-intro">Tap a level to update what remains. Finished items stay in your history until you remove them.</p></div><select id="stashFilter" aria-label="Filter My Stash"><option value="active">On hand</option><option value="all">All items</option><option value="low">Low only</option><option value="finished">Finished</option><option value="buy-again">Buy Again</option></select></div>
+    <div class="stash-grid" id="inventoryList"></div>
+  </div>
+</section>
 <section class="screen" id="screen-wishlist"><div class="eyebrow">Wish List</div><h1>What you want to try next.</h1><p class="lede">Save strains, products, brands, or formats that catch your attention.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Product / Strain</label><input id="wishProduct" placeholder="What do you want to try?"></div><div class="field"><label>Where you saw it</label><input id="wishWhere" placeholder="Dispensary, article, friend, etc."></div><div class="field"><label>Priority</label><select id="wishPriority"><option>Want to try</option><option>High priority</option><option>Someday</option></select></div></div><div class="form-actions"><button class="primary" id="addWish">Add to Wish List</button></div><div class="records" id="wishList"></div></div></section>
 <section class="screen" id="screen-products">
   <div class="eyebrow">My Products</div>
@@ -1271,7 +1342,7 @@ body.light-theme .product-status-pill{color:#40503f;background:#eef4e8;border-co
   <div class="profile-status-line" id="profileStatus" aria-live="polite"></div><div class="cloud-status" id="cloudStatus"><i></i><span>Secure member cloud connected</span></div>
 
   <div class="account-card"><div><b>Founding Lifetime Membership</b><span>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span></div><strong>Founding access</strong></div>
-  <div class="account-card"><div><b>Journal Backup</b><span>Download a personal copy of your current profile, sessions, inventory, wish list, and saved dispensaries as a JSON backup.</span></div><span>Member backup</span></div>
+  <div class="account-card"><div><b>Journal Backup</b><span>Download a personal copy of your current profile, sessions, My Stash, My Products, wish list, and saved dispensaries as a JSON backup.</span></div><span>Member backup</span></div>
   <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
   <div class="backup-status" id="backupStatus" aria-live="polite"></div><div class="signout-row"><button class="secondary" id="signOutBtn" type="button">Sign Out</button></div>
   <div class="account-card"><div><b>Secure cloud account</b><span>Your profile and journal are connected to a private authenticated member account for cross-device access.</span></div><span>Connected</span></div>
@@ -1280,7 +1351,7 @@ body.light-theme .product-status-pill{color:#40503f;background:#eef4e8;border-co
 </main>
 </div>
 <script>
-const navItems=[['account','⚙','Profile'],['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','My Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library']];
+const navItems=[['account','⚙','Profile'],['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','My Stash'],['wishlist','♡','Wish List'],['products','◫','My Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library']];
 const side=document.getElementById('sideNav'),mobile=document.getElementById('mobileNav');
 navItems.forEach(([id,ico,label])=>{const b=document.createElement('button');b.className='nav-btn'+(id==='dashboard'?' active':'');b.dataset.go=id;b.innerHTML=`<span class="ico">${ico}</span><span>${label}</span>`;side.appendChild(b);const m=document.createElement('button');m.textContent=label;m.dataset.go=id;if(id==='dashboard')m.classList.add('active');mobile.appendChild(m)});
 
@@ -1544,7 +1615,121 @@ document.addEventListener('click',e=>{
   if(del&&confirm('Delete this journal entry?')){save('cb_sessions',load('cb_sessions').filter(x=>String(x.id)!==String(del.dataset.deleteSession)));renderAll();toast('Session deleted.')}
 });
 
-addInventory.onclick=()=>{if(!invProduct.value.trim())return;const arr=load('cb_inventory');arr.unshift({id:Date.now(),product:invProduct.value.trim(),amount:invAmount.value.trim(),store:invStore.value.trim()});save('cb_inventory',arr);invProduct.value=invAmount.value=invStore.value='';renderAll();toast('Inventory updated.')};
+let editingStashId=null;
+
+function stashDraft(){
+  return {
+    id:editingStashId||Date.now(),
+    product:invProduct.value.trim(),
+    type:invType.value||'Flower',
+    amount:invAmount.value.trim(),
+    status:invStatus.value||'Full',
+    store:invStore.value.trim(),
+    price:invPrice.value.trim(),
+    purchaseDate:invPurchaseDate.value||'',
+    notes:invNotes.value.trim(),
+    buyAgain:false
+  };
+}
+function resetStashEditor(){
+  editingStashId=null;
+  invProduct.value='';invType.value='Flower';invAmount.value='';invStatus.value='Full';invStore.value='';invPrice.value='';invPurchaseDate.value='';invNotes.value='';
+  stashEditorTitle.textContent='Add to My Stash';addInventory.textContent='Add to My Stash';cancelStashEdit.hidden=true;
+}
+function productFromStash(item,forceBuyAgain=false){
+  if(!item?.product)return;
+  const products=load('cb_products');
+  const key=normalizeProductName(item.product);
+  let p=products.find(x=>normalizeProductName(x.name)===key);
+  if(!p){
+    p={id:Date.now()+1,name:item.product,brand:'',type:item.type||'Flower',status:'In Stash',thc:'',cbd:'',amount:item.amount||'',dispensary:item.store||'',price:item.price||'',purchaseDate:item.purchaseDate||'',buyAgain:'',favorite:false,notes:item.notes||''};
+    products.unshift(p);
+  }
+  p.type=p.type||item.type||'Flower';
+  p.amount=p.amount||item.amount||'';
+  p.dispensary=p.dispensary||item.store||'';
+  p.price=p.price||item.price||'';
+  p.purchaseDate=p.purchaseDate||item.purchaseDate||'';
+  if(forceBuyAgain||item.buyAgain){p.buyAgain='Yes';p.status='Want Again'}
+  else if(item.status==='Finished'){p.status='Finished'}
+  else p.status='In Stash';
+  save('cb_products',products);
+}
+function fillStashEditor(item){
+  editingStashId=item.id;
+  invProduct.value=item.product||'';invType.value=item.type||'Flower';invAmount.value=item.amount||'';invStatus.value=item.status||'Full';invStore.value=item.store||'';invPrice.value=item.price||'';invPurchaseDate.value=item.purchaseDate||'';invNotes.value=item.notes||'';
+  stashEditorTitle.textContent='Edit '+(item.product||'Stash Item');addInventory.textContent='Update Stash Item';cancelStashEdit.hidden=false;
+  document.getElementById('screen-inventory')?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function quickLogStash(item){
+  clearForm();setLogMode('quick');
+  logProduct.value=item.product||'';logType.value=item.type||'Flower';logAmount.value=item.amount||'Not sure';logDispensary.value=item.store||'';logCost.value=item.price||'';
+  go('log');toast('Stash item loaded into Quick Log.');
+}
+function markStashBuyAgain(item){
+  const arr=load('cb_inventory');const found=arr.find(x=>String(x.id)===String(item.id));if(!found)return;
+  found.buyAgain=true;save('cb_inventory',arr);productFromStash(found,true);renderAll();toast('Marked Buy Again and added to My Products.');
+}
+function renderStash(items){
+  const filter=stashFilter?.value||'active';
+  const active=items.filter(x=>(x.status||'Full')!=='Finished');
+  stashActive.textContent=active.length;
+  stashLow.textContent=items.filter(x=>x.status==='Low').length;
+  stashFinished.textContent=items.filter(x=>x.status==='Finished').length;
+  stashBuyAgain.textContent=items.filter(x=>x.buyAgain).length;
+
+  const suggestions=[...new Set([
+    ...load('cb_products').map(x=>x.name),
+    ...load('cb_sessions').map(x=>x.product)
+  ].filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+  stashProductSuggestions.innerHTML=suggestions.map(x=>'<option value="'+esc(x)+'"></option>').join('');
+
+  let view=items.slice();
+  if(filter==='active')view=view.filter(x=>(x.status||'Full')!=='Finished');
+  if(filter==='low')view=view.filter(x=>x.status==='Low');
+  if(filter==='finished')view=view.filter(x=>x.status==='Finished');
+  if(filter==='buy-again')view=view.filter(x=>x.buyAgain);
+
+  inventoryList.innerHTML=view.length?view.map(item=>{
+    const status=item.status||'Full';
+    const cls=status==='Low'?' low':status==='Finished'?' finished':'';
+    const meta=[item.type||'Product',item.amount,item.store,item.price?('Paid '+item.price):'',item.purchaseDate].filter(Boolean);
+    const levels=['Full','Half','Low','Finished'];
+    return '<article class="stash-card'+cls+'">'+
+      '<div class="stash-card-head"><div class="stash-card-title"><strong>'+esc(item.product||'Unnamed item')+'</strong><small>'+esc(item.notes||'Personal stash item')+'</small></div><span class="stash-level'+cls+'">'+esc(status)+'</span></div>'+
+      '<div class="stash-meta">'+meta.map(x=>'<span>'+esc(x)+'</span>').join('')+'</div>'+
+      '<div class="stash-meter" aria-label="Amount remaining">'+levels.map(level=>'<button type="button" class="'+(status===level?'active':'')+'" data-stash-status="'+esc(item.id)+'" data-status="'+level+'">'+level+'</button>').join('')+'</div>'+
+      '<div class="stash-actions"><button class="tiny" type="button" data-stash-log="'+esc(item.id)+'">Quick Log</button><button class="tiny '+(item.buyAgain?'buy-again-on':'')+'" type="button" data-stash-buy="'+esc(item.id)+'">'+(item.buyAgain?'Buy Again ✓':'Buy Again')+'</button><button class="tiny" type="button" data-stash-edit="'+esc(item.id)+'">Edit</button><button class="tiny" type="button" data-stash-delete="'+esc(item.id)+'">Remove</button></div>'+
+    '</article>';
+  }).join(''):'<div class="empty">No stash items match this view yet.</div>';
+}
+addInventory.onclick=()=>{
+  const item=stashDraft();
+  if(!item.product){invProduct.focus();toast('Add a product or strain name first.');return}
+  const arr=load('cb_inventory');
+  const i=arr.findIndex(x=>String(x.id)===String(editingStashId));
+  if(i>=0){item.id=arr[i].id;item.buyAgain=!!arr[i].buyAgain;arr[i]=item}else arr.unshift(item);
+  save('cb_inventory',arr);productFromStash(item);resetStashEditor();renderAll();toast(i>=0?'Stash item updated.':'Added to My Stash.');
+};
+cancelStashEdit?.addEventListener('click',resetStashEditor);
+stashFilter?.addEventListener('change',()=>renderStash(load('cb_inventory')));
+stashFromProducts?.addEventListener('click',()=>{go('products');toast('Open a product profile or add one, then return to My Stash when ready.')});
+
+document.addEventListener('click',e=>{
+  const statusBtn=e.target.closest('[data-stash-status]');
+  if(statusBtn){
+    const arr=load('cb_inventory');const item=arr.find(x=>String(x.id)===String(statusBtn.dataset.stashStatus));if(!item)return;
+    item.status=statusBtn.dataset.status;save('cb_inventory',arr);productFromStash(item);renderAll();toast(item.status==='Finished'?'Moved to Finished.':'Stash level updated to '+item.status+'.');
+  }
+  const logBtn=e.target.closest('[data-stash-log]');
+  if(logBtn){const item=load('cb_inventory').find(x=>String(x.id)===String(logBtn.dataset.stashLog));if(item)quickLogStash(item)}
+  const buyBtn=e.target.closest('[data-stash-buy]');
+  if(buyBtn){const item=load('cb_inventory').find(x=>String(x.id)===String(buyBtn.dataset.stashBuy));if(item)markStashBuyAgain(item)}
+  const editBtn=e.target.closest('[data-stash-edit]');
+  if(editBtn){const item=load('cb_inventory').find(x=>String(x.id)===String(editBtn.dataset.stashEdit));if(item)fillStashEditor(item)}
+  const deleteBtn=e.target.closest('[data-stash-delete]');
+  if(deleteBtn&&confirm('Remove this item from My Stash? Your session history and My Products record will stay intact.')){save('cb_inventory',load('cb_inventory').filter(x=>String(x.id)!==String(deleteBtn.dataset.stashDelete)));if(String(editingStashId)===String(deleteBtn.dataset.stashDelete))resetStashEditor();renderAll();toast('Removed from My Stash.')}
+});
 addWish.onclick=()=>{if(!wishProduct.value.trim())return;const arr=load('cb_wishlist');arr.unshift({id:Date.now(),product:wishProduct.value.trim(),where:wishWhere.value.trim(),priority:wishPriority.value});save('cb_wishlist',arr);wishProduct.value=wishWhere.value='';renderAll();toast('Added to your wish list.')};
 addStore.onclick=()=>{if(!storeName.value.trim())return;const arr=load('cb_stores');arr.unshift({id:Date.now(),name:storeName.value.trim(),location:storeLocation.value.trim(),notes:storeNotes.value.trim()});save('cb_stores',arr);storeName.value=storeLocation.value=storeNotes.value='';renderAll();toast('Dispensary saved.')};
 
@@ -1888,7 +2073,7 @@ function renderAll(){
   const products=countBy(sessions,x=>x.product?.trim());pulseTopProduct.textContent=products[0]?.[0]||'—';
   pulseMood.textContent=sessions[0]?sessionEmoji(sessions[0]):'—';
 
-  inventoryList.innerHTML=inv.length?inv.map(x=>`<div class="record"><div><strong>${esc(x.product)}</strong><small>${esc(x.amount||'Amount not entered')} • ${esc(x.store||'Store not entered')}</small></div></div>`).join(''):'<div class="empty">Your inventory is empty.</div>';
+  renderStash(inv);
   wishList.innerHTML=wish.length?wish.map(x=>`<div class="record"><div><strong>${esc(x.product)}</strong><small>${esc(x.priority)} • ${esc(x.where||'Source not entered')}</small></div></div>`).join(''):'<div class="empty">Nothing on the wish list yet.</div>';
   storeList.innerHTML=stores.length?stores.map(x=>`<div class="dispensary-card"><div><strong>${esc(x.name)}</strong><span>${esc(x.location||'Location not entered')} ${x.notes?'• '+esc(x.notes):''}</span></div><span>Saved</span></div>`).join(''):'<div class="empty">No dispensaries saved yet.</div>';
   renderSessions();renderProducts(sessions);renderInsights(sessions);
@@ -2060,8 +2245,16 @@ const maps={
   },
   cb_inventory:{
     table:'inventory',
-    toRow:o=>({user_id:user().id,client_id:String(o.id??Date.now()),product:o.product||'',amount:o.amount||null,store:o.store||null,price:o.price||null,notes:o.notes||null}),
-    fromRow:r=>({id:r.client_id||r.id,product:r.product||'',amount:r.amount||'',store:r.store||'',price:r.price||'',notes:r.notes||''})
+    toRow:o=>({
+      user_id:user().id,client_id:String(o.id??Date.now()),product:o.product||'',product_type:o.type||null,
+      amount:o.amount||null,status:o.status||'Full',store:o.store||null,price:o.price||null,
+      purchase_date:o.purchaseDate||null,buy_again:!!o.buyAgain,notes:o.notes||null
+    }),
+    fromRow:r=>({
+      id:r.client_id||r.id,product:r.product||'',type:r.product_type||'Flower',amount:r.amount||'',
+      status:r.status||'Full',store:r.store||'',price:r.price||'',purchaseDate:r.purchase_date||'',
+      buyAgain:!!r.buy_again,notes:r.notes||''
+    })
   },
   cb_wishlist:{
     table:'wishlist',
