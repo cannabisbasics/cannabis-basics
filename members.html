@@ -1025,6 +1025,17 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
 @media(max-width:900px){.stash-summary{grid-template-columns:1fr 1fr}.stash-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.stash-summary{grid-template-columns:1fr 1fr}.stash-list-head{flex-direction:column}.stash-list-head select{width:100%}.stash-meter{gap:4px}.stash-meter button{font-size:.61rem;padding:5px 2px}}
 </style>
+
+<style id="member-dispensary-locator-20261002">
+.member-dispensary-card{grid-template-columns:minmax(0,1fr) auto!important;align-items:start!important}
+.member-dispensary-card>div>span{display:block;margin-top:5px;line-height:1.45}
+.member-store-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.member-store-badge{display:inline-flex!important;width:auto!important;padding:5px 8px;border:1px solid rgba(125,255,87,.14);border-radius:999px;background:rgba(125,255,87,.045);color:#9eb49f!important;font-size:.66rem!important}
+.member-store-detail{display:block;color:#87958a;margin-top:8px;line-height:1.45}
+.member-store-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.member-store-actions .tiny{display:inline-flex;align-items:center;text-decoration:none}
+@media(max-width:640px){.member-dispensary-card{grid-template-columns:1fr!important}.member-dispensary-card>span{justify-self:start}}
+</style>
 </head>
 <body><div class="member-entry-fx" id="memberEntryFx" hidden aria-hidden="true"><i></i><i></i><i></i><span>Welcome to your record book.</span></div><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -1262,7 +1273,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
     <div class="product-library" id="productLibrary"></div>
   </div>
 </section>
-<section class="screen" id="screen-dispensaries"><div class="eyebrow">Saved Dispensaries</div><h1>Your stores and locations.</h1><p class="lede">Keep the places you trust, along with notes about products, pricing, service, and what you usually buy there.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Dispensary Name</label><input id="storeName" placeholder="Dispensary"></div><div class="field"><label>Location</label><input id="storeLocation" placeholder="City / State"></div><div class="field"><label>Notes</label><input id="storeNotes" placeholder="What do you like about it?"></div></div><div class="form-actions"><button class="primary" id="addStore">Save Dispensary</button><a class="secondary" href="index.html#locator">Use Public Locator</a></div><div id="storeList"></div></div></section>
+<section class="screen" id="screen-dispensaries"><div class="eyebrow">My Dispensaries</div><h1>Your saved cannabis locations.</h1><p class="lede">Save dispensaries directly from the Cannabis Basics Locator, keep your own notes, mark favorites, and return to store details when you need them.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Dispensary Name</label><input id="storeName" placeholder="Dispensary"></div><div class="field"><label>Location</label><input id="storeLocation" placeholder="City / State"></div><div class="field"><label>Notes</label><input id="storeNotes" placeholder="What do you like about it?"></div></div><div class="form-actions"><button class="primary" id="addStore">Save Dispensary</button><a class="secondary" href="index.html#locator">Use Public Locator</a></div><div id="storeList"></div></div></section>
 <section class="screen" id="screen-favorites"><div class="eyebrow">Favorites</div><h1>The ones worth remembering.</h1><p class="lede">Products rated highly in your session history can be promoted into a clean favorites list.</p><div class="paper"><div class="records" id="favoritesList"></div></div></section>
 <section class="screen" id="screen-insights">
   <div class="eyebrow">My Cannabis Insights</div><h1>See your own patterns.</h1><p class="lede">These are simple summaries of the records you save—not medical conclusions. The goal is to make your own journal easier to learn from.</p>
@@ -1731,7 +1742,7 @@ document.addEventListener('click',e=>{
   if(deleteBtn&&confirm('Remove this item from My Stash? Your session history and My Products record will stay intact.')){save('cb_inventory',load('cb_inventory').filter(x=>String(x.id)!==String(deleteBtn.dataset.stashDelete)));if(String(editingStashId)===String(deleteBtn.dataset.stashDelete))resetStashEditor();renderAll();toast('Removed from My Stash.')}
 });
 addWish.onclick=()=>{if(!wishProduct.value.trim())return;const arr=load('cb_wishlist');arr.unshift({id:Date.now(),product:wishProduct.value.trim(),where:wishWhere.value.trim(),priority:wishPriority.value});save('cb_wishlist',arr);wishProduct.value=wishWhere.value='';renderAll();toast('Added to your wish list.')};
-addStore.onclick=()=>{if(!storeName.value.trim())return;const arr=load('cb_stores');arr.unshift({id:Date.now(),name:storeName.value.trim(),location:storeLocation.value.trim(),notes:storeNotes.value.trim()});save('cb_stores',arr);storeName.value=storeLocation.value=storeNotes.value='';renderAll();toast('Dispensary saved.')};
+addStore.onclick=()=>{if(!storeName.value.trim())return;const arr=load('cb_stores');arr.unshift({id:Date.now(),name:storeName.value.trim(),location:storeLocation.value.trim(),notes:storeNotes.value.trim(),source:'manual'});save('cb_stores',arr);storeName.value=storeLocation.value=storeNotes.value='';renderAll();toast('Dispensary saved.')};
 
 function countBy(items,fn){
   const m=new Map();items.forEach(x=>{const k=fn(x);if(k)m.set(k,(m.get(k)||0)+1)});
@@ -2075,7 +2086,32 @@ function renderAll(){
 
   renderStash(inv);
   wishList.innerHTML=wish.length?wish.map(x=>`<div class="record"><div><strong>${esc(x.product)}</strong><small>${esc(x.priority)} • ${esc(x.where||'Source not entered')}</small></div></div>`).join(''):'<div class="empty">Nothing on the wish list yet.</div>';
-  storeList.innerHTML=stores.length?stores.map(x=>`<div class="dispensary-card"><div><strong>${esc(x.name)}</strong><span>${esc(x.location||'Location not entered')} ${x.notes?'• '+esc(x.notes):''}</span></div><span>Saved</span></div>`).join(''):'<div class="empty">No dispensaries saved yet.</div>';
+  const safeStoreUrl=v=>{try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:''}catch(e){return ''}};
+  storeList.innerHTML=stores.length?stores.map(x=>{
+    const website=safeStoreUrl(x.website),sourceUrl=safeStoreUrl(x.sourceUrl),phone=(x.phone||'').replace(/[^\\d+(). -]/g,'');
+    const badges=[
+      x.medical?'<span class="member-store-badge">Medical: '+esc(x.medical)+'</span>':'',
+      x.recreational?'<span class="member-store-badge">Adult-use: '+esc(x.recreational)+'</span>':'',
+      x.source==='openstreetmap'?'<span class="member-store-badge">Locator saved</span>':'<span class="member-store-badge">Manual</span>'
+    ].filter(Boolean).join('');
+    return `<div class="dispensary-card member-dispensary-card">
+      <div>
+        <strong>${esc(x.name)}</strong>
+        <span>${esc(x.address||x.location||'Location not entered')}</span>
+        ${badges?'<div class="member-store-badges">'+badges+'</div>':''}
+        ${x.hours?'<small class="member-store-detail">Hours: '+esc(x.hours)+'</small>':''}
+        ${x.notes?'<small class="member-store-detail">'+esc(x.notes)+'</small>':''}
+        <div class="member-store-actions">
+          ${website?'<a class="tiny" href="'+esc(website)+'" target="_blank" rel="noopener">Website ↗</a>':''}
+          ${phone?'<a class="tiny" href="tel:'+esc(phone)+'">Call</a>':''}
+          ${sourceUrl?'<a class="tiny" href="'+esc(sourceUrl)+'" target="_blank" rel="noopener">Map details ↗</a>':''}
+          <button class="tiny" type="button" data-store-favorite="${esc(String(x.id))}">${x.favorite?'★ Favorite':'☆ Favorite'}</button>
+          <button class="tiny" type="button" data-store-remove="${esc(String(x.id))}">Remove</button>
+        </div>
+      </div>
+      <span>${x.favorite?'Favorite':'Saved'}</span>
+    </div>`;
+  }).join(''):'<div class="empty">No dispensaries saved yet. Use the public Locator to find and save one directly.</div>';
   renderSessions();renderProducts(sessions);renderInsights(sessions);
 }
 
@@ -2277,8 +2313,19 @@ const maps={
   },
   cb_stores:{
     table:'dispensaries',
-    toRow:o=>({user_id:user().id,client_id:String(o.id??Date.now()),name:o.name||'',location:o.location||null,notes:o.notes||null,favorite:!!o.favorite}),
-    fromRow:r=>({id:r.client_id||r.id,name:r.name||'',location:r.location||'',notes:r.notes||'',favorite:!!r.favorite})
+    toRow:o=>({
+      user_id:user().id,client_id:String(o.id??Date.now()),name:o.name||'',location:o.location||null,notes:o.notes||null,favorite:!!o.favorite,
+      address:o.address||null,city:o.city||null,state:o.state||null,postal_code:o.postal||null,
+      latitude:Number.isFinite(Number(o.lat))?Number(o.lat):null,longitude:Number.isFinite(Number(o.lon))?Number(o.lon):null,
+      phone:o.phone||null,website:o.website||null,opening_hours:o.hours||null,medical:o.medical||null,recreational:o.recreational||null,
+      source:o.source||'manual',source_id:o.sourceId||null,source_url:o.sourceUrl||null
+    }),
+    fromRow:r=>({
+      id:r.client_id||r.id,name:r.name||'',location:r.location||'',notes:r.notes||'',favorite:!!r.favorite,
+      address:r.address||'',city:r.city||'',state:r.state||'',postal:r.postal_code||'',
+      lat:r.latitude,lon:r.longitude,phone:r.phone||'',website:r.website||'',hours:r.opening_hours||'',
+      medical:r.medical||'',recreational:r.recreational||'',source:r.source||'manual',sourceId:r.source_id||'',sourceUrl:r.source_url||''
+    })
   }
 };
 
