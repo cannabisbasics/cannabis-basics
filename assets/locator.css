@@ -1,0 +1,87 @@
+
+/* Cannabis Basics Locator — full in-house build 2026-10-02 */
+.locator-v3 .locator-shell{overflow:hidden}
+.locator-v3 .tool-badge{z-index:8}
+.locator-v3 .locator-grid{grid-template-columns:.9fr 1.1fr;min-height:700px}
+.locator-v3 .tool-intro{padding:56px 44px 44px}
+.locator-v3 .tool-intro h2{max-width:620px}
+.locator-lede{max-width:650px}
+.locator-choice{display:grid;gap:13px;margin:24px 0 18px}
+.locator-geo-btn{width:100%;min-height:54px;font-weight:800}
+.locator-or{display:flex;align-items:center;gap:12px;color:#718077;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.locator-or:before,.locator-or:after{content:"";height:1px;background:rgba(125,255,87,.11);flex:1}
+.locator-form-v3{display:grid!important;grid-template-columns:1fr 1fr!important;gap:13px!important}
+.locator-form-v3 .full{grid-column:1/-1}
+.locator-form-v3 label{font-weight:400!important}
+.locator-form-v3 .field-group small{display:block!important;color:#738278!important;font-size:.66rem;line-height:1.35;margin-top:5px}
+.locator-actions-v3{grid-column:1/-1;display:grid!important;grid-template-columns:1fr auto;gap:10px!important}
+.locator-actions-v3 .btn{min-height:50px}
+.locator-status{min-height:22px;margin-top:14px;color:#91a095;font-size:.76rem;line-height:1.5}
+.locator-status.error{color:#e5b48f}
+.locator-status.success{color:#a9e99a}
+.locator-member-note{display:flex;align-items:flex-start;gap:9px;margin-top:13px;padding:11px 13px;border-radius:14px;border:1px solid rgba(125,255,87,.1);background:rgba(125,255,87,.035);color:#829086;font-size:.69rem;line-height:1.45}
+.locator-member-note b{color:#b9dcae;font-weight:500}
+.locator-results-pane{padding:30px!important;display:flex!important;align-items:stretch!important;flex-direction:column;gap:14px;background:linear-gradient(180deg,rgba(125,255,87,.025),rgba(0,0,0,.14))}
+.locator-map-shell{position:relative;min-height:335px;border:1px solid rgba(125,255,87,.14);border-radius:23px;overflow:hidden;background:#071009;box-shadow:0 20px 55px rgba(0,0,0,.28)}
+#locatorMap{position:absolute;inset:0;z-index:1}
+.locator-map-placeholder{position:absolute;inset:0;z-index:2;display:grid;place-items:center;text-align:center;padding:30px;background:radial-gradient(circle at 50% 30%,rgba(125,255,87,.08),transparent 54%),#071009;color:#809087;pointer-events:none}
+.locator-map-placeholder strong{display:block;font:400 1.45rem Georgia,serif;color:#dfe9df;margin-bottom:8px}
+.locator-map-shell.ready .locator-map-placeholder{display:none}
+.locator-results-head{display:flex;align-items:end;justify-content:space-between;gap:15px;padding:2px 2px 0}
+.locator-results-head small{display:block;color:#7f9083;font-size:.61rem;letter-spacing:.15em;text-transform:uppercase}
+.locator-results-head h3{margin:5px 0 0;font:400 clamp(1.5rem,2.5vw,2.2rem) Georgia,serif}
+.locator-count{padding:8px 10px;border-radius:999px;background:rgba(125,255,87,.07);border:1px solid rgba(125,255,87,.12);color:#a8d89c;font-size:.68rem;white-space:nowrap}
+.locator-cards{display:grid;gap:11px;max-height:515px;overflow:auto;padding-right:4px;scrollbar-width:thin;scrollbar-color:#355c38 transparent}
+.locator-empty{padding:22px;border:1px dashed rgba(125,255,87,.14);border-radius:18px;color:#829087;background:rgba(0,0,0,.12);line-height:1.6}
+.locator-card{border:1px solid rgba(125,255,87,.12);border-radius:19px;background:rgba(3,8,5,.72);padding:16px;transition:.25s}
+.locator-card:hover{border-color:rgba(125,255,87,.3);transform:translateY(-2px)}
+.locator-card-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:13px;align-items:start}
+.locator-card h4{margin:0;font:400 1.12rem Georgia,serif;color:#ecf3eb}
+.locator-distance{color:#b3e7a6;font-size:.7rem;white-space:nowrap}
+.locator-address{margin-top:5px;color:#869489;font-size:.73rem;line-height:1.45}
+.locator-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.locator-tags span{padding:6px 8px;border:1px solid rgba(125,255,87,.1);border-radius:999px;color:#92a397;background:rgba(125,255,87,.025);font-size:.61rem}
+.locator-tags .yes{color:#b7e6aa;border-color:rgba(125,255,87,.22)}
+.locator-info{display:grid;gap:5px;margin-top:11px;color:#7e8c82;font-size:.68rem}
+.locator-info a{color:#a8d99c;text-decoration:underline;text-underline-offset:2px}
+.locator-product-note{margin-top:11px;padding:9px 10px;border-left:2px solid rgba(216,193,139,.45);background:rgba(216,193,139,.035);color:#9d9a8e;font-size:.66rem;line-height:1.45}
+.locator-card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.locator-card-actions .btn{min-height:36px;padding:8px 11px!important;font-size:.65rem!important}
+.locator-save.saved{background:#24452b!important;color:#c8f3bd!important;border-color:rgba(125,255,87,.28)!important}
+.locator-attribution{font-size:.59rem;color:#68766c;line-height:1.45;padding:0 3px}
+.locator-attribution a{color:#829a84;text-decoration:underline}
+.locator-expand{margin-top:10px}
+.locator-loading{display:inline-flex;align-items:center;gap:8px}
+.locator-loading:before{content:"";width:11px;height:11px;border:2px solid rgba(125,255,87,.2);border-top-color:#94da82;border-radius:50%;animation:locatorSpin .7s linear infinite}
+@keyframes locatorSpin{to{transform:rotate(360deg)}}
+.locator-v3 .leaflet-container{font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:#0a120c}
+.locator-v3 .leaflet-control-attribution{font-size:9px!important}
+.locator-v3 .leaflet-popup-content-wrapper,.locator-v3 .leaflet-popup-tip{background:#0d1710;color:#e9f1e7}
+.locator-v3 .leaflet-popup-content{margin:11px 13px;font-size:12px;line-height:1.35}
+body.light-theme .locator-map-shell{background:#eef3eb}
+body.light-theme .locator-map-placeholder{background:radial-gradient(circle at 50% 30%,rgba(93,143,85,.1),transparent 54%),#eef3eb;color:#69766b}
+body.light-theme .locator-map-placeholder strong,
+body.light-theme .locator-card h4{color:#263229}
+body.light-theme .locator-card{background:#fff;border-color:#d9e1d4}
+body.light-theme .locator-empty{background:#f7f8f3;border-color:#d9e1d4;color:#657168}
+body.light-theme .locator-address,
+body.light-theme .locator-info,
+body.light-theme .locator-member-note{color:#657168}
+body.light-theme .locator-member-note{background:#f4f7ef;border-color:#d9e1d2}
+body.light-theme .locator-member-note b{color:#456146}
+body.light-theme .locator-count{background:#eef5e9;color:#4c704b;border-color:#d5e2d0}
+@media(max-width:980px){
+  .locator-v3 .locator-grid{grid-template-columns:1fr}
+  .locator-results-pane{border-left:0!important;border-top:1px solid rgba(125,255,87,.12)}
+  .locator-cards{max-height:none}
+}
+@media(max-width:620px){
+  .locator-v3 .tool-intro{padding:48px 20px 30px}
+  .locator-form-v3{grid-template-columns:1fr!important}
+  .locator-form-v3 .full{grid-column:auto}
+  .locator-actions-v3{grid-template-columns:1fr 1fr}
+  .locator-results-pane{padding:18px!important}
+  .locator-map-shell{min-height:300px}
+  .locator-card-top{grid-template-columns:1fr}
+  .locator-distance{justify-self:start}
+}
