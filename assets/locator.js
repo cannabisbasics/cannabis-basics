@@ -203,7 +203,7 @@ function normalizeOSMPlaces(data,center){
 
 async function fetchOfficialCatalog(center,radiusMiles){
   if(!isMarylandCenter(center) && ui.state.value!=='Maryland')return [];
-  const cacheKey='cb_mca_statewide_v1';
+  const cacheKey='cb_mca_statewide_v2';
   let features=cacheGet(cacheKey,60*60*1000);
   if(!features){
     try{
@@ -214,23 +214,47 @@ async function fetchOfficialCatalog(center,radiusMiles){
       features=data.features;
       cacheSet(cacheKey,features);
     }catch(edgeErr){
-      console.warn('Statewide Maryland feed unavailable; using cached Cannabis Basics catalog.',edgeErr);
-      const {data,error}=await sb.from('dispensary_catalog')
-        .select('id,source_key,name,address,city,state,postal_code,county,latitude,longitude,phone,website,medical,recreational,source_url,source_updated_at')
-        .eq('active',true).eq('state','Maryland');
-      if(error)throw error;
-      features=(data||[]).map(row=>({
+      console.warn('Statewide Maryland feed unavailable; continuing with Cannabis Basics verified supplement.',edgeErr);
+      features=[];
+    }
+  }
+
+  const supplementCacheKey='cb_mca_supplement_v2';
+  let supplement=cacheGet(supplementCacheKey,60*60*1000);
+  if(!supplement){
+    const {data,error}=await sb.from('dispensary_catalog')
+      .select('id,source_key,name,address,city,state,postal_code,county,latitude,longitude,phone,website,opening_hours,medical,recreational,source_url,source_updated_at')
+      .eq('active',true).eq('state','Maryland');
+    if(error){
+      console.warn('Verified Maryland supplement unavailable.',error);
+      supplement=[];
+    }else{
+      supplement=(data||[]).map(row=>({
         source:'maryland-cannabis-administration',sourceId:row.source_key,type:'official',id:row.id,
         name:row.name,address:[row.address,row.city,'MD',row.postal_code].filter(Boolean).join(', '),
         city:row.city,state:'Maryland',postal:row.postal_code||'',county:row.county||'',
         lat:Number(row.latitude),lon:Number(row.longitude),
-        website:safeURL(row.website||''),phone:safePhone(row.phone||''),hours:'',
+        website:safeURL(row.website||''),phone:safePhone(row.phone||''),hours:row.opening_hours||'',
         medical:row.medical||'',recreational:row.recreational||'',sourceUrl:row.source_url,
         sourceUpdatedAt:row.source_updated_at||'',location:[row.city,'MD'].filter(Boolean).join(', ')
       })).filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon));
+      cacheSet(supplementCacheKey,supplement);
     }
   }
-  return features.map(row=>{
+
+  const combined=[...(features||[])];
+  for(const row of supplement||[]){
+    const duplicate=combined.some(x=>{
+      const a=nameKey(x.name),b=nameKey(row.name);
+      const close=Number.isFinite(Number(x.lat))&&Number.isFinite(Number(x.lon))
+        ? haversine({lat:Number(x.lat),lon:Number(x.lon)},{lat:Number(row.lat),lon:Number(row.lon)})<.16
+        : false;
+      return close || (a&&b&&(a===b||a.includes(b)||b.includes(a)));
+    });
+    if(!duplicate)combined.push(row);
+  }
+
+  return combined.map(row=>{
     const lat=Number(row.lat),lon=Number(row.lon);
     if(!Number.isFinite(lat)||!Number.isFinite(lon))return null;
     return {
