@@ -3094,6 +3094,12 @@ body.light-theme .decoder-preview-grid span{background:#f1f5ed;color:#57655b;bor
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <link rel="stylesheet" href="assets/locator.css?v=20261002-hybrid1">
+<style id="article-visual-breaks-20261002">
+.article-mid-visual{margin:38px 0 42px;border:1px solid rgba(125,255,87,.16);border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#08110a,#0b160d);box-shadow:0 18px 45px rgba(0,0,0,.24)}
+.article-mid-visual .article-art{aspect-ratio:16/6;border:0}
+.article-mid-visual figcaption{padding:11px 16px 13px;font:700 .65rem Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8fa591;border-top:1px solid rgba(125,255,87,.10)}
+@media(max-width:680px){.article-mid-visual .article-art{aspect-ratio:16/8}}
+</style>
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -3678,7 +3684,7 @@ function articleVisual(kind){
 const articleGrid=document.getElementById('articleGrid');
 longArticles.forEach((a,i)=>{const card=document.createElement('article');card.className='article-card';card.tabIndex=0;card.innerHTML=`${articleVisual(a.art)}<div class="article-card-body"><div class="article-cat">${a.cat}</div><h3>${a.title}</h3><p>${a.dek}</p><div class="article-meta"><span>Last reviewed Sep 2026</span><span>•</span><span>${a.read}</span></div><span class="read-link">Read article →</span></div>`;const open=()=>openArticle(i);card.addEventListener('click',open);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});articleGrid.appendChild(card)});
 const articleModal=document.getElementById('articleModal'),articleShell=document.getElementById('articleShell');
-function openArticle(i){const a=longArticles[i];articleShell.innerHTML=`<div class="article-hero">${articleVisual(a.art)}<div class="article-head"><div class="article-cat">${a.cat}</div><h1 id="articleModalTitle">${a.title}</h1><p class="article-dek">${a.dek}</p><div class="article-byline"><span>Cannabis Basics</span><span>•</span><span>Last reviewed September 2026</span><span>•</span><span>${a.read}</span></div></div></div><div class="article-content">${a.body.replace('{{AD}}',elevenAd)}</div>`;articleModal.classList.add('open');document.body.classList.add('no-scroll');articleModal.scrollTop=0;}
+function openArticle(i){const a=longArticles[i];let body=a.body.replace('{{AD}}',elevenAd);const visual=`<figure class="article-mid-visual">${articleVisual(a.art)}<figcaption>Visual guide • Cannabis Basics</figcaption></figure>`;const firstClose=body.indexOf('</section>');if(firstClose>=0)body=body.slice(0,firstClose+10)+visual+body.slice(firstClose+10);articleShell.innerHTML=`<div class="article-hero">${articleVisual(a.art)}<div class="article-head"><div class="article-cat">${a.cat}</div><h1 id="articleModalTitle">${a.title}</h1><p class="article-dek">${a.dek}</p><div class="article-byline"><span>Cannabis Basics</span><span>•</span><span>Last reviewed September 2026</span><span>•</span><span>${a.read}</span></div></div></div><div class="article-content">${body}</div>`;articleModal.classList.add('open');document.body.classList.add('no-scroll');articleModal.scrollTop=0;}
 function closeArticle(){articleModal.classList.remove('open');document.body.classList.remove('no-scroll');}
 document.getElementById('articleClose').addEventListener('click',closeArticle);document.getElementById('articleBack').addEventListener('click',closeArticle);
 
