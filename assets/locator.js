@@ -318,14 +318,22 @@ async function savePlace(p,button=null){
   }
 }
 async function savePendingIfNeeded(){
-  if(!session)return;
+  if(!session)return false;
   let pending=null;
   try{pending=JSON.parse(localStorage.getItem('cb_pending_dispensary_v1')||'null')}catch(e){}
-  if(!pending?.place)return;
+  if(!pending?.place)return false;
   localStorage.removeItem('cb_pending_dispensary_v1');
   if(pending.product)ui.product.value=pending.product;
-  await savePlace(pending.place);
-  setStatus(escapeHTML(pending.place.name)+' was saved after sign-in.','success');
+  const p={...pending.place,distance:Number(pending.place.distance)||0};
+  searchLabel=p.location||p.name||'saved dispensary';
+  searchCenter={lat:Number(p.lat),lon:Number(p.lon),display:p.location||p.name};
+  if(Number.isFinite(searchCenter.lat)&&Number.isFinite(searchCenter.lon)){
+    setMapCenter(searchCenter,[p]);
+    renderPlaces([p]);
+  }
+  await savePlace(p);
+  setStatus(escapeHTML(p.name)+' was saved after sign-in.','success');
+  return true;
 }
 
 ui.locate.addEventListener('click',()=>runSearch());
@@ -360,6 +368,15 @@ ui.cards.addEventListener('click',async e=>{
   }
 });
 
+const pageParams=new URLSearchParams(location.search);
+const presetArea=pageParams.get('locatorArea')||'';
+const presetState=pageParams.get('locatorState')||'';
+if(presetArea)ui.area.value=presetArea;
+if(presetState&&[...ui.state.options].some(o=>o.value===presetState||o.text===presetState))ui.state.value=presetState;
+
 initMap();
 await getSession();
-await savePendingIfNeeded();
+const restoredPending=await savePendingIfNeeded();
+if(!restoredPending&&pageParams.get('autosearch')==='1'&&ui.area.value&&ui.state.value){
+  await runSearch();
+}
