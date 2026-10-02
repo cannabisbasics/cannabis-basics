@@ -832,6 +832,68 @@ body:not(.light-theme) .session-card{
   box-shadow:0 18px 46px rgba(0,0,0,.34),0 0 0 1px rgba(194,207,50,.035)!important;
 }
 </style>
+
+<style id="session-log-quick-full-20261001">
+.log-mode-shell{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
+  width:min(620px,100%);margin:22px 0 14px;padding:6px;
+  border-radius:20px;background:rgba(255,255,255,.035);
+  border:1px solid rgba(194,207,50,.16)
+}
+.log-mode-btn{
+  display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  min-height:64px;padding:12px 15px;border-radius:15px;cursor:pointer;text-align:left;
+  border:1px solid transparent;background:transparent;color:#eef3ed;
+  transition:.25s ease
+}
+.log-mode-btn strong{font:400 1rem Georgia,"Times New Roman",serif}
+.log-mode-btn span{font-size:.68rem;color:#8fa092}
+.log-mode-btn.active{
+  background:linear-gradient(145deg,#173b22,#0d2415);
+  border-color:rgba(194,207,50,.34);
+  box-shadow:0 10px 28px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05)
+}
+.log-mode-btn.active span{color:#cdd8ca}
+.quick-log-helper,.full-log-helper{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin:0 0 16px;padding:14px 16px;border-radius:17px;
+  border:1px solid rgba(194,207,50,.15);
+  background:rgba(194,207,50,.045)
+}
+.quick-log-helper>div,.full-log-helper{min-width:0}
+.quick-log-helper strong,.full-log-helper strong{
+  display:block;color:#eef3ed;font:400 .92rem Georgia,"Times New Roman",serif
+}
+.quick-log-helper span,.full-log-helper span{
+  display:block;margin-top:4px;color:#99a69c;font-size:.72rem;line-height:1.5
+}
+#useLastProduct{white-space:nowrap;background:#d7e57a!important;color:#111600!important;border-color:#d7e57a!important}
+#screen-log.quick-log-mode .log-full-only{display:none!important}
+#screen-log.quick-log-mode .full-log-action{display:none!important}
+#screen-log.full-log-mode .quick-log-only{display:none!important}
+#screen-log .field.log-core-emphasis{
+  padding:12px;border-radius:16px;background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.045)
+}
+#screen-log.quick-log-mode .field.log-core-emphasis{
+  background:rgba(194,207,50,.045);
+  border-color:rgba(194,207,50,.12)
+}
+body.light-theme .log-mode-shell{background:#eef1e8;border-color:#cbd3a8}
+body.light-theme .log-mode-btn{color:#243027}
+body.light-theme .log-mode-btn span{color:#68736b}
+body.light-theme .log-mode-btn.active{background:#dce8c8;border-color:#a8b87d}
+body.light-theme .quick-log-helper,body.light-theme .full-log-helper{background:#f2f5e7;border-color:#d2d9b5}
+body.light-theme .quick-log-helper strong,body.light-theme .full-log-helper strong{color:#263027}
+body.light-theme .quick-log-helper span,body.light-theme .full-log-helper span{color:#59645b}
+body.light-theme #screen-log.quick-log-mode .field.log-core-emphasis{background:#f5f7ed;border-color:#d7dec0}
+@media(max-width:680px){
+  .log-mode-shell{grid-template-columns:1fr 1fr;width:100%}
+  .log-mode-btn{min-height:60px;padding:11px 12px}
+  .quick-log-helper{align-items:flex-start;flex-direction:column}
+  #useLastProduct{width:100%}
+}
+</style>
 </head>
 <body><div class="member-entry-fx" id="memberEntryFx" hidden aria-hidden="true"><i></i><i></i><i></i><span>Welcome to your record book.</span></div><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -882,7 +944,7 @@ body:not(.light-theme) .session-card{
     <div id="dashboardRecent"></div>
   </div>
   <div class="section-grid">
-    <article class="module"><h3>Session Log</h3><p>Record what you used, how much, what you expected, and how it actually felt.</p><button data-go="log">Open Log →</button></article>
+    <article class="module"><h3>Session Log</h3><p>Use a 20–30 second Quick Log or open the Full Log when you want the complete record.</p><button data-go="log">Open Log →</button></article>
     <article class="module"><h3>My Inventory</h3><p>Keep a current list of products you own, amount remaining, price, and dispensary.</p><button data-go="inventory">View Inventory →</button></article>
     <article class="module"><h3>Wish List</h3><p>Save strains, products, brands, or formats you want to try next.</p><button data-go="wishlist">Open Wish List →</button></article>
     <article class="module"><h3>Saved Products</h3><p>Build a personal product library from your Decoder results and purchases.</p><button data-go="products">My Products →</button></article>
@@ -894,9 +956,20 @@ body:not(.light-theme) .session-card{
   </div>
 </section>
 
-<section class="screen" id="screen-log">
-  <div class="eyebrow">My Session Log</div><h1>Log what happened.</h1><p class="lede">The mobile entry is the master record. Save it here first; then generate a clean 8.5×11 Cannabis Basics page whenever you want.</p>
-  <div class="paper print-hide"><h2>New Cannabis Log</h2><p class="paper-intro">Fast enough to use after a session, detailed enough to be useful later.</p>
+<section class="screen quick-log-mode" id="screen-log">
+  <div class="eyebrow">My Session Log</div><h1>Log what happened.</h1><p class="lede">Choose a fast 20–30 second entry or open the full journal when you want more detail. Both save to the same private Cannabis Basics history.</p>
+  <div class="log-mode-shell print-hide" aria-label="Choose session log mode">
+    <button type="button" class="log-mode-btn active" id="quickLogMode"><strong>Quick Log</strong><span>20–30 seconds</span></button>
+    <button type="button" class="log-mode-btn" id="fullLogMode"><strong>Full Log</strong><span>Detailed record</span></button>
+  </div>
+  <div class="quick-log-helper print-hide" id="quickLogHelper">
+    <div><strong>Fast entry</strong><span>Date and time are filled automatically. Add the product, amount, before/after feeling, rating, and anything worth remembering.</span></div>
+    <button type="button" class="secondary" id="useLastProduct">Use Last Product</button>
+  </div>
+  <div class="full-log-helper print-hide" id="fullLogHelper" hidden>
+    <strong>Full journal</strong><span>Add potency, dispensary, terpenes, desired result, setting, onset, duration, cost, positives, negatives, and the rest of your detailed record.</span>
+  </div>
+  <div class="paper print-hide"><h2 id="logFormTitle">Quick Cannabis Log</h2><p class="paper-intro" id="logFormIntro">Just the essentials. You can always edit the entry later and add more detail.</p>
     <div class="editing-banner" id="editingBanner"><span>Editing a saved session.</span><button type="button" id="cancelEdit">Cancel edit</button></div>
     <div class="form-grid">
       <div class="field"><label>Date</label><input id="logDate" type="date"></div>
@@ -954,7 +1027,7 @@ body:not(.light-theme) .session-card{
       <div class="field full"><label>Overall Rating</label><div class="rating" id="ratingBtns"><button type="button" data-rating="1">1</button><button type="button" data-rating="2">2</button><button type="button" data-rating="3">3</button><button type="button" data-rating="4">4</button><button type="button" data-rating="5">5</button></div></div>
       <div class="field full"><label>Notes</label><textarea id="logNotes" placeholder="Anything you want to remember next time..."></textarea></div>
     </div>
-    <div class="form-actions"><button class="primary" id="saveSession">Save Session</button><button class="secondary" id="clearSession">Clear</button><button class="secondary" id="printSession">Print / Save PDF</button></div>
+    <div class="form-actions"><button class="primary" id="saveSession">Save Session</button><button class="secondary" id="clearSession">Clear</button><button class="secondary full-log-action" id="printSession">Print / Save PDF</button></div>
   </div>
   <div id="savedRecords" class="paper print-hide"><h2>Saved Sessions</h2><p class="paper-intro">Search your journal, reopen entries, mark favorites, or duplicate something you want to compare next time.</p>
     <div class="journal-filterbar"><input id="sessionSearch" placeholder="Search strain, product, dispensary, tags..."><select id="sessionFilter"><option value="all">All sessions</option><option value="favorites">Favorites</option><option value="rated5">5-star sessions</option><option value="recent">Last 30 days</option></select></div>
@@ -1120,6 +1193,71 @@ singleSelect('#returnChips');
 emojiSelect('#moodBefore');
 emojiSelect('#moodAfter');
 
+let logMode='quick';
+const screenLog=document.getElementById('screen-log');
+const quickLogMode=document.getElementById('quickLogMode');
+const fullLogMode=document.getElementById('fullLogMode');
+const quickLogHelper=document.getElementById('quickLogHelper');
+const fullLogHelper=document.getElementById('fullLogHelper');
+const useLastProduct=document.getElementById('useLastProduct');
+const logFormTitle=document.getElementById('logFormTitle');
+const logFormIntro=document.getElementById('logFormIntro');
+
+const fullOnlyIds=[
+  'logDate','logTime','logVariety','logTHC','logCBD','logDispensary','logTerpenes','desiredChips',
+  'logCustomEmoji','experienceChips','settingChips','logOnset','logDuration','logCost',
+  'logEffects','logPositives','logNegatives'
+];
+fullOnlyIds.forEach(id=>{
+  const el=document.getElementById(id);
+  const field=el?.closest('.field');
+  if(field)field.classList.add('log-full-only');
+});
+document.querySelector('#desiredChips')?.closest('.field')?.classList.add('log-full-only');
+document.querySelector('#experienceChips')?.closest('.field')?.classList.add('log-full-only');
+document.querySelector('#settingChips')?.closest('.field')?.classList.add('log-full-only');
+
+['logProduct','logType','logAmount','moodBefore','moodAfter','returnChips','ratingBtns','logNotes'].forEach(id=>{
+  document.getElementById(id)?.closest('.field')?.classList.add('log-core-emphasis');
+});
+
+function setLogMode(mode,focus=false){
+  logMode=mode==='full'?'full':'quick';
+  const quick=logMode==='quick';
+  screenLog?.classList.toggle('quick-log-mode',quick);
+  screenLog?.classList.toggle('full-log-mode',!quick);
+  quickLogMode?.classList.toggle('active',quick);
+  fullLogMode?.classList.toggle('active',!quick);
+  quickLogMode?.setAttribute('aria-pressed',quick?'true':'false');
+  fullLogMode?.setAttribute('aria-pressed',quick?'false':'true');
+  if(quickLogHelper)quickLogHelper.hidden=!quick;
+  if(fullLogHelper)fullLogHelper.hidden=quick;
+  if(logFormTitle)logFormTitle.textContent=quick?'Quick Cannabis Log':'Full Cannabis Log';
+  if(logFormIntro)logFormIntro.textContent=quick
+    ?'Just the essentials. You can always edit the entry later and add more detail.'
+    :'Build the complete record with product details, context, timing, effects, and notes.';
+  if(saveSession&&!editingSessionId)saveSession.textContent=quick?'Save Quick Log':'Save Full Log';
+  if(focus)document.getElementById('logProduct')?.focus({preventScroll:true});
+}
+quickLogMode?.addEventListener('click',()=>setLogMode('quick',true));
+fullLogMode?.addEventListener('click',()=>setLogMode('full',true));
+
+useLastProduct?.addEventListener('click',()=>{
+  const last=load('cb_sessions')[0];
+  if(!last){toast('Save your first session and this shortcut will remember the last product.');return}
+  logProduct.value=last.product||'';
+  logType.value=last.type||'Flower';
+  logVariety.value=last.variety||'Not sure';
+  logTHC.value=last.thc||'';
+  logCBD.value=last.cbd||'';
+  logAmount.value=last.amount||'Not sure';
+  logDispensary.value=last.dispensary||'';
+  logTerpenes.value=last.terpenes||'';
+  toast('Last product loaded. Add how this session went.');
+  document.getElementById('moodBefore')?.scrollIntoView({behavior:'smooth',block:'center'});
+});
+setLogMode('quick');
+
 function activeText(selector){return [...document.querySelectorAll(selector+' .chip.active')].map(x=>x.textContent.trim())}
 function activeEmoji(selector){return document.querySelector(selector+' .emoji-choice.active')?.dataset.emoji||''}
 
@@ -1147,7 +1285,8 @@ function clearForm(){
   document.querySelectorAll('#screen-log input,#screen-log textarea').forEach(x=>x.value='');
   document.querySelectorAll('#screen-log select').forEach(x=>x.selectedIndex=0);
   clearSelections();rating=0;editingSessionId=null;
-  editingBanner?.classList.remove('on');saveSession.textContent='Save Session';
+  editingBanner?.classList.remove('on');
+  saveSession.textContent=logMode==='quick'?'Save Quick Log':'Save Full Log';
   setDefaults();updatePDF({});
 }
 setDefaults();
@@ -1161,6 +1300,7 @@ function selectEmoji(container,val){
 }
 function loadSessionIntoForm(o){
   editingSessionId=o.id;
+  setLogMode('full');
   logDate.value=o.date||'';logTime.value=o.time||'';logProduct.value=o.product||'';logType.value=o.type||'Flower';logVariety.value=o.variety||'Not sure';
   logTHC.value=o.thc||'';logCBD.value=o.cbd||'';logAmount.value=o.amount||'Not sure';logDispensary.value=o.dispensary||'';logTerpenes.value=o.terpenes||'';
   logEffects.value=o.effects||'';logPositives.value=o.positives||'';logNegatives.value=o.negatives||'';logNotes.value=o.notes||'';
