@@ -1989,7 +1989,7 @@ function renderProducts(sessions){
       (g.dispensary?'<span class="product-status-pill">'+esc(g.dispensary)+'</span>':'')+'</div>'+
       '<div class="product-stats"><div class="product-stat"><b>'+g.count+'</b><span>Sessions</span></div><div class="product-stat"><b>'+esc(avg)+'</b><span>Avg rating</span></div><div class="product-stat"><b>'+esc(g.lastDate||'—')+'</b><span>Last used</span></div></div>'+
       (g.topTags.length?'<div class="product-tags">'+g.topTags.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div>':'')+
-      '<div class="product-card-actions"><button class="tiny" type="button" data-product-open="'+esc(g.key)+'">Open Profile</button><button class="tiny" type="button" data-product-log="'+esc(g.key)+'">Quick Log</button></div>'+
+      '<div class="product-card-actions"><button class="tiny" type="button" data-product-open="'+esc(g.key)+'">Open Profile</button><button class="tiny" type="button" data-product-log="'+esc(g.key)+'">Quick Log</button><button class="tiny" type="button" data-product-stash="'+esc(g.key)+'">Add to Stash</button></div>'+
     '</article>';
   }).join(''):'<div class="empty">No products match this view yet. Add one directly, or save a session and Cannabis Basics will build the library automatically.</div>';
 }
@@ -2030,6 +2030,17 @@ document.addEventListener('click',e=>{
       arr.unshift(p);
     }else p.favorite=!p.favorite;
     save('cb_products',arr);renderAll();toast(p.favorite?'Product added to favorites.':'Product removed from favorites.');
+  }
+  const stash=e.target.closest('[data-product-stash]');
+  if(stash){
+    const g=getProductGroupByKey(stash.dataset.productStash);if(!g)return;
+    const inv=load('cb_inventory');
+    let item=inv.find(x=>normalizeProductName(x.product)===g.key&&x.status!=='Finished');
+    if(!item){
+      item={id:Date.now(),product:g.name,type:g.type||'Flower',amount:g.amount||'',status:'Full',store:g.dispensary||'',price:g.price||'',purchaseDate:g.purchaseDate||'',notes:g.notes||'',buyAgain:false};
+      inv.unshift(item);save('cb_inventory',inv);
+    }
+    productFromStash(item);renderAll();go('inventory');toast(g.name+' added to My Stash.');
   }
 });
 
@@ -2158,7 +2169,7 @@ function renderAll(){
   pulseMood.textContent=sessions[0]?sessionEmoji(sessions[0]):'—';
 
   renderStash(inv);
-  wishList.innerHTML=wish.length?wish.map(x=>`<div class="record"><div><strong>${esc(x.product)}</strong><small>${esc(x.priority)} • ${esc(x.where||'Source not entered')}</small></div></div>`).join(''):'<div class="empty">Nothing on the wish list yet.</div>';
+  wishList.innerHTML=wish.length?wish.map(x=>`<div class="record"><div><strong>${esc(x.product)}</strong><small>${esc(x.priority)} • ${esc(x.where||'Source not entered')}</small></div><div class="record-actions"><button class="tiny" type="button" data-wish-product="${esc(String(x.id))}">Move to My Products</button><button class="tiny" type="button" data-wish-remove="${esc(String(x.id))}">Remove</button></div></div>`).join(''):'<div class="empty">Nothing on the wish list yet.</div>';
   const safeStoreUrl=v=>{try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:''}catch(e){return ''}};
   storeList.innerHTML=stores.length?stores.map(x=>{
     const website=safeStoreUrl(x.website),sourceUrl=safeStoreUrl(x.sourceUrl),phone=(x.phone||'').replace(/[^\\d+(). -]/g,'');
@@ -2177,7 +2188,9 @@ function renderAll(){
         <div class="member-store-actions">
           ${website?'<a class="tiny" href="'+esc(website)+'" target="_blank" rel="noopener">Website ↗</a>':''}
           ${phone?'<a class="tiny" href="tel:'+esc(phone)+'">Call</a>':''}
-          ${(x.latitude&&x.longitude)?'<button class="tiny" type="button" data-store-map="'+esc(String(x.id))+'" data-lat="'+esc(String(x.latitude))+'" data-lon="'+esc(String(x.longitude))+'" data-name="'+esc(x.name)+'" data-source-url="'+esc(sourceUrl)+'">Map details</button>':(sourceUrl?'<a class="tiny" href="'+esc(sourceUrl)+'" target="_blank" rel="noopener">Source details ↗</a>':'')}
+          ${(Number.isFinite(Number(x.lat))&&Number.isFinite(Number(x.lon)))?'<button class="tiny" type="button" data-store-map="'+esc(String(x.id))+'" data-lat="'+esc(String(x.lat))+'" data-lon="'+esc(String(x.lon))+'" data-name="'+esc(x.name)+'" data-source-url="'+esc(sourceUrl)+'">Map details</button>':(sourceUrl?'<a class="tiny" href="'+esc(sourceUrl)+'" target="_blank" rel="noopener">Source details ↗</a>':'')}
+          <button class="tiny" type="button" data-store-log="${esc(String(x.id))}">Use in Log</button>
+          <button class="tiny" type="button" data-store-product="${esc(String(x.id))}">Add Product</button>
           <button class="tiny" type="button" data-store-favorite="${esc(String(x.id))}">${x.favorite?'★ Favorite':'☆ Favorite'}</button>
           <button class="tiny" type="button" data-store-remove="${esc(String(x.id))}">Remove</button>
         </div>
@@ -2187,6 +2200,50 @@ function renderAll(){
   }).join(''):'<div class="empty">No dispensaries saved yet. Use the public Locator to find and save one directly.</div>';
   renderSessions();renderProducts(sessions);renderInsights(sessions);
 }
+
+document.addEventListener('click',e=>{
+  const wishMove=e.target.closest('[data-wish-product]');
+  if(wishMove){
+    const wishes=load('cb_wishlist');
+    const w=wishes.find(x=>String(x.id)===String(wishMove.dataset.wishProduct));if(!w)return;
+    const products=load('cb_products');
+    const key=normalizeProductName(w.product);
+    if(!products.some(x=>normalizeProductName(x.name)===key)){
+      products.unshift({id:Date.now(),name:w.product,brand:'',type:'Flower',status:'Saved',thc:'',cbd:'',amount:'',dispensary:w.where||'',price:'',purchaseDate:'',buyAgain:'',favorite:false,notes:'Moved from Wish List.'});
+      save('cb_products',products);
+    }
+    save('cb_wishlist',wishes.filter(x=>String(x.id)!==String(w.id)));
+    renderAll();go('products');toast(w.product+' moved to My Products.');
+    return;
+  }
+  const wishRemove=e.target.closest('[data-wish-remove]');
+  if(wishRemove){
+    save('cb_wishlist',load('cb_wishlist').filter(x=>String(x.id)!==String(wishRemove.dataset.wishRemove)));
+    renderAll();toast('Removed from Wish List.');return;
+  }
+
+  const storeFavorite=e.target.closest('[data-store-favorite]');
+  if(storeFavorite){
+    const arr=load('cb_stores');const store=arr.find(x=>String(x.id)===String(storeFavorite.dataset.storeFavorite));if(!store)return;
+    store.favorite=!store.favorite;save('cb_stores',arr);renderAll();toast(store.favorite?'Dispensary added to favorites.':'Dispensary removed from favorites.');return;
+  }
+  const storeRemove=e.target.closest('[data-store-remove]');
+  if(storeRemove){
+    if(!confirm('Remove this saved dispensary?'))return;
+    save('cb_stores',load('cb_stores').filter(x=>String(x.id)!==String(storeRemove.dataset.storeRemove)));
+    renderAll();toast('Dispensary removed.');return;
+  }
+  const storeLog=e.target.closest('[data-store-log]');
+  if(storeLog){
+    const store=load('cb_stores').find(x=>String(x.id)===String(storeLog.dataset.storeLog));if(!store)return;
+    clearForm();setLogMode('full');logDispensary.value=store.name||'';go('log');toast('Dispensary loaded into a new Session Log.');return;
+  }
+  const storeProduct=e.target.closest('[data-store-product]');
+  if(storeProduct){
+    const store=load('cb_stores').find(x=>String(x.id)===String(storeProduct.dataset.storeProduct));if(!store)return;
+    go('products');showProductEditor();productDispensary.value=store.name||'';toast('Dispensary added to a new product record.');return;
+  }
+});
 
 exportMemberData?.addEventListener('click',()=>{
   const data={version:3,exportedAt:new Date().toISOString(),profile:loadProfile(),sessions:load('cb_sessions'),inventory:load('cb_inventory'),wishlist:load('cb_wishlist'),products:load('cb_products'),stores:load('cb_stores')};
