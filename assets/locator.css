@@ -85,3 +85,38 @@ body.light-theme .locator-count{background:#eef5e9;color:#4c704b;border-color:#d
   .locator-card-top{grid-template-columns:1fr}
   .locator-distance{justify-self:start}
 }
+
+
+/* Locator coverage + map browsing upgrade */
+.locator-map-shell{isolation:isolate}
+.locator-search-map{
+  position:absolute;z-index:600;left:50%;top:12px;transform:translate(-50%,-12px);
+  opacity:0;pointer-events:none;border:1px solid rgba(183,230,170,.48);border-radius:999px;
+  background:rgba(4,11,6,.94);color:#dff5d9;padding:9px 14px;font-size:.72rem;font-weight:800;
+  box-shadow:0 10px 26px rgba(0,0,0,.42);transition:.25s;
+}
+.locator-search-map.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.locator-search-map:hover{background:#132219;border-color:#b8ff9f}
+.locator-card.official{border-color:rgba(194,207,50,.28)}
+.locator-card.selected{border-color:#b8ff9f;box-shadow:0 0 0 2px rgba(125,255,87,.13),0 18px 42px rgba(0,0,0,.3)}
+.locator-tags .verified{color:#eef39c;border-color:rgba(194,207,50,.38);background:rgba(194,207,50,.07)}
+.locator-popup{display:grid;gap:5px;min-width:205px}
+.locator-popup strong{font-family:Georgia,"Times New Roman",serif;font-size:1rem;font-weight:400}
+.locator-popup span{font-size:.7rem;color:#b6c3b7;line-height:1.35}
+.locator-popup small{font-size:.62rem;color:#93a196}
+.locator-popup-actions{display:flex;gap:6px;margin-top:5px}
+.locator-popup-actions button{
+  border:1px solid rgba(125,255,87,.28);background:#16251a;color:#e8f3e5;border-radius:999px;
+  padding:6px 9px;font:700 .62rem Inter,ui-sans-serif,system-ui,sans-serif;cursor:pointer;
+}
+.locator-popup-actions button:last-child{background:#7dff57;color:#061006;border-color:#7dff57}
+.locator-source-link{opacity:.82}
+.locator-cards{scrollbar-width:thin;scrollbar-color:rgba(125,255,87,.22) transparent}
+.locator-cards::-webkit-scrollbar{width:5px}
+.locator-cards::-webkit-scrollbar-track{background:transparent}
+.locator-cards::-webkit-scrollbar-thumb{background:rgba(125,255,87,.19);border-radius:999px}
+body.light-theme .locator-search-map{background:rgba(255,255,255,.97);color:#28432d;border-color:#b9ccb8}
+body.light-theme .locator-popup span,body.light-theme .locator-popup small{color:#56665b}
+@media(max-width:620px){
+  .locator-search-map{top:9px;padding:8px 11px;font-size:.65rem}
+}
