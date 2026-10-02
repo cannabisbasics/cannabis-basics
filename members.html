@@ -4,7 +4,13 @@
 <script>document.documentElement.classList.add("cb-auth-pending")</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#040605">
+<meta name="theme-color" content="#145a32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cannabis Basics">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/logo-green.webp">
+<link rel="apple-touch-icon" href="assets/logo-green.webp">
 <title>Cannabis Basics Members | Personal Record Book</title>
 <style>
 :root{
@@ -1080,6 +1086,10 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
 @media(max-width:620px){.member-site-footer{padding-inline:16px}.member-map-canvas{min-height:300px}.member-overlay{padding:8px}.member-overlay-card{border-radius:20px}}
 </style>
 
+<style id="members-account-controls-20261002">
+.danger-zone{border-color:rgba(216,107,86,.25)!important;background:linear-gradient(145deg,rgba(64,24,20,.34),rgba(12,12,10,.86))!important}
+.danger-zone .danger-button{border-color:rgba(216,107,86,.45)!important;color:#ffd5cc!important;background:rgba(116,36,25,.28)!important}
+</style>
 </head>
 <body><div class="member-entry-fx" id="memberEntryFx" hidden aria-hidden="true"><i></i><i></i><i></i><span>Welcome to your record book.</span></div><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -1398,10 +1408,11 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
 
   <div class="account-card"><div><b>Founding Lifetime Membership</b><span>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span></div><strong>Founding access</strong></div>
   <div class="account-card"><div><b>Journal Backup</b><span>Download a personal copy of your current profile, sessions, My Stash, My Products, wish list, and saved dispensaries as a JSON backup.</span></div><span>Member backup</span></div>
-  <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
+  <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary" type="button" data-pwa-install>Install App</button><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
   <div class="backup-status" id="backupStatus" aria-live="polite"></div><div class="signout-row"><button class="secondary" id="signOutBtn" type="button">Sign Out</button></div>
   <div class="account-card"><div><b>Secure cloud account</b><span>Your profile and journal are connected to a private authenticated member account for cross-device access.</span></div><span>Connected</span></div>
   <div class="privacy">Member profile and journal records are protected by authenticated access and row-level database security. Browser cache is cleared when accounts change or sign out, so one member's cached profile cannot carry into another member's account. Members keep export controls for their own records.</div>
+  <div class="account-card danger-zone"><div><b>Delete My Account & Cloud Data</b><span>Permanently removes your Cannabis Basics profile, journal records, saved products, stash, wish list, dispensaries, profile photo, membership record, and sign-in account. Export your data first if you want a copy.</span></div><button class="secondary danger-button" id="deleteAccountBtn" type="button">Delete Account</button></div>
 </section>
 </main>
 </div>
@@ -1594,6 +1605,23 @@ function loadSessionIntoForm(o){
 }
 cancelEdit?.addEventListener('click',clearForm);
 
+function syncProductFromSession(o){
+  if(!o?.product)return;
+  const arr=load('cb_products');
+  const key=normalizeProductName(o.product);
+  let p=arr.find(x=>normalizeProductName(x.name)===key);
+  if(!p){
+    p={id:Date.now()+2,name:o.product,brand:'',type:o.type||'Flower',status:'Saved',thc:o.thc||'',cbd:o.cbd||'',amount:o.amount||'',dispensary:o.dispensary||'',price:o.cost||'',purchaseDate:o.date||'',buyAgain:o.wouldUseAgain==='Yes'?'Yes':'',favorite:!!o.favorite,notes:''};
+    arr.unshift(p);
+  }else{
+    p.type=p.type||o.type||'Flower';
+    p.thc=p.thc||o.thc||'';p.cbd=p.cbd||o.cbd||'';p.amount=p.amount||o.amount||'';
+    p.dispensary=p.dispensary||o.dispensary||'';p.price=p.price||o.cost||'';
+    if(o.wouldUseAgain==='Yes')p.buyAgain='Yes';
+  }
+  save('cb_products',arr);
+}
+
 saveSession.onclick=()=>{
   const o=vals();if(!o.product){logProduct.focus();toast('Add a strain or product name first.');return}
   const arr=load('cb_sessions');
@@ -1604,7 +1632,7 @@ saveSession.onclick=()=>{
   }else{
     o.favorite=false;arr.unshift(o);toast('Session saved to your journal.');
   }
-  save('cb_sessions',arr);updatePDF(o);clearForm();renderAll();
+  save('cb_sessions',arr);syncProductFromSession(o);updatePDF(o);clearForm();renderAll();
 };
 clearSession.onclick=clearForm;
 printSession.onclick=()=>{updatePDF(vals());window.print()};
@@ -2175,7 +2203,39 @@ clearMemberData?.addEventListener('click',()=>{
   ['cb_sessions','cb_inventory','cb_wishlist','cb_products','cb_stores'].forEach(k=>localStorage.removeItem(k));clearForm();renderAll();backupStatus.textContent='Local cache cleared. Cloud records remain in your account.';toast('Local cache cleared.');
 });
 
+function consumeDecoderPending(){
+  let pending=null;
+  try{pending=JSON.parse(localStorage.getItem('cb_pending_decoder_v1')||'null')}catch(_){}
+  if(!pending?.product)return false;
+  const p=pending.product;
+  if(pending.action==='log'){
+    clearForm();setLogMode('full');
+    logProduct.value=p.name||'';logType.value=p.type||'Flower';logTHC.value=p.thc||'';logCBD.value=p.cbd||'';
+    logAmount.value=p.amount||'Not sure';logVariety.value=p.variety||'Not sure';logTerpenes.value=p.terpenes||'';
+    localStorage.removeItem('cb_pending_decoder_v1');
+    go('log');toast('Decoded label loaded into your Session Log.');
+    return true;
+  }
+  const arr=load('cb_products');
+  const key=normalizeProductName(p.name);
+  let saved=arr.find(x=>normalizeProductName(x.name)===key);
+  if(!saved){
+    saved={id:Date.now(),name:p.name||'Cannabis product',brand:'',type:p.type||'Flower',status:'Saved',thc:p.thc||'',cbd:p.cbd||'',amount:p.amount||'',dispensary:'',price:'',purchaseDate:'',buyAgain:'',favorite:false,notes:p.variety?('Label variety: '+p.variety+(p.terpenes?' • Terpenes: '+p.terpenes:'')):(p.terpenes?'Terpenes: '+p.terpenes:'')};
+    arr.unshift(saved);
+  }else{
+    saved.type=saved.type||p.type||'Flower';saved.thc=saved.thc||p.thc||'';saved.cbd=saved.cbd||p.cbd||'';saved.amount=saved.amount||p.amount||'';
+  }
+  save('cb_products',arr);
+  localStorage.removeItem('cb_pending_decoder_v1');
+  renderAll();go('products');
+  const group=getProductGroupByKey(key);if(group)showProductEditor(group);
+  toast('Decoded label saved to My Products.');
+  return true;
+}
+
 updatePDF({});renderAll();
+const initialScreen=new URLSearchParams(location.search).get('screen');
+if(!consumeDecoderPending()&&initialScreen&&navItems.some(x=>x[0]===initialScreen))go(initialScreen);
 </script>
 
 <script id="members-theme-sync-20260927">
@@ -2583,4 +2643,6 @@ sb.auth.onAuthStateChange((event)=>{
 })();
 </script>
 
+<script src="assets/pwa.js?v=20261002-app1" defer></script>
+<script type="module" src="assets/public-data.js?v=20261002-free1"></script>
 </body></html>
