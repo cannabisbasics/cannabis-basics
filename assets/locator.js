@@ -121,13 +121,13 @@ async function fetchOSMPlaces(center,radiusMeters){
   const cacheKey='cb_locator_'+center.lat.toFixed(3)+'_'+center.lon.toFixed(3)+'_'+radiusMeters;
   const cached=cacheGet(cacheKey,10*60*1000);
   if(cached)return cached;
-  const q=\`[out:json][timeout:22];
+  const q=`[out:json][timeout:22];
 (
-  nwr(around:\${radiusMeters},\${center.lat},\${center.lon})["shop"="cannabis"];
-  nwr(around:\${radiusMeters},\${center.lat},\${center.lon})["cannabis:medical"~"^(yes|only)$"];
-  nwr(around:\${radiusMeters},\${center.lat},\${center.lon})["cannabis:recreational"~"^(yes|only)$"];
+  nwr(around:${radiusMeters},${center.lat},${center.lon})["shop"="cannabis"];
+  nwr(around:${radiusMeters},${center.lat},${center.lon})["cannabis:medical"~"^(yes|only)$"];
+  nwr(around:${radiusMeters},${center.lat},${center.lon})["cannabis:recreational"~"^(yes|only)$"];
 );
-out center tags;\`;
+out center tags;`;
   const endpoints=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter'];
   let lastError=null;
   for(const endpoint of endpoints){
@@ -202,25 +202,25 @@ function renderPlaces(places){
     const phone=p.phone?'<a href="tel:'+escapeHTML(p.phone)+'">'+escapeHTML(p.phone)+'</a>':'';
     const hours=p.hours?'<span>Hours: '+escapeHTML(p.hours)+'</span>':'';
     const info=[phone,website,hours].filter(Boolean).join('<span aria-hidden="true"> • </span>');
-    return \`
-      <article class="locator-card" data-place="\${i}">
+    return `
+      <article class="locator-card" data-place="${i}">
         <div class="locator-card-top">
-          <div><h4>\${escapeHTML(p.name)}</h4><div class="locator-address">\${escapeHTML(p.address||p.location)}</div></div>
-          <span class="locator-distance">\${p.distance.toFixed(1)} mi</span>
+          <div><h4>${escapeHTML(p.name)}</h4><div class="locator-address">${escapeHTML(p.address||p.location)}</div></div>
+          <span class="locator-distance">${p.distance.toFixed(1)} mi</span>
         </div>
         <div class="locator-tags">
-          <span class="\${p.medical==='yes'||p.medical==='only'?'yes':''}">\${escapeHTML(cannabisLabel(p.medical,'Medical'))}</span>
-          <span class="\${p.recreational==='yes'||p.recreational==='only'?'yes':''}">\${escapeHTML(cannabisLabel(p.recreational,'Adult-use'))}</span>
+          <span class="${p.medical==='yes'||p.medical==='only'?'yes':''}">${escapeHTML(cannabisLabel(p.medical,'Medical'))}</span>
+          <span class="${p.recreational==='yes'||p.recreational==='only'?'yes':''}">${escapeHTML(cannabisLabel(p.recreational,'Adult-use'))}</span>
           <span>Open map data</span>
         </div>
-        \${info?'<div class="locator-info">'+info+'</div>':''}
-        \${product?'<div class="locator-product-note"><strong>Looking for: '+escapeHTML(product)+'</strong><br>Live product inventory is not included in open map data. Check the dispensary menu or contact the store before traveling.</div>':''}
+        ${info?'<div class="locator-info">'+info+'</div>':''}
+        ${product?'<div class="locator-product-note"><strong>Looking for: '+escapeHTML(product)+'</strong><br>Live product inventory is not included in open map data. Check the dispensary menu or contact the store before traveling.</div>':''}
         <div class="locator-card-actions">
-          <button class="btn small locator-show" type="button" data-show="\${i}">Show on Map</button>
-          <button class="btn small locator-save" type="button" data-save="\${i}">♡ Save to My Dispensaries</button>
-          <a class="btn small" href="\${escapeHTML(p.sourceUrl)}" target="_blank" rel="noopener">OSM Details ↗</a>
+          <button class="btn small locator-show" type="button" data-show="${i}">Show on Map</button>
+          <button class="btn small locator-save" type="button" data-save="${i}">♡ Save to My Dispensaries</button>
+          <a class="btn small" href="${escapeHTML(p.sourceUrl)}" target="_blank" rel="noopener">OSM Details ↗</a>
         </div>
-      </article>\`;
+      </article>`;
   }).join('');
 }
 
