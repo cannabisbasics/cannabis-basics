@@ -1,4 +1,4 @@
-const CACHE='cb-app-v1-20261002';
+const CACHE='cb-app-v2-20261002';
 const CORE=[
   './','./index.html','./members.html','./join.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js','./assets/pwa.js'
@@ -19,7 +19,10 @@ self.addEventListener('fetch',event=>{
   if(req.mode==='navigate'){
     event.respondWith(fetch(req).then(res=>{
       const copy=res.clone();caches.open(CACHE).then(c=>c.put(req,copy));return res;
-    }).catch(async()=>await caches.match(req)||await caches.match('./offline.html')));
+    }).catch(async()=>{
+      if(/\/(members|join)\.html$/.test(url.pathname))return await caches.match('./offline.html');
+      return await caches.match(req)||await caches.match('./index.html')||await caches.match('./offline.html');
+    }));
     return;
   }
   event.respondWith(caches.match(req).then(hit=>{
