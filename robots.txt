@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /members.html
+Disallow: /join.html
+Sitemap: https://cannabisbasics.github.io/cannabis-basics/sitemap.xml
