@@ -1,0 +1,48 @@
+{
+  "name": "Cannabis Basics Members",
+  "short_name": "Cannabis Basics",
+  "description": "Private cannabis journal, product records, dispensary saves, and learning tools.",
+  "id": "./members.html",
+  "start_url": "./members.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#171a18",
+  "theme_color": "#145a32",
+  "lang": "en-US",
+  "categories": [
+    "education",
+    "lifestyle",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "assets/logo-green.webp",
+      "sizes": "any",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Session Log",
+      "short_name": "Log",
+      "url": "./members.html?screen=log"
+    },
+    {
+      "name": "My Stash",
+      "short_name": "Stash",
+      "url": "./members.html?screen=inventory"
+    },
+    {
+      "name": "My Products",
+      "short_name": "Products",
+      "url": "./members.html?screen=products"
+    },
+    {
+      "name": "Dispensary Locator",
+      "short_name": "Locator",
+      "url": "./index.html#locator"
+    }
+  ]
+}
