@@ -3100,6 +3100,8 @@ body.light-theme .decoder-preview-grid span{background:#f1f5ed;color:#57655b;bor
   .decoder-preview-grid{grid-template-columns:1fr}
   .decoder-after-note{grid-template-columns:1fr}.decoder-after-note a{margin-top:2px}
 }
+ .decoder-member-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:900px){.decoder-member-actions{width:100%;justify-content:stretch}.decoder-member-actions .btn{flex:1}}
 </style>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
@@ -3652,9 +3654,10 @@ function runDecoder(){
     <div class="decoder-result-section"><span class="decoder-section-no">02</span><div><h4>Variety & terpene clues</h4><p>${decoderVarietyNote(values.variety)}</p><p>${decoderTerpeneNote(values.terpene,values.terpene2)}</p></div></div>
     <div class="decoder-result-section decoder-caution"><span class="decoder-section-no">03</span><div><h4>What the label cannot tell you</h4><p>A label cannot reliably predict your exact mood, impairment, comfort, medical outcome, or whether you will like the product. Route, amount used, tolerance, timing, other substances, and the individual all matter.</p></div></div>
     <div class="decoder-result-section"><span class="decoder-section-no">04</span><div><h4>State context</h4><p>${decoderStateNote(values.state)}</p></div></div>
-    <div class="decoder-result-next"><div><strong>Best next step</strong><span>Use the package as the starting record, then compare it with your own session notes over time.</span></div><a class="btn decoder-member-btn" href="members.html">Track in Members →</a></div>
+    <div class="decoder-result-next"><div><strong>Keep this label information</strong><span>Move the package details into your private Cannabis Basics record without typing them again.</span></div><div class="decoder-member-actions"><button class="btn decoder-member-btn" type="button" id="decoderSaveProduct">Save to My Products</button><button class="btn decoder-member-btn" type="button" id="decoderStartLog">Start Session Log →</button></div></div>
     <div class="micro decoder-micro">Educational information only. No dosing, medical, legal, or purchasing recommendation is being made.</div>
   `;
+  window.cbLastDecodedProduct={...values,title,terpenes:[values.terpene,values.terpene2].filter(Boolean).join(', ')};
   if(window.matchMedia('(max-width:900px)').matches){
     result.scrollIntoView({behavior:'smooth',block:'start'});
   }
@@ -3662,6 +3665,26 @@ function runDecoder(){
 
 document.getElementById('productType')?.addEventListener('change',syncDecoderHints);
 document.getElementById('decodeBtn')?.addEventListener('click',runDecoder);
+document.getElementById('decoderResult')?.addEventListener('click',e=>{
+  const saveProduct=e.target.closest('#decoderSaveProduct');
+  const startLog=e.target.closest('#decoderStartLog');
+  if(!saveProduct&&!startLog)return;
+  const d=window.cbLastDecodedProduct;
+  if(!d)return;
+  const pending={
+    action:saveProduct?'product':'log',
+    product:{
+      name:d.name||d.title||'Cannabis product',
+      type:(d.type||'flower').replace(/^./,c=>c.toUpperCase()),
+      thc:d.thc||'',cbd:d.cbd||'',amount:d.amount||'',
+      variety:d.variety||'',terpenes:d.terpenes||'',
+      state:d.state||'',source:'decoder'
+    },
+    createdAt:new Date().toISOString()
+  };
+  try{localStorage.setItem('cb_pending_decoder_v1',JSON.stringify(pending))}catch(_){}
+  location.href='join.html?signin=1&return='+(saveProduct?'decoder-product':'decoder-log');
+});
 ['strainName','thcValue','cbdValue','amountValue'].forEach(id=>{
   document.getElementById(id)?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();runDecoder();}});
 });
