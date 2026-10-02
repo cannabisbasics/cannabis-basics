@@ -2233,9 +2233,9 @@ function consumeDecoderPending(){
   return true;
 }
 
+window.cbConsumeDecoderPending=consumeDecoderPending;
+window.cbInitialMemberScreen=new URLSearchParams(location.search).get('screen')||'';
 updatePDF({});renderAll();
-const initialScreen=new URLSearchParams(location.search).get('screen');
-if(!consumeDecoderPending()&&initialScreen&&navItems.some(x=>x[0]===initialScreen))go(initialScreen);
 </script>
 
 <script id="members-theme-sync-20260927">
@@ -2528,6 +2528,10 @@ try{
   // The authenticated Supabase account is the source of truth.
   // Never silently copy browser-local records into a different signed-in account.
   await loadCloud();
+  const consumedDecoder=window.cbConsumeDecoderPending?.()||false;
+  const initialScreen=window.cbInitialMemberScreen||'';
+  const validInitial=initialScreen&&['account','dashboard','log','inventory','wishlist','products','dispensaries','favorites','insights','deals','pdf'].includes(initialScreen);
+  if(!consumedDecoder&&validInitial)window.go?.(initialScreen);
   document.documentElement.classList.remove('cb-auth-pending');
 }catch(err){
   console.error(err);
