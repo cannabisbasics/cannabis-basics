@@ -203,38 +203,49 @@ function normalizeOSMPlaces(data,center){
 
 async function fetchOfficialCatalog(center,radiusMiles){
   if(!isMarylandCenter(center) && ui.state.value!=='Maryland')return [];
-  const {data,error}=await sb.from('dispensary_catalog')
-    .select('id,source_key,name,address,city,state,postal_code,county,latitude,longitude,phone,website,medical,recreational,source_url,source_updated_at')
-    .eq('active',true).eq('state','Maryland');
-  if(error)throw error;
-  const rows=data||[];
-  let geocodedOne=false;
-  for(const row of rows){
-    if(Number.isFinite(Number(row.latitude))&&Number.isFinite(Number(row.longitude)))continue;
-    const cached=cacheGet('cb_catalog_geo_'+row.source_key,180*24*60*60*1000);
-    if(cached){
-      row.latitude=cached.lat;row.longitude=cached.lon;continue;
-    }
+  const cacheKey='cb_mca_statewide_v1';
+  let features=cacheGet(cacheKey,60*60*1000);
+  if(!features){
     try{
-      if(geocodedOne)await delay(1050);
-      const q=[row.address,row.city,'Maryland',row.postal_code].filter(Boolean).join(', ');
-      const point=await geocodeQuery(q,'cb_catalog_geo_'+row.source_key,180*24*60*60*1000);
-      geocodedOne=true;
-      if(point){row.latitude=point.lat;row.longitude=point.lon}
-    }catch(e){console.warn('Catalog geocode unavailable for',row.name)}
+      const res=await fetch('https://lwiwfgpgconkrahamedb.supabase.co/functions/v1/maryland-dispensaries',{headers:{'Accept':'application/json'}});
+      if(!res.ok)throw new Error('Maryland licensed-location feed returned '+res.status);
+      const data=await res.json();
+      if(!Array.isArray(data?.features)||!data.features.length)throw new Error('Maryland licensed-location feed returned no locations');
+      features=data.features;
+      cacheSet(cacheKey,features);
+    }catch(edgeErr){
+      console.warn('Statewide Maryland feed unavailable; using cached Cannabis Basics catalog.',edgeErr);
+      const {data,error}=await sb.from('dispensary_catalog')
+        .select('id,source_key,name,address,city,state,postal_code,county,latitude,longitude,phone,website,medical,recreational,source_url,source_updated_at')
+        .eq('active',true).eq('state','Maryland');
+      if(error)throw error;
+      features=(data||[]).map(row=>({
+        source:'maryland-cannabis-administration',sourceId:row.source_key,type:'official',id:row.id,
+        name:row.name,address:[row.address,row.city,'MD',row.postal_code].filter(Boolean).join(', '),
+        city:row.city,state:'Maryland',postal:row.postal_code||'',county:row.county||'',
+        lat:Number(row.latitude),lon:Number(row.longitude),
+        website:safeURL(row.website||''),phone:safePhone(row.phone||''),hours:'',
+        medical:row.medical||'',recreational:row.recreational||'',sourceUrl:row.source_url,
+        sourceUpdatedAt:row.source_updated_at||'',location:[row.city,'MD'].filter(Boolean).join(', ')
+      })).filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon));
+    }
   }
-  return rows.map(row=>{
-    const lat=Number(row.latitude),lon=Number(row.longitude);
+  return features.map(row=>{
+    const lat=Number(row.lat),lon=Number(row.lon);
     if(!Number.isFinite(lat)||!Number.isFinite(lon))return null;
     return {
-      source:'maryland-cannabis-administration',sourceId:row.source_key,type:'official',id:row.id,
-      name:row.name,address:[row.address,row.city,'MD',row.postal_code].filter(Boolean).join(', '),
-      city:row.city,state:'Maryland',postal:row.postal_code||'',county:row.county||'',lat,lon,
-      website:safeURL(row.website||''),phone:safePhone(row.phone||''),hours:'',
+      source:'maryland-cannabis-administration',
+      sourceId:row.sourceId||row.source_key||row.id||row.name,
+      type:'official',id:row.id||row.sourceId||row.source_key,
+      name:row.name||'Maryland licensed dispensary',
+      address:row.address||[row.city,'MD',row.postal].filter(Boolean).join(', '),
+      city:row.city||'',state:'Maryland',postal:row.postal||row.postal_code||'',county:row.county||'',
+      lat,lon,website:safeURL(row.website||''),phone:safePhone(row.phone||''),hours:row.hours||'',
       medical:row.medical||'',recreational:row.recreational||'',
-      distance:haversine(center,{lat,lon}),sourceUrl:row.source_url,
-      sourceUpdatedAt:row.source_updated_at||'',
-      location:[row.city,'MD'].filter(Boolean).join(', ')
+      distance:haversine(center,{lat,lon}),
+      sourceUrl:row.sourceUrl||row.source_url||'https://cannabis.maryland.gov/Pages/Dispensary-Locator.aspx',
+      sourceUpdatedAt:row.sourceUpdatedAt||row.source_updated_at||'2026-09-08',
+      location:[row.city,'MD'].filter(Boolean).join(', ')||row.address||'Maryland'
     };
   }).filter(Boolean).filter(p=>p.distance<=radiusMiles+.5);
 }
