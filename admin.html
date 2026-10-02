@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">\n<meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#050706">
 <title>Cannabis Basics Administration</title>
 <style>
@@ -19,6 +19,7 @@
 .empty{padding:26px;color:var(--muted)}.denied{max-width:700px;margin:80px auto;padding:28px;border:1px solid rgba(220,120,90,.24);border-radius:24px;background:#130d0b}
 .hidden{display:none!important}
 @media(max-width:900px){.metrics{grid-template-columns:1fr 1fr}}@media(max-width:600px){.metrics{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%;min-width:0}}
+.inbox-list{display:grid;gap:10px;padding:14px}.inbox-item{padding:15px;border:1px solid rgba(194,207,50,.10);border-radius:16px;background:#09100b}.inbox-item strong{font-weight:400}.inbox-item small{display:block;color:var(--muted);margin-top:4px}.inbox-item p{margin:9px 0 0;color:#c7d0c8;line-height:1.55;font-size:.82rem}.inbox-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.inbox-meta span{font-size:.65rem;padding:4px 7px;border-radius:999px;background:rgba(194,207,50,.08);color:#d6df96}
 </style>
 </head>
 <body>
@@ -36,10 +37,22 @@
     <div class="metric"><span>Journal sessions</span><strong id="mSessions">0</strong></div>
     <div class="metric"><span>Partner clicks</span><strong id="mClicks">0</strong></div>
     <div class="metric"><span>Founding spots left</span><strong id="mRemaining">100</strong></div>
+    <div class="metric"><span>Free-resource leads</span><strong id="mLeads">0</strong></div>
+    <div class="metric"><span>Contact messages</span><strong id="mMessages">0</strong></div>
+    <div class="metric"><span>Page views · 30 days</span><strong id="mViews">0</strong></div>
+    <div class="metric"><span>App install clicks</span><strong id="mInstalls">0</strong></div>
   </div>
   <section class="section">
     <div class="section-head"><div><h2>Members</h2><div style="color:#95a198;font-size:.74rem;margin-top:5px">Operational account information only.</div></div><input class="search" id="memberSearch" placeholder="Search member code, name, email, city, state…"></div>
     <div class="table-wrap"><table class="members"><thead><tr><th>Member</th><th>Joined</th><th>Status</th><th>Location</th><th>Interests</th><th>Sessions</th><th>Last Session</th></tr></thead><tbody id="memberRows"></tbody></table><div class="empty hidden" id="emptyRows">No members match that search.</div></div>
+  </section>
+  <section class="section">
+    <div class="section-head"><div><h2>Contact Inbox</h2><div style="color:#95a198;font-size:.74rem;margin-top:5px">Messages submitted through the public Cannabis Basics contact form.</div></div></div>
+    <div class="inbox-list" id="contactInbox"><div class="empty">No contact messages yet.</div></div>
+  </section>
+  <section class="section">
+    <div class="section-head"><div><h2>Free-Resource Leads</h2><div style="color:#95a198;font-size:.74rem;margin-top:5px">Emails submitted before opening the free Cannabis Log worksheet.</div></div></div>
+    <div class="table-wrap"><table class="members"><thead><tr><th>Email</th><th>Source</th><th>Submitted</th></tr></thead><tbody id="leadRows"></tbody></table><div class="empty hidden" id="emptyLeads">No leads yet.</div></div>
   </section>
 </div>
 </main>
@@ -69,13 +82,22 @@ function render(filter=''){
   empty.classList.toggle('hidden',list.length>0);
 }
 try{
-  const [metricsRes,membersRes,spotsRes]=await Promise.all([
+  const since30=new Date(Date.now()-30*86400000).toISOString();
+  const [metricsRes,membersRes,spotsRes,leadsRes,messagesRes,viewsRes,installsRes]=await Promise.all([
     sb.rpc('admin_dashboard_metrics'),
     sb.rpc('admin_member_overview'),
-    sb.rpc('founding_spots_remaining')
+    sb.rpc('founding_spots_remaining'),
+    sb.from('email_leads').select('*',{count:'exact'}).order('created_at',{ascending:false}).limit(100),
+    sb.from('contact_messages').select('*',{count:'exact'}).order('created_at',{ascending:false}).limit(100),
+    sb.from('site_events').select('id',{count:'exact',head:true}).eq('event_name','page_view').gte('created_at',since30),
+    sb.from('site_events').select('id',{count:'exact',head:true}).eq('event_name','pwa_install_click')
   ]);
   if(metricsRes.error)throw metricsRes.error;
   if(membersRes.error)throw membersRes.error;
+  if(leadsRes.error)throw leadsRes.error;
+  if(messagesRes.error)throw messagesRes.error;
+  if(viewsRes.error)throw viewsRes.error;
+  if(installsRes.error)throw installsRes.error;
   const m=metricsRes.data||{};
   document.getElementById('mMembers').textContent=m.members??0;
   document.getElementById('mFounders').textContent=m.founding_members??0;
@@ -84,9 +106,20 @@ try{
   document.getElementById('mLocation').textContent=m.profiles_with_location??0;
   document.getElementById('mSessions').textContent=m.sessions??0;
   document.getElementById('mClicks').textContent=m.deal_clicks??0;
-  document.getElementById('mRemaining').textContent=spotsRes.data??Math.max(0,100-(m.founding_members??0));
+  document.getElementById('mRemaining').textContent=spotsRes.data??Math.max(0,33-(m.founding_members??0));
+  document.getElementById('mLeads').textContent=leadsRes.count??0;
+  document.getElementById('mMessages').textContent=messagesRes.count??0;
+  document.getElementById('mViews').textContent=viewsRes.count??0;
+  document.getElementById('mInstalls').textContent=installsRes.count??0;
   members=membersRes.data||[];
   render();
+  const inbox=document.getElementById('contactInbox');
+  const messages=messagesRes.data||[];
+  inbox.innerHTML=messages.length?messages.map(x=>`<article class="inbox-item"><strong>${esc(x.name||'Visitor')} · ${esc(x.email||'')}</strong><small>${fmtDate(x.created_at)}</small><div class="inbox-meta">${x.topic?'<span>'+esc(x.topic)+'</span>':''}${x.state?'<span>'+esc(x.state)+'</span>':''}</div><p>${esc(x.message||'')}</p></article>`).join(''):'<div class="empty">No contact messages yet.</div>';
+  const leadRows=document.getElementById('leadRows'),emptyLeads=document.getElementById('emptyLeads');
+  const leads=leadsRes.data||[];
+  leadRows.innerHTML=leads.map(x=>`<tr><td>${esc(x.email)}</td><td>${esc(x.source||'—')}</td><td>${fmtDate(x.created_at)}</td></tr>`).join('');
+  emptyLeads.classList.toggle('hidden',leads.length>0);
   status.textContent='Administrator access verified. Live membership data is connected.';
   dash.classList.remove('hidden');
 }catch(err){
