@@ -3091,6 +3091,9 @@ body.light-theme .decoder-preview-grid span{background:#f1f5ed;color:#57655b;bor
   .decoder-after-note{grid-template-columns:1fr}.decoder-after-note a{margin-top:2px}
 }
 </style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="assets/locator.css?v=20261002-full1">
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -3152,27 +3155,65 @@ body.light-theme .decoder-preview-grid span{background:#f1f5ed;color:#57655b;bor
   </div>
 </header>
 
-<section class="tool-section locator-section" id="locator">
+
+<section class="tool-section locator-section locator-v3" id="locator">
   <div class="wrap fade-up">
     <div class="tool-shell locator-shell">
       <div class="tool-badge">CANNABIS LOCATOR</div>
       <div class="tool-grid locator-grid">
         <div class="tool-intro">
           <div class="tool-name"><span></span>Dispensary Locator</div>
-          <h2>Find a dispensary where you are looking.</h2>
-          <p>Select a state and add a strain or product name if you have one. The locator builds a live Google Maps search so the names, addresses, hours, ratings, and directions come from current map results instead of a stale directory.</p>
-          <div class="tool-form locator-form">
-            <div class="field-group"><label for="locatorState">State</label><select id="locatorState"><option value="">Select state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
-            <div class="field-group"><label for="locatorStrain">Strain / product (optional)</label><input id="locatorStrain" placeholder="Enter strain or product name"></div>
-            <div class="tool-actions"><button class="btn primary" id="locatorBtn" type="button">Locate</button><button class="btn" id="locatorReset" type="button">Reset</button></div>
+          <h2>Find nearby dispensaries without leaving Cannabis Basics.</h2>
+          <p class="locator-lede">Use your current location or search a city or ZIP. Cannabis Basics finds mapped cannabis retailers nearby, places them on an interactive map, and lets members save locations directly to <strong>My Dispensaries</strong>.</p>
+
+          <div class="locator-choice">
+            <button class="btn primary locator-geo-btn" id="locatorUseLocation" type="button">◎ Use My Location</button>
+            <div class="locator-or">or search an area</div>
           </div>
-          <div class="tool-safe">Google Maps opens in a new tab for live dispensary listings. Availability of a specific strain changes quickly, so call the dispensary or check its menu before traveling.</div>
+
+          <div class="tool-form locator-form-v3">
+            <div class="field-group">
+              <label for="locatorArea">City or ZIP code</label>
+              <input id="locatorArea" placeholder="Example: Waldorf or 20601" autocomplete="postal-code">
+              <small>No autocomplete or background tracking. Search only happens when you press the button.</small>
+            </div>
+            <div class="field-group">
+              <label for="locatorState">State</label>
+              <select id="locatorState"><option value="">Select state</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select>
+            </div>
+            <div class="field-group">
+              <label for="locatorRadius">Search radius</label>
+              <select id="locatorRadius"><option value="5">5 miles</option><option value="10" selected>10 miles</option><option value="25">25 miles</option></select>
+            </div>
+            <div class="field-group">
+              <label for="locatorProduct">Strain / product wanted <em>optional</em></label>
+              <input id="locatorProduct" placeholder="Example: Blue Dream or gummies" autocomplete="off">
+              <small>Used as your shopping note. Open map data does not provide dependable live inventory.</small>
+            </div>
+            <div class="tool-actions locator-actions-v3">
+              <button class="btn primary" id="locatorBtn" type="button">Find Dispensaries <span>→</span></button>
+              <button class="btn" id="locatorReset" type="button">Reset</button>
+            </div>
+          </div>
+
+          <div class="locator-status" id="locatorStatus" aria-live="polite"></div>
+          <div class="locator-member-note" id="locatorMemberNote"><span>♡</span><div><b>Members can save dispensaries.</b> Tap Save on a result and sign in only if needed.</div></div>
+          <div class="tool-safe">Location permission is used only when you choose <strong>Use My Location</strong>. Cannabis Basics does not continuously track your location. Dispensary information comes from open map data and should be confirmed before traveling.</div>
         </div>
-        <div class="tool-result">
-          <div class="tool-result-card locator-result" id="locatorResult" aria-live="polite">
-            <h3>Your locator result</h3><p>Select a state to build a current Google Maps dispensary search. Add a strain or product name to narrow the search.</p>
-            <div class="result-chips"><span>Live Maps</span><span>Names</span><span>Addresses</span><span>Directions</span></div>
+
+        <div class="tool-result locator-results-pane">
+          <div class="locator-map-shell" id="locatorMapShell">
+            <div id="locatorMap" aria-label="Interactive dispensary map"></div>
+            <div class="locator-map-placeholder"><div><strong>Your map will appear here.</strong><span>Use your location or search a city / ZIP to find nearby dispensaries.</span></div></div>
           </div>
+          <div class="locator-results-head">
+            <div><small>LIVE NEARBY SEARCH</small><h3 id="locatorSummary">Your nearby results</h3></div>
+            <span class="locator-count" id="locatorCount">0 results</span>
+          </div>
+          <div class="locator-cards" id="locatorCards" aria-live="polite">
+            <div class="locator-empty">Search by city/ZIP or use your location. Results will appear here without sending you away from Cannabis Basics.</div>
+          </div>
+          <div class="locator-attribution">Map and place data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>. Public map coverage can be incomplete. Hours, medical/adult-use tags, websites, and phone numbers are shown only when present in the source data.</div>
         </div>
       </div>
     </div>
@@ -3756,35 +3797,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-<script>
-document.addEventListener('DOMContentLoaded',()=>{
-  // Reliable in-page navigation.
-  document.querySelectorAll('a[href^="#"]').forEach(link=>{
-    link.addEventListener('click',e=>{
-      const id=link.getAttribute('href'); if(!id || id==='#') return;
-      const target=document.querySelector(id); if(!target) return;
-      e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-  });
 
-  // Live Google Maps locator.
-  const locatorBtn=document.getElementById('locatorBtn');
-  const locatorReset=document.getElementById('locatorReset');
-  const locatorState=document.getElementById('locatorState');
-  const locatorStrain=document.getElementById('locatorStrain');
-  const locatorResult=document.getElementById('locatorResult');
-  const runLocator=()=>{
-    const state=locatorState?.value||''; const strain=locatorStrain?.value.trim()||'';
-    if(!state){locatorResult.innerHTML='<h3>Select a state first.</h3><p>The locator needs at least a state before it can build a useful dispensary search.</p>';locatorState?.focus();return;}
-    const query=[strain,'cannabis dispensary',state].filter(Boolean).join(' ');
-    const url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(query);
-    locatorResult.innerHTML=`<h3>Live dispensary search ready.</h3><p><strong>${strain?strain+' • ':''}${state}</strong></p><p>Open Google Maps to see current dispensary names, locations, ratings, hours, and directions. If you entered a strain, Maps will use it as part of the search, but inventory should still be confirmed with the dispensary.</p><a class="btn primary maps-launch" href="${url}" target="_blank" rel="noopener">Open Google Maps ↗</a>`;
-  };
-  locatorBtn?.addEventListener('click',runLocator);
-  locatorStrain?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();runLocator();}});
-  locatorReset?.addEventListener('click',()=>{if(locatorState)locatorState.value='';if(locatorStrain)locatorStrain.value='';if(locatorResult)locatorResult.innerHTML='<h3>Your locator result</h3><p>Select a state to build a current Google Maps dispensary search. Add a strain or product name to narrow the search.</p><div class="result-chips"><span>Live Maps</span><span>Names</span><span>Addresses</span><span>Directions</span></div>';});
-});
-</script>
 
 
 <script id="polish-js-20260925">
@@ -3956,5 +3969,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   }catch(e){}
 })();
 </script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script type="module" src="assets/locator.js?v=20261002-full1"></script>
 </body>
 </html>
