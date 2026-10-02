@@ -2493,4 +2493,94 @@ sb.auth.onAuthStateChange((event)=>{
   }
 });
 </script>
+
+<footer class="member-site-footer" id="memberFooter">
+  <div class="member-site-footer-inner">
+    <div>
+      <div class="member-footer-brand">
+        <img src="assets/logo-green.webp" alt="Cannabis Basics leaf logo">
+        <div><strong>Cannabis Basics</strong><small>Learn • Track • Understand</small></div>
+      </div>
+      <p class="member-footer-copy">Learn what you are looking at. Notice what you experience. Track what you want to remember. Your member workspace is designed for private personal recordkeeping and clearer cannabis education.</p>
+    </div>
+    <div class="member-footer-links">
+      <a href="index.html">Home</a><a href="index.html#locator">Locator</a><a href="index.html#articles">Articles</a><a href="index.html#contact">Contact</a>
+      <button type="button" data-member-legal="privacy">Privacy</button>
+      <button type="button" data-member-legal="terms">Terms</button>
+      <button type="button" data-member-legal="disclaimer">Disclaimer</button>
+      <button type="button" data-member-legal="affiliate">Affiliate Disclosure</button>
+    </div>
+  </div>
+  <div class="member-footer-bottom">© 2026 Cannabis Basics. For adults of legal age where cannabis use is permitted. Educational information and personal recordkeeping only—not medical, legal, or dosing advice.</div>
+</footer>
+
+<div class="member-overlay" id="memberMapOverlay" aria-hidden="true">
+  <div class="member-overlay-card" role="dialog" aria-modal="true" aria-labelledby="memberMapTitle">
+    <div class="member-overlay-head"><div><h2 id="memberMapTitle">Saved dispensary</h2><p id="memberMapAddress">Map details</p></div><button class="member-overlay-close" type="button" data-close-member-overlay="memberMapOverlay" aria-label="Close map">×</button></div>
+    <div class="member-map-canvas" id="memberSavedMap"></div>
+    <div class="member-map-actions" id="memberMapActions"></div>
+  </div>
+</div>
+
+<div class="member-overlay" id="memberLegalOverlay" aria-hidden="true">
+  <div class="member-overlay-card" role="dialog" aria-modal="true" aria-labelledby="memberLegalTitle">
+    <div class="member-overlay-head"><div><h2 id="memberLegalTitle">Privacy</h2><p>Cannabis Basics member information</p></div><button class="member-overlay-close" type="button" data-close-member-overlay="memberLegalOverlay" aria-label="Close legal information">×</button></div>
+    <div class="member-legal-tabs"><button data-member-legal-tab="privacy">Privacy</button><button data-member-legal-tab="terms">Terms</button><button data-member-legal-tab="disclaimer">Disclaimer</button><button data-member-legal-tab="affiliate">Affiliate Disclosure</button></div>
+    <div class="member-legal-body" id="memberLegalBody"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script id="members-footer-map-legal-js-20261002">
+(() => {
+  let savedMap=null,savedMarker=null;
+  const mapOverlay=document.getElementById('memberMapOverlay');
+  const legalOverlay=document.getElementById('memberLegalOverlay');
+  const closeOverlay=id=>{const el=document.getElementById(id);if(el){el.classList.remove('open');el.setAttribute('aria-hidden','true')}};
+  document.querySelectorAll('[data-close-member-overlay]').forEach(b=>b.addEventListener('click',()=>closeOverlay(b.dataset.closeMemberOverlay)));
+  [mapOverlay,legalOverlay].forEach(el=>el?.addEventListener('click',e=>{if(e.target===el)closeOverlay(el.id)}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOverlay('memberMapOverlay');closeOverlay('memberLegalOverlay')}});
+
+  document.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-store-map]');
+    if(!btn)return;
+    const lat=Number(btn.dataset.lat),lon=Number(btn.dataset.lon);
+    if(!Number.isFinite(lat)||!Number.isFinite(lon))return;
+    const name=btn.dataset.name||'Saved dispensary';
+    document.getElementById('memberMapTitle').textContent=name;
+    document.getElementById('memberMapAddress').textContent='Explore the surrounding streets without leaving Cannabis Basics.';
+    const source=btn.dataset.sourceUrl||'';
+    const actions=document.getElementById('memberMapActions');
+    actions.innerHTML='<a href="index.html#locator">Open Cannabis Basics Locator</a>'+(source?'<a href="'+source.replace(/"/g,'&quot;')+'" target="_blank" rel="noopener">Open source details ↗</a>':'');
+    mapOverlay.classList.add('open');mapOverlay.setAttribute('aria-hidden','false');
+    setTimeout(()=>{
+      if(!savedMap){
+        savedMap=L.map('memberSavedMap',{scrollWheelZoom:true}).setView([lat,lon],16);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(savedMap);
+      }else savedMap.setView([lat,lon],16);
+      if(savedMarker)savedMap.removeLayer(savedMarker);
+      const safeName=name.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+      savedMarker=L.marker([lat,lon]).addTo(savedMap).bindPopup('<strong>'+safeName+'</strong>').openPopup();
+      savedMap.invalidateSize();
+    },80);
+  });
+
+  const legalDocs={
+    privacy:{title:'Privacy Policy',body:'<p><strong>Last updated: October 2, 2026.</strong></p><p>Your Cannabis Basics member workspace can store your account email, optional profile details, session logs, saved products, inventory, wish-list items, dispensaries, favorites, and other information you choose to enter.</p><h3>Private member records</h3><p>Member records are associated with your signed-in account and are not designed to be visible to other members. Cannabis Basics uses Supabase for authentication and cloud storage, with access controls intended to limit each member to their own private records.</p><h3>Location information</h3><p>Browser location is requested only when you choose Use My Location. Cannabis Basics does not continuously track your device. A city, state, ZIP code, or dispensary location may be saved when you choose to store it in your profile or member records.</p><h3>What not to store</h3><p>Cannabis Basics is a personal journal and education service, not a healthcare provider or secure patient portal. Do not store medical records, prescription records, financial account information, Social Security numbers, or other highly sensitive information here.</p><h3>Your choices</h3><p>You can remove individual records using the member tools and export a personal backup where available. Additional account-level deletion and data-management controls may be added as the service expands.</p>'},
+    terms:{title:'Terms of Use',body:'<p>Use Cannabis Basics lawfully and responsibly. The member tools are provided for personal education and recordkeeping. You are responsible for the accuracy of information you enter and for understanding the laws that apply where you live.</p><h3>No professional relationship</h3><p>Cannabis Basics does not create a doctor-patient, pharmacist-patient, attorney-client, or other professional relationship and does not provide dosing instructions or individualized medical advice.</p><h3>Availability</h3><p>Features, third-party links, public dispensary information, and external services may change or become unavailable without notice.</p>'},
+    disclaimer:{title:'Disclaimer',body:'<p>Cannabis Basics provides general educational information and personal tracking tools. It does not diagnose or treat a condition, recommend a dose, guarantee an effect, or determine whether cannabis is appropriate for you.</p><h3>Safety</h3><p>Do not drive or operate machinery while impaired. Keep cannabis products securely away from children and pets. Product potency, labeling, legality, and individual response can vary.</p><h3>Dispensary information</h3><p>Map locations, business hours, menus, and licensing information can change. Verify important details with the dispensary and the appropriate official regulator before traveling or purchasing.</p>'},
+    affiliate:{title:'Affiliate Disclosure',body:'<p>Some Cannabis Basics links may be affiliate links. If you make a qualifying purchase through an affiliate link, Cannabis Basics may receive a commission at no additional cost to you.</p><p>Affiliate relationships do not change the educational purpose of the site. Product availability, prices, promotions, and third-party claims should be independently reviewed before purchasing.</p>'}
+  };
+  function openLegal(key){
+    const doc=legalDocs[key]||legalDocs.privacy;
+    document.getElementById('memberLegalTitle').textContent=doc.title;
+    document.getElementById('memberLegalBody').innerHTML=doc.body;
+    document.querySelectorAll('[data-member-legal-tab]').forEach(b=>b.classList.toggle('active',b.dataset.memberLegalTab===key));
+    legalOverlay.classList.add('open');legalOverlay.setAttribute('aria-hidden','false');
+  }
+  document.querySelectorAll('[data-member-legal]').forEach(b=>b.addEventListener('click',()=>openLegal(b.dataset.memberLegal)));
+  document.querySelectorAll('[data-member-legal-tab]').forEach(b=>b.addEventListener('click',()=>openLegal(b.dataset.memberLegalTab)));
+})();
+</script>
+
 </body></html>
