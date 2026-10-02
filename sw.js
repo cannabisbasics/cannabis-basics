@@ -1,7 +1,7 @@
 const CACHE='cb-app-v1-20261002';
 const CORE=[
   './','./index.html','./members.html','./join.html','./offline.html','./manifest.webmanifest',
-  './assets/logo-green.webp','./assets/locator.css','./assets/locator.js','./assets/pwa.js','./assets/member-bridge.js'
+  './assets/logo-green.webp','./assets/locator.css','./assets/locator.js','./assets/pwa.js'
 ];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE.filter(Boolean))).catch(()=>null));
