@@ -24,7 +24,7 @@ let suppressMapMove=false;
 let lastMapSearchCenter=null;
 
 const milesToMeters=m=>Math.round(Number(m||10)*1609.344);
-const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#039;'}[c]));
+const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 const safeURL=v=>{if(!v)return '';try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:''}catch(e){return ''}};
 const safePhone=v=>String(v||'').replace(/[^\d+(). -]/g,'').trim();
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
