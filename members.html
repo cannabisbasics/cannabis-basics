@@ -894,6 +894,104 @@ body.light-theme #screen-log.quick-log-mode .field.log-core-emphasis{background:
   #useLastProduct{width:100%}
 }
 </style>
+
+<style id="my-products-phase-two-20261001">
+.product-summary{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 14px
+}
+.product-summary>div{
+  padding:15px 16px;border-radius:18px;
+  background:linear-gradient(145deg,rgba(24,61,34,.94),rgba(12,34,20,.96));
+  border:1px solid rgba(194,207,50,.18);box-shadow:0 14px 36px rgba(0,0,0,.22)
+}
+.product-summary span{display:block;color:#95a699;font-size:.63rem;letter-spacing:.09em;text-transform:uppercase}
+.product-summary strong{display:block;margin-top:5px;color:#f1f5ef;font:400 1.65rem/1 Georgia,"Times New Roman",serif}
+.product-paper{overflow:visible}
+.product-toolbar{
+  display:grid;grid-template-columns:minmax(220px,1fr) minmax(150px,190px) auto;gap:9px;align-items:center;margin:0 0 16px
+}
+.product-toolbar input,.product-toolbar select{
+  width:100%;border:1px solid rgba(125,255,87,.15);border-radius:13px;padding:12px 13px;
+  background:#101713;color:#dfe7e0;outline:none
+}
+.product-toolbar input:focus,.product-toolbar select:focus{border-color:rgba(194,207,50,.48);box-shadow:0 0 0 3px rgba(194,207,50,.08)}
+.product-editor{
+  margin:0 0 18px;padding:20px;border-radius:22px;
+  background:linear-gradient(145deg,rgba(18,48,27,.96),rgba(11,27,17,.98));
+  border:1px solid rgba(194,207,50,.22);box-shadow:0 18px 48px rgba(0,0,0,.3)
+}
+.product-editor[hidden]{display:none!important}
+.product-editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:15px}
+.product-editor-head h2{margin:4px 0 0;font-weight:400}
+.product-editor-kicker{color:#c2cf32;font-size:.62rem;letter-spacing:.13em;text-transform:uppercase}
+.product-favorite-field{display:flex;align-items:end;padding-bottom:8px}
+.product-favorite-field label{display:flex!important;align-items:center;gap:9px!important;text-transform:none!important;letter-spacing:0!important;color:#cbd7cd!important}
+.product-favorite-field input{width:auto!important;accent-color:#c2cf32}
+.product-history-preview{
+  display:none;margin-top:16px;padding:14px;border-radius:16px;
+  background:rgba(0,0,0,.17);border:1px solid rgba(125,255,87,.1)
+}
+.product-history-preview.on{display:block}
+.product-history-preview strong{font-weight:400;color:#eef3ed}
+.product-history-preview span{display:block;margin-top:5px;color:#91a095;font-size:.74rem;line-height:1.5}
+.product-library{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.product-card{
+  position:relative;padding:18px!important;
+  background:linear-gradient(145deg,#14261a,#0f1812)!important;
+  border-color:rgba(125,255,87,.14)!important;box-shadow:0 14px 34px rgba(0,0,0,.24)
+}
+.product-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.product-card-title{min-width:0}
+.product-card-title strong{font:400 1.16rem Georgia,"Times New Roman",serif!important}
+.product-card-title small{margin-top:4px!important}
+.product-star{
+  border:0;background:transparent;color:#78857a;font-size:1.25rem;line-height:1;cursor:pointer;padding:0
+}
+.product-star.on{color:#d8c18b}
+.product-status-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.product-status-pill{
+  padding:5px 8px;border-radius:999px;font-size:.61rem;
+  background:rgba(194,207,50,.08);border:1px solid rgba(194,207,50,.13);color:#cbd8bd
+}
+.product-status-pill.buy{background:rgba(125,255,87,.09);color:#bff2ad}
+.product-stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:13px
+}
+.product-stat{
+  padding:9px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.045)
+}
+.product-stat b{display:block;color:#eef3ed;font-weight:400;font-size:.9rem}
+.product-stat span{display:block;margin-top:2px;color:#78877b;font-size:.57rem;text-transform:uppercase;letter-spacing:.06em}
+.product-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.product-tags span{font-size:.6rem;padding:4px 7px;border-radius:999px;background:rgba(125,255,87,.055);color:#aebdaf}
+.product-card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.product-card-actions button{flex:1 1 auto}
+body.light-theme .product-summary>div{background:#f0f5e7!important;border-color:#d0dbb1!important;box-shadow:none}
+body.light-theme .product-summary span{color:#647065}
+body.light-theme .product-summary strong{color:#1c261e}
+body.light-theme .product-toolbar input,body.light-theme .product-toolbar select{background:#fff;color:#253028;border-color:#d5ddd1}
+body.light-theme .product-editor{background:#f5f8ef!important;border-color:#ced9b6!important;box-shadow:none}
+body.light-theme .product-history-preview{background:#fff;border-color:#dce2d8}
+body.light-theme .product-history-preview strong{color:#1c261e}
+body.light-theme .product-history-preview span{color:#606c62}
+body.light-theme .product-card{background:#fff!important;border-color:#d6ded1!important;box-shadow:none}
+body.light-theme .product-stat{background:#f5f7f2;border-color:#e1e6de}
+body.light-theme .product-stat b{color:#1c261e}
+body.light-theme .product-status-pill{color:#40503f;background:#eef4e8;border-color:#d7e0d0}
+@media(max-width:900px){
+  .product-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .product-toolbar{grid-template-columns:1fr 170px}
+  #addProductBtn{grid-column:1/-1}
+}
+@media(max-width:640px){
+  .product-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .product-toolbar{grid-template-columns:1fr}
+  #addProductBtn{grid-column:auto}
+  .product-library{grid-template-columns:1fr!important}
+  .product-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .product-editor{padding:16px}
+}
+</style>
 </head>
 <body><div class="member-entry-fx" id="memberEntryFx" hidden aria-hidden="true"><i></i><i></i><i></i><span>Welcome to your record book.</span></div><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -947,7 +1045,7 @@ body.light-theme #screen-log.quick-log-mode .field.log-core-emphasis{background:
     <article class="module"><h3>Session Log</h3><p>Use a 20–30 second Quick Log or open the Full Log when you want the complete record.</p><button data-go="log">Open Log →</button></article>
     <article class="module"><h3>My Inventory</h3><p>Keep a current list of products you own, amount remaining, price, and dispensary.</p><button data-go="inventory">View Inventory →</button></article>
     <article class="module"><h3>Wish List</h3><p>Save strains, products, brands, or formats you want to try next.</p><button data-go="wishlist">Open Wish List →</button></article>
-    <article class="module"><h3>Saved Products</h3><p>Build a personal product library from your Decoder results and purchases.</p><button data-go="products">My Products →</button></article>
+    <article class="module"><h3>My Products</h3><p>Your reusable product library combines saved details with what your own session history remembers.</p><button data-go="products">Open My Products →</button></article>
     <article class="module"><h3>Dispensaries</h3><p>Keep your preferred shops, addresses, notes, and what you usually buy there.</p><button data-go="dispensaries">My Stores →</button></article>
     
     <article class="module"><h3>My Insights</h3><p>See your most logged products, ratings, moods, and patterns at a glance.</p><button data-go="insights">View Insights →</button></article>
@@ -1037,7 +1135,62 @@ body.light-theme #screen-log.quick-log-mode .field.log-core-emphasis{background:
 
 <section class="screen" id="screen-inventory"><div class="eyebrow">My Inventory</div><h1>What you have on hand.</h1><p class="lede">Track products, amount remaining, purchase price, and where they came from.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Product</label><input id="invProduct" placeholder="Product or strain"></div><div class="field"><label>Amount Remaining</label><input id="invAmount" placeholder="Example: 2.5 g"></div><div class="field"><label>Dispensary</label><input id="invStore" placeholder="Store"></div></div><div class="form-actions"><button class="primary" id="addInventory">Add to Inventory</button></div><div class="records" id="inventoryList"></div></div></section>
 <section class="screen" id="screen-wishlist"><div class="eyebrow">Wish List</div><h1>What you want to try next.</h1><p class="lede">Save strains, products, brands, or formats that catch your attention.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Product / Strain</label><input id="wishProduct" placeholder="What do you want to try?"></div><div class="field"><label>Where you saw it</label><input id="wishWhere" placeholder="Dispensary, article, friend, etc."></div><div class="field"><label>Priority</label><select id="wishPriority"><option>Want to try</option><option>High priority</option><option>Someday</option></select></div></div><div class="form-actions"><button class="primary" id="addWish">Add to Wish List</button></div><div class="records" id="wishList"></div></div></section>
-<section class="screen" id="screen-products"><div class="eyebrow">Saved Products</div><h1>Your personal cannabis library.</h1><p class="lede">Products are automatically organized from your saved sessions so the things you actually use become easier to compare.</p><div class="paper"><div class="list-toolbar"><input id="productSearch" placeholder="Search saved products..."><button class="secondary" data-go="log">+ Add through a Session</button></div><div class="product-library" id="productLibrary"></div></div></section>
+<section class="screen" id="screen-products">
+  <div class="eyebrow">My Products</div>
+  <h1>Your personal cannabis library.</h1>
+  <p class="lede">One place for the products you use, save, love, skip, and want to remember. Cannabis Basics combines your saved product details with your own journal history.</p>
+
+  <div class="product-summary" aria-label="My Products summary">
+    <div><span>Total products</span><strong id="productTotal">0</strong></div>
+    <div><span>Favorites</span><strong id="productFavorites">0</strong></div>
+    <div><span>Buy again</span><strong id="productBuyAgain">0</strong></div>
+    <div><span>Sessions linked</span><strong id="productLinkedSessions">0</strong></div>
+  </div>
+
+  <div class="paper product-paper">
+    <div class="product-toolbar">
+      <input id="productSearch" placeholder="Search products, brands, dispensaries...">
+      <select id="productFilter" aria-label="Filter My Products">
+        <option value="all">All products</option>
+        <option value="favorites">Favorites</option>
+        <option value="buy-again">Buy Again</option>
+        <option value="in-stash">In Stash</option>
+        <option value="finished">Finished</option>
+      </select>
+      <button class="primary" type="button" id="addProductBtn">+ Add Product</button>
+    </div>
+
+    <div class="product-editor" id="productEditor" hidden>
+      <div class="product-editor-head">
+        <div><span class="product-editor-kicker">Product Profile</span><h2 id="productEditorTitle">Add Product</h2></div>
+        <button class="tiny" type="button" id="closeProductEditor">Close</button>
+      </div>
+      <div class="form-grid">
+        <div class="field full"><label>Product / Strain</label><input id="productName" placeholder="Product or strain name"></div>
+        <div class="field"><label>Brand</label><input id="productBrand" placeholder="Optional brand"></div>
+        <div class="field"><label>Product Type</label><select id="productType"><option>Flower</option><option>Pre-roll</option><option>Vape</option><option>Edible</option><option>Beverage</option><option>Concentrate</option><option>Tincture / Oil</option><option>Topical</option><option>Other</option></select></div>
+        <div class="field"><label>Status</label><select id="productStatus"><option>Saved</option><option>In Stash</option><option>Finished</option><option>Want Again</option></select></div>
+        <div class="field"><label>THC</label><input id="productTHC" placeholder="Optional"></div>
+        <div class="field"><label>CBD</label><input id="productCBD" placeholder="Optional"></div>
+        <div class="field"><label>Amount / Package</label><input id="productAmount" placeholder="Optional"></div>
+        <div class="field"><label>Dispensary</label><input id="productDispensary" placeholder="Optional"></div>
+        <div class="field"><label>Price Paid</label><input id="productPrice" placeholder="Optional"></div>
+        <div class="field"><label>Purchase Date</label><input id="productPurchaseDate" type="date"></div>
+        <div class="field"><label>Buy Again?</label><select id="productBuyAgainField"><option value="">Not decided</option><option>Yes</option><option>Maybe</option><option>No</option></select></div>
+        <div class="field product-favorite-field"><label><input id="productFavoriteField" type="checkbox"> Favorite product</label></div>
+        <div class="field full"><label>Product Notes</label><textarea id="productNotes" placeholder="What do you want to remember about this product?"></textarea></div>
+      </div>
+      <div class="product-history-preview" id="productHistoryPreview"></div>
+      <div class="form-actions">
+        <button class="primary" type="button" id="saveProductBtn">Save Product</button>
+        <button class="secondary" type="button" id="logProductBtn">Quick Log This Product</button>
+        <button class="secondary danger-button" type="button" id="deleteProductBtn" hidden>Remove Saved Details</button>
+      </div>
+    </div>
+
+    <div class="product-library" id="productLibrary"></div>
+  </div>
+</section>
 <section class="screen" id="screen-dispensaries"><div class="eyebrow">Saved Dispensaries</div><h1>Your stores and locations.</h1><p class="lede">Keep the places you trust, along with notes about products, pricing, service, and what you usually buy there.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Dispensary Name</label><input id="storeName" placeholder="Dispensary"></div><div class="field"><label>Location</label><input id="storeLocation" placeholder="City / State"></div><div class="field"><label>Notes</label><input id="storeNotes" placeholder="What do you like about it?"></div></div><div class="form-actions"><button class="primary" id="addStore">Save Dispensary</button><a class="secondary" href="index.html#locator">Use Public Locator</a></div><div id="storeList"></div></div></section>
 <section class="screen" id="screen-favorites"><div class="eyebrow">Favorites</div><h1>The ones worth remembering.</h1><p class="lede">Products rated highly in your session history can be promoted into a clean favorites list.</p><div class="paper"><div class="records" id="favoritesList"></div></div></section>
 <section class="screen" id="screen-insights">
@@ -1127,7 +1280,7 @@ body.light-theme #screen-log.quick-log-mode .field.log-core-emphasis{background:
 </main>
 </div>
 <script>
-const navItems=[['account','⚙','Profile'],['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','Saved Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library']];
+const navItems=[['account','⚙','Profile'],['dashboard','⌂','Dashboard'],['log','✎','Session Log'],['inventory','▦','Inventory'],['wishlist','♡','Wish List'],['products','◫','My Products'],['dispensaries','⌖','Dispensaries'],['favorites','★','Favorites'],['insights','◉','My Insights'],['deals','✦','Member Deals'],['pdf','▤','PDF Library']];
 const side=document.getElementById('sideNav'),mobile=document.getElementById('mobileNav');
 navItems.forEach(([id,ico,label])=>{const b=document.createElement('button');b.className='nav-btn'+(id==='dashboard'?' active':'');b.dataset.go=id;b.innerHTML=`<span class="ico">${ico}</span><span>${label}</span>`;side.appendChild(b);const m=document.createElement('button');m.textContent=label;m.dataset.go=id;if(id==='dashboard')m.classList.add('active');mobile.appendChild(m)});
 
@@ -1399,19 +1552,218 @@ function countBy(items,fn){
   const m=new Map();items.forEach(x=>{const k=fn(x);if(k)m.set(k,(m.get(k)||0)+1)});
   return [...m.entries()].sort((a,b)=>b[1]-a[1]);
 }
-function renderProducts(sessions){
-  const q=(productSearch?.value||'').trim().toLowerCase();
+let editingProductId=null;
+
+function normalizeProductName(name){return (name||'').trim().toLowerCase()}
+function productSessionGroups(sessions,savedProducts){
   const groups=new Map();
-  sessions.forEach(o=>{
-    const name=(o.product||'').trim();if(!name)return;
-    const key=name.toLowerCase();
-    if(!groups.has(key))groups.set(key,{name,count:0,ratings:[],type:o.type||'',lastEmoji:'🌿',lastDate:''});
-    const g=groups.get(key);g.count++;if(Number(o.rating))g.ratings.push(Number(o.rating));g.type=o.type||g.type;g.lastEmoji=sessionEmoji(o);g.lastDate=o.date||g.lastDate;
+  const ensure=(name)=>{
+    const key=normalizeProductName(name);if(!key)return null;
+    if(!groups.has(key))groups.set(key,{
+      key,name:(name||'').trim(),saved:null,count:0,ratings:[],lastDate:'',lastEmoji:'🌿',
+      latest:null,tags:new Map(),buyAgainYes:0,buyAgainNo:0
+    });
+    return groups.get(key);
+  };
+  (savedProducts||[]).forEach(p=>{const g=ensure(p.name);if(g){g.saved=p;g.name=p.name||g.name}});
+  (sessions||[]).forEach(o=>{
+    const g=ensure(o.product);if(!g)return;
+    g.count++;
+    if(Number(o.rating))g.ratings.push(Number(o.rating));
+    if(o.wouldUseAgain==='Yes')g.buyAgainYes++;
+    if(o.wouldUseAgain==='No')g.buyAgainNo++;
+    [...(o.experienceTags||[]),...(o.desired||[])].forEach(tag=>{
+      if(tag)g.tags.set(tag,(g.tags.get(tag)||0)+1);
+    });
+    if(!g.latest || String(o.date||'')>=String(g.latest.date||''))g.latest=o;
+    if(o.date&&(!g.lastDate||o.date>=g.lastDate)){g.lastDate=o.date;g.lastEmoji=sessionEmoji(o)}
   });
-  let list=[...groups.values()].filter(g=>!q||g.name.toLowerCase().includes(q)).sort((a,b)=>b.count-a.count);
-  productLibrary.innerHTML=list.length?list.map(g=>{const avg=g.ratings.length?(g.ratings.reduce((a,b)=>a+b,0)/g.ratings.length).toFixed(1):'—';return `<div class="product-card"><strong>${esc(g.lastEmoji)} ${esc(g.name)}</strong><small>${esc(g.type)} • Last logged ${esc(g.lastDate||'—')}</small><div class="product-meta"><span>${g.count} session${g.count===1?'':'s'}</span><span>Avg ${avg}/5</span></div></div>`}).join(''):'<div class="empty">Your product library builds automatically as you save sessions.</div>';
+  return [...groups.values()].map(g=>{
+    const p=g.saved||{};
+    const latest=g.latest||{};
+    const avg=g.ratings.length?(g.ratings.reduce((a,b)=>a+b,0)/g.ratings.length):0;
+    const topTags=[...g.tags.entries()].sort((a,b)=>b[1]-a[1]).slice(0,3).map(x=>x[0]);
+    return {...g,
+      avg,
+      topTags,
+      brand:p.brand||'',
+      type:p.type||latest.type||'',
+      thc:p.thc||latest.thc||'',
+      cbd:p.cbd||latest.cbd||'',
+      amount:p.amount||latest.amount||'',
+      dispensary:p.dispensary||latest.dispensary||'',
+      price:p.price||latest.cost||'',
+      purchaseDate:p.purchaseDate||'',
+      buyAgain:p.buyAgain||latest.wouldUseAgain||'',
+      status:p.status||'Saved',
+      notes:p.notes||'',
+      favorite:!!p.favorite
+    };
+  });
+}
+function getProductGroupByKey(key){
+  return productSessionGroups(load('cb_sessions'),load('cb_products')).find(g=>g.key===key);
+}
+function resetProductEditor(){
+  editingProductId=null;
+  productName.value='';productBrand.value='';productType.value='Flower';productStatus.value='Saved';
+  productTHC.value='';productCBD.value='';productAmount.value='';productDispensary.value='';
+  productPrice.value='';productPurchaseDate.value='';productBuyAgainField.value='';productFavoriteField.checked=false;productNotes.value='';
+  productEditorTitle.textContent='Add Product';deleteProductBtn.hidden=true;productHistoryPreview.classList.remove('on');productHistoryPreview.innerHTML='';
+}
+function showProductEditor(group=null){
+  resetProductEditor();
+  if(group){
+    const p=group.saved||{};
+    editingProductId=p.id||null;
+    productName.value=group.name||'';
+    productBrand.value=group.brand||'';
+    productType.value=group.type||'Flower';
+    productStatus.value=group.status||'Saved';
+    productTHC.value=group.thc||'';
+    productCBD.value=group.cbd||'';
+    productAmount.value=group.amount||'';
+    productDispensary.value=group.dispensary||'';
+    productPrice.value=group.price||'';
+    productPurchaseDate.value=group.purchaseDate||'';
+    productBuyAgainField.value=group.buyAgain||'';
+    productFavoriteField.checked=!!group.favorite;
+    productNotes.value=group.notes||'';
+    productEditorTitle.textContent=group.name||'Product Profile';
+    deleteProductBtn.hidden=!group.saved;
+    if(group.count){
+      const avg=group.avg?group.avg.toFixed(1)+'/5':'Unrated';
+      productHistoryPreview.classList.add('on');
+      productHistoryPreview.innerHTML='<strong>Your journal remembers '+group.count+' session'+(group.count===1?'':'s')+'.</strong><span>Average rating: '+esc(avg)+' • Last logged: '+esc(group.lastDate||'—')+(group.topTags.length?' • Common tags: '+group.topTags.map(esc).join(', '):'')+'</span>';
+    }
+  }
+  productEditor.hidden=false;
+  productEditor.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function productDraft(){
+  return {
+    id:editingProductId||Date.now(),
+    name:productName.value.trim(),
+    brand:productBrand.value.trim(),
+    type:productType.value,
+    status:productStatus.value,
+    thc:productTHC.value.trim(),
+    cbd:productCBD.value.trim(),
+    amount:productAmount.value.trim(),
+    dispensary:productDispensary.value.trim(),
+    price:productPrice.value.trim(),
+    purchaseDate:productPurchaseDate.value,
+    buyAgain:productBuyAgainField.value,
+    favorite:!!productFavoriteField.checked,
+    notes:productNotes.value.trim()
+  };
+}
+function saveProductRecord(){
+  const p=productDraft();
+  if(!p.name){productName.focus();toast('Add a product or strain name first.');return null}
+  const arr=load('cb_products');
+  const sameNameIndex=arr.findIndex(x=>normalizeProductName(x.name)===normalizeProductName(p.name));
+  const idIndex=arr.findIndex(x=>String(x.id)===String(editingProductId));
+  const i=idIndex>=0?idIndex:sameNameIndex;
+  if(i>=0){p.id=arr[i].id;arr[i]=p}else arr.unshift(p);
+  save('cb_products',arr);
+  editingProductId=p.id;
+  deleteProductBtn.hidden=false;
+  productEditorTitle.textContent=p.name;
+  renderAll();toast('Product saved to My Products.');
+  return p;
+}
+function prefillLogFromProduct(group){
+  if(!group)return;
+  clearForm();
+  setLogMode('quick');
+  logProduct.value=group.name||'';
+  logType.value=group.type||'Flower';
+  logVariety.value=group.latest?.variety||'Not sure';
+  logTHC.value=group.thc||'';
+  logCBD.value=group.cbd||'';
+  logAmount.value=group.amount||'Not sure';
+  logDispensary.value=group.dispensary||'';
+  logTerpenes.value=group.latest?.terpenes||'';
+  go('log');
+  toast('Product loaded into Quick Log.');
+}
+function renderProducts(sessions){
+  const saved=load('cb_products');
+  const q=(productSearch?.value||'').trim().toLowerCase();
+  const filter=productFilter?.value||'all';
+  let list=productSessionGroups(sessions,saved);
+  list=list.filter(g=>{
+    const hay=[g.name,g.brand,g.type,g.dispensary,g.status,g.notes,...g.topTags].join(' ').toLowerCase();
+    if(q&&!hay.includes(q))return false;
+    if(filter==='favorites'&&!g.favorite)return false;
+    if(filter==='buy-again'&&g.buyAgain!=='Yes'&&g.status!=='Want Again')return false;
+    if(filter==='in-stash'&&g.status!=='In Stash')return false;
+    if(filter==='finished'&&g.status!=='Finished')return false;
+    return true;
+  }).sort((a,b)=>(Number(b.favorite)-Number(a.favorite))||(b.count-a.count)||a.name.localeCompare(b.name));
+
+  const allGroups=productSessionGroups(sessions,saved);
+  productTotal.textContent=allGroups.length;
+  productFavorites.textContent=allGroups.filter(g=>g.favorite).length;
+  productBuyAgain.textContent=allGroups.filter(g=>g.buyAgain==='Yes'||g.status==='Want Again').length;
+  productLinkedSessions.textContent=sessions.length;
+
+  productLibrary.innerHTML=list.length?list.map(g=>{
+    const avg=g.avg?g.avg.toFixed(1):'—';
+    const savedLabel=g.saved?'Saved profile':'From journal';
+    const brandLine=g.brand?esc(g.brand)+' • ':'';
+    return '<article class="product-card">'+
+      '<div class="product-card-head"><div class="product-card-title"><strong>'+esc(g.lastEmoji)+' '+esc(g.name)+'</strong><small>'+brandLine+esc(g.type||'Product')+' • '+esc(savedLabel)+'</small></div>'+
+      '<button type="button" class="product-star '+(g.favorite?'on':'')+'" data-product-favorite="'+esc(g.key)+'" aria-label="Toggle favorite">'+(g.favorite?'★':'☆')+'</button></div>'+
+      '<div class="product-status-row"><span class="product-status-pill">'+esc(g.status||'Saved')+'</span>'+
+      (g.buyAgain?'<span class="product-status-pill '+(g.buyAgain==='Yes'?'buy':'')+'">Buy again: '+esc(g.buyAgain)+'</span>':'')+
+      (g.dispensary?'<span class="product-status-pill">'+esc(g.dispensary)+'</span>':'')+'</div>'+
+      '<div class="product-stats"><div class="product-stat"><b>'+g.count+'</b><span>Sessions</span></div><div class="product-stat"><b>'+esc(avg)+'</b><span>Avg rating</span></div><div class="product-stat"><b>'+esc(g.lastDate||'—')+'</b><span>Last used</span></div></div>'+
+      (g.topTags.length?'<div class="product-tags">'+g.topTags.map(t=>'<span>'+esc(t)+'</span>').join('')+'</div>':'')+
+      '<div class="product-card-actions"><button class="tiny" type="button" data-product-open="'+esc(g.key)+'">Open Profile</button><button class="tiny" type="button" data-product-log="'+esc(g.key)+'">Quick Log</button></div>'+
+    '</article>';
+  }).join(''):'<div class="empty">No products match this view yet. Add one directly, or save a session and Cannabis Basics will build the library automatically.</div>';
 }
 productSearch?.addEventListener('input',()=>renderProducts(load('cb_sessions')));
+productFilter?.addEventListener('change',()=>renderProducts(load('cb_sessions')));
+addProductBtn?.addEventListener('click',()=>showProductEditor());
+closeProductEditor?.addEventListener('click',()=>{productEditor.hidden=true;resetProductEditor()});
+saveProductBtn?.addEventListener('click',saveProductRecord);
+logProductBtn?.addEventListener('click',()=>{
+  let g;
+  const draft=productDraft();
+  if(draft.name){
+    const saved=load('cb_products');
+    g=productSessionGroups(load('cb_sessions'),saved).find(x=>normalizeProductName(x.name)===normalizeProductName(draft.name));
+    if(!g)g={...draft,key:normalizeProductName(draft.name),latest:null};
+  }
+  if(g)prefillLogFromProduct(g);else toast('Add a product name first.');
+});
+deleteProductBtn?.addEventListener('click',()=>{
+  if(!editingProductId)return;
+  if(!confirm('Remove the saved product details? Your session history will remain and can still rebuild this product in My Products.'))return;
+  save('cb_products',load('cb_products').filter(x=>String(x.id)!==String(editingProductId)));
+  productEditor.hidden=true;resetProductEditor();renderAll();toast('Saved product details removed. Session history was kept.');
+});
+
+document.addEventListener('click',e=>{
+  const open=e.target.closest('[data-product-open]');
+  if(open){const g=getProductGroupByKey(open.dataset.productOpen);if(g)showProductEditor(g)}
+  const log=e.target.closest('[data-product-log]');
+  if(log){const g=getProductGroupByKey(log.dataset.productLog);if(g)prefillLogFromProduct(g)}
+  const fav=e.target.closest('[data-product-favorite]');
+  if(fav){
+    const g=getProductGroupByKey(fav.dataset.productFavorite);if(!g)return;
+    const arr=load('cb_products');
+    let p=arr.find(x=>normalizeProductName(x.name)===g.key);
+    if(!p){
+      p={id:Date.now(),name:g.name,brand:g.brand||'',type:g.type||'',status:g.status||'Saved',thc:g.thc||'',cbd:g.cbd||'',amount:g.amount||'',dispensary:g.dispensary||'',price:g.price||'',purchaseDate:g.purchaseDate||'',buyAgain:g.buyAgain||'',notes:g.notes||'',favorite:true};
+      arr.unshift(p);
+    }else p.favorite=!p.favorite;
+    save('cb_products',arr);renderAll();toast(p.favorite?'Product added to favorites.':'Product removed from favorites.');
+  }
+});
 
 function renderInsights(sessions){
   const rated=sessions.filter(x=>Number(x.rating)>0);
@@ -1543,18 +1895,18 @@ function renderAll(){
 }
 
 exportMemberData?.addEventListener('click',()=>{
-  const data={version:2,exportedAt:new Date().toISOString(),profile:loadProfile(),sessions:load('cb_sessions'),inventory:load('cb_inventory'),wishlist:load('cb_wishlist'),stores:load('cb_stores')};
+  const data={version:3,exportedAt:new Date().toISOString(),profile:loadProfile(),sessions:load('cb_sessions'),inventory:load('cb_inventory'),wishlist:load('cb_wishlist'),products:load('cb_products'),stores:load('cb_stores')};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Cannabis-Basics-Member-Backup.json';a.click();URL.revokeObjectURL(url);backupStatus.textContent='Backup downloaded.';toast('Member backup created.');
 });
 importMemberData?.addEventListener('click',()=>importMemberFile.click());
 importMemberFile?.addEventListener('change',async()=>{
   const file=importMemberFile.files?.[0];if(!file)return;
-  try{const data=JSON.parse(await file.text());if(data.profile&&typeof data.profile==='object')saveProfile(data.profile);if(Array.isArray(data.sessions))save('cb_sessions',data.sessions);if(Array.isArray(data.inventory))save('cb_inventory',data.inventory);if(Array.isArray(data.wishlist))save('cb_wishlist',data.wishlist);if(Array.isArray(data.stores))save('cb_stores',data.stores);backupStatus.textContent='Backup imported successfully.';renderAll();toast('Member backup restored.')}catch(e){backupStatus.textContent='That file could not be imported.'}
+  try{const data=JSON.parse(await file.text());if(data.profile&&typeof data.profile==='object')saveProfile(data.profile);if(Array.isArray(data.sessions))save('cb_sessions',data.sessions);if(Array.isArray(data.inventory))save('cb_inventory',data.inventory);if(Array.isArray(data.wishlist))save('cb_wishlist',data.wishlist);if(Array.isArray(data.products))save('cb_products',data.products);if(Array.isArray(data.stores))save('cb_stores',data.stores);backupStatus.textContent='Backup imported successfully.';renderAll();toast('Member backup restored.')}catch(e){backupStatus.textContent='That file could not be imported.'}
   importMemberFile.value='';
 });
 clearMemberData?.addEventListener('click',()=>{
   if(!confirm('Clear the local cached copy on this device? Your secure cloud records will remain available and can reload after sign-in.'))return;
-  ['cb_sessions','cb_inventory','cb_wishlist','cb_stores'].forEach(k=>localStorage.removeItem(k));clearForm();renderAll();backupStatus.textContent='Local cache cleared. Cloud records remain in your account.';toast('Local cache cleared.');
+  ['cb_sessions','cb_inventory','cb_wishlist','cb_products','cb_stores'].forEach(k=>localStorage.removeItem(k));clearForm();renderAll();backupStatus.textContent='Local cache cleared. Cloud records remain in your account.';toast('Local cache cleared.');
 });
 
 updatePDF({});renderAll();
@@ -1649,7 +2001,7 @@ const SUPABASE_KEY='sb_publishable_7yLj43nCOjMAZ4BXHehGSw_V9D_8F4Q';
 const sb=createClient(SUPABASE_URL,SUPABASE_KEY);
 window.cbSupabase=sb;
 
-const MEMBER_CACHE_KEYS=['cb_member_profile','cb_sessions','cb_inventory','cb_wishlist','cb_stores','cb_cloud_migrated'];
+const MEMBER_CACHE_KEYS=['cb_member_profile','cb_sessions','cb_inventory','cb_wishlist','cb_products','cb_stores','cb_cloud_migrated'];
 function clearMemberCache(){
   MEMBER_CACHE_KEYS.forEach(k=>localStorage.removeItem(k));
 }
@@ -1716,6 +2068,20 @@ const maps={
     toRow:o=>({user_id:user().id,client_id:String(o.id??Date.now()),product:o.product||'',priority:o.priority||null,source:o.where||o.source||null,notes:o.notes||null}),
     fromRow:r=>({id:r.client_id||r.id,product:r.product||'',priority:r.priority||'',where:r.source||'',notes:r.notes||''})
   },
+  cb_products:{
+    table:'saved_products',
+    toRow:o=>({
+      user_id:user().id,client_id:String(o.id??Date.now()),product_name:o.name||'',product_type:o.type||null,
+      brand:o.brand||null,notes:o.notes||null,favorite:!!o.favorite,thc:o.thc||null,cbd:o.cbd||null,
+      dispensary:o.dispensary||null,price:o.price||null,purchase_date:o.purchaseDate||null,amount:o.amount||null,
+      buy_again:o.buyAgain||null,status:o.status||'Saved'
+    }),
+    fromRow:r=>({
+      id:r.client_id||r.id,name:r.product_name||'',type:r.product_type||'',brand:r.brand||'',notes:r.notes||'',
+      favorite:!!r.favorite,thc:r.thc||'',cbd:r.cbd||'',dispensary:r.dispensary||'',price:r.price||'',
+      purchaseDate:r.purchase_date||'',amount:r.amount||'',buyAgain:r.buy_again||'',status:r.status||'Saved'
+    })
+  },
   cb_stores:{
     table:'dispensaries',
     toRow:o=>({user_id:user().id,client_id:String(o.id??Date.now()),name:o.name||'',location:o.location||null,notes:o.notes||null,favorite:!!o.favorite}),
@@ -1773,15 +2139,16 @@ window.cbCloudRemoveAvatar=async()=>{
 
 async function loadCloud(){
   setCloudStatus('Loading your secure account…');
-  const [profileRes,membershipRes,sessionsRes,inventoryRes,wishRes,storesRes]=await Promise.all([
+  const [profileRes,membershipRes,sessionsRes,inventoryRes,wishRes,productsRes,storesRes]=await Promise.all([
     sb.from('profiles').select('*').eq('id',user().id).single(),
     sb.from('memberships').select('*').eq('user_id',user().id).single(),
     sb.from('sessions').select('*').eq('user_id',user().id).order('created_at',{ascending:false}),
     sb.from('inventory').select('*').eq('user_id',user().id).order('created_at',{ascending:false}),
     sb.from('wishlist').select('*').eq('user_id',user().id).order('created_at',{ascending:false}),
+    sb.from('saved_products').select('*').eq('user_id',user().id).order('created_at',{ascending:false}),
     sb.from('dispensaries').select('*').eq('user_id',user().id).order('created_at',{ascending:false})
   ]);
-  const fatal=[profileRes,membershipRes,sessionsRes,inventoryRes,wishRes,storesRes].find(x=>x.error);
+  const fatal=[profileRes,membershipRes,sessionsRes,inventoryRes,wishRes,productsRes,storesRes].find(x=>x.error);
   if(fatal?.error)throw fatal.error;
 
   let photo='';
@@ -1798,6 +2165,7 @@ async function loadCloud(){
   rawSet('cb_sessions',(sessionsRes.data||[]).map(maps.cb_sessions.fromRow));
   rawSet('cb_inventory',(inventoryRes.data||[]).map(maps.cb_inventory.fromRow));
   rawSet('cb_wishlist',(wishRes.data||[]).map(maps.cb_wishlist.fromRow));
+  rawSet('cb_products',(productsRes.data||[]).map(maps.cb_products.fromRow));
   rawSet('cb_stores',(storesRes.data||[]).map(maps.cb_stores.fromRow));
 
   const membership=membershipRes.data;
