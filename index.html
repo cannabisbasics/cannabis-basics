@@ -3732,7 +3732,7 @@ if(heroVideo && heroPlayBtn){
 const contactForm=document.getElementById('contactForm');
 const contactStatus=document.getElementById('contactStatus');
 if(contactForm && contactStatus){
-  contactForm.addEventListener('submit',e=>{e.preventDefault();const fields=['contactName','contactEmail','contactMessage'].map(id=>document.getElementById(id));const message=fields.map(el=>el?.value?.trim()).filter(Boolean).join(' — ');try{localStorage.setItem('cb_contact_draft',message)}catch(err){}contactStatus.textContent='Your message is saved on this device for this visit. Cannabis Basics will add direct message delivery before public contact submissions are accepted.';});
+  contactForm.addEventListener('submit',e=>{e.preventDefault();const fields=['contactName','contactEmail','contactMessage'].map(id=>document.getElementById(id));const message=fields.map(el=>el?.value?.trim()).filter(Boolean).join(' — ');try{localStorage.setItem('cb_contact_draft',message)}catch(err){}contactStatus.textContent='Your message is saved on this device. Direct online contact delivery is not currently available.';});
 }
 
 </script>
