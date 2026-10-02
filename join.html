@@ -139,6 +139,7 @@ let mode='signup';
 
 const params=new URLSearchParams(location.search);
 if(params.get('signin')==='1')mode='signin';
+const returnTarget=params.get('return')==='locator-save'?'locator-save':'';
 const carriedEmail=params.get('email');
 if(carriedEmail)emailInput.value=carriedEmail;
 
@@ -194,7 +195,8 @@ function enterMemberSpace(){
   successSound();
   authTransition?.classList.add('on');
   sessionStorage.setItem('cb_member_entry_fx','1');
-  setTimeout(()=>{location.href='members.html'},900);
+  const destination=returnTarget==='locator-save'?'index.html#locator':'members.html';
+  setTimeout(()=>{location.href=destination},900);
 }
 const { data:{ session } }=await supabase.auth.getSession();
 if(session){
@@ -213,7 +215,7 @@ form.addEventListener('submit',async e=>{
     if(mode==='signup'){
       const {data,error}=await supabase.auth.signUp({
         email,password,
-        options:{emailRedirectTo:'https://cannabisbasics.github.io/cannabis-basics/join.html?confirmed=1'}
+        options:{emailRedirectTo:'https://cannabisbasics.github.io/cannabis-basics/join.html?confirmed=1'+(returnTarget?'&return='+encodeURIComponent(returnTarget):'')}
       });
       if(error)throw error;
       if(data.session){
