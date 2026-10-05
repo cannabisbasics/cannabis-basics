@@ -1097,6 +1097,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
 .pdf-report-grid .primary{grid-column:1/-1}
 @media(max-width:620px){.member-store-toolbar,.pdf-report-grid{grid-template-columns:1fr}.pdf-report-grid .primary{grid-column:auto}}
 </style>
+<style id="member-admin-link-style">.admin-top-link{display:inline-flex;align-items:center;padding:7px 10px;border-radius:999px;border:1px solid rgba(194,207,50,.24);color:#dfe88d;text-decoration:none;font-size:.68rem}.admin-top-link[hidden]{display:none!important}body.light-theme .admin-top-link{color:#3d5312;border-color:#9dab57}</style>
 </head>
 <body><div class="member-entry-fx" id="memberEntryFx" hidden aria-hidden="true"><i></i><i></i><i></i><span>Welcome to your record book.</span></div><div class="site-bg" aria-hidden="true"></div>
 <div class="page-art" aria-hidden="true">
@@ -1110,6 +1111,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
   </a>
   <div class="public-top-actions">
     <button class="music-btn" id="musicBtn" type="button" aria-label="Turn music on" aria-pressed="false" title="Turn music on"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
+    <a class="admin-top-link" id="adminDashboardLink" href="admin.html" hidden>Admin</a>
     <button class="theme-text-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">Light</button>
   </div>
 </header>
@@ -2444,6 +2446,11 @@ if(!session){
   }
   localStorage.setItem('cb_cache_user_id',session.user.id);
   window.cbUser=session.user;
+  try{
+    const {data:adminRow}=await sb.from('admin_users').select('role').eq('user_id',session.user.id).maybeSingle();
+    const adminLink=document.getElementById('adminDashboardLink');
+    if(adminRow&&adminLink)adminLink.hidden=false;
+  }catch(_){}
 }
 
 const user=()=>window.cbUser;
