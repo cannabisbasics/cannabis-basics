@@ -163,3 +163,19 @@ if(await adminReady()){
     updateAlerts();
   }catch(err){console.error('Admin controls',err);status('settingsStatus','One or more admin controls could not load.',true)}
 }
+
+
+async function refreshLeadRows(){
+  const {data,error}=await sb.from('email_leads').select('*').order('created_at',{ascending:false}).limit(500);
+  if(error||!document.getElementById('leadRows'))return;
+  const rows=data||[];
+  document.getElementById('leadRows').innerHTML=rows.map(x=>'<tr data-lead-row="'+esc(x.id)+'"><td>'+esc(x.email)+'</td><td>'+esc(x.source||'—')+'<small>'+(x.marketing_consent?'Marketing opt-in recorded':'Resource request only')+'</small></td><td><span class="badge">'+esc(x.status||'new')+'</span></td><td>'+fmt(x.created_at)+'</td><td><div class="inbox-actions">'+((x.status||'new')!=='contacted'?'<button class="tiny" data-lead-status="contacted" data-id="'+esc(x.id)+'">Mark Contacted</button>':'')+((x.status||'new')!=='archived'?'<button class="tiny archive" data-lead-status="archived" data-id="'+esc(x.id)+'">Archive</button>':'')+'</div></td></tr>').join('');
+  document.getElementById('emptyLeads')?.classList.toggle('hidden',rows.length>0);
+}
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-lead-status]');if(!b)return;
+  b.disabled=true;
+  const {error}=await sb.from('email_leads').update({status:b.dataset.leadStatus}).eq('id',b.dataset.id);
+  if(error){b.disabled=false;alert('Lead status could not be updated.');return}
+  await refreshLeadRows();
+});
