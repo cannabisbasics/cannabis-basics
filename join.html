@@ -145,6 +145,7 @@ let mode='signup';
 const params=new URLSearchParams(location.search);
 if(params.get('signin')==='1')mode='signin';
 const returnTarget=['locator-save','decoder-product','decoder-log'].includes(params.get('return'))?params.get('return'):'';
+const nextAdmin=params.get('next')==='admin';
 const carriedEmail=params.get('email');
 if(carriedEmail)emailInput.value=carriedEmail;
 
@@ -200,7 +201,7 @@ function enterMemberSpace(){
   successSound();
   authTransition?.classList.add('on');
   sessionStorage.setItem('cb_member_entry_fx','1');
-  const destination=returnTarget==='locator-save'?'index.html#locator':(returnTarget==='decoder-product'?'members.html?screen=products&from=decoder':(returnTarget==='decoder-log'?'members.html?screen=log&from=decoder':'members.html'));
+  const destination=nextAdmin?'admin.html':(returnTarget==='locator-save'?'index.html#locator':(returnTarget==='decoder-product'?'members.html?screen=products&from=decoder':(returnTarget==='decoder-log'?'members.html?screen=log&from=decoder':'members.html')));
   setTimeout(()=>{location.href=destination},900);
 }
 const { data:{ session } }=await supabase.auth.getSession();
