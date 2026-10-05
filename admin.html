@@ -89,6 +89,23 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
       <div class="chart" id="activityChart"></div><div class="chart-legend">Each bar combines page views, Decoder runs, Locator searches, join opens, and member opens recorded that day.</div>
     </section>
 
+    <section class="section" id="launchReadiness">
+      <div class="section-head"><div><h2>Launch Readiness</h2><div class="section-sub">Built items versus intentional later settings. This is the handoff checklist for the final signup/device-review pass.</div></div><span class="badge">Free-stack build status</span></div>
+      <div class="readiness-grid">
+        <div class="readiness-item complete" data-readiness="admin"><div class="readiness-icon">✓</div><div><strong>Private Admin control center</strong><span>Owner access, reporting, settings, deals, announcements, catalog controls, and CRM-style lead/message management are built.</span></div></div>
+        <div class="readiness-item complete" data-readiness="member-data"><div class="readiness-icon">✓</div><div><strong>Member accounts & personal records</strong><span>Cloud sync, member-owned RLS, export/import, printable reports, and account deletion are built.</span></div></div>
+        <div class="readiness-item complete" data-readiness="pwa"><div class="readiness-icon">✓</div><div><strong>Installable PWA/app shell</strong><span>Manifest, service worker, offline fallback, install flow, shortcuts, and cache refresh behavior are built.</span></div></div>
+        <div class="readiness-item complete" data-readiness="forms"><div class="readiness-icon">✓</div><div><strong>Free-resource & contact capture</strong><span>Submissions store in the existing Supabase project; public visitors cannot read the submission tables.</span></div></div>
+        <div class="readiness-item complete" data-readiness="catalog"><div class="readiness-icon">✓</div><div><strong>Maryland dispensary foundation</strong><span id="readinessCatalogText">Managed catalog and official public-data source are connected.</span></div></div>
+        <div class="readiness-item manual" data-readiness="password"><div class="readiness-icon">!</div><div><strong>Leaked-password protection</strong><span>Later one-time Supabase Auth setting: enable compromised-password protection. No purchase is required.</span></div></div>
+        <div class="readiness-item manual" data-readiness="email"><div class="readiness-icon">→</div><div><strong>Broadcast email/newsletters</strong><span>Not connected by design. Leads are safely collected now; choose a free broadcast option later only when you actually need to send campaigns.</span></div></div>
+        <div class="readiness-item manual" data-readiness="payments"><div class="readiness-icon">→</div><div><strong>Payments</strong><span>Not connected by design while founding access remains free. Stripe/PayPal can wait until Cannabis Basics is ready to collect money.</span></div></div>
+        <div class="readiness-item pending" data-readiness="device"><div class="readiness-icon">○</div><div><strong>Real-device acceptance test</strong><span>Later human check: install on phone, run Join → Members → Locator → Admin on actual devices, and correct anything visual in one pass.</span></div></div>
+        <div class="readiness-item pending" data-readiness="final-review"><div class="readiness-icon">○</div><div><strong>Final public/legal/content acceptance</strong><span>Later human review of final copy, legal pages, offer wording, affiliate disclosures, and launch presentation before broad promotion.</span></div></div>
+      </div>
+      <div class="readiness-note"><strong>No new paid service is required for the items marked complete.</strong> The manual items are intentionally deferred rather than technical blockers.</div>
+    </section>
+
     <section class="section" id="messagesSection">
       <div class="section-head"><div><h2>Contact Inbox</h2><div class="section-sub">Read, resolve, archive, or reply using your normal email app.</div></div><div class="section-actions"><select class="select" id="messageFilter" aria-label="Filter contact messages"><option value="all">All messages</option><option value="new">New</option><option value="read">Read</option><option value="resolved">Resolved</option><option value="archived">Archived</option></select><button class="btn" id="exportContacts">Export CSV</button></div></div>
       <div class="inbox-list" id="contactInbox"><div class="empty">No contact messages yet.</div></div>
