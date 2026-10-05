@@ -116,6 +116,7 @@ function filterCatalog(){
 }
 function renderCatalog(){
   const list=filterCatalog();
+  const readinessCatalogText=$('readinessCatalogText');if(readinessCatalogText)readinessCatalogText.textContent=catalog.filter(x=>x.active).length+' active managed locations plus the official Maryland public-data source are connected.';
   $('catalogList').innerHTML=list.length?list.map(x=>'<div class="catalog-row"><div><strong>'+esc(x.name)+'</strong><small>'+esc(x.address||'')+'</small></div><div class="catalog-secondary"><span>'+esc([x.city,x.county].filter(Boolean).join(' · ')||'Maryland')+'</span><small>'+esc(x.postal_code||'')+'</small></div><div class="catalog-status '+(x.active?'':'off')+'">'+(x.active?'Active':'Inactive')+'</div><button data-catalog-edit="'+x.id+'">Edit</button></div>').join(''):'<div class="empty">No catalog records match this view.</div>';
   $('catalogCount').textContent=list.length+' shown · '+catalog.length+' total';
 }
