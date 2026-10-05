@@ -182,7 +182,19 @@ const remaining=Number(spotsData);
 const offer=document.getElementById('founderOfferCopy');
 const copy=document.getElementById('founderSpotsCopy');
 const priceEl=document.querySelector('.price strong');
-if(priceEl)priceEl.textContent='
+if(priceEl)priceEl.textContent=String.fromCharCode(36)+Number(membershipSettings.standard_lifetime_price||0).toFixed(0);
+signupAllowed=!!membershipSettings.founding_offer_enabled&&Number.isFinite(remaining)&&remaining>0;
+if(offer)offer.textContent=membershipSettings.founding_offer_copy||'Limited founding access is free while spots remain.';
+if(copy&&Number.isFinite(remaining))copy.textContent=signupAllowed?(remaining+' spot'+(remaining===1?' remains.':'s remain.')):'New free founding claims are currently closed.';
+if(!signupAllowed){
+  signupTab.disabled=true;
+  signupTab.setAttribute('aria-disabled','true');
+  if(mode==='signup')setMode('signin');
+  const note=document.querySelector('.note');
+  if(note)note.innerHTML='<strong>Existing members can still sign in.</strong> New free founding claims are currently closed. The standard lifetime price shown above is reserved for a future paid-access phase and is not being collected here yet.';
+}
+
+function successSound(){
   try{
     const ctx=new (window.AudioContext||window.webkitAudioContext)();
     const now=ctx.currentTime;
