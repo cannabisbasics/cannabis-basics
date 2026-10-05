@@ -21,6 +21,11 @@ function mount(a){
   if(anchor?.parentNode)anchor.insertAdjacentElement('afterend',wrap);else document.body.prepend(wrap);
 }
 try{
-  const {data,error}=await sb.from('site_announcements').select('*').eq('active',true).order('priority',{ascending:false}).order('created_at',{ascending:false}).limit(1);
-  if(!error&&data?.length)mount(data[0]);
+  const {data,error}=await sb.from('site_announcements').select('*').eq('active',true).order('priority',{ascending:false}).order('created_at',{ascending:false}).limit(20);
+  if(!error&&data?.length){
+    const now=Date.now(),memberPage=location.pathname.endsWith('/members.html')||location.pathname.endsWith('members.html');
+    const allowed=memberPage?new Set(['all','members']):new Set(['all','public']);
+    const live=data.find(a=>allowed.has(a.audience||'all')&&(!a.starts_at||new Date(a.starts_at).getTime()<=now)&&(!a.ends_at||new Date(a.ends_at).getTime()>now));
+    if(live)mount(live);
+  }
 }catch(_){}
