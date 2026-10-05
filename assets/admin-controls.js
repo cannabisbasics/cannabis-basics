@@ -160,13 +160,30 @@ $('catalogEditForm')?.addEventListener('submit',async e=>{
   closeCatalog();await loadCatalog();updateAlerts();
 });
 
+async function controlMutation(button,work,refresh,statusId){
+  const label=button?.textContent||'Working';
+  if(button){button.disabled=true;button.textContent='Working…'}
+  try{
+    const res=await work();
+    if(res?.error)throw res.error;
+    if(refresh)await refresh();
+    updateAlerts();
+    if(statusId)status(statusId,'Saved.');
+  }catch(err){
+    console.error('Admin control update',err);
+    if(statusId)status(statusId,'That change could not be saved. Check your connection and try again.',true);
+    else alert('That change could not be saved. Check your connection and try again.');
+  }finally{
+    if(button){button.disabled=false;button.textContent=label}
+  }
+}
 document.addEventListener('click',async e=>{
   let b=e.target.closest('[data-ann-edit]');if(b){const x=announcements.find(a=>a.id===b.dataset.annEdit);if(x)fillAnnouncement(x);return}
-  b=e.target.closest('[data-ann-toggle]');if(b){const x=announcements.find(a=>a.id===b.dataset.annToggle);if(!x)return;await sb.from('site_announcements').update({active:!x.active,updated_at:new Date().toISOString()}).eq('id',x.id);await loadAnnouncements();updateAlerts();return}
-  b=e.target.closest('[data-ann-delete]');if(b){if(!confirm('Delete this announcement?'))return;await sb.from('site_announcements').delete().eq('id',b.dataset.annDelete);await loadAnnouncements();updateAlerts();return}
+  b=e.target.closest('[data-ann-toggle]');if(b){const x=announcements.find(a=>a.id===b.dataset.annToggle);if(!x)return;await controlMutation(b,()=>sb.from('site_announcements').update({active:!x.active,updated_at:new Date().toISOString()}).eq('id',x.id),loadAnnouncements,'announcementStatus');return}
+  b=e.target.closest('[data-ann-delete]');if(b){if(!confirm('Delete this announcement?'))return;await controlMutation(b,()=>sb.from('site_announcements').delete().eq('id',b.dataset.annDelete),loadAnnouncements,'announcementStatus');return}
   b=e.target.closest('[data-deal-edit]');if(b){const x=deals.find(d=>d.id===b.dataset.dealEdit);if(x)fillDeal(x);return}
-  b=e.target.closest('[data-deal-toggle]');if(b){const x=deals.find(d=>d.id===b.dataset.dealToggle);if(!x)return;await sb.from('partner_deals').update({active:!x.active,updated_at:new Date().toISOString()}).eq('id',x.id);await loadDeals();updateAlerts();return}
-  b=e.target.closest('[data-deal-delete]');if(b){if(!confirm('Delete this partner offer?'))return;await sb.from('partner_deals').delete().eq('id',b.dataset.dealDelete);await loadDeals();updateAlerts();return}
+  b=e.target.closest('[data-deal-toggle]');if(b){const x=deals.find(d=>d.id===b.dataset.dealToggle);if(!x)return;await controlMutation(b,()=>sb.from('partner_deals').update({active:!x.active,updated_at:new Date().toISOString()}).eq('id',x.id),loadDeals,'dealStatus');return}
+  b=e.target.closest('[data-deal-delete]');if(b){if(!confirm('Delete this partner offer?'))return;await controlMutation(b,()=>sb.from('partner_deals').delete().eq('id',b.dataset.dealDelete),loadDeals,'dealStatus');return}
   b=e.target.closest('[data-catalog-edit]');if(b){const x=catalog.find(c=>c.id===b.dataset.catalogEdit);if(x)openCatalog(x);return}
 });
 $('catalogSearch')?.addEventListener('input',renderCatalog);$('catalogCounty')?.addEventListener('change',renderCatalog);$('catalogStatus')?.addEventListener('change',renderCatalog);$('catalogAdd')?.addEventListener('click',()=>openCatalog());$('catalogModalClose')?.addEventListener('click',closeCatalog);$('catalogCancel')?.addEventListener('click',closeCatalog);$('catalogModal')?.addEventListener('click',e=>{if(e.target===$('catalogModal'))closeCatalog()});
