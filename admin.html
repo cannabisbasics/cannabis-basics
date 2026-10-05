@@ -90,12 +90,12 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
     </section>
 
     <section class="section" id="messagesSection">
-      <div class="section-head"><div><h2>Contact Inbox</h2><div class="section-sub">Read, resolve, archive, or reply using your normal email app.</div></div><div class="section-actions"><select class="select" id="messageFilter"><option value="all">All messages</option><option value="new">New</option><option value="read">Read</option><option value="resolved">Resolved</option><option value="archived">Archived</option></select><button class="btn" id="exportContacts">Export CSV</button></div></div>
+      <div class="section-head"><div><h2>Contact Inbox</h2><div class="section-sub">Read, resolve, archive, or reply using your normal email app.</div></div><div class="section-actions"><select class="select" id="messageFilter" aria-label="Filter contact messages"><option value="all">All messages</option><option value="new">New</option><option value="read">Read</option><option value="resolved">Resolved</option><option value="archived">Archived</option></select><button class="btn" id="exportContacts">Export CSV</button></div></div>
       <div class="inbox-list" id="contactInbox"><div class="empty">No contact messages yet.</div></div>
     </section>
 
     <section class="section">
-      <div class="section-head"><div><h2>Members</h2><div class="section-sub">Operational account information only. Private journal text is not displayed.</div></div><div class="section-actions"><input class="search" id="memberSearch" placeholder="Search member code, name, email, city…"><button class="btn" id="exportMembers">Export CSV</button></div></div>
+      <div class="section-head"><div><h2>Members</h2><div class="section-sub">Operational account information only. Private journal text is not displayed.</div></div><div class="section-actions"><input class="search" id="memberSearch" aria-label="Search members" placeholder="Search member code, name, email, city…"><button class="btn" id="exportMembers">Export CSV</button></div></div>
       <div class="table-wrap"><table class="table"><thead><tr><th>Member</th><th>Joined</th><th>Status</th><th>Location</th><th>Interests</th><th>Sessions</th><th>Last Session</th></tr></thead><tbody id="memberRows"></tbody></table><div class="empty hidden" id="emptyRows">No members match that search.</div></div>
       <div class="admin-privacy">The dashboard intentionally summarizes usage rather than displaying effects, notes, mood entries, or other personal session text.</div>
     </section>
@@ -199,7 +199,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
 
     <section class="section">
       <div class="section-head"><div><h2>Dispensary Catalog Manager</h2><div class="section-sub">Review the managed Maryland fallback catalog, correct details, deactivate stale records, or add a supplemental location.</div></div><button class="btn" id="catalogAdd" type="button">Add Supplemental Location</button></div>
-      <div class="catalog-toolbar"><input class="search" id="catalogSearch" placeholder="Search dispensary, city, ZIP, county…"><select class="select" id="catalogCounty"><option value="">All counties</option></select><select class="select" id="catalogStatus"><option value="all">All records</option><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+      <div class="catalog-toolbar"><input class="search" id="catalogSearch" aria-label="Search dispensary catalog" placeholder="Search dispensary, city, ZIP, county…"><select class="select" id="catalogCounty" aria-label="Filter dispensary catalog by county"><option value="">All counties</option></select><select class="select" id="catalogStatus" aria-label="Filter dispensary catalog by status"><option value="all">All records</option><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
       <div class="section-sub" id="catalogCount" style="padding:9px 14px 0">Loading catalog…</div>
       <div class="catalog-list" id="catalogList"><div class="empty">Loading Maryland catalog…</div></div>
       <div class="admin-privacy">Deactivating a catalog record removes it from the Cannabis Basics fallback results without deleting the historical record. The live Maryland public-data feed remains a separate source.</div>
