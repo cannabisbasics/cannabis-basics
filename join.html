@@ -183,6 +183,187 @@ const offer=document.getElementById('founderOfferCopy');
 const copy=document.getElementById('founderSpotsCopy');
 const priceEl=document.querySelector('.price strong');
 if(priceEl)priceEl.textContent='
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const now=ctx.currentTime;
+    [523.25,659.25,783.99].forEach((freq,i)=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(0,now+i*.07);g.gain.linearRampToValueAtTime(.045,now+i*.07+.02);g.gain.exponentialRampToValueAtTime(.001,now+i*.07+.25);
+      o.connect(g);g.connect(ctx.destination);o.start(now+i*.07);o.stop(now+i*.07+.28);
+    });
+    setTimeout(()=>ctx.close(),900);
+  }catch(e){}
+}
+function enterMemberSpace(){
+  successSound();
+  authTransition?.classList.add('on');
+  sessionStorage.setItem('cb_member_entry_fx','1');
+  const destination=nextAdmin?'admin.html':(returnTarget==='locator-save'?'index.html#locator':(returnTarget==='decoder-product'?'members.html?screen=products&from=decoder':(returnTarget==='decoder-log'?'members.html?screen=log&from=decoder':'members.html')));
+  setTimeout(()=>{location.href=destination},900);
+}
+async function sessionHasActiveAccess(){
+  const {data:{session:current}}=await supabase.auth.getSession();
+  if(!current)return false;
+  const [membershipRes,adminRes]=await Promise.all([
+    supabase.from('memberships').select('status').eq('user_id',current.user.id).maybeSingle(),
+    supabase.from('admin_users').select('role').eq('user_id',current.user.id).maybeSingle()
+  ]);
+  return membershipRes.data?.status==='active'||!!adminRes.data;
+}
+const { data:{ session } }=await supabase.auth.getSession();
+if(session){
+  if(await sessionHasActiveAccess()){
+    status.textContent='You are already signed in. Opening your member workspace…';
+    enterMemberSpace();
+  }else{
+    status.textContent='Your account exists, but member access is not active yet.';
+    await supabase.auth.signOut();
+    setMode('signin');
+  }
+}
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=emailInput.value.trim();
+  const password=passwordInput.value;
+  if(!email||password.length<8)return;
+  submit.disabled=true;
+  status.textContent=mode==='signup'?'Creating your private member account…':'Signing you in…';
+  try{
+    if(mode==='signup'){
+      if(!signupAllowed){status.textContent='New free founding claims are currently closed. Existing members can still sign in.';return}
+      const {data,error}=await supabase.auth.signUp({
+        email,password,
+        options:{emailRedirectTo:'https://cannabisbasics.github.io/cannabis-basics/join.html?confirmed=1'+(returnTarget?'&return='+encodeURIComponent(returnTarget):'')}
+      });
+      if(error)throw error;
+      if(data.session){
+        if(await sessionHasActiveAccess()){
+          status.textContent='Account created. Opening your private workspace…';
+          enterMemberSpace();
+        }else{
+          await supabase.auth.signOut();
+          status.textContent='Your account was created, but member access is not active yet.';
+        }
+      }else{
+        successSound();
+        status.textContent='Account created — check your email to activate it.';
+        claimTitle.textContent='Great — your account is created!';
+        claimCopy.textContent='One last step: open the confirmation email, click Confirm, then come back here and sign in. Your profile and journal stay private to your account.';
+        claimPanel.hidden=false;
+        claimPanel.querySelectorAll('.claim-burst i').forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation=''});
+        claimPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }
+    }else{
+      const {error}=await supabase.auth.signInWithPassword({email,password});
+      if(error)throw error;
+      if(await sessionHasActiveAccess()){
+        status.textContent='Signed in. Opening your private workspace…';
+        enterMemberSpace();
+      }else{
+        await supabase.auth.signOut();
+        status.textContent='This account does not currently have active member access.';
+      }
+    }
+  }catch(err){
+    status.textContent=err?.message||'We could not complete that request. Please try again.';
+  }finally{
+    submit.disabled=false;
+  }
+});
+</script>
+<script src="assets/pwa.js?v=20261002-app1" defer></script>
+<script type="module" src="assets/public-data.js?v=20261002-free1"></script>
+<script type="module" src="assets/site-announcements.js?v=20261004-control1"></script>
+</body></html>+Number(membershipSettings.standard_lifetime_price||0).toFixed(0);
+signupAllowed=!!membershipSettings.founding_offer_enabled&&Number.isFinite(remaining)&&remaining>0;
+if(offer)offer.textContent=membershipSettings.founding_offer_copy||'Limited founding access is free while spots remain.';
+if(copy&&Number.isFinite(remaining))copy.textContent=signupAllowed?(remaining+' spot'+(remaining===1?' remains.':'s remain.')):'New free founding claims are currently closed.';
+if(!signupAllowed){
+  signupTab.disabled=true;
+  signupTab.setAttribute('aria-disabled','true');
+  if(mode==='signup')setMode('signin');
+  const note=document.querySelector('.note');
+  if(note)note.innerHTML='<strong>Existing members can still sign in.</strong> New free founding claims are currently closed. The standard lifetime price shown above is reserved for a future paid-access phase and is not being collected here yet.';
+}
+
+function successSound(){
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const now=ctx.currentTime;
+    [523.25,659.25,783.99].forEach((freq,i)=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(0,now+i*.07);g.gain.linearRampToValueAtTime(.045,now+i*.07+.02);g.gain.exponentialRampToValueAtTime(.001,now+i*.07+.25);
+      o.connect(g);g.connect(ctx.destination);o.start(now+i*.07);o.stop(now+i*.07+.28);
+    });
+    setTimeout(()=>ctx.close(),900);
+  }catch(e){}
+}
+function enterMemberSpace(){
+  successSound();
+  authTransition?.classList.add('on');
+  sessionStorage.setItem('cb_member_entry_fx','1');
+  const destination=nextAdmin?'admin.html':(returnTarget==='locator-save'?'index.html#locator':(returnTarget==='decoder-product'?'members.html?screen=products&from=decoder':(returnTarget==='decoder-log'?'members.html?screen=log&from=decoder':'members.html')));
+  setTimeout(()=>{location.href=destination},900);
+}
+const { data:{ session } }=await supabase.auth.getSession();
+if(session){
+  status.textContent='You are already signed in. Opening your member workspace…';
+  enterMemberSpace();
+}
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=emailInput.value.trim();
+  const password=passwordInput.value;
+  if(!email||password.length<8)return;
+  submit.disabled=true;
+  status.textContent=mode==='signup'?'Creating your private member account…':'Signing you in…';
+  try{
+    if(mode==='signup'){
+      const {data,error}=await supabase.auth.signUp({
+        email,password,
+        options:{emailRedirectTo:'https://cannabisbasics.github.io/cannabis-basics/join.html?confirmed=1'+(returnTarget?'&return='+encodeURIComponent(returnTarget):'')}
+      });
+      if(error)throw error;
+      if(data.session){
+        status.textContent='Account created. Opening your private workspace…';
+        enterMemberSpace();
+      }else{
+        successSound();
+        status.textContent='Account created — check your email to activate it.';
+        claimTitle.textContent='Great — your account is created!';
+        claimCopy.textContent='One last step: open the confirmation email, click Confirm, then come back here and sign in. Your profile and journal stay private to your account.';
+        claimPanel.hidden=false;
+        claimPanel.querySelectorAll('.claim-burst i').forEach(el=>{el.style.animation='none';void el.offsetWidth;el.style.animation=''});
+        claimPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }
+    }else{
+      const {error}=await supabase.auth.signInWithPassword({email,password});
+      if(error)throw error;
+      status.textContent='Signed in. Opening your private workspace…';
+      enterMemberSpace();
+    }
+  }catch(err){
+    status.textContent=err?.message||'We could not complete that request. Please try again.';
+  }finally{
+    submit.disabled=false;
+  }
+});
+</script>
+<script src="assets/pwa.js?v=20261002-app1" defer></script>
+<script type="module" src="assets/public-data.js?v=20261002-free1"></script>
+</body></html>+Number(membershipSettings.standard_lifetime_price||0).toFixed(0);
+signupAllowed=!!membershipSettings.founding_offer_enabled&&Number.isFinite(remaining)&&remaining>0;
+if(offer)offer.textContent=membershipSettings.founding_offer_copy||'Limited founding access is free while spots remain.';
+if(copy&&Number.isFinite(remaining))copy.textContent=signupAllowed?(remaining+' spot'+(remaining===1?' remains.':'s remain.')):'New free founding claims are currently closed.';
+if(!signupAllowed){
+  signupTab.disabled=true;
+  signupTab.setAttribute('aria-disabled','true');
+  if(mode==='signup')setMode('signin');
+  const note=document.querySelector('.note');
+  if(note)note.innerHTML='<strong>Existing members can still sign in.</strong> New free founding claims are currently closed. The standard lifetime price shown above is reserved for a future paid-access phase and is not being collected here yet.';
+}
 
 function successSound(){
   try{
