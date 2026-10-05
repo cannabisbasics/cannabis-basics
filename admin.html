@@ -288,7 +288,7 @@ function renderMembers(filter=''){
   $('memberRows').innerHTML=list.map(m=>'<tr>'+
     '<td><strong>'+esc(m.preferred_name||'Member')+'</strong><small>'+esc(m.member_code||'—')+' · '+esc(m.email||'')+'</small></td>'+
     '<td>'+fmtDate(m.joined_at)+'</td>'+
-    '<td><span class="badge">'+(m.founding_number?'Founding #'+m.founding_number:esc(m.membership_type||'Member'))+'</span><small>'+esc(m.membership_status||'')+'</small></td>'+
+    '<td><span class="badge">'+(m.founding_number?'Founding #'+m.founding_number:esc(m.membership_type||'Member'))+'</span><small><select class="member-status-select" data-member-status="'+esc(m.user_id)+'" aria-label="Member access status"><option value="active" '+(m.membership_status==='active'?'selected':'')+'>Active</option><option value="pending" '+(m.membership_status==='pending'?'selected':'')+'>Pending</option><option value="suspended" '+(m.membership_status==='suspended'?'selected':'')+'>Suspended</option></select></small></td>'+
     '<td>'+esc([m.city,m.state].filter(Boolean).join(', ')||'—')+'</td>'+
     '<td>'+esc((m.interests||[]).join(', ')||'—')+'</td>'+
     '<td>'+Number(m.session_count||0)+'</td><td>'+fmtDate(m.last_session_at)+'</td></tr>').join('');
@@ -361,6 +361,15 @@ if(await requireAdmin()){
   try{await loadDashboard()}catch(err){console.error(err);status.classList.add('bad');status.textContent='Administrator data could not load. Check the system-health panel or sign in again.';health('hDb',false,'Admin database query failed');dash.classList.remove('hidden')}
 }
 $('memberSearch').addEventListener('input',e=>renderMembers(e.target.value));
+document.addEventListener('change',async e=>{
+  const select=e.target.closest('[data-member-status]');if(!select)return;
+  const userId=select.dataset.memberStatus,next=select.value,prior=members.find(m=>m.user_id===userId)?.membership_status||'active';
+  select.disabled=true;
+  const {error}=await sb.from('memberships').update({status:next}).eq('user_id',userId);
+  if(error){console.error(error);select.value=prior;alert('Member access status could not be updated.');select.disabled=false;return}
+  const member=members.find(m=>m.user_id===userId);if(member)member.membership_status=next;
+  select.disabled=false;
+});
 $('messageFilter').addEventListener('change',renderMessages);
 document.addEventListener('click',async e=>{
   const b=e.target.closest('[data-msg-status]');if(!b)return;
