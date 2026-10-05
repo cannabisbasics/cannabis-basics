@@ -57,6 +57,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
       <div class="metric"><span>Saved dispensaries</span><strong id="mStores">0</strong><small>member records</small></div>
       <div class="metric"><span>Saved products</span><strong id="mProducts">0</strong><small>member records</small></div>
       <div class="metric"><span>Maryland catalog</span><strong id="mMaryland">0</strong><small>official/fallback locations</small></div>
+      <div class="metric"><span>Client errors · 24h</span><strong id="mErrors">0</strong><small>privacy-safe browser failures</small></div>
     </div>
 
     <div class="grid2">
@@ -269,7 +270,7 @@ function downloadCSV(filename,headers,rows){
   a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);
 }
 function labelEvent(name){
-  return ({page_view:'Page view',decoder_run:'Decoder run',locator_search:'Locator search',locator_save:'Locator save',join_open:'Join page',member_open:'Members area',pwa_install_click:'App install click',free_resource_open:'Free resource',free_resource_modal_submit:'Free resource signup',contact_submit:'Contact submitted'})[name]||name.replaceAll('_',' ');
+  return ({page_view:'Page view',decoder_run:'Decoder run',locator_search:'Locator search',locator_save:'Locator save',join_open:'Join page',member_open:'Members area',pwa_install_click:'App install click',free_resource_open:'Free resource',free_resource_modal_submit:'Free resource signup',contact_submit:'Contact submitted',client_error:'Client error'})[name]||name.replaceAll('_',' ');
 }
 async function requireAdmin(){
   const {data:{session}}=await sb.auth.getSession();
@@ -343,7 +344,7 @@ async function loadDashboard(){
   const m=metricsRes.data||{};
   setMetric('mMembers',m.members);setMetric('mMonth',m.new_this_month);setMetric('mActive',m.active_this_month);setMetric('mRemaining',m.founding_spots_remaining);
   setMetric('mLeads',m.leads);setMetric('mUnread',m.unread_messages);setMetric('mViews',m.page_views_30d);setMetric('mDecoder',m.decoder_runs_30d);
-  setMetric('mLocator',m.locator_searches_30d);setMetric('mStores',m.saved_dispensaries);setMetric('mProducts',m.saved_products);setMetric('mMaryland',m.maryland_catalog);
+  setMetric('mLocator',m.locator_searches_30d);setMetric('mStores',m.saved_dispensaries);setMetric('mProducts',m.saved_products);setMetric('mMaryland',m.maryland_catalog);setMetric('mErrors',m.client_errors_24h);
   setMetric('fViews',m.page_views_30d);setMetric('fJoin',m.join_opens_30d);setMetric('fMembers',m.new_this_month);setMetric('fActive',m.active_this_month);
   $('fJoinRate').textContent=pct(m.join_opens_30d,m.page_views_30d)+'% of views';
   $('fMemberRate').textContent=pct(m.new_this_month,m.join_opens_30d)+'% of join opens';
