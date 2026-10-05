@@ -38,7 +38,7 @@ freebieBtn?.addEventListener('click',async()=>{
   const email=(emailInput?.value||'').trim().toLowerCase();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return;
   try{
-    const {error}=await sb.from('email_leads').insert({email,source:'free-cannabis-log'});
+    const {error}=await sb.from('email_leads').insert({email,source:'free-cannabis-log',marketing_consent:!!document.getElementById('freebieMarketingConsent')?.checked});
     if(error&&error.code!=='23505')throw error;
     await track('free_resource_open');
   }catch(_){}
@@ -90,7 +90,7 @@ modalEmailForm?.addEventListener('submit',async()=>{
   const email=(modalEmailInput?.value||'').trim().toLowerCase();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return;
   try{
-    const {error}=await sb.from('email_leads').insert({email,source:'free-log-modal'});
+    const {error}=await sb.from('email_leads').insert({email,source:'free-log-modal',marketing_consent:!!document.getElementById('modalMarketingConsent')?.checked});
     if(error&&error.code!=='23505')throw error;
     await track('free_resource_modal_submit');
   }catch(_){}
