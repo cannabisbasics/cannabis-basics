@@ -54,3 +54,5 @@ img,video,svg,canvas{max-width:100%}
   :where(button,a,input,select,textarea){forced-color-adjust:auto}
   .bar i,.dot{forced-color-adjust:none}
 }
+
+@supports(height:100dvh){body{min-height:100dvh}}
