@@ -1,4 +1,4 @@
-const CACHE='cb-app-v4-20261004';
+const CACHE='cb-app-v5-20261004';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
@@ -12,7 +12,6 @@ async function precache(){
 }
 self.addEventListener('install',event=>{
   event.waitUntil(precache());
-  self.skipWaiting();
 });
 self.addEventListener('activate',event=>{
   event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
