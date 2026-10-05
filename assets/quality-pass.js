@@ -48,9 +48,19 @@
   };
   window.addEventListener('offline',()=>showNet('You are offline. Cloud features will reconnect when your connection returns.',true));
   window.addEventListener('online',()=>showNet('Back online. Cloud features are available again.'));
+  const reportClientError=(kind)=>{
+    try{
+      if(sessionStorage.getItem('cb_client_error_sent')==='1')return;
+      sessionStorage.setItem('cb_client_error_sent','1');
+      const context={kind:String(kind||'unknown').slice(0,40),online:navigator.onLine};
+      if(window.cbTrack)window.cbTrack('client_error',context);
+      else window.dispatchEvent(new CustomEvent('cb-track',{detail:{eventName:'client_error',context}}));
+    }catch(_){}
+  };
   window.addEventListener('unhandledrejection',e=>{
     const msg=String(e.reason?.message||e.reason||'').toLowerCase();
     if(!navigator.onLine||/network|fetch|failed to fetch|timeout/.test(msg))showNet('A cloud request could not finish. Check your connection and try again.',true);
+    reportClientError(/network|fetch|timeout/.test(msg)?'network-promise':'promise');
   });
   if(!navigator.onLine)showNet('You are offline. Cloud features will reconnect when your connection returns.',true);
 
@@ -85,8 +95,12 @@
   syncDialogs();
 
   document.addEventListener('keydown',e=>{
-    if(e.key!=='Tab')return;
-    const open=document.querySelector(dialogSelector);if(!open)return;
+    const open=document.querySelector(dialogSelector);
+    if(e.key==='Escape'&&open){
+      const close=open.querySelector('[data-close],[data-close-member-overlay],.member-invite-close,.modal-close,#catalogModalClose');
+      if(close){e.preventDefault();close.click();return}
+    }
+    if(e.key!=='Tab'||!open)return;
     const list=[...open.querySelectorAll(focusables)].filter(x=>x.offsetParent!==null);
     if(list.length<2)return;
     const first=list[0],last=list[list.length-1];
@@ -110,8 +124,10 @@
   window.addEventListener('error',e=>{
     const el=e.target;
     if(el instanceof HTMLImageElement&&!el.dataset.cbImageError){
-      el.dataset.cbImageError='1';el.alt=el.alt||'Image unavailable';el.style.opacity='.25';
+      el.dataset.cbImageError='1';el.alt=el.alt||'Image unavailable';el.style.opacity='.25';return;
     }
+    if(el instanceof HTMLScriptElement||el instanceof HTMLLinkElement){reportClientError('resource-load');return}
+    if(e instanceof ErrorEvent)reportClientError('script');
   },true);
 
   window.cbQualityReady=true;
