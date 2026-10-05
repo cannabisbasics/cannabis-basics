@@ -2446,6 +2446,7 @@ if(!session){
   window.cbUser=session.user;
   try{
     const {data:adminRow}=await sb.from('admin_users').select('role').eq('user_id',session.user.id).maybeSingle();
+    window.cbIsAdmin=!!adminRow;
     const adminLink=document.getElementById('adminDashboardLink');
     if(adminRow&&adminLink)adminLink.hidden=false;
   }catch(_){}
@@ -2622,6 +2623,13 @@ async function loadCloud(){
   rawSet('cb_stores',(storesRes.data||[]).map(maps.cb_stores.fromRow));
 
   const membership=membershipRes.data;
+  if(membership?.status!=='active'&&!window.cbIsAdmin){
+    setCloudStatus('Member access is not currently active.',false);
+    clearMemberCache();localStorage.removeItem('cb_cache_user_id');
+    try{await sb.auth.signOut()}catch(_){}
+    location.replace('join.html?signin=1&access='+encodeURIComponent(membership?.status||'pending'));
+    throw new Error('CB_ACCESS_BLOCKED');
+  }
   if(membership?.membership_type==='founding'){
     const label=document.getElementById('dashboardMemberLabel');
     if(label)label.textContent=membership.founding_number?'Founding Member #'+membership.founding_number:'Founding Member';
@@ -2642,11 +2650,15 @@ try{
   if(!consumedDecoder&&validInitial)window.go?.(initialScreen);
   document.documentElement.classList.remove('cb-auth-pending');
 }catch(err){
-  console.error(err);
-  setCloudStatus('Cloud account could not load. Please sign in again.',false);
-  clearMemberCache();
-  localStorage.removeItem('cb_cache_user_id');
-  document.documentElement.classList.remove('cb-auth-pending');
+  if(err?.message==='CB_ACCESS_BLOCKED'){
+    document.documentElement.classList.remove('cb-auth-pending');
+  }else{
+    console.error(err);
+    setCloudStatus('Cloud account could not load. Please sign in again.',false);
+    clearMemberCache();
+    localStorage.removeItem('cb_cache_user_id');
+    document.documentElement.classList.remove('cb-auth-pending');
+  }
 }
 
 async function finishSignOut(){
