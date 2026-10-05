@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#145a32">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Cannabis Basics">
@@ -84,6 +85,7 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
 @keyframes smokePuff{0%{opacity:0;scale:.25}35%{opacity:.95}100%{opacity:0;scale:2.2}}
 @media(max-width:760px){.password-wrap{flex-basis:100%}}
 </style>
+<link rel="stylesheet" href="assets/quality-pass.css?v=20261004-q1">
 </head>
 <body>
 <main class="gate">
@@ -284,9 +286,10 @@ form.addEventListener('submit',async e=>{
   }
 });
 </script>
-<script src="assets/pwa.js?v=20261002-app1" defer></script>
-<script type="module" src="assets/public-data.js?v=20261002-free1"></script>
+<script src="assets/pwa.js?v=20261004-q1" defer></script>
+<script type="module" src="assets/public-data.js?v=20261004-q1"></script>
 <script type="module" src="assets/site-announcements.js?v=20261004-control1"></script>
+<script src="assets/quality-pass.js?v=20261004-q1" defer></script>
 </body></html>+Number(membershipSettings.standard_lifetime_price||0).toFixed(0);
 signupAllowed=!!membershipSettings.founding_offer_enabled&&Number.isFinite(remaining)&&remaining>0;
 if(offer)offer.textContent=membershipSettings.founding_offer_copy||'Limited founding access is free while spots remain.';
