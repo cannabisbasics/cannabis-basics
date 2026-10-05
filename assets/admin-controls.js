@@ -20,8 +20,11 @@ function updateAlerts(){
   const alerts=[];
   const remaining=Number(document.getElementById('mRemaining')?.textContent?.replace(/,/g,'')||0);
   const unread=Number(document.getElementById('mUnread')?.textContent?.replace(/,/g,'')||0);
+  const clientErrors=Number(document.getElementById('mErrors')?.textContent?.replace(/,/g,'')||0);
   const activeDeals=deals.filter(d=>d.active&&(!d.starts_at||new Date(d.starts_at)<=new Date())&&(!d.ends_at||new Date(d.ends_at)>new Date())).length;
   const activeAnn=announcements.filter(a=>a.active&&(!a.starts_at||new Date(a.starts_at)<=new Date())&&(!a.ends_at||new Date(a.ends_at)>new Date())).length;
+  if(clientErrors>0)alerts.push(['bad','Browser errors detected',clientErrors+' client-side failure'+(clientErrors===1?'':'s')+' recorded in the last 24 hours. Review Recent Site Activity during testing.']);
+  else alerts.push(['good','No browser errors in the last 24 hours','The privacy-safe client error counter is clear.']);
   if(unread>0)alerts.push(['warn','Contact inbox needs attention',unread+' new message'+(unread===1?'':'s')+' waiting.']);
   else alerts.push(['good','Contact inbox is clear','No unread public contact messages.']);
   if(settings?.founding_offer_enabled){
