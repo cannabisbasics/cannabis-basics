@@ -203,10 +203,18 @@ async function refreshLeadRows(){
   const {data,error}=await sb.from('email_leads').select('*').order('created_at',{ascending:false}).limit(500);
   if(error||!document.getElementById('leadRows'))return;
   const rows=data||[];
-  document.getElementById('leadRows').innerHTML=rows.map(x=>'<tr data-lead-row="'+esc(x.id)+'"><td>'+esc(x.email)+'</td><td>'+esc(x.source||'—')+'<small>'+(x.marketing_consent?'Marketing opt-in recorded':'Resource request only')+'</small></td><td><span class="badge">'+esc(x.status||'new')+'</span></td><td>'+fmt(x.created_at)+'</td><td><div class="inbox-actions">'+((x.status||'new')!=='contacted'?'<button class="tiny" data-lead-status="contacted" data-id="'+esc(x.id)+'">Mark Contacted</button>':'')+((x.status||'new')!=='archived'?'<button class="tiny archive" data-lead-status="archived" data-id="'+esc(x.id)+'">Archive</button>':'')+'</div></td></tr>').join('');
+  document.getElementById('leadRows').innerHTML=rows.map(x=>'<tr data-lead-row="'+esc(x.id)+'"><td>'+esc(x.email)+'</td><td>'+esc(x.source||'—')+'<small>'+(x.marketing_consent?'Marketing opt-in recorded':'Resource request only')+'</small></td><td><span class="badge">'+esc(x.status||'new')+'</span></td><td>'+fmt(x.created_at)+'</td><td><div class="inbox-actions">'+((x.status||'new')!=='contacted'?'<button class="tiny" data-lead-status="contacted" data-id="'+esc(x.id)+'">Mark Contacted</button>':'')+((x.status||'new')!=='archived'?'<button class="tiny archive" data-lead-status="archived" data-id="'+esc(x.id)+'">Archive</button>':'')+'<button class="tiny" data-lead-note="'+esc(x.id)+'">Note</button></div>'+(x.admin_notes?'<small>'+esc(x.admin_notes)+'</small>':'')+'</td></tr>').join('');
   document.getElementById('emptyLeads')?.classList.toggle('hidden',rows.length>0);
 }
 document.addEventListener('click',async e=>{
+  const noteBtn=e.target.closest('[data-lead-note]');
+  if(noteBtn){
+    const currentRow=noteBtn.closest('tr'),current=currentRow?.querySelector('td:last-child small')?.textContent||'';
+    const note=prompt('Internal lead note (visible only in Admin):',current);if(note===null)return;
+    noteBtn.disabled=true;
+    const {error}=await sb.from('email_leads').update({admin_notes:note.trim()||null}).eq('id',noteBtn.dataset.leadNote);
+    noteBtn.disabled=false;if(error){alert('Lead note could not be saved.');return}await refreshLeadRows();return;
+  }
   const b=e.target.closest('[data-lead-status]');if(!b)return;
   b.disabled=true;
   const {error}=await sb.from('email_leads').update({status:b.dataset.leadStatus}).eq('id',b.dataset.id);
