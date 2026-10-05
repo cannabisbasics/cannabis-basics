@@ -56,3 +56,6 @@ img,video,svg,canvas{max-width:100%}
 }
 
 @supports(height:100dvh){body{min-height:100dvh}}
+
+.cb-email-optin{display:flex;align-items:flex-start;gap:8px;margin:9px 0;color:#93a098;font:500 .67rem/1.45 Arial,sans-serif;cursor:pointer}
+.cb-email-optin input{width:16px;height:16px;min-height:16px!important;margin:1px 0 0;accent-color:#c2cf32;flex:0 0 auto}
