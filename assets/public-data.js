@@ -24,6 +24,7 @@ async function track(eventName,context={}){
   }catch(_){}
 }
 window.cbTrack=track;
+window.addEventListener('cb-track',e=>{const d=e.detail||{};if(d.eventName)track(d.eventName,d.context||{})});
 
 track(location.pathname.endsWith('members.html')?'member_open':location.pathname.endsWith('join.html')?'join_open':'page_view');
 
