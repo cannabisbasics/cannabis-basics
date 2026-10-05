@@ -355,6 +355,7 @@ async function runSearch(centerOverride=null,fromMap=false){
     const osm=osmResult.status==='fulfilled'?normalizeOSMPlaces(osmResult.value,center):[];
     const official=catalogResult.status==='fulfilled'?catalogResult.value:[];
     const places=mergePlaces(official,osm,center);
+    window.cbTrack?.('locator_search',{radius_miles:radiusMiles,state:ui.state.value||'',result_count:places.length});
     setMapCenter(center,places);
     renderPlaces(places);
     const officialCount=places.filter(p=>p.source==='maryland-cannabis-administration').length;
@@ -437,6 +438,7 @@ async function savePlace(p,button=null){
       b.classList.add('saved');b.textContent='✓ Saved';
     });
     if(button){button.classList.add('saved');button.textContent='✓ Saved to My Dispensaries'}
+    window.cbTrack?.('locator_save',{source:p.source||'map',state:p.state||''});
     setStatus(escapeHTML(p.name)+' was saved to your private member account.','success');
   }catch(err){
     console.error(err);
