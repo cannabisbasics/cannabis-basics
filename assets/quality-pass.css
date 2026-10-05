@@ -59,3 +59,22 @@ img,video,svg,canvas{max-width:100%}
 
 .cb-email-optin{display:flex;align-items:flex-start;gap:8px;margin:9px 0;color:#93a098;font:500 .67rem/1.45 Arial,sans-serif;cursor:pointer}
 .cb-email-optin input{width:16px;height:16px;min-height:16px!important;margin:1px 0 0;accent-color:#c2cf32;flex:0 0 auto}
+
+
+/* Final mobile/app-shell refinements */
+:where(input,select,textarea,button,a){scroll-margin-top:110px}
+button,a,[role="button"]{touch-action:manipulation}
+@supports(padding:max(0px)){
+  .topbar,.public-topbar,.top,.nav{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+  .cb-network-status{bottom:max(16px,env(safe-area-inset-bottom))}
+  .mobile-nav{padding-bottom:max(8px,env(safe-area-inset-bottom))}
+}
+@media(max-width:760px){
+  .section-head{min-width:0}
+  .section-head>*{min-width:0}
+  .table-wrap{max-width:100%;overscroll-behavior-x:contain}
+  .control-item,.catalog-row{overflow-wrap:anywhere}
+}
+@media(min-width:900px){
+  section:not(.hero):not(.tool-section){content-visibility:auto;contain-intrinsic-size:1px 900px}
+}
