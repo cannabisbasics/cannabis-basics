@@ -129,13 +129,29 @@ async function loadCatalog(){
 function openCatalog(x=null){
   editingCatalog=x?.id||null;$('catalogModal').classList.add('open');
   $('catalogModalTitle').textContent=x?'Edit Catalog Location':'Add Supplemental Location';
-  $('catalogName').value=x?.name||'';$('catalogAddress').value=x?.address||'';$('catalogCity').value=x?.city||'';$('catalogStateField').value=x?.state||'Maryland';$('catalogZip').value=x?.postal_code||'';$('catalogCountyField').value=x?.county||'';$('catalogPhone').value=x?.phone||'';$('catalogWebsite').value=x?.website||'';$('catalogSourceUrl').value=x?.source_url||'https://cannabis.maryland.gov/Pages/Dispensary-Locator.aspx';$('catalogActive').checked=x?!!x.active:true;status('catalogEditStatus','');
+  $('catalogName').value=x?.name||'';$('catalogAddress').value=x?.address||'';$('catalogCity').value=x?.city||'';$('catalogStateField').value=x?.state||'Maryland';$('catalogZip').value=x?.postal_code||'';$('catalogCountyField').value=x?.county||'';$('catalogPhone').value=x?.phone||'';$('catalogWebsite').value=x?.website||'';$('catalogLat').value=Number.isFinite(Number(x?.latitude))?x.latitude:'';$('catalogLon').value=Number.isFinite(Number(x?.longitude))?x.longitude:'';$('catalogSourceUrl').value=x?.source_url||'https://cannabis.maryland.gov/Pages/Dispensary-Locator.aspx';$('catalogActive').checked=x?!!x.active:true;status('catalogEditStatus','');
 }
 function closeCatalog(){$('catalogModal').classList.remove('open');editingCatalog=null}
+async function geocodeCatalogAddress(payload){
+  const q=[payload.address,payload.city,payload.state,payload.postal_code].filter(Boolean).join(', ');
+  const res=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&q='+encodeURIComponent(q),{headers:{Accept:'application/json'}});
+  if(!res.ok)return null;
+  const data=await res.json();if(!data?.length)return null;
+  return {latitude:Number(data[0].lat),longitude:Number(data[0].lon)};
+}
 $('catalogEditForm')?.addEventListener('submit',async e=>{
   e.preventDefault();
-  const payload={name:$('catalogName').value.trim(),address:$('catalogAddress').value.trim(),city:$('catalogCity').value.trim(),state:$('catalogStateField').value.trim()||'Maryland',postal_code:$('catalogZip').value.trim()||null,county:$('catalogCountyField').value.trim()||null,phone:$('catalogPhone').value.trim()||null,website:$('catalogWebsite').value.trim()||null,source_url:$('catalogSourceUrl').value.trim()||'https://cannabis.maryland.gov/Pages/Dispensary-Locator.aspx',active:$('catalogActive').checked,updated_at:new Date().toISOString()};
+  const latVal=$('catalogLat').value.trim(),lonVal=$('catalogLon').value.trim();
+  const payload={name:$('catalogName').value.trim(),address:$('catalogAddress').value.trim(),city:$('catalogCity').value.trim(),state:$('catalogStateField').value.trim()||'Maryland',postal_code:$('catalogZip').value.trim()||null,county:$('catalogCountyField').value.trim()||null,phone:$('catalogPhone').value.trim()||null,website:$('catalogWebsite').value.trim()||null,latitude:latVal===''?null:Number(latVal),longitude:lonVal===''?null:Number(lonVal),source_url:$('catalogSourceUrl').value.trim()||'https://cannabis.maryland.gov/Pages/Dispensary-Locator.aspx',active:$('catalogActive').checked,updated_at:new Date().toISOString()};
   if(!payload.name||!payload.address){status('catalogEditStatus','Name and address are required.',true);return}
+  if(!Number.isFinite(payload.latitude)||!Number.isFinite(payload.longitude)){
+    status('catalogEditStatus','Mapping address…');
+    try{
+      const point=await geocodeCatalogAddress(payload);
+      if(point){payload.latitude=point.latitude;payload.longitude=point.longitude;$('catalogLat').value=point.latitude;$('catalogLon').value=point.longitude;}
+    }catch(_){}
+  }
+  if(!Number.isFinite(payload.latitude)||!Number.isFinite(payload.longitude)){status('catalogEditStatus','Map coordinates could not be found automatically. Add latitude and longitude manually, then save again.',true);return}
   status('catalogEditStatus',editingCatalog?'Updating location…':'Adding supplemental location…');
   let res;
   if(editingCatalog)res=await sb.from('dispensary_catalog').update(payload).eq('id',editingCatalog);
