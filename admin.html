@@ -2,132 +2,244 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">\n<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="theme-color" content="#050706">
+<link rel="icon" href="assets/logo-green.webp">
 <title>Cannabis Basics Administration</title>
 <style>
-:root{--bg:#050706;--panel:#0d1510;--line:rgba(194,207,50,.16);--green:#c2cf32;--text:#f4f6f2;--muted:#95a198}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#030504,#071008);color:var(--text);font-family:Georgia,"Times New Roman",serif}
-.top{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 18px;background:rgba(3,7,4,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
-.brand{display:flex;align-items:center;gap:10px}.brand img{width:42px;height:42px;object-fit:contain}.brand b{font-weight:400;font-size:1.2rem}.brand small{display:block;color:var(--muted);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-top:3px}
-.top button,.top a,.btn{border:1px solid var(--line);background:#111913;color:#fff;border-radius:999px;padding:9px 13px;text-decoration:none;cursor:pointer;font:inherit;font-size:.78rem}
-.wrap{width:min(1280px,calc(100% - 28px));margin:28px auto 60px}.eyebrow{color:var(--green);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}h1{font-size:clamp(2.5rem,6vw,5rem);line-height:.95;font-weight:400;margin:.35rem 0 .8rem}.lede{color:var(--muted);line-height:1.65;max-width:780px}
-.notice{padding:18px;border-radius:18px;background:#0b120d;border:1px solid var(--line);margin-top:20px;color:#dfe5df}
-.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:24px}.metric{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px}.metric span{display:block;color:var(--muted);font-size:.67rem;text-transform:uppercase;letter-spacing:.1em}.metric strong{display:block;margin-top:8px;font-size:2rem;font-weight:400}
-.section{margin-top:28px;background:var(--panel);border:1px solid var(--line);border-radius:24px;overflow:hidden}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px;border-bottom:1px solid var(--line)}.section-head h2{margin:0;font-weight:400}.search{min-width:min(330px,50vw);background:#fff;color:#050505;border:0;border-radius:12px;padding:11px 13px}
-.table-wrap{overflow:auto}.members{width:100%;border-collapse:collapse;min-width:900px}.members th,.members td{text-align:left;padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.78rem}.members th{color:#b7c1b8;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase}.members td small{display:block;color:var(--muted);margin-top:3px}.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:rgba(194,207,50,.10);color:#dce68a;border:1px solid var(--line)}
-.empty{padding:26px;color:var(--muted)}.denied{max-width:700px;margin:80px auto;padding:28px;border:1px solid rgba(220,120,90,.24);border-radius:24px;background:#130d0b}
-.hidden{display:none!important}
-@media(max-width:900px){.metrics{grid-template-columns:1fr 1fr}}@media(max-width:600px){.metrics{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%;min-width:0}}
-.inbox-list{display:grid;gap:10px;padding:14px}.inbox-item{padding:15px;border:1px solid rgba(194,207,50,.10);border-radius:16px;background:#09100b}.inbox-item strong{font-weight:400}.inbox-item small{display:block;color:var(--muted);margin-top:4px}.inbox-item p{margin:9px 0 0;color:#c7d0c8;line-height:1.55;font-size:.82rem}.inbox-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.inbox-meta span{font-size:.65rem;padding:4px 7px;border-radius:999px;background:rgba(194,207,50,.08);color:#d6df96}
+:root{--bg:#050706;--panel:#0d1510;--panel2:#09100b;--line:rgba(194,207,50,.16);--green:#c2cf32;--green2:#e2ec83;--text:#f4f6f2;--muted:#95a198;--red:#dc806d;--blue:#8ab8cc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 85% 3%,rgba(194,207,50,.06),transparent 24%),linear-gradient(180deg,#030504,#071008 45%,#030504);color:var(--text);font-family:Georgia,"Times New Roman",serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
+.top{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px clamp(13px,3vw,28px);background:rgba(3,7,4,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:10px}.brand img{width:43px;height:43px;object-fit:contain}.brand b{font-weight:400;font-size:1.2rem}.brand small{display:block;color:var(--muted);font-size:.59rem;letter-spacing:.14em;text-transform:uppercase;margin-top:3px}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.top button,.top a,.btn{border:1px solid var(--line);background:#111913;color:#fff;border-radius:999px;padding:9px 13px;text-decoration:none;cursor:pointer;font-size:.76rem}.top a:hover,.top button:hover,.btn:hover{border-color:rgba(194,207,50,.42)}
+.wrap{width:min(1400px,calc(100% - 28px));margin:28px auto 70px}.eyebrow{color:var(--green);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end}.hero h1{font-size:clamp(2.7rem,6vw,5.3rem);line-height:.92;font-weight:400;margin:.35rem 0 .7rem}.lede{color:var(--muted);line-height:1.65;max-width:820px;margin:0}.refresh-note{color:#77837a;font-size:.7rem;min-width:max-content}
+.notice{padding:15px 17px;border-radius:17px;background:#0b120d;border:1px solid var(--line);margin-top:20px;color:#dfe5df;font-size:.82rem}.notice.bad{border-color:rgba(220,128,109,.28);color:#ffd7cf}
+.metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:22px}.metric{background:linear-gradient(145deg,#0d1510,#08100a);border:1px solid var(--line);border-radius:18px;padding:16px;min-height:105px}.metric span{display:block;color:var(--muted);font-size:.61rem;text-transform:uppercase;letter-spacing:.1em;line-height:1.4}.metric strong{display:block;margin-top:8px;font-size:1.85rem;font-weight:400}.metric small{display:block;color:#68746b;font-size:.64rem;margin-top:4px}.metric.alert strong{color:#ffd2c9}.metric.good strong{color:var(--green2)}
+.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:24px}.section{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:23px;overflow:hidden}.grid2 .section{margin-top:0}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:17px 18px;border-bottom:1px solid var(--line)}.section-head h2{margin:0;font-weight:400;font-size:1.35rem}.section-sub{color:var(--muted);font-size:.7rem;margin-top:4px;line-height:1.45}.section-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.search,.select{background:#fff;color:#050505;border:0;border-radius:11px;padding:10px 12px}.search{min-width:min(330px,45vw)}.select{min-width:120px}
+.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:820px}.table th,.table td{text-align:left;padding:12px 15px;border-bottom:1px solid rgba(255,255,255,.06);font-size:.75rem;vertical-align:top}.table th{color:#b7c1b8;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase}.table td small{display:block;color:var(--muted);margin-top:3px;line-height:1.45}.badge{display:inline-block;padding:4px 7px;border-radius:999px;background:rgba(194,207,50,.10);color:#dce68a;border:1px solid var(--line);font-size:.63rem}.badge.red{color:#ffd2c9;border-color:rgba(220,128,109,.25);background:rgba(220,128,109,.08)}
+.empty{padding:24px;color:var(--muted);font-size:.78rem}.hidden{display:none!important}.denied{max-width:720px;margin:70px auto;padding:28px;border:1px solid rgba(220,120,90,.24);border-radius:24px;background:#130d0b}.denied h2{font-weight:400;margin-top:0}
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:16px}.funnel-step{position:relative;padding:16px;border-radius:16px;background:#09100b;border:1px solid rgba(194,207,50,.10)}.funnel-step span{display:block;color:#829087;font-size:.61rem;text-transform:uppercase;letter-spacing:.09em}.funnel-step b{display:block;font-weight:400;font-size:1.55rem;margin-top:6px}.funnel-step small{color:#627067;font-size:.63rem}
+.feature-list{padding:12px 16px 17px;display:grid;gap:7px}.feature-row{display:grid;grid-template-columns:minmax(130px,1fr) 3fr 55px;gap:10px;align-items:center}.feature-row span{font-size:.68rem;color:#aab5ac}.bar{height:9px;border-radius:999px;background:#121b14;overflow:hidden;border:1px solid rgba(255,255,255,.035)}.bar i{display:block;height:100%;background:linear-gradient(90deg,#7e8b20,#c2cf32);border-radius:999px}.feature-row b{text-align:right;font-size:.72rem;font-weight:400;color:#e2e9e2}
+.chart{height:195px;padding:18px 14px 10px;display:flex;align-items:flex-end;gap:7px;border-bottom:1px solid rgba(255,255,255,.05)}.day{flex:1;min-width:8px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px}.day-bar{width:min(22px,100%);min-height:2px;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,var(--green),#6f7923)}.day label{font-size:.52rem;color:#657168;transform:rotate(-45deg);transform-origin:center;white-space:nowrap}.chart-legend{padding:10px 16px 15px;color:#718079;font-size:.65rem}
+.health{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:15px}.health-card{padding:13px;border-radius:15px;background:#09100b;border:1px solid rgba(255,255,255,.05)}.health-card span{display:flex;align-items:center;gap:7px;font-size:.7rem}.dot{width:8px;height:8px;border-radius:50%;background:#7b887d}.dot.good{background:#a9ca58;box-shadow:0 0 10px rgba(169,202,88,.24)}.dot.bad{background:#db806c}.health-card small{display:block;color:#68746b;font-size:.62rem;margin-top:5px;line-height:1.4}
+.inbox-list{display:grid;gap:9px;padding:13px}.inbox-item{padding:14px;border:1px solid rgba(194,207,50,.10);border-radius:16px;background:#09100b}.inbox-item.new{border-color:rgba(194,207,50,.31);box-shadow:inset 3px 0 0 var(--green)}.inbox-item strong{font-weight:400}.inbox-item small{display:block;color:var(--muted);margin-top:4px}.inbox-item p{margin:9px 0 0;color:#c7d0c8;line-height:1.55;font-size:.8rem;white-space:pre-wrap}.inbox-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.inbox-meta span{font-size:.61rem;padding:4px 7px;border-radius:999px;background:rgba(194,207,50,.08);color:#d6df96}.inbox-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.tiny{border:1px solid rgba(194,207,50,.17);background:#111913;color:#e7ece7;border-radius:999px;padding:6px 9px;font-size:.65rem;text-decoration:none}.tiny:hover{border-color:rgba(194,207,50,.45)}.tiny.resolve{color:#e9f49b}.tiny.archive{color:#9aa69d}
+.activity{display:grid;gap:6px;padding:13px}.activity-row{display:grid;grid-template-columns:150px 1fr auto;gap:12px;padding:10px 11px;border-radius:12px;background:#09100b;font-size:.69rem}.activity-row span{color:#dde4dd}.activity-row small{color:#6f7b72}.activity-row b{font-weight:400;color:#9eaa9f}
+.admin-privacy{padding:14px 17px;color:#748078;font-size:.66rem;line-height:1.6;border-top:1px solid rgba(255,255,255,.05)}
+@media(max-width:1180px){.metrics{grid-template-columns:repeat(4,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.hero{display:block}.refresh-note{margin-top:10px}.funnel{grid-template-columns:1fr 1fr}.health{grid-template-columns:1fr}.activity-row{grid-template-columns:100px 1fr}.activity-row b{display:none}}
+@media(max-width:560px){.metrics{grid-template-columns:1fr 1fr}.metric{min-height:96px}.metric strong{font-size:1.55rem}.funnel{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%;min-width:0}.top{align-items:flex-start}.brand b{font-size:1rem}.top-actions{max-width:45%}}
 </style>
 </head>
 <body>
-<header class="top"><div class="brand"><img src="assets/logo-green.webp" alt="Cannabis Basics"><div><b>Cannabis Basics</b><small>Administration</small></div></div><div><a href="members.html">Member View</a> <button id="logoutBtn">Sign Out</button></div></header>
+<header class="top">
+  <div class="brand"><img src="assets/logo-green.webp" alt="Cannabis Basics"><div><b>Cannabis Basics</b><small>Administration</small></div></div>
+  <div class="top-actions"><a href="index.html" target="_blank" rel="noopener">Public Site</a><a href="members.html">Member View</a><button id="refreshBtn">Refresh</button><button id="logoutBtn">Sign Out</button></div>
+</header>
 <main class="wrap" id="adminApp">
-<div class="eyebrow">Owner Dashboard</div><h1>Membership operations.</h1><p class="lede">A private overview of members, founding memberships, location coverage, activity, and partner engagement. Detailed personal journal text is not shown here.</p>
-<div class="notice" id="status">Checking administrator access…</div>
-<div id="dashboard" class="hidden">
-  <div class="metrics">
-    <div class="metric"><span>Total members</span><strong id="mMembers">0</strong></div>
-    <div class="metric"><span>Founding members</span><strong id="mFounders">0</strong></div>
-    <div class="metric"><span>New this week</span><strong id="mWeek">0</strong></div>
-    <div class="metric"><span>Active this month</span><strong id="mActive">0</strong></div>
-    <div class="metric"><span>Profiles with location</span><strong id="mLocation">0</strong></div>
-    <div class="metric"><span>Journal sessions</span><strong id="mSessions">0</strong></div>
-    <div class="metric"><span>Partner clicks</span><strong id="mClicks">0</strong></div>
-    <div class="metric"><span>Founding spots left</span><strong id="mRemaining">100</strong></div>
-    <div class="metric"><span>Free-resource leads</span><strong id="mLeads">0</strong></div>
-    <div class="metric"><span>Contact messages</span><strong id="mMessages">0</strong></div>
-    <div class="metric"><span>Page views · 30 days</span><strong id="mViews">0</strong></div>
-    <div class="metric"><span>App install clicks</span><strong id="mInstalls">0</strong></div>
+  <div class="hero"><div><div class="eyebrow">Private Operations Dashboard</div><h1>Run Cannabis Basics.</h1><p class="lede">Membership, audience growth, feature usage, contact messages, resource leads, dispensary coverage, and system health—without exposing members’ private journal text.</p></div><div class="refresh-note" id="lastRefresh">Not refreshed yet</div></div>
+  <div class="notice" id="status">Checking administrator access…</div>
+
+  <div id="dashboard" class="hidden">
+    <div class="metrics">
+      <div class="metric good"><span>Total members</span><strong id="mMembers">0</strong><small>member accounts</small></div>
+      <div class="metric"><span>New · 30 days</span><strong id="mMonth">0</strong><small>recent growth</small></div>
+      <div class="metric"><span>Active · 30 days</span><strong id="mActive">0</strong><small>logged a session</small></div>
+      <div class="metric"><span>Founding spots left</span><strong id="mRemaining">33</strong><small>of 33 opening spots</small></div>
+      <div class="metric"><span>Free-resource leads</span><strong id="mLeads">0</strong><small>resource requests</small></div>
+      <div class="metric alert"><span>New messages</span><strong id="mUnread">0</strong><small>contact inbox</small></div>
+      <div class="metric"><span>Page views · 30d</span><strong id="mViews">0</strong><small>first-party events</small></div>
+      <div class="metric"><span>Decoder runs · 30d</span><strong id="mDecoder">0</strong><small>feature use</small></div>
+      <div class="metric"><span>Locator searches · 30d</span><strong id="mLocator">0</strong><small>feature use</small></div>
+      <div class="metric"><span>Saved dispensaries</span><strong id="mStores">0</strong><small>member records</small></div>
+      <div class="metric"><span>Saved products</span><strong id="mProducts">0</strong><small>member records</small></div>
+      <div class="metric"><span>Maryland catalog</span><strong id="mMaryland">0</strong><small>official/fallback locations</small></div>
+    </div>
+
+    <div class="grid2">
+      <section class="section">
+        <div class="section-head"><div><h2>30-Day Growth Funnel</h2><div class="section-sub">Approximate journey from public-site activity into membership.</div></div></div>
+        <div class="funnel">
+          <div class="funnel-step"><span>Page views</span><b id="fViews">0</b><small>public pages</small></div>
+          <div class="funnel-step"><span>Join opens</span><b id="fJoin">0</b><small id="fJoinRate">0% of views</small></div>
+          <div class="funnel-step"><span>New members</span><b id="fMembers">0</b><small id="fMemberRate">0% of join opens</small></div>
+          <div class="funnel-step"><span>Active members</span><b id="fActive">0</b><small id="fActiveRate">0% activation</small></div>
+        </div>
+        <div class="section-head"><div><h2>Feature Usage</h2><div class="section-sub">First-party events from the last 30 days.</div></div></div>
+        <div class="feature-list" id="featureList"><div class="empty">No usage events yet.</div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div><h2>System Health</h2><div class="section-sub">Free infrastructure currently supporting the site.</div></div></div>
+        <div class="health">
+          <div class="health-card"><span><i class="dot" id="hSiteDot"></i>GitHub Pages</span><small id="hSite">Checking public files…</small></div>
+          <div class="health-card"><span><i class="dot" id="hDbDot"></i>Supabase Database</span><small id="hDb">Checking admin data…</small></div>
+          <div class="health-card"><span><i class="dot" id="hMapDot"></i>Maryland Dispensary Feed</span><small id="hMap">Checking official location feed…</small></div>
+          <div class="health-card"><span><i class="dot" id="hPwaDot"></i>PWA / App Shell</span><small id="hPwa">Checking manifest and service worker…</small></div>
+        </div>
+        <div class="admin-privacy">System checks use the existing free GitHub Pages, Supabase, browser PWA, and Maryland public-data infrastructure. This panel does not require a paid monitoring service.</div>
+      </section>
+    </div>
+
+    <section class="section">
+      <div class="section-head"><div><h2>14-Day Activity</h2><div class="section-sub">Combined tracked site activity by day.</div></div></div>
+      <div class="chart" id="activityChart"></div><div class="chart-legend">Each bar combines page views, Decoder runs, Locator searches, join opens, and member opens recorded that day.</div>
+    </section>
+
+    <section class="section" id="messagesSection">
+      <div class="section-head"><div><h2>Contact Inbox</h2><div class="section-sub">Read, resolve, archive, or reply using your normal email app.</div></div><div class="section-actions"><select class="select" id="messageFilter"><option value="all">All messages</option><option value="new">New</option><option value="read">Read</option><option value="resolved">Resolved</option><option value="archived">Archived</option></select><button class="btn" id="exportContacts">Export CSV</button></div></div>
+      <div class="inbox-list" id="contactInbox"><div class="empty">No contact messages yet.</div></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Members</h2><div class="section-sub">Operational account information only. Private journal text is not displayed.</div></div><div class="section-actions"><input class="search" id="memberSearch" placeholder="Search member code, name, email, city…"><button class="btn" id="exportMembers">Export CSV</button></div></div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Member</th><th>Joined</th><th>Status</th><th>Location</th><th>Interests</th><th>Sessions</th><th>Last Session</th></tr></thead><tbody id="memberRows"></tbody></table><div class="empty hidden" id="emptyRows">No members match that search.</div></div>
+      <div class="admin-privacy">The dashboard intentionally summarizes usage rather than displaying effects, notes, mood entries, or other personal session text.</div>
+    </section>
+
+    <div class="grid2">
+      <section class="section">
+        <div class="section-head"><div><h2>Free-Resource Leads</h2><div class="section-sub">Emails submitted to open a free Cannabis Basics resource.</div></div><button class="btn" id="exportLeads">Export CSV</button></div>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Email</th><th>Source</th><th>Submitted</th></tr></thead><tbody id="leadRows"></tbody></table><div class="empty hidden" id="emptyLeads">No leads yet.</div></div>
+        <div class="admin-privacy">A free-resource email is not automatically treated as newsletter marketing consent. Keep that distinction until a subscriber explicitly opts in.</div>
+      </section>
+      <section class="section">
+        <div class="section-head"><div><h2>Recent Site Activity</h2><div class="section-sub">Latest first-party events. No precise device location is collected here.</div></div></div>
+        <div class="activity" id="recentActivity"><div class="empty">No events yet.</div></div>
+      </section>
+    </div>
   </div>
-  <section class="section">
-    <div class="section-head"><div><h2>Members</h2><div style="color:#95a198;font-size:.74rem;margin-top:5px">Operational account information only.</div></div><input class="search" id="memberSearch" placeholder="Search member code, name, email, city, state…"></div>
-    <div class="table-wrap"><table class="members"><thead><tr><th>Member</th><th>Joined</th><th>Status</th><th>Location</th><th>Interests</th><th>Sessions</th><th>Last Session</th></tr></thead><tbody id="memberRows"></tbody></table><div class="empty hidden" id="emptyRows">No members match that search.</div></div>
-  </section>
-  <section class="section">
-    <div class="section-head"><div><h2>Contact Inbox</h2><div style="color:#95a198;font-size:.74rem;margin-top:5px">Messages submitted through the public Cannabis Basics contact form.</div></div></div>
-    <div class="inbox-list" id="contactInbox"><div class="empty">No contact messages yet.</div></div>
-  </section>
-  <section class="section">
-    <div class="section-head"><div><h2>Free-Resource Leads</h2><div style="color:#95a198;font-size:.74rem;margin-top:5px">Emails submitted before opening the free Cannabis Log worksheet.</div></div></div>
-    <div class="table-wrap"><table class="members"><thead><tr><th>Email</th><th>Source</th><th>Submitted</th></tr></thead><tbody id="leadRows"></tbody></table><div class="empty hidden" id="emptyLeads">No leads yet.</div></div>
-  </section>
-</div>
 </main>
+
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 const sb=createClient('https://lwiwfgpgconkrahamedb.supabase.co','sb_publishable_7yLj43nCOjMAZ4BXHehGSw_V9D_8F4Q');
-const status=document.getElementById('status'),dash=document.getElementById('dashboard'),rows=document.getElementById('memberRows'),empty=document.getElementById('emptyRows');
-let members=[];
+const $=id=>document.getElementById(id);
+const status=$('status'),dash=$('dashboard');
+let members=[],leads=[],messages=[],events=[];
 
-const {data:{session}}=await sb.auth.getSession();
-if(!session){location.replace('join.html?signin=1&next=admin');}
-
-function fmtDate(v){return v?new Date(v).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'—'}
-function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-function render(filter=''){
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fmtDate(v,withTime=false){if(!v)return '—';const d=new Date(v);return d.toLocaleString(undefined,withTime?{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}:{year:'numeric',month:'short',day:'numeric'})}
+function pct(a,b){return b?Math.round((Number(a||0)/Number(b))*100):0}
+function setMetric(id,v){const el=$(id);if(el)el.textContent=Number(v||0).toLocaleString()}
+function health(id,ok,text){$(id+'Dot').className='dot '+(ok?'good':'bad');$(id).textContent=text}
+function csvCell(v){return '"'+String(v??'').replaceAll('"','""')+'"'}
+function downloadCSV(filename,headers,rows){
+  const csv=[headers.map(csvCell).join(','),...rows.map(r=>r.map(csvCell).join(','))].join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);
+}
+function labelEvent(name){
+  return ({page_view:'Page view',decoder_run:'Decoder run',locator_search:'Locator search',locator_save:'Locator save',join_open:'Join page',member_open:'Members area',pwa_install_click:'App install click',free_resource_open:'Free resource',free_resource_modal_submit:'Free resource signup',contact_submit:'Contact submitted'})[name]||name.replaceAll('_',' ');
+}
+async function requireAdmin(){
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session){location.replace('join.html?signin=1&next=admin');return false}
+  const {data,error}=await sb.from('admin_users').select('role').eq('user_id',session.user.id).maybeSingle();
+  if(error||!data){
+    status.classList.add('bad');status.textContent='This signed-in account is not assigned Cannabis Basics administrator permission.';
+    const denied=document.createElement('div');denied.className='denied';denied.innerHTML='<h2>Administrator permission required</h2><p style="color:#aab4ab;line-height:1.6">The dashboard is built and protected. The owner account still needs a one-time administrator assignment before this screen can display private operational data.</p><a class="btn" href="members.html">Return to Members</a>';
+    $('adminApp').appendChild(denied);return false;
+  }
+  return true;
+}
+function renderMembers(filter=''){
   const q=filter.trim().toLowerCase();
   const list=members.filter(m=>[m.member_code,m.preferred_name,m.email,m.city,m.state,...(m.interests||[])].join(' ').toLowerCase().includes(q));
-  rows.innerHTML=list.map(m=>`<tr>
-    <td><strong>${esc(m.preferred_name||'Member')}</strong><small>${esc(m.member_code||'—')} · ${esc(m.email||'')}</small></td>
-    <td>${fmtDate(m.joined_at)}</td>
-    <td><span class="badge">${m.founding_number?'Founding #'+m.founding_number:esc(m.membership_type||'Member')}</span><small>${esc(m.membership_status||'')}</small></td>
-    <td>${esc([m.city,m.state].filter(Boolean).join(', ')||'—')}</td>
-    <td>${esc((m.interests||[]).join(', ')||'—')}</td>
-    <td>${Number(m.session_count||0)}</td>
-    <td>${fmtDate(m.last_session_at)}</td>
-  </tr>`).join('');
-  empty.classList.toggle('hidden',list.length>0);
+  $('memberRows').innerHTML=list.map(m=>'<tr>'+
+    '<td><strong>'+esc(m.preferred_name||'Member')+'</strong><small>'+esc(m.member_code||'—')+' · '+esc(m.email||'')+'</small></td>'+
+    '<td>'+fmtDate(m.joined_at)+'</td>'+
+    '<td><span class="badge">'+(m.founding_number?'Founding #'+m.founding_number:esc(m.membership_type||'Member'))+'</span><small>'+esc(m.membership_status||'')+'</small></td>'+
+    '<td>'+esc([m.city,m.state].filter(Boolean).join(', ')||'—')+'</td>'+
+    '<td>'+esc((m.interests||[]).join(', ')||'—')+'</td>'+
+    '<td>'+Number(m.session_count||0)+'</td><td>'+fmtDate(m.last_session_at)+'</td></tr>').join('');
+  $('emptyRows').classList.toggle('hidden',list.length>0);
 }
-try{
-  const since30=new Date(Date.now()-30*86400000).toISOString();
-  const [metricsRes,membersRes,spotsRes,leadsRes,messagesRes,viewsRes,installsRes]=await Promise.all([
+function renderMessages(){
+  const filter=$('messageFilter').value;
+  const list=messages.filter(x=>filter==='all'||(x.status||'new')===filter);
+  $('contactInbox').innerHTML=list.length?list.map(x=>{
+    const state=x.status||'new';
+    return '<article class="inbox-item '+(state==='new'?'new':'')+'" data-message="'+esc(x.id)+'">'+
+      '<strong>'+esc(x.name||'Visitor')+' · '+esc(x.email||'')+'</strong><small>'+fmtDate(x.created_at,true)+' · '+esc(state)+'</small>'+
+      '<div class="inbox-meta">'+(x.topic?'<span>'+esc(x.topic)+'</span>':'')+(x.state?'<span>'+esc(x.state)+'</span>':'')+'</div>'+
+      '<p>'+esc(x.message||'')+'</p>'+
+      '<div class="inbox-actions"><a class="tiny" href="mailto:'+encodeURIComponent(x.email||'')+'?subject='+encodeURIComponent('Re: Cannabis Basics')+'">Reply by Email</a>'+
+      (state==='new'?'<button class="tiny" data-msg-status="read" data-id="'+esc(x.id)+'">Mark Read</button>':'')+
+      (state!=='resolved'?'<button class="tiny resolve" data-msg-status="resolved" data-id="'+esc(x.id)+'">Resolve</button>':'')+
+      (state!=='archived'?'<button class="tiny archive" data-msg-status="archived" data-id="'+esc(x.id)+'">Archive</button>':'')+
+      '</div></article>';
+  }).join(''):'<div class="empty">No messages in this view.</div>';
+}
+function renderFeatures(summary){
+  const list=summary||[],max=Math.max(1,...list.map(x=>Number(x.event_count||0)));
+  $('featureList').innerHTML=list.length?list.map(x=>'<div class="feature-row"><span>'+esc(labelEvent(x.event_name))+'</span><div class="bar"><i style="width:'+Math.max(2,Math.round(Number(x.event_count||0)/max*100))+'%"></i></div><b>'+Number(x.event_count||0).toLocaleString()+'</b></div>').join(''):'<div class="empty">No tracked feature events yet.</div>';
+}
+function renderChart(days){
+  const totals=days.map(d=>Number(d.page_views||0)+Number(d.decoder_runs||0)+Number(d.locator_searches||0)+Number(d.member_opens||0)+Number(d.join_opens||0));
+  const max=Math.max(1,...totals);
+  $('activityChart').innerHTML=days.map((d,i)=>'<div class="day" title="'+totals[i]+' tracked events"><div class="day-bar" style="height:'+Math.max(2,Math.round(totals[i]/max*100))+'%"></div><label>'+new Date(d.activity_date+'T12:00:00').toLocaleDateString(undefined,{month:'numeric',day:'numeric'})+'</label></div>').join('');
+}
+function renderRecent(){
+  $('recentActivity').innerHTML=events.length?events.slice(0,30).map(x=>'<div class="activity-row"><small>'+fmtDate(x.created_at,true)+'</small><span>'+esc(labelEvent(x.event_name))+'</span><b>'+esc((x.page_path||'').slice(0,70))+'</b></div>').join(''):'<div class="empty">No tracked events yet.</div>';
+}
+async function runHealth(){
+  try{const r=await fetch('manifest.webmanifest',{cache:'no-store'});health('hSite',r.ok,'Public site files responding');}catch(e){health('hSite',false,'Public file check failed')}
+  try{const [m,s]=await Promise.all([fetch('manifest.webmanifest',{cache:'no-store'}),fetch('sw.js',{cache:'no-store'})]);health('hPwa',m.ok&&s.ok,m.ok&&s.ok?'Manifest + service worker available':'PWA file check needs attention')}catch(e){health('hPwa',false,'PWA check failed')}
+  try{const r=await fetch('https://lwiwfgpgconkrahamedb.supabase.co/functions/v1/maryland-dispensaries',{headers:{Accept:'application/json'}});const data=await r.json();health('hMap',r.ok&&Number(data.count||data.features?.length)>0,r.ok?(Number(data.count||data.features?.length||0)+' official locations returned'):'Official feed unavailable')}catch(e){health('hMap',false,'Official location feed check failed')}
+}
+async function loadDashboard(){
+  status.classList.remove('bad');status.textContent='Loading live operations data…';
+  const [metricsRes,membersRes,summaryRes,dailyRes,leadsRes,messagesRes,eventsRes]=await Promise.all([
     sb.rpc('admin_dashboard_metrics'),
     sb.rpc('admin_member_overview'),
-    sb.rpc('founding_spots_remaining'),
-    sb.from('email_leads').select('*',{count:'exact'}).order('created_at',{ascending:false}).limit(100),
-    sb.from('contact_messages').select('*',{count:'exact'}).order('created_at',{ascending:false}).limit(100),
-    sb.from('site_events').select('id',{count:'exact',head:true}).eq('event_name','page_view').gte('created_at',since30),
-    sb.from('site_events').select('id',{count:'exact',head:true}).eq('event_name','pwa_install_click')
+    sb.rpc('admin_event_summary',{days_back:30}),
+    sb.rpc('admin_daily_activity',{days_back:14}),
+    sb.from('email_leads').select('*').order('created_at',{ascending:false}).limit(500),
+    sb.from('contact_messages').select('*').order('created_at',{ascending:false}).limit(250),
+    sb.from('site_events').select('event_name,page_path,created_at,context').order('created_at',{ascending:false}).limit(100)
   ]);
-  if(metricsRes.error)throw metricsRes.error;
-  if(membersRes.error)throw membersRes.error;
-  if(leadsRes.error)throw leadsRes.error;
-  if(messagesRes.error)throw messagesRes.error;
-  if(viewsRes.error)throw viewsRes.error;
-  if(installsRes.error)throw installsRes.error;
+  const failed=[metricsRes,membersRes,summaryRes,dailyRes,leadsRes,messagesRes,eventsRes].find(x=>x.error);
+  if(failed?.error)throw failed.error;
   const m=metricsRes.data||{};
-  document.getElementById('mMembers').textContent=m.members??0;
-  document.getElementById('mFounders').textContent=m.founding_members??0;
-  document.getElementById('mWeek').textContent=m.new_this_week??0;
-  document.getElementById('mActive').textContent=m.active_this_month??0;
-  document.getElementById('mLocation').textContent=m.profiles_with_location??0;
-  document.getElementById('mSessions').textContent=m.sessions??0;
-  document.getElementById('mClicks').textContent=m.deal_clicks??0;
-  document.getElementById('mRemaining').textContent=spotsRes.data??Math.max(0,33-(m.founding_members??0));
-  document.getElementById('mLeads').textContent=leadsRes.count??0;
-  document.getElementById('mMessages').textContent=messagesRes.count??0;
-  document.getElementById('mViews').textContent=viewsRes.count??0;
-  document.getElementById('mInstalls').textContent=installsRes.count??0;
-  members=membersRes.data||[];
-  render();
-  const inbox=document.getElementById('contactInbox');
-  const messages=messagesRes.data||[];
-  inbox.innerHTML=messages.length?messages.map(x=>`<article class="inbox-item"><strong>${esc(x.name||'Visitor')} · ${esc(x.email||'')}</strong><small>${fmtDate(x.created_at)}</small><div class="inbox-meta">${x.topic?'<span>'+esc(x.topic)+'</span>':''}${x.state?'<span>'+esc(x.state)+'</span>':''}</div><p>${esc(x.message||'')}</p></article>`).join(''):'<div class="empty">No contact messages yet.</div>';
-  const leadRows=document.getElementById('leadRows'),emptyLeads=document.getElementById('emptyLeads');
-  const leads=leadsRes.data||[];
-  leadRows.innerHTML=leads.map(x=>`<tr><td>${esc(x.email)}</td><td>${esc(x.source||'—')}</td><td>${fmtDate(x.created_at)}</td></tr>`).join('');
-  emptyLeads.classList.toggle('hidden',leads.length>0);
-  status.textContent='Administrator access verified. Live membership data is connected.';
-  dash.classList.remove('hidden');
-}catch(err){
-  status.textContent='This signed-in account does not have Cannabis Basics administrator access.';
-  const denied=document.createElement('div');denied.className='denied';denied.innerHTML='<h2 style="font-weight:400;margin-top:0">Administrator access required</h2><p style="color:#aab4ab;line-height:1.6">The dashboard is protected. Sign in with the owner account after it has been assigned administrator permission.</p>';
-  document.getElementById('adminApp').appendChild(denied);
+  setMetric('mMembers',m.members);setMetric('mMonth',m.new_this_month);setMetric('mActive',m.active_this_month);setMetric('mRemaining',m.founding_spots_remaining);
+  setMetric('mLeads',m.leads);setMetric('mUnread',m.unread_messages);setMetric('mViews',m.page_views_30d);setMetric('mDecoder',m.decoder_runs_30d);
+  setMetric('mLocator',m.locator_searches_30d);setMetric('mStores',m.saved_dispensaries);setMetric('mProducts',m.saved_products);setMetric('mMaryland',m.maryland_catalog);
+  setMetric('fViews',m.page_views_30d);setMetric('fJoin',m.join_opens_30d);setMetric('fMembers',m.new_this_month);setMetric('fActive',m.active_this_month);
+  $('fJoinRate').textContent=pct(m.join_opens_30d,m.page_views_30d)+'% of views';
+  $('fMemberRate').textContent=pct(m.new_this_month,m.join_opens_30d)+'% of join opens';
+  $('fActiveRate').textContent=pct(m.active_this_month,m.members)+'% activation';
+  members=membersRes.data||[];leads=leadsRes.data||[];messages=messagesRes.data||[];events=eventsRes.data||[];
+  renderMembers($('memberSearch').value);renderMessages();renderFeatures(summaryRes.data||[]);renderChart(dailyRes.data||[]);renderRecent();
+  $('leadRows').innerHTML=leads.map(x=>'<tr><td>'+esc(x.email)+'</td><td>'+esc(x.source||'—')+'</td><td>'+fmtDate(x.created_at,true)+'</td></tr>').join('');
+  $('emptyLeads').classList.toggle('hidden',leads.length>0);
+  health('hDb',true,'Supabase admin queries responding');
+  status.textContent='Administrator access verified. Live operations data is connected.';
+  dash.classList.remove('hidden');$('lastRefresh').textContent='Refreshed '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+  runHealth();
 }
-document.getElementById('memberSearch').addEventListener('input',e=>render(e.target.value));
-document.getElementById('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();location.replace('join.html')});
+if(await requireAdmin()){
+  try{await loadDashboard()}catch(err){console.error(err);status.classList.add('bad');status.textContent='Administrator data could not load. Check the system-health panel or sign in again.';health('hDb',false,'Admin database query failed');dash.classList.remove('hidden')}
+}
+$('memberSearch').addEventListener('input',e=>renderMembers(e.target.value));
+$('messageFilter').addEventListener('change',renderMessages);
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-msg-status]');if(!b)return;
+  b.disabled=true;
+  const next=b.dataset.msgStatus,id=b.dataset.id;
+  const patch={status:next};if(next==='read'||next==='resolved')patch.read_at=new Date().toISOString();
+  const {error}=await sb.from('contact_messages').update(patch).eq('id',id);
+  if(error){alert('Message status could not be updated.');b.disabled=false;return}
+  const x=messages.find(m=>String(m.id)===String(id));if(x){x.status=next;x.read_at=patch.read_at||x.read_at}
+  renderMessages();
+  if(next!=='new'){const unread=messages.filter(m=>(m.status||'new')==='new').length;setMetric('mUnread',unread)}
+});
+$('exportMembers').addEventListener('click',()=>downloadCSV('Cannabis-Basics-Members.csv',['Member Code','Name','Email','Joined','Membership','Status','Founding #','City','State','Interests','Session Count','Last Session'],members.map(m=>[m.member_code,m.preferred_name,m.email,m.joined_at,m.membership_type,m.membership_status,m.founding_number,m.city,m.state,(m.interests||[]).join('; '),m.session_count,m.last_session_at])));
+$('exportLeads').addEventListener('click',()=>downloadCSV('Cannabis-Basics-Free-Resource-Leads.csv',['Email','Source','Submitted'],leads.map(x=>[x.email,x.source,x.created_at])));
+$('exportContacts').addEventListener('click',()=>downloadCSV('Cannabis-Basics-Contact-Messages.csv',['Name','Email','Topic','State','Message','Status','Submitted'],messages.map(x=>[x.name,x.email,x.topic,x.state,x.message,x.status,x.created_at])));
+$('refreshBtn').addEventListener('click',async()=>{try{await loadDashboard()}catch(e){console.error(e);status.classList.add('bad');status.textContent='Refresh failed. Please try again.'}});
+$('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();location.replace('join.html?signin=1&next=admin')});
 </script>
-</body></html>
+</body>
+</html>
