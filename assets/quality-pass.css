@@ -1,0 +1,56 @@
+
+/* Cannabis Basics final free-stack quality pass */
+html{max-width:100%;overflow-x:clip}
+body{max-width:100%;overflow-x:clip}
+img,video,svg,canvas{max-width:100%}
+.cb-skip-link{
+  position:fixed;left:12px;top:10px;z-index:100000;transform:translateY(-160%);
+  padding:10px 14px;border-radius:10px;background:#f4f6f2;color:#132016;
+  font:700 .78rem/1.2 Arial,sans-serif;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,.4)
+}
+.cb-skip-link:focus{transform:none}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{
+  outline:3px solid #c2cf32!important;outline-offset:3px!important
+}
+:where(button,input,select,textarea):disabled,[aria-disabled="true"]{opacity:.55;cursor:not-allowed!important}
+.cb-network-status{
+  position:fixed;left:50%;bottom:16px;z-index:100000;translate:-50% 18px;
+  opacity:0;pointer-events:none;padding:9px 13px;border-radius:999px;
+  background:#182019;color:#edf3ed;border:1px solid rgba(194,207,50,.26);
+  font:700 .68rem/1.2 Arial,sans-serif;box-shadow:0 12px 38px rgba(0,0,0,.45);
+  transition:opacity .2s ease,translate .2s ease
+}
+.cb-network-status.show{opacity:1;translate:-50% 0}
+.cb-network-status.offline{border-color:rgba(220,128,109,.45);color:#ffd8cf}
+.cb-resource-error{display:grid;place-items:center;min-height:140px;padding:20px;text-align:center;color:#aab7ad}
+.table-wrap,.catalog-list,.article-index,.mobile-nav{-webkit-overflow-scrolling:touch}
+.mobile-nav{scroll-snap-type:x proximity;overscroll-behavior-x:contain}
+.mobile-nav button{scroll-snap-align:start}
+[role="dialog"]{overscroll-behavior:contain}
+@media(max-width:760px){
+  :where(button,.btn,.action,.secondary,.primary,.tiny,.nav-btn,.auth-tab,input,select){min-height:44px}
+  input,select,textarea{font-size:16px!important}
+  .public-top-actions,.top-actions{gap:7px}
+  .mobile-nav{padding-inline:10px}
+  .member-overlay,.control-modal{padding:7px!important}
+  .member-overlay-card,.control-modal-card{max-height:94dvh!important}
+  .table{font-size:.72rem}
+}
+@media(max-width:420px){
+  .screen h1{overflow-wrap:anywhere}
+  .hero-actions,.form-actions,.backup-actions,.control-actions,.inbox-actions{gap:7px}
+  .members-topbar .brand-copy small{display:none}
+  .admin-top-link{padding-inline:8px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important
+  }
+  video[autoplay]{animation:none!important}
+}
+@media(forced-colors:active){
+  :where(button,a,input,select,textarea){forced-color-adjust:auto}
+  .bar i,.dot{forced-color-adjust:none}
+}
