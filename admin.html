@@ -31,6 +31,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
 @media(max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.hero{display:block}.refresh-note{margin-top:10px}.funnel{grid-template-columns:1fr 1fr}.health{grid-template-columns:1fr}.activity-row{grid-template-columns:100px 1fr}.activity-row b{display:none}}
 @media(max-width:560px){.metrics{grid-template-columns:1fr 1fr}.metric{min-height:96px}.metric strong{font-size:1.55rem}.funnel{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%;min-width:0}.top{align-items:flex-start}.brand b{font-size:1rem}.top-actions{max-width:45%}}
 </style>
+<link rel="stylesheet" href="assets/admin-controls.css?v=20261004-admin2">
 </head>
 <body>
 <header class="top">
@@ -109,8 +110,125 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
         <div class="activity" id="recentActivity"><div class="empty">No events yet.</div></div>
       </section>
     </div>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Admin Alerts</h2><div class="section-sub">Operational items that may need attention. Generated from your current site data—no paid monitoring service.</div></div></div>
+      <div class="admin-alerts" id="adminAlerts"><div class="empty">Loading operational alerts…</div></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Site & Membership Controls</h2><div class="section-sub">Change the founding offer and member-deals status without rebuilding the site.</div></div><span class="badge"><span id="controlSpotsRemaining">—</span> spots currently remain</span></div>
+      <form class="control-grid" id="siteSettingsForm">
+        <div class="control-card">
+          <h3>Founding Access</h3><p>Control the opening allotment and the message used on the public membership invitation.</p>
+          <div class="admin-form">
+            <div class="admin-field"><label>Founding spot limit</label><input id="settingFoundingLimit" type="number" min="0" step="1"></div>
+            <div class="admin-field"><label>Standard lifetime price</label><input id="settingLifetimePrice" type="number" min="0" step="0.01"></div>
+            <div class="admin-field full"><label>Founding offer copy</label><textarea id="settingFoundingCopy"></textarea></div>
+          </div>
+          <div class="check-row"><label><input id="settingFoundingEnabled" type="checkbox"> Founding offer enabled</label></div>
+        </div>
+        <div class="control-card">
+          <h3>Member Features</h3><p>Pause or reopen controlled areas while keeping the rest of the member workspace available.</p>
+          <div class="check-row"><label><input id="settingDealsEnabled" type="checkbox"> Member Deals area enabled</label></div>
+          <p style="margin-top:12px">Individual offers still have their own Publish/Pause control below. Turning this off hides all live partner offers at once.</p>
+        </div>
+        <div class="control-card full">
+          <div class="control-actions"><button class="primary" type="submit">Save Site Controls</button></div>
+          <div class="control-status" id="settingsStatus"></div>
+        </div>
+      </form>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Site Announcements</h2><div class="section-sub">Publish a temporary banner to the public site, Members, or both.</div></div></div>
+      <div class="control-grid">
+        <form class="control-card" id="announcementForm">
+          <h3>Create / Edit Announcement</h3>
+          <div class="admin-form">
+            <div class="admin-field full"><label>Title</label><input id="announcementTitle" maxlength="140" required></div>
+            <div class="admin-field full"><label>Message</label><textarea id="announcementMessage" maxlength="1200" required></textarea></div>
+            <div class="admin-field"><label>Audience</label><select id="announcementAudience"><option value="all">Public + Members</option><option value="public">Public only</option><option value="members">Members only</option></select></div>
+            <div class="admin-field"><label>Priority</label><input id="announcementPriority" type="number" min="0" max="100" value="0"></div>
+            <div class="admin-field"><label>CTA label</label><input id="announcementCtaLabel" placeholder="Optional"></div>
+            <div class="admin-field"><label>CTA URL</label><input id="announcementCtaUrl" placeholder="Optional"></div>
+            <div class="admin-field"><label>Starts</label><input id="announcementStarts" type="datetime-local"></div>
+            <div class="admin-field"><label>Ends</label><input id="announcementEnds" type="datetime-local"></div>
+          </div>
+          <div class="check-row" style="margin-top:10px"><label><input id="announcementActive" type="checkbox"> Publish announcement</label></div>
+          <div class="control-actions"><button class="primary" id="announcementSave" type="submit">Create Announcement</button><button id="announcementCancel" type="button" hidden>Cancel Edit</button></div>
+          <div class="control-status" id="announcementStatus"></div>
+        </form>
+        <div class="control-card">
+          <h3>Announcement Queue</h3><p>Published, scheduled, paused, and expired announcements can all be edited here.</p>
+          <div class="control-list" id="announcementList"><div class="empty">Loading announcements…</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Member Deals & Partner Offers</h2><div class="section-sub">Create offers now; publish only when a real partnership or verified promotion exists.</div></div></div>
+      <div class="control-grid">
+        <form class="control-card" id="dealForm">
+          <h3>Create / Edit Offer</h3>
+          <div class="admin-form">
+            <div class="admin-field full"><label>Offer title</label><input id="dealTitle" required></div>
+            <div class="admin-field"><label>Partner name</label><input id="dealPartner"></div>
+            <div class="admin-field"><label>Category</label><input id="dealCategory" placeholder="Education, accessories, etc."></div>
+            <div class="admin-field full"><label>Description</label><textarea id="dealDescription"></textarea></div>
+            <div class="admin-field"><label>Destination URL</label><input id="dealUrl" type="url"></div>
+            <div class="admin-field"><label>Button label</label><input id="dealCta" placeholder="View Offer"></div>
+            <div class="admin-field"><label>Promo code</label><input id="dealCode"></div>
+            <div class="admin-field"><label>States</label><input id="dealStates" placeholder="Maryland, Virginia"></div>
+            <div class="admin-field full"><label>Interest tags</label><input id="dealTags" placeholder="education, accessories, flower"></div>
+            <div class="admin-field full"><label>Disclosure</label><textarea id="dealDisclosure" placeholder="Affiliate or partner disclosure shown with the offer"></textarea></div>
+            <div class="admin-field"><label>Starts</label><input id="dealStarts" type="datetime-local"></div>
+            <div class="admin-field"><label>Ends</label><input id="dealEnds" type="datetime-local"></div>
+          </div>
+          <div class="check-row" style="margin-top:10px"><label><input id="dealActive" type="checkbox"> Publish offer</label><label><input id="dealFeatured" type="checkbox"> Featured offer</label></div>
+          <div class="control-actions"><button class="primary" id="dealSave" type="submit">Create Offer</button><button id="dealCancel" type="button" hidden>Cancel Edit</button></div>
+          <div class="control-status" id="dealStatus"></div>
+        </form>
+        <div class="control-card">
+          <h3>Offer Library</h3><p>Inactive offers stay here so you can revise and republish them later.</p>
+          <div class="control-list" id="dealList"><div class="empty">Loading partner offers…</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Dispensary Catalog Manager</h2><div class="section-sub">Review the managed Maryland fallback catalog, correct details, deactivate stale records, or add a supplemental location.</div></div><button class="btn" id="catalogAdd" type="button">Add Supplemental Location</button></div>
+      <div class="catalog-toolbar"><input class="search" id="catalogSearch" placeholder="Search dispensary, city, ZIP, county…"><select class="select" id="catalogCounty"><option value="">All counties</option></select><select class="select" id="catalogStatus"><option value="all">All records</option><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+      <div class="section-sub" id="catalogCount" style="padding:9px 14px 0">Loading catalog…</div>
+      <div class="catalog-list" id="catalogList"><div class="empty">Loading Maryland catalog…</div></div>
+      <div class="admin-privacy">Deactivating a catalog record removes it from the Cannabis Basics fallback results without deleting the historical record. The live Maryland public-data feed remains a separate source.</div>
+    </section>
+
   </div>
 </main>
+
+<div class="control-modal" id="catalogModal" aria-hidden="true">
+  <div class="control-modal-card">
+    <div class="control-modal-head"><div><div class="eyebrow">Catalog Record</div><h3 id="catalogModalTitle">Edit Catalog Location</h3></div><button id="catalogModalClose" type="button" aria-label="Close">×</button></div>
+    <form id="catalogEditForm">
+      <div class="admin-form">
+        <div class="admin-field full"><label>Name</label><input id="catalogName" required></div>
+        <div class="admin-field full"><label>Address</label><input id="catalogAddress" required></div>
+        <div class="admin-field"><label>City</label><input id="catalogCity"></div>
+        <div class="admin-field"><label>State</label><input id="catalogStateField" value="Maryland"></div>
+        <div class="admin-field"><label>ZIP</label><input id="catalogZip"></div>
+        <div class="admin-field"><label>County</label><input id="catalogCountyField"></div>
+        <div class="admin-field"><label>Phone</label><input id="catalogPhone"></div>
+        <div class="admin-field"><label>Website</label><input id="catalogWebsite" type="url"></div>
+        <div class="admin-field full"><label>Source URL</label><input id="catalogSourceUrl" type="url"></div>
+      </div>
+      <div class="check-row" style="margin-top:10px"><label><input id="catalogActive" type="checkbox"> Active in Cannabis Basics fallback catalog</label></div>
+      <div class="control-actions"><button class="primary" type="submit">Save Location</button><button id="catalogCancel" type="button">Cancel</button></div>
+      <div class="control-status" id="catalogEditStatus"></div>
+    </form>
+  </div>
+</div>
+
 
 <script type="module">
 import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -241,5 +359,6 @@ $('exportContacts').addEventListener('click',()=>downloadCSV('Cannabis-Basics-Co
 $('refreshBtn').addEventListener('click',async()=>{try{await loadDashboard()}catch(e){console.error(e);status.classList.add('bad');status.textContent='Refresh failed. Please try again.'}});
 $('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();location.replace('join.html?signin=1&next=admin')});
 </script>
+<script type="module" src="assets/admin-controls.js?v=20261004-admin2"></script>
 </body>
 </html>
