@@ -32,6 +32,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
 @media(max-width:560px){.metrics{grid-template-columns:1fr 1fr}.metric{min-height:96px}.metric strong{font-size:1.55rem}.funnel{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%;min-width:0}.top{align-items:flex-start}.brand b{font-size:1rem}.top-actions{max-width:45%}}
 </style>
 <link rel="stylesheet" href="assets/admin-controls.css?v=20261004-admin2">
+<link rel="stylesheet" href="assets/quality-pass.css?v=20261004-q1">
 </head>
 <body>
 <header class="top">
@@ -362,5 +363,6 @@ $('refreshBtn').addEventListener('click',async()=>{try{await loadDashboard()}cat
 $('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();location.replace('join.html?signin=1&next=admin')});
 </script>
 <script type="module" src="assets/admin-controls.js?v=20261004-admin2"></script>
+<script src="assets/quality-pass.js?v=20261004-q1" defer></script>
 </body>
 </html>
