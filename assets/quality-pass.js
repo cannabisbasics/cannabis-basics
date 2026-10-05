@@ -48,6 +48,10 @@
   };
   window.addEventListener('offline',()=>showNet('You are offline. Cloud features will reconnect when your connection returns.',true));
   window.addEventListener('online',()=>showNet('Back online. Cloud features are available again.'));
+  window.addEventListener('unhandledrejection',e=>{
+    const msg=String(e.reason?.message||e.reason||'').toLowerCase();
+    if(!navigator.onLine||/network|fetch|failed to fetch|timeout/.test(msg))showNet('A cloud request could not finish. Check your connection and try again.',true);
+  });
   if(!navigator.onLine)showNet('You are offline. Cloud features will reconnect when your connection returns.',true);
 
   let priorFocus=null;
