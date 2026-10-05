@@ -3910,7 +3910,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
 
   function showInvite(){
-    if (open || shouldSuppress()) return;
+    if (open || shouldSuppress() || window.cbFoundingSignupAllowed===false) return;
     open = true;
     invite.classList.add('open');
     invite.setAttribute('aria-hidden','false');
@@ -4014,8 +4014,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(note)note.textContent=enabled?(label+' • Lifetime founding access • While spots remain'):('Standard lifetime price reserved for a future access phase: '+price);
     const btn=document.querySelector('#memberInviteForm button[type="submit"]');
     const input=document.getElementById('memberInviteEmail');
+    const aboutPrice=document.querySelector('.about-price-stack strong');
+    const aboutSmall=document.querySelector('.about-price-stack small');
+    const aboutCta=document.querySelector('.about-members-shimmer');
     if(btn){btn.disabled=!enabled;btn.textContent=enabled?'CLAIM FREE LIFETIME ACCESS':'FOUNDING ACCESS CLOSED';}
     if(input)input.disabled=!enabled;
+    if(aboutPrice)aboutPrice.textContent=enabled?'FREE':'PAUSED';
+    if(aboutSmall)aboutSmall.textContent=enabled?'Lifetime founding access':'Existing members can still sign in';
+    if(aboutCta)aboutCta.textContent=enabled?'Explore Members Only →':'Member Sign In →';
   }catch(e){}
 })();
 </script>
