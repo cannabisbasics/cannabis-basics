@@ -3967,6 +3967,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
+    if(window.cbFoundingSignupAllowed===false){
+      status.textContent='New free founding claims are currently closed. Existing members can still sign in from the member access page.';
+      return;
+    }
     const email = (emailInput.value || '').trim();
     if (!email || !emailInput.checkValidity()) {
       status.textContent = 'Enter a valid email so we can open your membership.';
@@ -3982,26 +3986,36 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 
 
-<script id="cb-live-founding-spots-20261001">
+<script id="cb-live-founding-spots-20261004">
 (async()=>{
   try{
-    const res=await fetch('https://lwiwfgpgconkrahamedb.supabase.co/rest/v1/rpc/founding_spots_remaining',{
-      method:'POST',
-      headers:{
-        'apikey':'sb_publishable_7yLj43nCOjMAZ4BXHehGSw_V9D_8F4Q',
-        'Content-Type':'application/json'
-      },
-      body:'{}'
-    });
-    if(!res.ok)return;
-    const remaining=Number(await res.json());
+    const base='https://lwiwfgpgconkrahamedb.supabase.co/rest/v1/';
+    const headers={'apikey':'sb_publishable_7yLj43nCOjMAZ4BXHehGSw_V9D_8F4Q','Content-Type':'application/json'};
+    const [spotsRes,settingsRes]=await Promise.all([
+      fetch(base+'rpc/founding_spots_remaining',{method:'POST',headers,body:'{}'}),
+      fetch(base+'site_settings?select=founding_offer_enabled,founding_offer_copy,standard_lifetime_price&id=eq.main',{headers})
+    ]);
+    if(!spotsRes.ok||!settingsRes.ok)return;
+    const remaining=Number(await spotsRes.json());
+    const settings=(await settingsRes.json())?.[0]||{};
+    const enabled=!!settings.founding_offer_enabled&&Number.isFinite(remaining)&&remaining>0;
+    window.cbFoundingSignupAllowed=enabled;
+    const price='$'+Number(settings.standard_lifetime_price||0).toFixed(0);
+    const priceEl=document.querySelector('.member-offer-step.grand strong');
+    if(priceEl)priceEl.textContent=price;
     const label=remaining+' SPOT'+(remaining===1?'':'S')+' REMAINING';
     const el=document.getElementById('aboutSpotsRemaining');
-    if(el&&Number.isFinite(remaining))el.textContent=label;
+    if(el&&Number.isFinite(remaining))el.textContent=enabled?label:(remaining<=0?'FOUNDING SPOTS FILLED':'FOUNDING ACCESS PAUSED');
     const popup=document.getElementById('memberInviteSpots');
-    if(popup&&Number.isFinite(remaining))popup.textContent='FOUNDING MEMBERSHIP • '+label;
+    if(popup)popup.textContent=enabled?('FOUNDING MEMBERSHIP • '+label):(remaining<=0?'FOUNDING MEMBERSHIP • OPENING SPOTS FILLED':'FOUNDING MEMBERSHIP • CURRENTLY PAUSED');
+    const lede=document.querySelector('.member-invite-lede');
+    if(lede)lede.textContent=enabled?(settings.founding_offer_copy||'Claim free lifetime founding access while one of the remaining spots is available.'):'Existing members can still sign in. New free founding claims are not being accepted right now.';
     const note=document.getElementById('memberInviteNote');
-    if(note&&Number.isFinite(remaining))note.textContent=label+' • Lifetime founding access • While spots remain';
+    if(note)note.textContent=enabled?(label+' • Lifetime founding access • While spots remain'):('Standard lifetime price reserved for a future access phase: '+price);
+    const btn=document.querySelector('#memberInviteForm button[type="submit"]');
+    const input=document.getElementById('memberInviteEmail');
+    if(btn){btn.disabled=!enabled;btn.textContent=enabled?'CLAIM FREE LIFETIME ACCESS':'FOUNDING ACCESS CLOSED';}
+    if(input)input.disabled=!enabled;
   }catch(e){}
 })();
 </script>
@@ -4010,5 +4024,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script type="module" src="assets/locator.js?v=20261002-statewide1"></script>
 <script src="assets/pwa.js?v=20261002-app1" defer></script>
 <script type="module" src="assets/public-data.js?v=20261002-free1"></script>
+<script type="module" src="assets/site-announcements.js?v=20261004-control1"></script>
 </body>
 </html>
