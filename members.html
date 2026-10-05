@@ -1126,7 +1126,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
   </div>
   <div class="nav-group" id="sideNav"></div>
   <div class="nav-sep"></div>
-  <div class="member-price"><b>Founding Lifetime Member</b><span>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span><strong>Free founding access</strong></div>
+  <div class="member-price"><b>Founding Lifetime Member</b><span data-membership-offer-copy>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span><strong>Free founding access</strong></div>
 </aside>
 <main class="main">
 <section class="screen active" id="screen-dashboard">
@@ -1352,14 +1352,10 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
 </section>
 
 <section class="screen" id="screen-deals">
-  <div class="eyebrow">Member Deals & Partner Savings</div><h1>Useful offers, clearly labeled.</h1><p class="lede">This area is being prepared for member-focused savings from approved Cannabis Basics partners. We will only show real offers after the partnership is active and the terms are verified.</p>
-  <div class="deals-intro"><h2>Your savings area is ready.</h2><p>As affiliate relationships are approved, this is where members can find relevant discounts, education offers, hardware/accessories, and other legal cannabis-related services without cluttering the journal itself.</p></div>
-  <div class="deals-grid">
-    <div class="deal-placeholder"><b>Education & Training</b><span>Courses, certifications, and learning resources that fit Cannabis Basics.</span></div>
-    <div class="deal-placeholder"><b>Accessories & Hardware</b><span>Approved devices and accessories with verified partner terms.</span></div>
-    <div class="deal-placeholder"><b>Member Partner Offers</b><span>Discount codes and savings from vetted partners as they become active.</span></div>
-  </div>
-  <p class="partner-disclosure"><strong>Partner disclosure:</strong> Some future offers may use affiliate links. When they do, Cannabis Basics will label the relationship clearly and may earn a commission at no additional cost to the member.</p>
+  <div class="eyebrow">Member Deals & Partner Savings</div><h1>Useful offers, clearly labeled.</h1><p class="lede" id="memberDealsIntro">Cannabis Basics only publishes partner offers after the relationship and terms are active and verified.</p>
+  <div class="deals-intro"><h2>Member savings, without cluttering your journal.</h2><p>Offers can include education, accessories, hardware, and other lawful cannabis-related services. Availability can vary by state.</p></div>
+  <div class="deals-grid" id="memberDealsGrid"><div class="deal-placeholder"><b>Checking current offers…</b><span>Loading verified Cannabis Basics member deals.</span></div></div>
+  <p class="partner-disclosure"><strong>Partner disclosure:</strong> Some offers may use affiliate links. When they do, Cannabis Basics labels the relationship clearly and may earn a commission at no additional cost to the member.</p>
 </section>
 
 <section class="screen" id="screen-pdf"><div class="eyebrow">PDF & Backup Tools</div><h1>Keep a copy of your records.</h1><p class="lede">Create clean printable reports from your Cannabis Basics records. Your browser can print them or save them directly as PDF without another paid service.</p><div class="paper"><h2>Printable reports</h2><p class="paper-intro">Choose a report below. A print-ready page opens with your current saved records.</p><div class="pdf-report-grid"><button class="secondary" type="button" data-print-report="sessions">Session History</button><button class="secondary" type="button" data-print-report="products">My Products</button><button class="secondary" type="button" data-print-report="stash">My Stash</button><button class="secondary" type="button" data-print-report="dispensaries">My Dispensaries</button><button class="primary" type="button" data-print-report="full">Full Cannabis Basics Report</button></div><div class="privacy">Downloads are private personal records once they leave Cannabis Basics. Store or share them only where you are comfortable keeping cannabis-related information.</div></div></section>
@@ -1415,7 +1411,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
   </div>
   <div class="profile-status-line" id="profileStatus" aria-live="polite"></div><div class="cloud-status" id="cloudStatus"><i></i><span>Secure member cloud connected</span></div>
 
-  <div class="account-card"><div><b>Founding Lifetime Membership</b><span>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span></div><strong>Founding access</strong></div>
+  <div class="account-card"><div><b>Founding Lifetime Membership</b><span data-membership-offer-copy>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span></div><strong>Founding access</strong></div>
   <div class="account-card"><div><b>Journal Backup</b><span>Download a personal copy of your current profile, sessions, My Stash, My Products, wish list, and saved dispensaries as a JSON backup.</span></div><span>Member backup</span></div>
   <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary" type="button" data-pwa-install>Install App</button><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
   <div class="backup-status" id="backupStatus" aria-live="polite"></div><div class="signout-row"><button class="secondary" id="signOutBtn" type="button">Sign Out</button></div>
@@ -2288,7 +2284,9 @@ function openPrintableReport(kind){
   const w=window.open('','_blank');
   if(!w){toast('Allow pop-ups to open the printable report.');return}
   const title=kind==='full'?'Cannabis Basics Personal Report':'Cannabis Basics '+kind[0].toUpperCase()+kind.slice(1);
-  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>@page{size:letter;margin:.55in}body{font:12px/1.45 Arial,sans-serif;color:#1f2a22}header{border-bottom:3px solid #55744d;padding-bottom:14px;margin-bottom:22px}h1{font:400 28px Georgia,serif;margin:0;color:#304c35}header p{margin:6px 0 0;color:#667168}section{margin:0 0 28px}h2{font:400 19px Georgia,serif;color:#35553b;border-bottom:1px solid #ccd6ca;padding-bottom:6px}article{break-inside:avoid;border:1px solid #d9ded7;border-radius:10px;padding:10px 12px;margin:8px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px}article div{display:grid;gap:2px}b{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#68736a}span{font-size:11px}.empty-print{color:#778177}.privacy-print{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;color:#6f776f;font-size:9px}@media print{button{display:none}}</style></head><body><header><h1>'+esc(title)+'</h1><p>'+esc(profile.name||'Cannabis Basics Member')+' • Generated '+new Date().toLocaleDateString()+'</p></header>'+blocks.join('')+'<div class="privacy-print">Private personal record. Cannabis Basics provides education and recordkeeping tools, not medical or dosing advice.</div><script>window.onload=()=>setTimeout(()=>window.print(),150)<\/script></body></html>');
+  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>@page{size:letter;margin:.55in}body{font:12px/1.45 Arial,sans-serif;color:#1f2a22}header{border-bottom:3px solid #55744d;padding-bottom:14px;margin-bottom:22px}h1{font:400 28px Georgia,serif;margin:0;color:#304c35}header p{margin:6px 0 0;color:#667168}section{margin:0 0 28px}h2{font:400 19px Georgia,serif;color:#35553b;border-bottom:1px solid #ccd6ca;padding-bottom:6px}article{break-inside:avoid;border:1px solid #d9ded7;border-radius:10px;padding:10px 12px;margin:8px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px}article div{display:grid;gap:2px}b{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:#68736a}span{font-size:11px}.empty-print{color:#778177}.privacy-print{margin-top:28px;padding-top:12px;border-top:1px solid #ddd;color:#6f776f;font-size:9px}@media print{button{display:none}}</style></head><body><header><h1>'+esc(title)+'</h1><p>'+esc(profile.name||'Cannabis Basics Member')+' • Generated '+new Date().toLocaleDateString()+'</p></header>'+blocks.join('')+'<div class="privacy-print">Private personal record. Cannabis Basics provides education and recordkeeping tools, not medical or dosing advice.</div><script>window.onload=()=>setTimeout(()=>window.print(),150)<\/script><script type="module" src="assets/site-announcements.js?v=20261004-control1"></script>
+<script type="module" src="assets/member-deals.js?v=20261004-control1"></script>
+</body></html>');
   w.document.close();
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-print-report]');if(b)openPrintableReport(b.dataset.printReport)});
