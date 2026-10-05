@@ -1118,7 +1118,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
   </div>
 </header>
 <audio id="siteMusic" loop preload="auto"><source src="assets/slow-like-the-smoke.MP3" type="audio/mpeg"></audio>
-<nav class="mobile-nav" id="mobileNav"></nav>
+<nav class="mobile-nav" id="mobileNav" aria-label="Member navigation"></nav>
 <div class="shell">
 <aside class="side">
   <div class="side-intro"><strong>My Cannabis Record Book</strong><span>Private member workspace</span></div>
@@ -1237,7 +1237,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
     <div class="form-actions"><button class="primary" id="saveSession">Save Session</button><button class="secondary" id="clearSession">Clear</button><button class="secondary full-log-action" id="printSession">Print / Save PDF</button></div>
   </div>
   <div id="savedRecords" class="paper print-hide"><h2>Saved Sessions</h2><p class="paper-intro">Search your journal, reopen entries, mark favorites, or duplicate something you want to compare next time.</p>
-    <div class="journal-filterbar"><input id="sessionSearch" placeholder="Search strain, product, dispensary, tags..."><select id="sessionFilter"><option value="all">All sessions</option><option value="favorites">Favorites</option><option value="rated5">5-star sessions</option><option value="recent">Last 30 days</option></select></div>
+    <div class="journal-filterbar"><input id="sessionSearch" aria-label="Search saved sessions" placeholder="Search strain, product, dispensary, tags..."><select id="sessionFilter" aria-label="Filter saved sessions"><option value="all">All sessions</option><option value="favorites">Favorites</option><option value="rated5">5-star sessions</option><option value="recent">Last 30 days</option></select></div>
     <div class="records" id="recordsList"></div></div>
   <div class="pdf-preview" id="pdfPreview"><div class="pdf-head"><div><div class="eyebrow">Cannabis Basics</div><h2>Cannabis Log</h2></div><img src="assets/logo-green.webp" alt="Cannabis Basics logo"></div><div class="pdf-grid" id="pdfGrid"></div></div>
 </section>
@@ -1296,7 +1296,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
 
   <div class="paper product-paper">
     <div class="product-toolbar">
-      <input id="productSearch" placeholder="Search products, brands, dispensaries...">
+      <input id="productSearch" aria-label="Search saved products" placeholder="Search products, brands, dispensaries...">
       <select id="productFilter" aria-label="Filter My Products">
         <option value="all">All products</option>
         <option value="favorites">Favorites</option>
@@ -1338,7 +1338,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
     <div class="product-library" id="productLibrary"></div>
   </div>
 </section>
-<section class="screen" id="screen-dispensaries"><div class="eyebrow">My Dispensaries</div><h1>Your saved cannabis locations.</h1><p class="lede">Save dispensaries directly from the Cannabis Basics Locator, keep your own notes, mark favorites, and return to store details when you need them.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Dispensary Name</label><input id="storeName" placeholder="Dispensary"></div><div class="field"><label>Location</label><input id="storeLocation" placeholder="City / State"></div><div class="field"><label>Notes</label><input id="storeNotes" placeholder="What do you like about it?"></div></div><div class="form-actions"><button class="primary" id="addStore">Save Dispensary</button><button class="secondary" id="cancelStoreEdit" type="button" hidden>Cancel Edit</button><a class="secondary" href="index.html#locator">Use Public Locator</a></div><div class="member-store-toolbar"><input id="storeSearch" placeholder="Search saved dispensaries..."><select id="storeSort"><option value="favorite">Favorites first</option><option value="recent">Recently saved</option><option value="name">Name A–Z</option></select></div><div id="storeList"></div></div></section>
+<section class="screen" id="screen-dispensaries"><div class="eyebrow">My Dispensaries</div><h1>Your saved cannabis locations.</h1><p class="lede">Save dispensaries directly from the Cannabis Basics Locator, keep your own notes, mark favorites, and return to store details when you need them.</p><div class="paper"><div class="form-grid"><div class="field full"><label>Dispensary Name</label><input id="storeName" placeholder="Dispensary"></div><div class="field"><label>Location</label><input id="storeLocation" placeholder="City / State"></div><div class="field"><label>Notes</label><input id="storeNotes" placeholder="What do you like about it?"></div></div><div class="form-actions"><button class="primary" id="addStore">Save Dispensary</button><button class="secondary" id="cancelStoreEdit" type="button" hidden>Cancel Edit</button><a class="secondary" href="index.html#locator">Use Public Locator</a></div><div class="member-store-toolbar"><input id="storeSearch" aria-label="Search saved dispensaries" placeholder="Search saved dispensaries..."><select id="storeSort" aria-label="Sort saved dispensaries"><option value="favorite">Favorites first</option><option value="recent">Recently saved</option><option value="name">Name A–Z</option></select></div><div id="storeList"></div></div></section>
 <section class="screen" id="screen-favorites"><div class="eyebrow">Favorites</div><h1>The ones worth remembering.</h1><p class="lede">Products rated highly in your session history can be promoted into a clean favorites list.</p><div class="paper"><div class="records" id="favoritesList"></div></div></section>
 <section class="screen" id="screen-insights">
   <div class="eyebrow">My Cannabis Insights</div><h1>See your own patterns.</h1><p class="lede">These are simple summaries of the records you save—not medical conclusions. The goal is to make your own journal easier to learn from.</p>
@@ -1415,7 +1415,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
 
   <div class="account-card"><div><b>Founding Lifetime Membership</b><span data-membership-offer-copy>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span></div><strong>Founding access</strong></div>
   <div class="account-card"><div><b>Journal Backup</b><span>Download a personal copy of your current profile, sessions, My Stash, My Products, wish list, and saved dispensaries as a JSON backup.</span></div><span>Member backup</span></div>
-  <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" accept="application/json"><button class="secondary" type="button" data-pwa-install>Install App</button><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
+  <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" aria-label="Import Cannabis Basics backup file" accept="application/json"><button class="secondary" type="button" data-pwa-install>Install App</button><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
   <div class="backup-status" id="backupStatus" aria-live="polite"></div><div class="signout-row"><button class="secondary" id="signOutBtn" type="button">Sign Out</button></div>
   <div class="account-card"><div><b>Secure cloud account</b><span>Your profile and journal are connected to a private authenticated member account for cross-device access.</span></div><span>Connected</span></div>
   <div class="privacy">Member profile and journal records are protected by authenticated access and row-level database security. Browser cache is cleared when accounts change or sign out, so one member's cached profile cannot carry into another member's account. Members keep export controls for their own records.</div>
