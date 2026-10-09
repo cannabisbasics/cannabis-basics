@@ -3114,6 +3114,7 @@ body.light-theme .decoder-preview-grid span{background:#f1f5ed;color:#57655b;bor
 @media(max-width:680px){.article-mid-visual .article-art{aspect-ratio:16/8}}
 </style>
 <link rel="stylesheet" href="assets/quality-pass.css?v=20261004-q1">
+<link rel="stylesheet" href="assets/listening.css?v=20261009-listen1">
 </head>
 <body><div class="site-bg" aria-hidden="true"></div>
 <div class="leaf-field" aria-hidden="true">
@@ -3489,48 +3490,6 @@ const LEAD_ENDPOINT = null; // Optional: Google Apps Script / form service endpo
 
 document.getElementById('amazonBtn').href = AMAZON_URL;
 
-// Live365 homepage radio — direct one-tap stream
-const musicBtn=document.getElementById('musicBtn');
-const radio=document.getElementById('homepageRadio');
-const radioStatus=document.getElementById('radioStatus');
-let radioPlaying=false;
-
-function syncRadio(on){
-  radioPlaying=on;
-  musicBtn?.classList.toggle('playing',on);
-  musicBtn?.setAttribute('aria-pressed',on?'true':'false');
-  musicBtn?.setAttribute('aria-label',on?'Turn live hip-hop and R&B radio off':'Turn live hip-hop and R&B radio on');
-  if(musicBtn)musicBtn.title=on?'Turn 870.1 Urban Hip Hop & R&B off':'Play 870.1 Urban Hip Hop & R&B';
-  if(radioStatus)radioStatus.textContent=on?'Live radio on':'Live radio off';
-}
-musicBtn?.setAttribute('aria-pressed','false');
-musicBtn?.addEventListener('click',async()=>{
-  if(!radio)return;
-  if(radioPlaying){
-    radio.pause();
-    radio.removeAttribute('src');
-    radio.load();
-    const source=radio.querySelector('source');
-    if(source)source.src='https://streaming.live365.com/a12370';
-    syncRadio(false);
-    return;
-  }
-  try{
-    const source=radio.querySelector('source');
-    if(source&&!source.src)source.src='https://streaming.live365.com/a12370';
-    if(!radio.currentSrc)radio.load();
-    await radio.play();
-    syncRadio(true);
-  }catch(err){
-    console.error('Live365 radio could not start',err);
-    syncRadio(false);
-    if(radioStatus)radioStatus.textContent='Live radio is temporarily unavailable';
-    if(musicBtn)musicBtn.title='Radio unavailable — tap to retry';
-  }
-});
-radio?.addEventListener('ended',()=>syncRadio(false));
-radio?.addEventListener('error',()=>syncRadio(false));
-
 // Cannabis Decoder — polished label-first experience
 const decoderProductNotes={
   flower:'Flower and pre-roll labels usually show cannabinoids as percentages. The printed percentage is useful context, but it is not a universal predictor of intensity.',
@@ -3721,8 +3680,8 @@ function articleVisual(kind){
 const articleGrid=document.getElementById('articleGrid');
 longArticles.forEach((a,i)=>{const card=document.createElement('article');card.className='article-card';card.tabIndex=0;card.innerHTML=`${articleVisual(a.art)}<div class="article-card-body"><div class="article-cat">${a.cat}</div><h3>${a.title}</h3><p>${a.dek}</p><div class="article-meta"><span>Last reviewed Sep 2026</span><span>•</span><span>${a.read}</span></div><span class="read-link">Read article →</span></div>`;const open=()=>openArticle(i);card.addEventListener('click',open);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});articleGrid.appendChild(card)});
 const articleModal=document.getElementById('articleModal'),articleShell=document.getElementById('articleShell');
-function openArticle(i){const a=longArticles[i];let body=a.body.replace('{{AD}}',elevenAd);const visual=`<figure class="article-mid-visual">${articleVisual(a.art)}<figcaption>Visual guide • Cannabis Basics</figcaption></figure>`;const firstClose=body.indexOf('</section>');if(firstClose>=0)body=body.slice(0,firstClose+10)+visual+body.slice(firstClose+10);articleShell.innerHTML=`<div class="article-hero">${articleVisual(a.art)}<div class="article-head"><div class="article-cat">${a.cat}</div><h1 id="articleModalTitle">${a.title}</h1><p class="article-dek">${a.dek}</p><div class="article-byline"><span>Cannabis Basics</span><span>•</span><span>Last reviewed September 2026</span><span>•</span><span>${a.read}</span></div></div></div><div class="article-content">${body}</div>`;articleModal.classList.add('open');document.body.classList.add('no-scroll');articleModal.scrollTop=0;}
-function closeArticle(){articleModal.classList.remove('open');document.body.classList.remove('no-scroll');}
+function openArticle(i){const a=longArticles[i];let body=a.body.replace('{{AD}}',elevenAd);const visual=`<figure class="article-mid-visual">${articleVisual(a.art)}<figcaption>Visual guide • Cannabis Basics</figcaption></figure>`;const firstClose=body.indexOf('</section>');if(firstClose>=0)body=body.slice(0,firstClose+10)+visual+body.slice(firstClose+10);articleShell.innerHTML=`<div class="article-hero">${articleVisual(a.art)}<div class="article-head"><div class="article-cat">${a.cat}</div><h1 id="articleModalTitle">${a.title}</h1><p class="article-dek">${a.dek}</p><div class="article-byline"><span>Cannabis Basics</span><span>•</span><span>Last reviewed September 2026</span><span>•</span><span>${a.read}</span></div></div></div><div class="article-content">${body}</div>`;articleModal.classList.add('open');document.body.classList.add('no-scroll');articleModal.scrollTop=0;window.CBReader?.mount();}
+function closeArticle(){window.CBReader?.stop();articleModal.classList.remove('open');document.body.classList.remove('no-scroll');}
 document.getElementById('articleClose').addEventListener('click',closeArticle);document.getElementById('articleBack').addEventListener('click',closeArticle);
 
 // Cannabis 101 deeper popups
@@ -4034,5 +3993,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 <script type="module" src="assets/public-data.js?v=20261004-q1"></script>
 <script type="module" src="assets/site-announcements.js?v=20261004-control1"></script>
 <script src="assets/quality-pass.js?v=20261004-q1" defer></script>
+<script src="assets/listening.js?v=20261009-listen1" defer></script>
 </body>
 </html>

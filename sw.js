@@ -1,8 +1,8 @@
-const CACHE='cb-app-v5-20261004';
+const CACHE='cb-app-v6-20261009-listen';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
-  './assets/pwa.js','./assets/public-data.js','./assets/site-announcements.js',
+  './assets/listening.css','./assets/listening.js','./assets/pwa.js','./assets/public-data.js','./assets/site-announcements.js',
   './assets/member-deals.js','./assets/quality-pass.css','./assets/quality-pass.js'
 ];
 
