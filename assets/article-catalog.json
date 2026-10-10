@@ -1,0 +1,464 @@
+[
+  {
+    "slug": "cannabis-basics-guide",
+    "title": "Cannabis Basics: THC, CBD, Terpenes & What a Label Really Tells You",
+    "dek": "A clear starting point for understanding the plant, the product, and the numbers without treating marketing language like science.",
+    "cat": "Start Here",
+    "read": "12 min read",
+    "art": "article-0"
+  },
+  {
+    "slug": "why-cannabis-feels-different",
+    "title": "Why the Same Cannabis Can Feel Different From One Person to the Next",
+    "dek": "The product is only half the equation. Biology, tolerance, timing, route, setting, and expectations all change the experience.",
+    "cat": "Experience",
+    "read": "11 min read",
+    "art": "article-1"
+  },
+  {
+    "slug": "indica-sativa-hybrid",
+    "title": "Indica vs. Sativa vs. Hybrid: What Those Labels Can—and Can’t—Tell You",
+    "dek": "Keep the familiar labels, but stop asking them to do more than they can. Here is a more useful way to compare cannabis.",
+    "cat": "Buying Smarter",
+    "read": "10 min read",
+    "art": "article-2"
+  },
+  {
+    "slug": "product-types",
+    "title": "Flower, Vapes, Edibles & Concentrates: How Product Type Changes the Experience",
+    "dek": "The same THC number means something very different depending on how the product is used.",
+    "cat": "Product Types",
+    "read": "13 min read",
+    "art": "article-3"
+  },
+  {
+    "slug": "read-cannabis-label",
+    "title": "How to Read a Cannabis Label Without Getting Lost in the Numbers",
+    "dek": "A practical walk-through of potency, servings, total THC, dates, testing, terpenes, and the details worth recording.",
+    "cat": "Labels",
+    "read": "12 min read",
+    "art": "article-4"
+  },
+  {
+    "slug": "cannabis-journal-method",
+    "title": "The Cannabis Journal Method: How to Track What Actually Works for You",
+    "dek": "Turn a random session into usable information with a repeatable record that helps you compare products over time.",
+    "cat": "Tracking",
+    "read": "10 min read",
+    "art": "article-5"
+  },
+  {
+    "slug": "cannabis-use-disorder-2026",
+    "title": "The 2026 Cannabis Use Disorder Study: Read the Trend, Not Just the Headline",
+    "cat": "Research • August 2026",
+    "dek": "A new national survey analysis asks how cannabis use disorder changed from 2021 to 2024. Here is what its numbers can—and cannot—tell you.",
+    "source": "https://pubmed.ncbi.nlm.nih.gov/42617538/",
+    "source_name": "Mattingly et al., Addictive Behaviors, published August 12, 2026",
+    "facts": "Researchers analyzed survey responses from 186,823 adults in repeated national samples. Estimated cannabis use disorder prevalence was 5.9% in 2021, 7.0% in 2022, 6.9% in 2023 and 7.4% in 2024. These are weighted population estimates, not diagnoses of every person who uses cannabis.",
+    "question": "What does 7.4% describe?",
+    "options": [
+      "The estimated share of surveyed adults meeting the study’s disorder criteria in 2024",
+      "The THC strength of a product",
+      "Everyone who used cannabis in 2024"
+    ],
+    "answer": 0,
+    "explain": "The denominator is adults in the population represented by the survey. It is not the percentage of cannabis users alone.",
+    "q2": "Does this trend establish that one policy caused the increase?",
+    "o2": [
+      "Yes, a trend identifies its cause",
+      "No, repeated survey observations do not by themselves establish causation",
+      "Yes, if the chart goes up"
+    ],
+    "a2": 1,
+    "e2": "Changes in use, reporting and the population may matter. A causal explanation needs additional evidence.",
+    "practice": "Write down the population, years and outcome before sharing a study. If use is interfering with responsibilities or feels hard to control, speak with a qualified health professional rather than using a chart to diagnose yourself.",
+    "chart": [
+      [
+        "2021",
+        5.9
+      ],
+      [
+        "2022",
+        7.0
+      ],
+      [
+        "2023",
+        6.9
+      ],
+      [
+        "2024",
+        7.4
+      ]
+    ],
+    "unit": "%",
+    "chart_title": "Estimated adult cannabis use disorder prevalence",
+    "diagram": [
+      "Survey adults",
+      "Apply study criteria",
+      "Estimate population prevalence"
+    ],
+    "art": "article-6",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "maryland-cannabis-tax-2026",
+    "title": "Maryland’s 2026 Cannabis Tax Numbers: Where the Revenue Comes From",
+    "cat": "Maryland • August 2026",
+    "dek": "A dated look at the second-quarter report, with a regional chart and a quick lesson in separating tax revenue from retail sales.",
+    "source": "https://www.marylandcomptroller.gov/content/dam/mdcomp/md/media/2026/08-25-2026-maryland-collects-28-million-in-cannabis-tax-revenue-from-april-to-june.pdf",
+    "source_name": "Maryland Comptroller, August 25, 2026; data April–June 2026",
+    "facts": "Maryland reported $28,685,226 in adult-use cannabis sales and use tax revenue for April–June 2026. The adult-use tax rate is 12%, following an increase from 9% on July 1, 2025. Tax receipts are not the same measure as the dollar value of all cannabis sales.",
+    "question": "What does the $28.7 million figure measure?",
+    "options": [
+      "All cannabis sold nationwide",
+      "Maryland adult-use cannabis tax receipts for April–June 2026",
+      "The number of customers"
+    ],
+    "answer": 1,
+    "explain": "The report concerns a specific state, tax and quarter. It is not a national sales total.",
+    "q2": "What should you check before comparing two tax quarters?",
+    "o2": [
+      "Whether the measurement period and tax rate are comparable",
+      "Only the biggest headline",
+      "Whether both charts are green"
+    ],
+    "a2": 0,
+    "e2": "A rate change or different collection period can change revenue even when buying behavior does not change in the same way.",
+    "practice": "Use this chart as a reading exercise: identify the period, units and largest region. Then ask what the report does not show—individual spending, consumer safety or public-health outcomes.",
+    "chart": [
+      [
+        "Capital",
+        6337900
+      ],
+      [
+        "Central",
+        12188779
+      ],
+      [
+        "Eastern",
+        3429826
+      ],
+      [
+        "Southern",
+        1663988
+      ],
+      [
+        "Western",
+        5064732
+      ]
+    ],
+    "unit": "$",
+    "chart_title": "Q2 2026 tax receipts by Maryland region",
+    "diagram": [
+      "Adult-use purchase",
+      "Tax collection",
+      "Public revenue report"
+    ],
+    "art": "article-7",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "medical-cannabis-rescheduling-2026",
+    "title": "The April 2026 Medical Cannabis Rule: What Actually Changed?",
+    "cat": "Policy • April 2026",
+    "dek": "Rescheduling headlines are easy to overread. Follow the published rule’s scope and keep federal status, state licensing and FDA approval separate.",
+    "source": "https://www.federalregister.gov/documents/2026/04/28/2026-08176/schedules-of-controlled-substances-rescheduling-of-food-and-drug-administration-approved-products",
+    "source_name": "Federal Register, final rule published April 28, 2026",
+    "facts": "The published rule places specified FDA-approved drug products containing marijuana-derived delta-9 THC, and marijuana subject to a state medical marijuana license, in Schedule III. Its text retains other marijuana in Schedule I. This is a description of that rule’s stated scope, not a claim that every cannabis product is federally legal.",
+    "question": "Which reading is consistent with the published rule?",
+    "options": [
+      "Every cannabis product became legal everywhere",
+      "The rule describes specified medical categories; other marijuana is treated separately",
+      "State licensing and FDA approval became the same thing"
+    ],
+    "answer": 1,
+    "explain": "The categories and conditions matter. A headline about rescheduling cannot substitute for the actual scope.",
+    "q2": "Where should you check for subsequent federal actions?",
+    "o2": [
+      "An undated social media screenshot",
+      "A product’s packaging color",
+      "The DEA’s current regulatory actions and the Federal Register"
+    ],
+    "a2": 2,
+    "e2": "Official regulatory pages give dated documents and subsequent actions. Check those before acting on an older explanation.",
+    "practice": "Before sharing a policy headline, write three separate questions: Which product category? Which jurisdiction? Which effective document? Do not assume this rule authorizes interstate transport or makes a dispensary product FDA-approved.",
+    "diagram": [
+      "Identify category",
+      "Read published conditions",
+      "Check later official actions"
+    ],
+    "extra_source": [
+      "https://www.dea.gov/marijuana-rescheduling-regulatory-actions",
+      "DEA: current marijuana regulatory actions"
+    ],
+    "art": "article-8",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "cannabis-detection-overdose-data",
+    "title": "Cannabis Detected Is Not the Same as Cannabis Caused: Reading CDC Data",
+    "cat": "Public health • 2026",
+    "dek": "A CDC overdose report provides a useful lesson in denominators, toxicology findings and the difference between presence and cause.",
+    "source": "https://www.cdc.gov/mmwr/volumes/75/wr/mm7534a2.htm",
+    "source_name": "CDC MMWR, volume 75; data January 2021–June 2025",
+    "facts": "Among 209,166 overdose deaths in the report’s participating jurisdictions, cannabis was detected in 43,880 (21.0%) and listed as a contributing cause in 1,687 (0.8%). A toxicology finding of cannabis is not by itself a finding that cannabis caused the death. Many deaths involved other substances.",
+    "question": "What does “detected” mean in this report?",
+    "options": [
+      "A substance was identified; this alone does not establish causation",
+      "It was necessarily the only substance involved",
+      "It proves a retail product was contaminated"
+    ],
+    "answer": 0,
+    "explain": "Detection is a laboratory finding. Cause attribution and product contamination are different questions.",
+    "q2": "What population is represented by these percentages?",
+    "o2": [
+      "Every person who used cannabis",
+      "The overdose deaths covered by the participating jurisdictions and period",
+      "All deaths worldwide"
+    ],
+    "a2": 1,
+    "e2": "The denominator is the report’s overdose deaths. It is not all cannabis users or all deaths.",
+    "practice": "When two numbers appear in one headline, label each outcome and its denominator. Do not use this report to infer that a specific retail product contains fentanyl; that requires evidence about the product itself.",
+    "chart": [
+      [
+        "Detected",
+        21.0
+      ],
+      [
+        "Contributing cause",
+        0.8
+      ]
+    ],
+    "unit": "%",
+    "chart_title": "Share of overdose deaths in the reported sample",
+    "diagram": [
+      "Toxicology finding",
+      "Cause assessment",
+      "Interpret in context"
+    ],
+    "art": "article-9",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "cannabis-heart-health-headlines",
+    "title": "Cannabis and Heart Health: How to Read an Association",
+    "cat": "Research literacy",
+    "dek": "A widely discussed cardiovascular study offers a practical way to distinguish an observational finding from an individual prediction.",
+    "source": "https://www.nih.gov/news-events/news-releases/smoking-cannabis-associated-increased-risk-heart-attack-stroke",
+    "source_name": "NIH research summary, February 28, 2024",
+    "facts": "An NIH-supported analysis of survey data from nearly 435,000 adults found an association between cannabis use and cardiovascular outcomes. Its observational design does not prove cannabis caused an individual event. The study is a reason to take cardiovascular questions seriously, not a tool for calculating your personal risk from a headline.",
+    "question": "What does an association establish?",
+    "options": [
+      "That two measured factors occurred together in the analysis",
+      "The exact cause of every heart attack",
+      "That a product is safe for everyone"
+    ],
+    "answer": 0,
+    "explain": "An association can inform further research and clinical conversations without proving a single cause.",
+    "q2": "Which next step is most useful for someone with heart-health concerns?",
+    "o2": [
+      "Assume the headline predicts their personal future",
+      "Ask a clinician about their health history, medicines and cannabis use",
+      "Compare package colors"
+    ],
+    "a2": 1,
+    "e2": "Individual health history and medications matter. A clinician can put research into that context.",
+    "practice": "Prepare a clear clinical question: “I use this product by this route, and I take these medicines. What concerns should we discuss?” Bring product details, not just a strain nickname.",
+    "diagram": [
+      "Study population",
+      "Observed association",
+      "Personal clinical context"
+    ],
+    "art": "article-10",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "delta-8-hemp-labels",
+    "title": "Delta-8 and Hemp Labels: Five Questions Before You Trust the Package",
+    "cat": "Consumer literacy",
+    "dek": "“Hemp” is a plant-origin label, not a promise that a product is non-intoxicating, approved or free of manufacturing concerns.",
+    "source": "https://www.fda.gov/consumers/consumer-updates/5-things-know-about-delta-8-tetrahydrocannabinol-delta-8-thc",
+    "source_name": "FDA consumer update; historical poison-center period January 2021–February 2022",
+    "facts": "FDA says delta-8 THC is psychoactive and that delta-8 products have not been evaluated or approved by FDA for safe use. Concentrated delta-8 is commonly made by chemically converting CBD, which raises manufacturing and contamination questions. “Hemp” on the front of a package does not establish that it is non-intoxicating.",
+    "question": "Which claim can you safely infer from the word “hemp” alone?",
+    "options": [
+      "The product cannot intoxicate",
+      "It is FDA-approved",
+      "Neither safety nor non-intoxication is established by that word alone"
+    ],
+    "answer": 2,
+    "explain": "A plant-origin or marketing label is not the same as a safety evaluation or product approval.",
+    "q2": "Which information is more useful than a colorful front label?",
+    "o2": [
+      "A batch identifier and verifiable testing information",
+      "A candy-like design",
+      "The most confident slogan"
+    ],
+    "a2": 0,
+    "e2": "Traceable product details let you ask concrete questions. They still do not guarantee that a product is appropriate for you.",
+    "practice": "Check ingredient identity, amount per serving, total package amount, batch number and a verifiable test report. If a seller cannot answer those questions, treat the missing information as a reason to pause.",
+    "chart": [
+      [
+        "Adults",
+        58
+      ],
+      [
+        "Pediatric",
+        41
+      ],
+      [
+        "Age unknown",
+        1
+      ]
+    ],
+    "unit": "%",
+    "chart_title": "Age groups in 2,362 historical delta-8 poison-center exposures",
+    "diagram": [
+      "Ingredient identity",
+      "Batch traceability",
+      "Verifiable information"
+    ],
+    "art": "article-11",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "cbd-approval-vs-marketing",
+    "title": "CBD Approval vs. Wellness Marketing: What “Available” Does Not Tell You",
+    "cat": "CBD • Regulatory literacy",
+    "dek": "A product can be easy to buy without being an approved treatment. Learn how to separate an ingredient, a drug approval and a sales claim.",
+    "source": "https://www.fda.gov/news-events/public-health-focus/fda-and-cannabis-research-and-drug-approval-process",
+    "source_name": "FDA: cannabis research and drug approval process",
+    "facts": "FDA identifies one approved cannabis-derived drug, Epidiolex, and three approved synthetic cannabis-related drugs: Marinol, Syndros and Cesamet. Those approvals apply to specific drug products and uses. They do not mean that retail CBD oils, gummies or other cannabis products are approved treatments.",
+    "question": "What does approval of a specific CBD drug establish?",
+    "options": [
+      "Every retail CBD product has the same approval",
+      "That specific drug has an FDA approval; other products need separate evidence",
+      "Any seller may promise a cure"
+    ],
+    "answer": 1,
+    "explain": "An approval belongs to a defined drug product and its approved use, not to every product sharing an ingredient.",
+    "q2": "Which claim deserves closer scrutiny?",
+    "o2": [
+      "A clear ingredient list",
+      "A batch number",
+      "A seller promising an unapproved product treats a disease"
+    ],
+    "a2": 2,
+    "e2": "Disease-treatment claims require evidence and appropriate regulatory authorization. Marketing confidence does not supply either.",
+    "practice": "Separate three columns in your notes: the ingredient, the exact product and the claim being made. Ask whether the evidence is about this product, this use and people comparable to you.",
+    "diagram": [
+      "Ingredient",
+      "Specific product",
+      "Evidence for a use"
+    ],
+    "extra_source": [
+      "https://www.fda.gov/news-events/public-health-focus/warning-letters-cannabis-derived-products",
+      "FDA warning letters, including 2025 actions"
+    ],
+    "art": "article-12",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "edibles-delay-secure-storage",
+    "title": "Edibles, Delayed Effects and Safer Storage: A Household Checklist",
+    "cat": "Practical safety",
+    "dek": "The packaging may resemble an ordinary snack. Clear identification and secure storage matter before anyone opens it.",
+    "source": "https://www.cdc.gov/cannabis/health-effects/poisoning.html",
+    "source_name": "CDC cannabis poisoning guidance, February 15, 2024",
+    "facts": "CDC notes that edible effects can take 30 minutes to two hours to appear and can be unpredictable. Cannabis products should be kept out of sight and reach of children and pets, ideally in secure locked storage. A delayed effect is not evidence that a product did nothing.",
+    "question": "What does feeling no effect immediately tell you?",
+    "options": [
+      "That taking more is always safe",
+      "That the product cannot work",
+      "Very little; edible effects may be delayed"
+    ],
+    "answer": 2,
+    "explain": "Delayed onset makes immediate judgments unreliable. This guide does not recommend a dose or a redosing schedule.",
+    "q2": "Which storage choice best reduces accidental access?",
+    "o2": [
+      "A shared snack bowl",
+      "Secure locked storage, clearly identified and out of sight and reach",
+      "A bag beside ordinary candy"
+    ],
+    "a2": 1,
+    "e2": "A familiar food appearance can confuse other household members. Secure storage and clear identification reduce access.",
+    "practice": "Audit your household: original packaging, closed container, locked location, away from ordinary snacks. In the United States, Poison Control is 1-800-222-1222; call 911 for a medical emergency.",
+    "diagram": [
+      "Identify clearly",
+      "Secure storage",
+      "Know emergency contacts"
+    ],
+    "art": "article-13",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "cannabis-recalls-batch-numbers",
+    "title": "Cannabis Recalls: Why the Batch Number Matters More Than the Brand",
+    "cat": "Consumer skills",
+    "dek": "A Maryland recall from September 2025 shows how to match a notice to a specific product rather than guessing from a brand name.",
+    "source": "https://cannabis.maryland.gov/Documents/2025_PDF_Files/Bulletins/Recall%20Notification.pdf",
+    "source_name": "Maryland Cannabis Administration recall notice, September 16, 2025",
+    "facts": "A September 2025 Maryland notice recalled specified Hi Color Max Chocolate Milk products after coliform testing concerns. The notice identified affected production batches and package numbers. This historical case illustrates traceability; it is not a claim that every product from the brand is recalled or that this is today’s newest notice.",
+    "question": "What should you compare with a recall notice?",
+    "options": [
+      "Only the brand name",
+      "The exact product and affected batch or package identifiers",
+      "The color of a shopping bag"
+    ],
+    "answer": 1,
+    "explain": "A recall can apply to particular batches. Exact identifiers are more useful than a broad brand match.",
+    "q2": "What is the best source for current recall instructions?",
+    "o2": [
+      "The relevant regulator’s current notice",
+      "An old repost without a date",
+      "A friend’s memory"
+    ],
+    "a2": 0,
+    "e2": "Current official notices specify affected products and what to do. Follow their instructions for the product you actually have.",
+    "practice": "Save a photograph of the product label and batch identifier with your receipt. If a notice matches, follow the regulator’s instructions and contact the licensed retailer; do not invent your own disposal method.",
+    "diagram": [
+      "Find official notice",
+      "Match exact batch",
+      "Follow product instructions"
+    ],
+    "extra_source": [
+      "https://cannabis.maryland.gov/Pages/home.aspx",
+      "Maryland Cannabis Administration: current notices"
+    ],
+    "art": "article-14",
+    "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "maryland-cannabis-careers-2026",
+    "title": "Cannabis Careers in Maryland: Turn an Industry Event Into a Learning Plan",
+    "cat": "Maryland • October 2026",
+    "dek": "The state’s October 10 workforce conference highlights a broader question: which skills transfer into cultivation, processing, retail and supporting roles?",
+    "source": "https://cannabis.maryland.gov/Pages/Cannabis-Industry-Workforce-Development-Conference.aspx",
+    "source_name": "Maryland Cannabis Administration: October 10, 2026 workforce conference",
+    "facts": "Maryland Cannabis Administration lists its industry workforce conference for October 10, 2026, from 10 a.m. to 2 p.m. at the Maryland Innovation Center in Columbia. The program includes workshops, networking and a job fair covering cultivation, processing, retail and ancillary roles. Check the official page for event updates and registration details.",
+    "question": "Which preparation is most useful for exploring a role?",
+    "options": [
+      "A list of transferable skills and questions about the actual work",
+      "Assuming every role involves the same tasks",
+      "Only naming favorite products"
+    ],
+    "answer": 0,
+    "explain": "Employers need role-specific skills. Inventory, customer service, quality processes and communication can matter in different ways.",
+    "q2": "What does attendance at an event guarantee?",
+    "o2": [
+      "A job offer",
+      "A professional license",
+      "Neither a job nor a license; it is a learning and networking opportunity"
+    ],
+    "a2": 2,
+    "e2": "An event can connect people and information. Hiring and licensing remain separate processes.",
+    "practice": "Choose one role, identify two skills you already have and one skill to develop, and prepare a short question about daily responsibilities. After an event, record what you learned and a realistic next step.",
+    "diagram": [
+      "Transferable skills",
+      "Role requirements",
+      "Next learning step"
+    ],
+    "art": "article-15",
+    "read": "6–8 min + learning checks"
+  }
+]
