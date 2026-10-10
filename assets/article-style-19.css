@@ -1,0 +1,202 @@
+
+/* TOP FREE WORKSHEET OFFER — correct image, compact, aligned to hero */
+.hero-wrap-sales{
+  align-items:start!important;
+}
+.hero-free-resource{
+  align-self:start!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:5px!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-sheet{
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+}
+.hero-free-sheet img{
+  display:block!important;
+  width:min(100%,220px)!important;
+  height:auto!important;
+  max-height:285px!important;
+  object-fit:contain!important;
+  margin:0 auto!important;
+  filter:drop-shadow(0 12px 20px rgba(0,0,0,.24))!important;
+}
+.hero-free-copy{
+  width:min(100%,330px)!important;
+  margin:0 auto!important;
+  padding:0!important;
+  text-align:center!important;
+}
+.hero-free-copy .kicker{
+  margin:0 0 3px!important;
+  font:700 1.13rem/1.1 Georgia,"Times New Roman",serif!important;
+  letter-spacing:.07em!important;
+  color:#c2cf32!important;
+  animation:freeOfferPulse 6s ease-in-out infinite!important;
+}
+@keyframes freeOfferPulse{
+  0%,100%{opacity:.78;text-shadow:0 0 0 rgba(194,207,50,0)}
+  50%{opacity:1;text-shadow:0 0 11px rgba(194,207,50,.28)}
+}
+.hero-free-copy h2{
+  margin:0 0 8px!important;
+  font:400 1.55rem/1.05 Georgia,"Times New Roman",serif!important;
+  color:#fff!important;
+}
+.hero-free-email{
+  display:block!important;
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.hero-free-email span{
+  display:block!important;
+  margin:0 0 4px!important;
+  text-align:left!important;
+  color:#fff!important;
+  font-size:.77rem!important;
+}
+.hero-free-email input{
+  display:block!important;
+  width:100%!important;
+  min-height:38px!important;
+  padding:8px 10px!important;
+  background:#fff!important;
+  color:#050505!important;
+  border:1px solid rgba(255,255,255,.9)!important;
+  border-radius:10px!important;
+}
+.hero-free-copy #freebieInlineBtn{
+  display:block!important;
+  width:100%!important;
+  min-height:36px!important;
+  margin:6px 0 0!important;
+  padding:7px 11px!important;
+  font-size:.76rem!important;
+}
+.hero-free-copy .free-status{margin:4px 0 0!important;min-height:1em!important}
+
+/* JOURNAL AD — remove card shell, keep the video untouched */
+.journal-spotlight{
+  background:transparent!important;
+}
+.journal-card-build10{
+  padding:28px 0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.journal-heading .kicker{
+  color:#fff!important;
+  background:none!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:none!important;
+}
+.journal-heading h2,
+.journal-product-title{
+  color:transparent!important;
+  background:linear-gradient(105deg,
+    #79a96d 0%,
+    #315f3b 24%,
+    #b8df9f 42%,
+    #173923 55%,
+    #80b26f 73%,
+    #315f3b 100%)!important;
+  background-size:240% 100%!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  animation:journalCopySheen 8.5s ease-in-out infinite!important;
+}
+@keyframes journalCopySheen{
+  0%,70%,100%{background-position:0% 50%}
+  84%{background-position:100% 50%}
+}
+.journal-details{
+  border-top:1px solid rgba(255,255,255,.08)!important;
+}
+.journal-feature-buttons span{
+  background:#fff!important;
+  color:#111!important;
+  border:1px solid rgba(255,255,255,.94)!important;
+}
+#amazonBtn,.btn.amazon,.journal-amazon .btn{
+  position:relative!important;
+  overflow:hidden!important;
+  background:linear-gradient(115deg,#050806 0%,#0c1d11 22%,#1c4c2b 44%,#071008 62%,#245d34 82%,#08110a 100%)!important;
+  background-size:220% 100%!important;
+  color:#fff!important;
+  border:1px solid rgba(121,176,105,.48)!important;
+  box-shadow:0 11px 30px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.10),0 0 18px rgba(47,105,61,.18)!important;
+  animation:amazonDrift 9s ease-in-out infinite,amazonPop 5.8s ease-in-out infinite!important;
+}
+#amazonBtn::after,.btn.amazon::after,.journal-amazon .btn::after{
+  content:""!important;
+  position:absolute!important;
+  top:-70%!important;bottom:-70%!important;left:-35%!important;
+  width:24%!important;
+  background:linear-gradient(105deg,transparent,rgba(221,255,211,.28),transparent)!important;
+  transform:translateX(-260%) rotate(12deg)!important;
+  animation:amazonSweep 7.4s ease-in-out infinite!important;
+  pointer-events:none!important;
+}
+@keyframes amazonDrift{
+  0%,72%,100%{background-position:0% 50%}
+  84%{background-position:100% 50%}
+}
+@keyframes amazonSweep{
+  0%,73%,100%{transform:translateX(-260%) rotate(12deg)}
+  84%{transform:translateX(650%) rotate(12deg)}
+}
+@keyframes amazonPop{
+  0%,78%,100%{transform:translateY(0) scale(1)}
+  86%{transform:translateY(-3px) scale(1.012)}
+  92%{transform:translateY(0) scale(1)}
+}
+
+/* Keep light theme readable while retaining ad styling */
+body.light-theme .hero-free-copy h2,
+body.light-theme .hero-free-email span{color:#151915!important}
+body.light-theme .journal-heading .kicker{
+  color:#151915!important;
+  -webkit-text-fill-color:#151915!important;
+}
+body.light-theme .journal-card-build10{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.light-theme #amazonBtn,
+body.light-theme .btn.amazon,
+body.light-theme .journal-amazon .btn{color:#fff!important}
+
+@media(max-width:900px){
+  .hero-free-sheet img{
+    width:min(100%,205px)!important;
+    max-height:265px!important;
+  }
+}
+@media(max-width:620px){
+  .hero-free-resource{margin-top:18px!important}
+  .hero-free-sheet img{
+    width:min(55vw,220px)!important;
+    max-height:none!important;
+  }
+  .hero-free-copy{width:min(88vw,330px)!important}
+  .journal-card-build10{padding:22px 0!important}
+}

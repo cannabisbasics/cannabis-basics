@@ -1,0 +1,101 @@
+
+/* Sales-first homepage: hero + free resource side by side */
+.sales-hero{padding-bottom:42px!important}
+.hero-wrap-sales{
+  width:min(1220px,100%)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.02fr) minmax(420px,.98fr)!important;
+  gap:34px!important;
+  align-items:center!important;
+}
+.hero-free-resource{min-width:0}
+.hero-free-resource .free-card{
+  display:grid!important;
+  grid-template-columns:minmax(150px,.82fr) minmax(0,1.18fr)!important;
+  gap:18px!important;
+  align-items:center!important;
+  padding:20px!important;
+  border-radius:24px!important;
+  background:linear-gradient(145deg,rgba(14,25,16,.94),rgba(5,9,6,.96))!important;
+  border:1px solid rgba(194,207,50,.16)!important;
+  box-shadow:0 20px 54px rgba(0,0,0,.42),0 0 20px rgba(194,207,50,.11)!important;
+}
+.hero-free-resource .free-image{min-width:0}
+.hero-free-resource .free-image img{
+  width:100%!important;max-height:390px!important;object-fit:contain!important;
+  filter:drop-shadow(0 16px 26px rgba(0,0,0,.30));
+}
+.hero-free-resource .free-copy h2{
+  font-size:clamp(1.65rem,2.5vw,2.7rem)!important;
+  line-height:1!important;margin:.35rem 0 .7rem!important;
+}
+.hero-free-resource .free-copy p{font-size:.9rem!important;line-height:1.55!important}
+.hero-free-resource .free-points{gap:6px!important}
+.hero-free-resource .free-points span{font-size:.68rem!important;padding:7px 9px!important}
+.hero-free-resource .free-gate{gap:9px!important;margin-top:10px!important}
+.hero-free-resource .free-email-field{padding:10px 11px!important;border-radius:14px!important}
+.hero-free-resource .free-email-field input{min-height:44px!important}
+.hero-free-resource #freebieInlineBtn{min-height:44px!important;padding:10px 14px!important;font-size:.8rem!important}
+
+/* Contact fields: greener, more interactive focus state */
+#contact .contact-form input,
+#contact .contact-form select,
+#contact .contact-form textarea{
+  transition:background .22s ease,border-color .22s ease,box-shadow .22s ease,transform .22s ease!important;
+  accent-color:#c2cf32!important;
+}
+#contact .contact-form input:focus,
+#contact .contact-form select:focus,
+#contact .contact-form textarea:focus{
+  outline:none!important;
+  background:#dfe8c3!important;
+  color:#050505!important;
+  border:2px solid #111!important;
+  box-shadow:0 0 0 3px rgba(194,207,50,.20),0 10px 26px rgba(0,0,0,.16)!important;
+  transform:translateY(-1px)!important;
+}
+#contact .contact-form select:focus option{background:#eef3dd!important;color:#050505!important}
+
+/* Footer brand matches header */
+.footer-brand-lockup{
+  display:flex!important;align-items:center!important;gap:12px!important;
+}
+.footer-logo-clean{
+  width:42px!important;height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+.footer-logo-clean img{
+  width:42px!important;height:42px!important;object-fit:contain!important;
+  filter:drop-shadow(0 0 9px rgba(194,207,50,.26))!important;
+}
+.footer-brand-copy{display:block!important}
+.footer-brand-title{
+  display:block!important;font:400 1.22rem/.95 Georgia,"Times New Roman",serif!important;
+  color:#fff!important;
+}
+.footer-brand-copy small{
+  display:block!important;margin-top:4px!important;font-size:.49rem!important;letter-spacing:.16em!important;
+  text-transform:uppercase!important;color:#fff!important;opacity:.82!important;
+}
+body.light-theme .footer-brand-title,
+body.light-theme .footer-brand-copy small{color:#151915!important}
+
+@media(max-width:900px){
+  .hero-wrap-sales{grid-template-columns:1fr!important;gap:24px!important}
+  .hero-free-resource{width:100%!important}
+  .hero-free-resource .free-card{
+    grid-template-columns:minmax(120px,.8fr) minmax(0,1.2fr)!important;
+    gap:14px!important;padding:16px!important;
+  }
+}
+@media(max-width:620px){
+  .hero-wrap-sales{display:block!important}
+  .hero-copy-wrap{margin-bottom:22px!important}
+  .hero-free-resource .free-card{
+    grid-template-columns:1fr!important;
+    padding:15px!important;
+  }
+  .hero-free-resource .free-image img{max-height:320px!important}
+  .hero-free-resource .free-copy{text-align:left!important}
+}

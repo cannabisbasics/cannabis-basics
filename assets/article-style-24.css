@@ -1,0 +1,239 @@
+
+/* Cannabis Basics brand-led About section */
+.about-brand-section{padding-top:96px!important}
+.about-brand-wrap{max-width:1120px!important}
+.about-brand-title{
+  margin:.35rem 0 16px!important;
+  font:400 clamp(3rem,6vw,6rem)/.92 Georgia,"Times New Roman",serif!important;
+  color:#fff!important;
+}
+.about-brand-lede{
+  max-width:900px!important;
+  font-size:clamp(1.12rem,2vw,1.35rem)!important;
+  line-height:1.7!important;
+  color:#fff!important;
+}
+.about-brand-wrap>p{max-width:920px;line-height:1.8;color:#c8d3c8}
+.about-member-bridge{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(240px,.55fr);
+  gap:28px;
+  align-items:center;
+  margin-top:30px;
+  padding:30px;
+  border-radius:28px;
+  border:1px solid rgba(194,207,50,.28);
+  background:
+    radial-gradient(circle at 84% 18%,rgba(194,207,50,.13),transparent 28%),
+    linear-gradient(145deg,rgba(12,26,15,.96),rgba(4,8,5,.98));
+  box-shadow:0 26px 70px rgba(0,0,0,.42),0 0 30px rgba(194,207,50,.07);
+}
+.about-member-bridge::after{
+  content:"";
+  position:absolute;inset:-45% auto -45% -22%;width:18%;
+  transform:rotate(16deg);
+  background:linear-gradient(90deg,transparent,rgba(236,255,219,.08),transparent);
+  animation:aboutBridgeSheen 9s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes aboutBridgeSheen{
+  0%,72%,100%{left:-28%}86%{left:118%}
+}
+.about-member-copy{position:relative;z-index:1}
+.about-member-copy h3{
+  margin:14px 0 10px;
+  font:400 clamp(2rem,4vw,3.7rem)/.98 Georgia,"Times New Roman",serif;
+  color:#fff;
+}
+.about-member-copy p{color:#d5ddd4;line-height:1.72}
+.about-member-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin:18px 0;
+}
+.about-member-grid span{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;border-radius:14px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+  color:#f0f4ef;font-size:.82rem;
+}
+.about-member-grid span::before{content:"✓";color:#c2cf32;font-weight:800}
+.about-member-line{margin-bottom:0!important}
+.about-member-action{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:stretch;gap:16px;
+}
+.about-price-stack{
+  text-align:center;padding:20px 16px;border-radius:22px;
+  background:rgba(0,0,0,.34);
+  border:1px solid rgba(194,207,50,.2);
+}
+.about-first100{display:block;font-size:.68rem;letter-spacing:.14em;font-weight:800;color:#c2cf32}
+.about-price-stack strong{
+  display:block;margin:8px 0 3px;
+  font:700 clamp(2.8rem,5vw,4.6rem)/.9 Georgia,"Times New Roman",serif;
+  color:#fff;
+  text-shadow:0 0 24px rgba(194,207,50,.18);
+}
+.about-price-stack small{color:#aeb9af}
+.about-members-shimmer{
+  position:relative!important;overflow:hidden!important;
+  justify-content:center!important;text-align:center!important;
+  background:linear-gradient(110deg,#08100a,#1f4d29,#09110a,#315f38,#08100a)!important;
+  background-size:240% 100%!important;
+  color:#f7fff4!important;border:1px solid rgba(174,220,150,.5)!important;
+  box-shadow:0 15px 34px rgba(0,0,0,.42),0 0 20px rgba(78,136,76,.18)!important;
+  animation:membersButtonDrift 7.5s ease-in-out infinite,membersButtonPop 5.8s ease-in-out infinite!important;
+}
+.about-members-shimmer::after{
+  content:"";position:absolute;top:-65%;bottom:-65%;left:-32%;width:22%;
+  background:linear-gradient(105deg,transparent,rgba(237,255,226,.32),transparent);
+  transform:rotate(13deg);animation:membersButtonSheen 6.8s ease-in-out infinite;
+}
+@keyframes membersButtonDrift{0%,72%,100%{background-position:0% 50%}86%{background-position:100% 50%}}
+@keyframes membersButtonPop{0%,78%,100%{transform:translateY(0) scale(1)}87%{transform:translateY(-3px) scale(1.018)}}
+@keyframes membersButtonSheen{0%,70%,100%{left:-32%}84%{left:118%}}
+
+/* Membership invitation popup */
+.member-invite{
+  position:fixed;inset:0;z-index:12000;
+  display:none;place-items:center;
+  padding:18px;
+  background:rgba(1,4,2,.82);
+  backdrop-filter:blur(12px);
+}
+.member-invite.open{display:grid;animation:memberInviteFade .28s ease}
+@keyframes memberInviteFade{from{opacity:0}to{opacity:1}}
+.member-invite-card{
+  position:relative;overflow:hidden;
+  width:min(760px,96vw);
+  max-height:min(90vh,820px);
+  overflow-y:auto;
+  padding:clamp(24px,4vw,42px);
+  border-radius:32px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 82% 10%,rgba(194,207,50,.16),transparent 28%),
+    radial-gradient(circle at 12% 88%,rgba(64,120,72,.14),transparent 34%),
+    linear-gradient(145deg,#071009 0%,#0d2515 50%,#030604 100%);
+  border:1px solid rgba(185,216,153,.3);
+  box-shadow:0 35px 110px rgba(0,0,0,.68),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.member-invite-card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;
+  background-image:
+    radial-gradient(circle at 20% 20%,#c2cf32 0 1px,transparent 1.5px),
+    radial-gradient(circle at 70% 50%,#8cad75 0 1px,transparent 1.5px);
+  background-size:44px 44px,58px 58px;
+}
+.member-invite-card::after{
+  content:"";position:absolute;top:-65%;bottom:-65%;left:-24%;width:13%;
+  background:linear-gradient(90deg,transparent,rgba(239,255,231,.09),transparent);
+  transform:rotate(14deg);animation:memberCardSweep 9s ease-in-out infinite;pointer-events:none;
+}
+@keyframes memberCardSweep{0%,74%,100%{left:-24%}88%{left:116%}}
+.member-invite-close{
+  position:absolute;z-index:4;right:14px;top:14px;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.5);color:#fff;
+  font-size:1.35rem;line-height:1;cursor:pointer;
+}
+.member-invite-close:hover{background:#fff;color:#111;transform:scale(1.04)}
+.member-invite-inner{position:relative;z-index:2;text-align:center}
+.member-invite-badge{
+  display:inline-flex;padding:8px 12px;border-radius:999px;
+  background:#c2cf32;color:#111600;
+  font-size:.7rem;font-weight:850;letter-spacing:.11em;
+}
+.member-invite h2{
+  margin:18px auto 9px;
+  max-width:650px;
+  font:400 clamp(2.6rem,6vw,5.3rem)/.9 Georgia,"Times New Roman",serif;
+}
+.member-invite-lede{max-width:620px;margin:0 auto;color:#d6dfd5;line-height:1.65}
+.member-offer-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  margin:24px 0 18px;
+}
+.member-offer-step{
+  min-height:112px;padding:15px 10px;border-radius:18px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+}
+.member-offer-step span{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#9eaaa0}
+.member-offer-step s{font:400 1.75rem Georgia,serif;color:#8d958f;opacity:.68}
+.member-offer-step strong{font:700 2.25rem/.95 Georgia,serif;color:#fff}
+.member-offer-step.grand strong{color:#d7df74}
+.member-offer-step.free{
+  border-color:rgba(194,207,50,.42);
+  background:linear-gradient(145deg,rgba(194,207,50,.12),rgba(255,255,255,.035));
+  box-shadow:0 0 24px rgba(194,207,50,.08);
+}
+.member-offer-step.free strong{
+  font-size:2.65rem;color:#fff;text-shadow:0 0 22px rgba(194,207,50,.2)
+}
+.member-invite-callout{
+  margin:14px auto 18px;max-width:610px;
+  padding:13px 15px;border-radius:16px;
+  color:#eef4ea;background:rgba(0,0,0,.25);
+  border:1px solid rgba(194,207,50,.15);
+  font-size:.88rem;line-height:1.55;
+}
+.member-invite-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;max-width:620px;margin:0 auto}
+.member-invite-form input{
+  min-width:0;min-height:54px;padding:0 15px;
+  border-radius:15px;border:1px solid rgba(255,255,255,.35);
+  background:#fff;color:#060806;font:inherit;outline:none;
+}
+.member-invite-form input:focus{box-shadow:0 0 0 4px rgba(194,207,50,.13);border-color:#c2cf32}
+.member-invite-submit{
+  position:relative;overflow:hidden;
+  min-height:54px;padding:0 19px;border-radius:15px;border:1px solid rgba(194,207,50,.5);
+  background:linear-gradient(110deg,#101810,#2f5e35,#111a12,#476f3f,#101810);
+  background-size:220% 100%;color:#fff;font:700 .88rem Georgia,serif;cursor:pointer;
+  animation:memberJoinDrift 7s ease-in-out infinite,memberJoinBounce 5.6s ease-in-out infinite;
+}
+.member-invite-submit::after{
+  content:"";position:absolute;top:-70%;bottom:-70%;left:-30%;width:22%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.32),transparent);
+  transform:rotate(12deg);animation:memberJoinSheen 6.5s ease-in-out infinite;
+}
+@keyframes memberJoinDrift{0%,72%,100%{background-position:0% 50%}86%{background-position:100% 50%}}
+@keyframes memberJoinBounce{0%,78%,100%{transform:translateY(0)}86%{transform:translateY(-3px)}}
+@keyframes memberJoinSheen{0%,70%,100%{left:-30%}84%{left:120%}}
+.member-invite-status{min-height:1.25em;margin:9px 0 0;color:#dceac9;font-size:.82rem}
+.member-invite-note{margin:5px 0 0;color:#91a094;font-size:.68rem;line-height:1.5}
+.member-invite-skip{margin-top:12px;border:0;background:none;color:#aab5ac;text-decoration:underline;cursor:pointer;font-size:.76rem}
+
+body.light-theme .about-brand-title,
+body.light-theme .about-brand-lede{color:#151915!important}
+body.light-theme .about-brand-wrap>p{color:#475148!important}
+body.light-theme .about-member-bridge{background:linear-gradient(145deg,#f9fbf2,#eef2e5)!important}
+body.light-theme .about-member-copy h3,
+body.light-theme .about-member-copy p,
+body.light-theme .about-member-grid span{color:#151915!important}
+body.light-theme .about-member-grid span{background:#fff;border-color:#d8ddcf}
+body.light-theme .about-price-stack{background:#fff}
+
+@media(max-width:780px){
+  .about-member-bridge{grid-template-columns:1fr;padding:22px}
+  .about-member-grid{grid-template-columns:1fr 1fr}
+  .about-member-action{max-width:420px;width:100%;margin:0 auto}
+  .member-offer-steps{grid-template-columns:1fr}
+  .member-offer-step{min-height:82px}
+  .member-invite-form{grid-template-columns:1fr}
+  .member-invite-submit{width:100%}
+}
+@media(max-width:480px){
+  .about-brand-section{padding-top:78px!important}
+  .about-member-grid{grid-template-columns:1fr}
+  .member-invite{padding:10px}
+  .member-invite-card{border-radius:24px;padding:26px 16px 22px}
+  .member-invite h2{font-size:2.75rem}
+  .member-invite-close{right:9px;top:9px;width:40px;height:40px}
+}

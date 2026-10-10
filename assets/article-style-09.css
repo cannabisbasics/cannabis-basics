@@ -1,0 +1,72 @@
+
+/* Canonical Cannabis Basics header lockup — same scale as Members */
+.nav{
+  min-height:78px!important;
+  height:78px!important;
+  padding:10px 24px!important;
+  display:flex!important;
+  align-items:center!important;
+}
+.brand{
+  gap:12px!important;
+  min-width:max-content!important;
+}
+.brand-mark,
+.brand-mark-clean{
+  width:54px!important;
+  height:54px!important;
+  min-width:54px!important;
+  min-height:54px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.brand-mark img,
+.brand-mark-clean img{
+  width:54px!important;
+  height:54px!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  filter:drop-shadow(0 0 9px rgba(205,219,65,.28))!important;
+}
+.brand-copy{
+  line-height:.95!important;
+  display:block!important;
+}
+.brand-script{
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:1.55rem!important;
+  line-height:.95!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  color:#fff!important;
+  text-shadow:none!important;
+}
+.brand-copy small{
+  display:block!important;
+  margin-top:7px!important;
+  color:#fff!important;
+  opacity:.82!important;
+  font-size:.64rem!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+.hero{padding-top:98px!important}
+@media(max-width:900px){
+  .nav{height:70px!important;min-height:70px!important;padding:8px 12px!important}
+  .brand-mark,.brand-mark-clean{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important}
+  .brand-mark img,.brand-mark-clean img{width:46px!important;height:46px!important}
+  .brand-script{font-size:1.28rem!important}
+  .brand-copy small{font-size:.52rem!important;margin-top:5px!important}
+  .hero{padding-top:84px!important}
+}

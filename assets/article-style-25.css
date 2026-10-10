@@ -1,0 +1,11 @@
+
+.about-member-grid span:last-child{
+  grid-column:1 / -1;
+  justify-content:center;
+  text-align:center;
+  border-color:rgba(194,207,50,.18);
+  background:rgba(194,207,50,.055);
+}
+@media(max-width:780px){
+  .about-member-grid span:last-child{grid-column:auto;justify-content:flex-start;text-align:left}
+}

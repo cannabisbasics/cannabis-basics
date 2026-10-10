@@ -1,0 +1,103 @@
+
+/* Thinner homepage top banner to visually match the bubble row */
+.public-topbar{
+  height:62px!important;
+  min-height:62px!important;
+  padding:6px 14px!important;
+}
+.public-topbar .brand-mark,
+.public-topbar .brand-mark-clean{
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+}
+.public-topbar .brand-mark img,
+.public-topbar .brand-mark-clean img{
+  width:42px!important;
+  height:42px!important;
+}
+.public-topbar .brand-script{
+  font-size:1.22rem!important;
+}
+.public-topbar .brand-copy small{
+  margin-top:4px!important;
+  font-size:.49rem!important;
+}
+.public-top-actions{gap:10px!important}
+.public-bubble-nav{
+  top:62px!important;
+  padding:6px 10px!important;
+  gap:5px!important;
+}
+.public-bubble-nav a{
+  min-height:29px!important;
+  padding:6px 10px!important;
+  font-size:.70rem!important;
+}
+.hero{padding-top:116px!important}
+section,header{scroll-margin-top:104px!important}
+
+/* Light mode must change the full atmospheric background too */
+body.light-theme{
+  background:#f4f6ef!important;
+}
+body.light-theme::before{
+  background:
+    radial-gradient(circle at 16% 5%,rgba(194,207,50,.16),transparent 31%),
+    radial-gradient(circle at 88% 35%,rgba(120,136,57,.10),transparent 28%),
+    linear-gradient(180deg,#fafbf6 0%,#eef2e8 48%,#f8f9f4 100%)!important;
+}
+body.light-theme::after{
+  background:url("leaf-pattern.png") center/620px auto repeat!important;
+  opacity:.075!important;
+  mix-blend-mode:multiply!important;
+  filter:grayscale(.15) brightness(1.08)!important;
+}
+body.light-theme .site-bg{
+  opacity:.15!important;
+  filter:saturate(.6) brightness(1.35) contrast(.86)!important;
+}
+body.light-theme .leaf-field{
+  opacity:.55!important;
+}
+body.light-theme .bg-leaf{
+  color:#71803f!important;
+  opacity:.06!important;
+}
+
+/* Make section backdrops light instead of retaining dark bands */
+body.light-theme section,
+body.light-theme .media-section,
+body.light-theme .tool-section,
+body.light-theme .freebie,
+body.light-theme .journal-spotlight,
+body.light-theme .article-library,
+body.light-theme .faq-section,
+body.light-theme .contact-section{
+  background:transparent!important;
+}
+body.light-theme .hero{
+  background:transparent!important;
+}
+
+@media(max-width:640px){
+  .public-topbar{
+    height:58px!important;
+    min-height:58px!important;
+    padding:5px 10px!important;
+  }
+  .public-topbar .brand-mark,
+  .public-topbar .brand-mark-clean{
+    width:38px!important;height:38px!important;min-width:38px!important;
+  }
+  .public-topbar .brand-mark img,
+  .public-topbar .brand-mark-clean img{
+    width:38px!important;height:38px!important;
+  }
+  .public-topbar .brand-script{font-size:1.08rem!important}
+  .public-topbar .brand-copy small{font-size:.43rem!important;margin-top:3px!important}
+  .public-bubble-nav{top:58px!important;padding:5px 8px!important}
+  .public-bubble-nav a{font-size:.66rem!important;padding:6px 9px!important;min-height:28px!important}
+  .hero{padding-top:104px!important}
+  section,header{scroll-margin-top:96px!important}
+}

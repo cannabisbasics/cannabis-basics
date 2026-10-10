@@ -1,0 +1,139 @@
+
+:root{
+  --green:#145a32!important;
+  --green2:#145a32!important;
+  --green3:#145a32!important;
+  --money:#145a32;
+  --money2:#0f4426;
+  --white:#ffffff;
+}
+
+/* PUBLIC HEADER — member-style lockup, canonical transparent leaf */
+.nav{
+  background:rgba(2,7,3,.96)!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+}
+.brand-mark-clean,.brand-mark{
+  background:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.brand-mark-clean img,.brand-mark img{
+  width:46px!important;
+  height:46px!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 0 9px rgba(205,219,65,.28))!important;
+}
+.brand-script{
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:1.48rem!important;
+  font-weight:400!important;
+  line-height:.95!important;
+  color:#fff!important;
+  text-shadow:none!important;
+}
+.brand-copy small{color:#fff!important;opacity:.82!important}
+
+/* Brilliant white text throughout public UI, except white form controls */
+body,.hero-copy,.lead,.kicker,.eyebrow,.title,
+.navlinks a,.members-only-link,.tool-name,.tool-intro p,
+.tool-result-card,.tool-result-card p,.result-list,.result-chips span,
+.basic,.basic small,.watch-copy,.watch-copy p,.product-copy,.product-copy p,
+.free-copy,.free-copy p,.article-card,.article-card p,.article-view,.article-view p,
+.about-copy,.about-copy p,.footer,.footer p,.footer a,.footer button,
+.faq-question,.faq-copy,.contact-shell,.contact-shell p,.legal-note{
+  color:#fff!important;
+}
+.kicker,.eyebrow,.tool-name,.basic b,.read-link,.article-cat,
+.hero h1 em,.feature strong,.result-chips span,.member-price strong{
+  color:var(--money)!important;
+}
+
+/* All fill-in controls: bright white with black type */
+input,select,textarea,
+.field-group input,.field-group select,
+.free-email-field input,
+.contact-shell input,.contact-shell select,.contact-shell textarea{
+  background:#fff!important;
+  color:#050505!important;
+  border-color:#d7d7d7!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.08)!important;
+}
+input::placeholder,textarea::placeholder{color:#555!important}
+select option{background:#fff!important;color:#050505!important}
+
+/* Deep money green buttons and highlight surfaces */
+.btn.primary,.tool-nav,.tool-badge,.members-only-link{
+  background:var(--money)!important;
+  color:#fff!important;
+  border-color:var(--money)!important;
+}
+.btn,.tool-nav,.members-only-link,.music-btn,.menu-btn{
+  color:#fff!important;
+}
+
+/* Bare sound icon + three uninterrupted menu lines */
+#musicBtn,#menuBtn{
+  background:none!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;min-width:0!important;min-height:0!important;
+  width:auto!important;height:auto!important;padding:3px!important;
+  overflow:visible!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+}
+#musicBtn::before,#musicBtn::after,#menuBtn::before,#menuBtn::after{content:none!important;display:none!important}
+#musicBtn.playing{animation:none!important;box-shadow:none!important}
+#menuBtn{flex-direction:column!important;gap:4px!important}
+#menuBtn span{
+  display:block!important;width:24px!important;height:2px!important;
+  min-width:24px!important;min-height:2px!important;margin:0!important;
+  padding:0!important;background:#fff!important;border:0!important;
+  border-radius:1px!important;box-shadow:none!important;transform:none!important;
+  opacity:1!important;flex:0 0 2px!important;
+}
+#menuBtn.open span:nth-child(1),
+#menuBtn.open span:nth-child(2),
+#menuBtn.open span:nth-child(3){
+  transform:none!important;opacity:1!important;
+}
+
+/* Mobile menu: tighter, bright white, easy to scan */
+@media(max-width:900px){
+  .navlinks.open{
+    gap:2px!important;
+    padding:7px!important;
+    background:rgba(3,8,4,.985)!important;
+    border:1px solid rgba(255,255,255,.08)!important;
+  }
+  .navlinks.open a{
+    color:#fff!important;
+    font-size:.78rem!important;
+    line-height:1.15!important;
+    padding:7px 9px!important;
+    margin:0!important;
+    border-radius:8px!important;
+  }
+  .navlinks.open a:hover{background:rgba(20,90,50,.26)!important}
+}
+
+/* Motion + occasional glare on cards/buttons */
+.btn,.tool-nav,.members-only-link,.basic,.article-card,.feature,.tool-result-card,
+.free-card,.journal-showcase,.faq-item,.contact-shell,.about-grid,.watch-card{
+  position:relative!important;overflow:hidden!important;
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease!important;
+}
+.btn:hover,.tool-nav:hover,.members-only-link:hover,.basic:hover,.article-card:hover,.feature:hover,
+.tool-result-card:hover,.free-card:hover,.journal-showcase:hover,.faq-item:hover,.contact-shell:hover,
+.about-grid:hover,.watch-card:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.45),0 0 24px rgba(20,90,50,.20)!important;
+}
+.btn::after,.tool-nav::after,.members-only-link::after,.basic::after,.article-card::after,.feature::after,
+.tool-result-card::after,.free-card::after,.journal-showcase::after,.faq-item::after,.contact-shell::after,
+.about-grid::after,.watch-card::after{
+  content:""!important;position:absolute!important;inset:-80% auto -80% -35%!important;width:30%!important;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.16),transparent)!important;
+  transform:translateX(-220%) rotate(12deg)!important;pointer-events:none!important;
+  animation:cbGlare 10s ease-in-out infinite!important;
+}
+@keyframes cbGlare{0%,72%,100%{transform:translateX(-220%) rotate(12deg)}82%{transform:translateX(520%) rotate(12deg)}}

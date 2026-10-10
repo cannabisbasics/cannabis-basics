@@ -1,0 +1,167 @@
+
+/* Final hero balance: worksheet + offer fit entirely opposite the hero copy */
+.hero-wrap-sales{
+  align-items:stretch!important;
+}
+.hero-copy-wrap{
+  align-self:stretch!important;
+}
+.hero-free-resource{
+  align-self:stretch!important;
+  min-height:100%!important;
+  justify-content:flex-start!important;
+  gap:5px!important;
+  padding-top:0!important;
+}
+.hero-free-sheet img{
+  width:min(100%,190px)!important;
+  max-height:248px!important;
+  object-fit:contain!important;
+  margin:0 auto!important;
+  filter:drop-shadow(0 12px 20px rgba(0,0,0,.26))!important;
+}
+.hero-free-copy{
+  width:min(100%,330px)!important;
+  margin:0 auto!important;
+}
+.hero-free-copy .kicker{
+  font-size:1.12rem!important;
+  margin:0 0 3px!important;
+}
+.hero-free-copy h2{
+  font-size:1.55rem!important;
+  margin:0 0 8px!important;
+}
+.hero-free-email span{
+  margin-bottom:4px!important;
+}
+.hero-free-email input{
+  min-height:38px!important;
+  padding:8px 10px!important;
+}
+.hero-free-copy #freebieInlineBtn{
+  min-height:36px!important;
+  margin-top:6px!important;
+  padding:7px 11px!important;
+}
+
+/* Journal ad: one coherent glossy dark-green/black visual language */
+.journal-card-build10{
+  background:
+    radial-gradient(circle at 28% 18%,rgba(76,132,75,.15),transparent 34%),
+    linear-gradient(145deg,#09110b 0%,#102b19 48%,#050806 100%)!important;
+  border-color:rgba(111,167,96,.24)!important;
+}
+.journal-heading h2,
+.journal-product-title{
+  color:transparent!important;
+  background:
+    linear-gradient(105deg,
+      #78a96b 0%,
+      #315f3b 25%,
+      #b2dc9d 43%,
+      #163822 55%,
+      #7fb06d 72%,
+      #315f3b 100%)!important;
+  background-size:240% 100%!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  animation:journalTextSheen 8.5s ease-in-out infinite!important;
+  filter:drop-shadow(0 0 8px rgba(56,111,67,.12))!important;
+}
+@keyframes journalTextSheen{
+  0%,70%,100%{background-position:0% 50%}
+  84%{background-position:100% 50%}
+}
+
+#amazonBtn,.btn.amazon,.journal-amazon .btn{
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  background:
+    linear-gradient(115deg,
+      #050806 0%,
+      #0c1d11 20%,
+      #1c4c2b 43%,
+      #071008 62%,
+      #245d34 82%,
+      #08110a 100%)!important;
+  background-size:220% 100%!important;
+  color:#f5fff3!important;
+  border:1px solid rgba(121,176,105,.48)!important;
+  box-shadow:
+    0 11px 30px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    0 0 18px rgba(47,105,61,.18)!important;
+  animation:amazonGradientDrift 9s ease-in-out infinite,amazonSoftPop 5.8s ease-in-out infinite!important;
+}
+#amazonBtn::after,.btn.amazon::after,.journal-amazon .btn::after{
+  content:""!important;
+  position:absolute!important;
+  z-index:-1!important;
+  top:-70%!important;
+  bottom:-70%!important;
+  left:-35%!important;
+  width:24%!important;
+  background:linear-gradient(105deg,transparent,rgba(221,255,211,.26),transparent)!important;
+  transform:translateX(-260%) rotate(12deg)!important;
+  animation:amazonSheen 7.4s ease-in-out infinite!important;
+  pointer-events:none!important;
+}
+#amazonBtn:hover,.btn.amazon:hover,.journal-amazon .btn:hover{
+  transform:translateY(-4px) scale(1.015)!important;
+  color:#fff!important;
+  border-color:rgba(160,210,142,.72)!important;
+  box-shadow:
+    0 16px 38px rgba(0,0,0,.48),
+    0 0 26px rgba(56,123,72,.26)!important;
+}
+@keyframes amazonGradientDrift{
+  0%,72%,100%{background-position:0% 50%}
+  84%{background-position:100% 50%}
+}
+@keyframes amazonSheen{
+  0%,73%,100%{transform:translateX(-260%) rotate(12deg)}
+  84%{transform:translateX(650%) rotate(12deg)}
+}
+@keyframes amazonSoftPop{
+  0%,78%,100%{transform:translateY(0) scale(1)}
+  86%{transform:translateY(-3px) scale(1.012)}
+  92%{transform:translateY(0) scale(1)}
+}
+
+/* Preserve white journal feature pills */
+.journal-feature-buttons span{
+  background:#fff!important;
+  color:#101410!important;
+  border:1px solid rgba(255,255,255,.92)!important;
+}
+
+/* Light theme keeps ad intentionally dark/contrasting */
+body.light-theme #amazonBtn,
+body.light-theme .btn.amazon,
+body.light-theme .journal-amazon .btn{
+  color:#fff!important;
+  background:
+    linear-gradient(115deg,#08110a 0%,#173b22 38%,#071008 62%,#2a673a 84%,#08110a 100%)!important;
+}
+body.light-theme .journal-heading h2,
+body.light-theme .journal-product-title{
+  filter:none!important;
+}
+
+@media(max-width:900px){
+  .hero-free-sheet img{
+    width:min(100%,180px)!important;
+    max-height:235px!important;
+  }
+}
+@media(max-width:620px){
+  .hero-free-sheet img{
+    width:min(58vw,225px)!important;
+    max-height:none!important;
+  }
+  .hero-free-copy{
+    width:min(88vw,330px)!important;
+  }
+}

@@ -1,0 +1,18 @@
+
+.about-member-offer{
+  margin-top:24px;padding:22px;border-radius:22px;
+  border:1px solid rgba(194,207,50,.28);
+  background:linear-gradient(145deg,rgba(194,207,50,.08),rgba(255,255,255,.02));
+  box-shadow:0 16px 40px rgba(0,0,0,.28),0 0 20px rgba(194,207,50,.08);
+}
+.about-offer-label{
+  display:inline-flex;padding:7px 10px;border-radius:999px;
+  background:#c2cf32;color:#111600;font-weight:700;font-size:.72rem;
+}
+.about-member-offer h3{font:400 1.55rem Georgia,"Times New Roman",serif;color:#fff;margin:14px 0 8px}
+.about-member-offer p{color:#fff!important;line-height:1.7}
+.about-member-offer s{opacity:.6;margin-right:6px}
+.about-member-offer strong{color:#c2cf32}
+body.light-theme .about-member-offer{background:#fff;border-color:#d3daaa;box-shadow:0 14px 35px rgba(60,70,50,.09)}
+body.light-theme .about-member-offer h3,body.light-theme .about-member-offer p{color:#151915!important}
+body.light-theme .about-member-offer strong{color:#75810e!important}

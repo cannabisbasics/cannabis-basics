@@ -1,0 +1,10 @@
+
+#amazonBtn,.btn.amazon,.journal-amazon .btn{
+  background:#fff!important;
+  color:#000!important;
+  border-color:#fff!important;
+}
+#amazonBtn:hover,.btn.amazon:hover,.journal-amazon .btn:hover{
+  background:#f2f2f2!important;
+  color:#000!important;
+}
