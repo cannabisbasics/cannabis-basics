@@ -1,4 +1,4 @@
-const CACHE='cb-app-v7-20261010-learning';
+const CACHE='cb-app-v8-20261011-painted-logo';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
