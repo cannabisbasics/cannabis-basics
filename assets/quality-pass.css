@@ -3,12 +3,6 @@
 html{max-width:100%;overflow-x:clip}
 body{max-width:100%;overflow-x:clip}
 img,video,svg,canvas{max-width:100%}
-.cb-skip-link{
-  position:fixed;left:12px;top:10px;z-index:100000;transform:translateY(-160%);
-  padding:10px 14px;border-radius:10px;background:#f4f6f2;color:#132016;
-  font:700 .78rem/1.2 Arial,sans-serif;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,.4)
-}
-.cb-skip-link:focus{transform:none}
 :where(a,button,input,select,textarea,[tabindex]):focus-visible{
   outline:3px solid #c2cf32!important;outline-offset:3px!important
 }

@@ -5,19 +5,6 @@
   const isMembers=path.endsWith('members.html');
   const isJoin=path.endsWith('join.html');
 
-  function mainTarget(){
-    return document.querySelector('main,.main,.gate,#adminApp,.wrap');
-  }
-  const main=mainTarget();
-  if(main){
-    if(!main.id)main.id='cbMain';
-    if(!document.querySelector('.cb-skip-link')){
-      const skip=document.createElement('a');
-      skip.className='cb-skip-link';skip.href='#'+main.id;skip.textContent='Skip to main content';
-      document.body.prepend(skip);
-    }
-  }
-
   document.querySelectorAll('a[target="_blank"]').forEach(a=>{
     const rel=new Set((a.getAttribute('rel')||'').split(/\s+/).filter(Boolean));
     rel.add('noopener');rel.add('noreferrer');a.setAttribute('rel',[...rel].join(' '));
