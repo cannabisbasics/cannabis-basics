@@ -460,5 +460,85 @@
     ],
     "art": "article-15",
     "read": "6–8 min + learning checks"
+  },
+  {
+    "slug": "cannabis-driving-plan",
+    "title": "Cannabis and Driving: Make the Ride Plan Before the Session",
+    "dek": "Feeling familiar with a product is not a driving test. Build a practical plan that removes the decision from the moment.",
+    "cat": "Everyday safety",
+    "art": "article-16",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-lung-health",
+    "title": "Cannabis Smoke and Your Lungs: Track Symptoms, Question the Myths",
+    "dek": "A water pipe, a familiar strain and a smooth-feeling inhale do not establish that smoke is harmless.",
+    "cat": "Health literacy",
+    "art": "article-17",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-medication-interactions",
+    "title": "Cannabis, CBD and Other Medicines: Build a Pharmacist-Ready List",
+    "dek": "Non-intoxicating does not mean interaction-free. Exact products and complete medicine lists make better conversations.",
+    "cat": "Medicines",
+    "art": "article-18",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-older-adults",
+    "title": "Cannabis After 50: Balance, Medicines and Daily Function",
+    "dek": "Make the conversation about the person, their medicines and their daily responsibilities instead of age stereotypes.",
+    "cat": "Life stages",
+    "art": "article-19",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-sleep-evidence",
+    "title": "Cannabis and Sleep: Read the Evidence Beyond the Bedtime Label",
+    "dek": "Feeling sleepy, falling asleep and improving insomnia are different outcomes. Learn to ask which one a study measured.",
+    "cat": "Research skills",
+    "art": "article-20",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-hyperemesis",
+    "title": "Cannabinoid Hyperemesis: When Cannabis and Repeated Vomiting May Be Connected",
+    "dek": "Understand the pattern, share the full history and seek care without trying to diagnose yourself from a symptom list.",
+    "cat": "Health literacy",
+    "art": "article-21",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-tolerance-withdrawal",
+    "title": "Tolerance, Taking a Pause and Cannabis Withdrawal",
+    "dek": "Notice changes in your pattern without turning a tolerance break into a contest or a universal prescription.",
+    "cat": "Experience",
+    "art": "article-22",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-lab-report",
+    "title": "How to Read a Cannabis Certificate of Analysis",
+    "dek": "Match the batch before comparing numbers, and understand what a lab report can answer.",
+    "cat": "Buying smarter",
+    "art": "article-23",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-clinician-conversation",
+    "title": "How to Discuss Cannabis at a Medical Appointment",
+    "dek": "Bring a product record, a medicine list and one clear goal so the conversation can move beyond yes or no.",
+    "cat": "Practical tools",
+    "art": "article-24",
+    "read": "5–7 min + learning checks"
+  },
+  {
+    "slug": "cannabis-travel-checklist",
+    "title": "Cannabis Away From Home: Storage, Visitors and Travel Questions",
+    "dek": "Treat household access and destination rules as separate questions. A familiar product does not make either automatic.",
+    "cat": "Everyday safety",
+    "art": "article-25",
+    "read": "5–7 min + learning checks"
   }
 ]

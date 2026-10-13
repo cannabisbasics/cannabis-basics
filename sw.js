@@ -1,8 +1,8 @@
-const CACHE='cb-app-v9-20261011-header-clean';
+const CACHE='cb-app-v10-20261012-comfort';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
-  './assets/articles.css','./assets/shared-theme.js','./assets/article-learning.js','./assets/article-base.css','./assets/listening.css','./assets/listening.js','./assets/pwa.js','./assets/public-data.js','./assets/site-announcements.js',
+  './assets/reader-setup.js','./assets/read-aloud.js','./assets/read-aloud.css','./assets/reader-comfort.js','./assets/reader-comfort.css','./assets/page-tools.css','./assets/cb-reader-brand.css','./assets/articles.css','./assets/shared-theme.js','./assets/article-learning.js','./assets/article-base.css','./assets/listening.css','./assets/listening.js','./assets/pwa.js','./assets/public-data.js','./assets/site-announcements.js',
   './assets/member-deals.js','./assets/quality-pass.css','./assets/quality-pass.js'
 ];
 

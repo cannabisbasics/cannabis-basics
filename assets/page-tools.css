@@ -1,0 +1,22 @@
+/* One thin reading/theme bar follows the page and stops above the footer. */
+#page-tools[hidden]{display:none!important}
+#page-tools{position:fixed;inset:auto 0 0;bottom:var(--tools-footer-offset,0px);z-index:55;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:36px;padding:4px 16px calc(4px + env(safe-area-inset-bottom));background:#000;color:#ddd;border-top:1px solid #ffffff38;box-shadow:0 -4px 18px #0005}
+#page-tools .light-toggle{position:static!important;inset:auto!important;padding:4px 10px!important;height:26px!important;font-size:10px!important;line-height:1!important;margin:0}
+#page-tools .read-aloud{position:relative!important;inset:auto!important;max-width:none!important;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+#page-tools .read-bar{padding:0!important;gap:4px!important;border:0;background:transparent}
+#page-tools .read-bar button{height:26px!important;min-width:26px!important;padding:4px 6px!important;font-size:10px!important}
+#page-tools .read-bar #read-play{min-width:54px!important}
+#page-tools #read-settings{position:absolute;bottom:36px!important;top:auto!important;right:0!important;width:min(250px,calc(100vw - 32px))!important;background:#000!important;color:#eee!important;border:1px solid #777;border-radius:12px;padding:16px;box-shadow:0 -8px 30px #0008}
+body:has(#page-tools) main{padding-bottom:42px}
+@media(max-width:600px){#page-tools{padding-left:12px;padding-right:12px}}
+
+#page-tools button{font-family:Georgia,serif;background:linear-gradient(110deg,#8b939f,#e5e9f1 32%,#fff 49%,#b4bdcb 76%,#dce3ed);color:#111621;border:1px solid #edf0f8;border-radius:16px}
+
+#page-tools{gap:6px}
+#page-tools .reader-utilities{display:flex;gap:4px;margin-left:auto;margin-right:auto}
+#page-tools .reader-utilities button{width:26px;height:26px;padding:2px;font:12px Georgia,serif}
+#page-tools .reader-utility-popup{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:min(270px,calc(100vw - 24px));padding:12px;background:#000;border:1px solid #aaa;border-radius:12px;box-shadow:0 0 20px #fff2;font:13px Georgia,serif}
+#page-tools .reader-utility-popup[hidden]{display:none!important}
+#page-tools .reader-utility-popup p{margin:4px 0 10px;color:#eee}
+#page-tools .reader-utility-popup button{padding:6px 9px;margin:3px;font:12px Georgia,serif}
+@media(max-width:360px){#page-tools{padding-inline:6px;gap:4px}#page-tools .reader-utilities{gap:3px}}

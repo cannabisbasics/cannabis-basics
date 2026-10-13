@@ -1,0 +1,37 @@
+/* Cannabis Basics finishes for the approved i.e. reading bar. */
+body.ie-reader{--paper:#f5f6f1;--text:#24351f;--copy:#b8d876;--edge:#748e5c}
+body.ie-reader #page-tools{background:#050706;border-color:#b8d87655;min-height:42px;box-sizing:border-box;box-shadow:0 -3px 18px #0005}
+body.ie-reader #page-tools button{background:linear-gradient(115deg,#9dbd5f,#d4e89b 45%,#bbd77b 75%,#a8c96c);color:#050706;border:1px solid #bbd77b;font-family:Georgia,serif;box-shadow:inset 0 1px 0 #efffc088}
+body.ie-reader #page-tools button:hover{filter:brightness(1.08)}
+body.ie-reader #page-tools button:focus-visible{outline:3px solid #e4efb1;outline-offset:3px}
+body.ie-reader #page-tools button[aria-pressed=true]{outline-color:#c3cf32}
+body.ie-reader #ie-comfort-panel{position:fixed;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);width:min(420px,calc(100vw - 24px));max-height:calc(100dvh - 120px - env(safe-area-inset-bottom));background:linear-gradient(135deg,#17251a,#080d09);color:#e6eddb;border-color:#92b46b;z-index:60;font-family:Georgia,serif;box-shadow:0 12px 80px #000a}
+body.ie-reader #ie-comfort-panel :is(h2,p,label){color:inherit}
+body.ie-reader #ie-comfort-panel :is(input,select,textarea){accent-color:#bbd77b}
+body.ie-reader #ie-comfort-panel :is(select,textarea){background:#111e14!important;color:#e6eddb!important;border-color:#7e9d5e}
+body.ie-reader #ie-comfort-panel button{color:#050706}
+body.ie-reader #ie-comfort-panel button:disabled{opacity:.45;cursor:not-allowed}
+body.ie-reader.light-theme #ie-comfort-panel,body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) #ie-comfort-panel{background:var(--paper);color:var(--text);color-scheme:light}
+body.ie-reader.light-theme #ie-comfort-panel :is(select,textarea),body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) #ie-comfort-panel :is(select,textarea){background:#fff9!important;color:var(--text)!important}
+body.ie-reader[data-comfort-shade=warm]{--paper:#e9dfcc;--text:#322b23;--copy:#526a2f;background:#e9dfcc!important}
+body.ie-reader[data-comfort-shade=gray]{--paper:#dce1df;--text:#253330;--copy:#476131;background:#dce1df!important}
+body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) main :is(h1,h2,h3,h4,p,li,figcaption,summary,.article-dek,.article-byline){color:var(--text)!important}
+body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) main :is(.cb-design-block,.cb-chart,.cb-diagram,.cb-learning-links,.cb-quiz,.cb-scenario,.cb-video-browser,.cb-book){background:#ffffff40!important;border-color:#6b805a66!important}
+body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) main a{color:#3b6021!important}
+body.ie-reader .article-content{max-width:min(100%,var(--comfort-width,720px));margin-inline:auto;font-family:var(--comfort-font,Georgia,serif)}
+body.ie-reader .article-content :is(li,td,th){font-size:calc(1rem * var(--comfort-size,1));line-height:var(--comfort-leading,1.95)}
+body.ie-reader.comfort-still *,body.ie-reader.comfort-still *::before,body.ie-reader.comfort-still *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+body.ie-reader ::highlight(read-word){background:#bbd77b;color:#050706;text-shadow:none}
+body.ie-reader ::highlight(read-passage){background:#b8d87630}
+body.ie-reader .read-active{outline:1px solid #b8d876;outline-offset:5px;border-radius:4px;box-shadow:none}
+body.ie-reader.comfort-focus main .reader-paragraph{opacity:.65}
+body.ie-reader.comfort-focus main .reader-paragraph:is(.comfort-current,.read-active){opacity:1}
+body.ie-reader .ie-tooltip{background:#bbd77b;color:#050706}
+body.ie-reader #page-tools .light-toggle{margin-right:0}
+body.ie-reader #page-tools .reader-utilities{margin-inline:auto}
+body.ie-reader main{padding-bottom:64px;scroll-margin-bottom:64px}
+body.ie-reader main :is(p,li,a,button){scroll-margin-bottom:72px}
+body.ie-reader #break-visual .lung-lobe{stroke:#8caf63;fill:#b8d87630}
+#ie-comfort-panel [hidden],#page-tools [hidden]{display:none!important}
+@media(max-width:380px){body.ie-reader #page-tools{padding-inline:6px;gap:4px}body.ie-reader #page-tools .reader-utilities,body.ie-reader #page-tools .reader-right{gap:4px}}
+@media(prefers-reduced-motion:reduce){body.ie-reader *,body.ie-reader *::before,body.ie-reader *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

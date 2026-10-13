@@ -1,0 +1,90 @@
+/* Scoped to this article only. */
+body.ie-reader #page-tools{min-height:42px;padding:5px 14px calc(5px + env(safe-area-inset-bottom));gap:8px}
+body.ie-reader #page-tools .reader-utilities{gap:5px}
+body.ie-reader #page-tools .reader-utilities>button{width:30px;height:30px;font-size:15px;flex-shrink:0}
+body.ie-reader #page-tools .light-toggle{height:30px!important;min-width:65px;font-size:11px!important}
+body.ie-reader #page-tools .read-bar button{height:30px!important}
+body.ie-reader #page-tools button:focus-visible{outline:2px solid #e0e0e0;outline-offset:2px}
+#ie-comfort-panel{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:min(360px,calc(100vw - 24px));max-height:calc(100dvh - 160px);overflow:auto;overscroll-behavior:contain;padding:18px;border:1px solid #777;border-radius:16px;background:linear-gradient(135deg,#252525,#080808);color:#eee;box-shadow:0 -8px 35px #0008;font:14px/1.6 Georgia,serif;box-sizing:border-box;color-scheme:dark}
+#ie-comfort-panel .comfort-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+#ie-comfort-panel h2{margin:0;font:20px/1.3 Georgia,serif;color:inherit}
+#ie-comfort-panel p{font:12px/1.6 Georgia,serif;color:inherit;margin:10px 0}
+#ie-comfort-panel button{padding:8px 12px;margin:4px 3px;min-height:36px;font:13px Georgia,serif}
+#ie-comfort-panel .comfort-panel-head button{border-radius:50%;min-width:32px;padding:4px;font-size:20px;margin:0}
+#ie-comfort-panel .comfort-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+#ie-comfort-panel button[aria-pressed=true]{outline:2px solid #eee;outline-offset:2px}
+#ie-comfort-panel label{display:block;margin:12px 0;font:13px Georgia,serif;color:inherit}
+#ie-comfort-panel input[type=range]{display:block;width:100%;margin:12px 0 4px;accent-color:#bbb}
+#ie-comfort-panel input[type=checkbox]{margin-right:8px;accent-color:#bbb}
+#ie-comfort-panel select,#ie-comfort-panel textarea{display:block;width:100%;margin-top:8px;padding:10px;border:1px solid #888;border-radius:8px;background:#151515;color:inherit;font:14px/1.6 Georgia,serif;box-sizing:border-box}
+#ie-comfort-panel textarea{resize:vertical;min-height:110px}
+#ie-comfort-panel .comfort-status{min-height:1.6em}
+body.ie-reader.lights-on #ie-comfort-panel,body.ie-reader[data-comfort-shade=warm] #ie-comfort-panel,body.ie-reader[data-comfort-shade=gray] #ie-comfort-panel{background:var(--paper);color:var(--text);color-scheme:light;border-color:#888}
+body.ie-reader:not([data-comfort-shade=off]) #ie-comfort-panel :is(select,textarea){background:#ffffff55;color:var(--text)}
+body.ie-reader[data-comfort-shade=warm]{--paper:#e9dfcc;--text:#322b23;--muted:#514639;--ink:#322b23;--copy:#514639;--edge:#b8aa94;color-scheme:light}
+body.ie-reader[data-comfort-shade=gray]{--paper:#dce1df;--text:#253330;--muted:#43524e;--ink:#253330;--copy:#43524e;--edge:#a8b4af;color-scheme:light}
+body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) main{color:var(--text)!important}
+body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) main :is(p,li,.eyebrow){color:var(--muted)}
+body.ie-reader main .prose{max-width:min(100%,var(--comfort-width,720px))}
+body.ie-reader main .reader-paragraph{font-family:var(--comfort-font,Georgia,serif);font-size:calc(18px * var(--comfort-size,1));line-height:var(--comfort-leading,1.95)}
+body.comfort-focus main .reader-paragraph{opacity:.35;transition:opacity .2s}
+body.comfort-focus main .reader-paragraph.comfort-current,body.comfort-focus main .reader-paragraph.read-active{opacity:1}
+body.comfort-focus main .reader-paragraph.comfort-current{box-shadow:-3px 0 var(--copy);padding-left:14px}
+.comfort-breath{width:116px;height:116px;border:1px solid #999;border-radius:50%;display:grid;place-items:center;margin:24px auto;background:radial-gradient(circle,#ffffff20,#ffffff05);transition:transform 4s ease-in-out;transform:scale(.85);font:15px Georgia,serif}
+.comfort-breath.inhale{transform:scale(1.08)}
+body.comfort-still :is(.record-logo,.visual-dot,.visual-bar){animation:none!important}
+body.comfort-still :is(button,a),body.comfort-still .comfort-breath{animation:none!important;transition:none!important}
+body.comfort-still .comfort-breath{transform:none!important}
+@media(max-width:600px){body.ie-reader #page-tools{padding-inline:6px;gap:3px}body.ie-reader #page-tools .reader-utilities{gap:3px}body.ie-reader #page-tools .reader-utilities>button{width:26px;height:30px;font-size:13px}body.ie-reader #page-tools .read-bar{gap:3px!important}body.ie-reader #page-tools #read-play{gap:3px;min-width:54px!important;padding:4px!important}body.ie-reader #page-tools #read-label{font-size:9px}body.ie-reader #page-tools .light-toggle{min-width:58px;padding:4px 6px!important;font-size:10px!important}body.ie-reader main .reader-paragraph{font-size:calc(17px * var(--comfort-size,1))}}
+@media(prefers-reduced-motion:reduce){.comfort-breath{transform:none!important;transition:none!important}body.comfort-focus main .reader-paragraph{transition:none}}
+
+body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) ::highlight(read-word){color:var(--text);background:#0002;text-shadow:none}
+body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) ::highlight(read-passage){background:#0001}
+body.ie-reader:not([data-comfort-shade=off]) main .read-active{outline-color:#555!important;box-shadow:0 0 8px #0002!important}
+
+/* Seven recognizable icons, with all options inside one centered panel. */
+body.ie-reader #page-tools{padding:4px 14px calc(4px + env(safe-area-inset-bottom));min-height:44px;gap:8px}
+body.ie-reader #page-tools .reader-utilities{gap:8px;margin-inline:auto}
+body.ie-reader #page-tools .reader-right{display:flex;gap:8px}
+body.ie-reader #page-tools :is(.light-toggle,.reader-utilities>button,.reader-right>button){position:relative!important;width:34px!important;height:34px!important;min-width:34px!important;padding:7px!important;border-radius:50%;display:grid;place-items:center;font-size:14px!important}
+#page-tools svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+body.ie-reader #page-tools .read-aloud{position:static!important;inset:auto!important;background:none!important;color:inherit!important;max-width:none!important;width:100%;border:0!important}
+body.ie-reader #page-tools #read-settings{position:static!important;inset:auto!important;width:100%!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;box-sizing:border-box;color:inherit!important}
+body.ie-reader #page-tools #read-settings h2{display:none}
+body.ie-reader #page-tools #read-settings :is(label,p){color:inherit!important}
+body.ie-reader #page-tools #read-settings select{color:inherit!important;background:transparent!important}
+body.ie-reader #page-tools #read-settings button{padding:8px 12px;font:13px Georgia,serif;min-height:36px}
+body.ie-reader #page-tools .read-bar{gap:8px!important;margin:4px 0 16px;justify-content:flex-start}
+body.ie-reader #page-tools .read-bar button{height:36px!important;padding:8px 14px!important;font-size:13px!important}
+body.ie-reader #page-tools .read-bar #read-play{min-width:88px!important}
+body.ie-reader #page-tools #read-options{display:none!important}
+body.ie-reader #page-tools #read-symbol{display:none}
+body.ie-reader #page-tools #read-label{font-size:13px!important}
+body.ie-reader main .reader-paragraph{font-family:var(--comfort-font,Georgia,serif)!important;font-size:calc(18px * var(--comfort-size,1))!important;line-height:var(--comfort-leading,1.95)!important;scroll-margin-top:120px}
+body.ie-reader .comfort-still *,body.ie-reader.comfort-still :is(.article-visual *,.design-interlude::after,.record-logo,.mission-card){animation:none!important;transition:none!important}
+#ie-comfort-panel #break-visual{width:100%;height:180px;display:grid;place-items:center;margin:12px 0}
+#break-visual svg{width:180px;height:170px;stroke:currentColor;stroke-width:2;fill:none}
+#break-visual .lung-lobe{transform-box:fill-box;transform-origin:center;transition:transform var(--breath-seconds,4s) ease-in-out;fill:#aaa3;stroke:#bbb}
+#break-visual.inhale .lung-lobe{transform:scale(1.1)}
+#break-visual.exhale .lung-lobe{transform:scale(.91)}
+#break-visual .air-path{stroke-dasharray:4 7;opacity:.6}
+#break-visual.inhale .air-path{animation:air-in 1.5s linear infinite}
+#break-visual.exhale .air-path{animation:air-in 1.5s linear infinite reverse}
+#break-visual .shoulder-arms{transform-origin:90px 65px;animation:shoulder-release 5s ease-in-out infinite}
+#break-visual .hand-fingers{animation:hand-release 5s ease-in-out infinite;transform-origin:90px 100px}
+#break-visual .walker{animation:walk-gently 2.5s ease-in-out infinite alternate}
+#break-instruction{text-align:center;font:18px/1.5 Georgia,serif!important;min-height:3em}
+#break-clock{display:block;text-align:center;font:13px Georgia,serif;color:inherit}
+#break-visual.eye-rest{opacity:.35}
+#break-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
+#page-tools button[data-playing=true]{box-shadow:0 0 12px #fff9;outline:1px solid #ddd}
+.ie-tooltip{position:fixed;z-index:1000;pointer-events:none;background:#ddd;color:#171717;padding:5px 9px;border-radius:7px;font:11px/1.4 Georgia,serif;box-shadow:0 3px 12px #0005;max-width:220px;text-align:center}
+@keyframes air-in{to{stroke-dashoffset:-22}}
+@keyframes shoulder-release{50%{transform:translateY(7px)}}
+@keyframes hand-release{50%{transform:scale(.87)}}
+@keyframes walk-gently{to{transform:translateX(12px)}}
+@media(max-width:600px){body.ie-reader #page-tools{padding-inline:8px;gap:6px}body.ie-reader #page-tools .reader-utilities,body.ie-reader #page-tools .reader-right{gap:6px}body.ie-reader #page-tools :is(.light-toggle,.reader-utilities>button,.reader-right>button){width:32px!important;min-width:32px!important;height:34px!important;padding:7px!important}body.ie-reader main .reader-paragraph{font-size:calc(17px * var(--comfort-size,1))!important}}
+@media(prefers-reduced-motion:reduce){#break-visual *{animation:none!important;transition:none!important;transform:none!important}}
+body.comfort-still #break-visual *{animation:none!important;transition:none!important;transform:none!important}
+#break-visual.break-paused *{animation-play-state:paused!important;transition:none!important}
+#ie-comfort-panel .break-source{font:11px/1.6 Georgia,serif;text-decoration:underline;color:inherit}
