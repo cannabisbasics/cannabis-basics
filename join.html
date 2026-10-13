@@ -216,24 +216,34 @@ function enterMemberSpace(){
   setTimeout(()=>{location.href=destination},900);
 }
 async function sessionHasActiveAccess(){
-  const {data:{session:current}}=await supabase.auth.getSession();
+  const {data:{session:current},error:sessionError}=await supabase.auth.getSession();
+  if(sessionError)throw sessionError;
   if(!current)return false;
   const [membershipRes,adminRes]=await Promise.all([
     supabase.from('memberships').select('status').eq('user_id',current.user.id).maybeSingle(),
     supabase.from('admin_users').select('role').eq('user_id',current.user.id).maybeSingle()
   ]);
+  if(membershipRes.error||adminRes.error){
+    throw new Error('You are signed in, but we could not verify member access. Please try again shortly.');
+  }
   return membershipRes.data?.status==='active'||!!adminRes.data;
 }
-const { data:{ session } }=await supabase.auth.getSession();
-if(session){
-  if(await sessionHasActiveAccess()){
-    status.textContent='You are already signed in. Opening your member workspace…';
-    enterMemberSpace();
-  }else{
-    status.textContent='Your account exists, but member access is not active yet.';
-    await supabase.auth.signOut();
-    setMode('signin');
+try{
+  const { data:{ session },error:sessionError }=await supabase.auth.getSession();
+  if(sessionError)throw sessionError;
+  if(session){
+    if(await sessionHasActiveAccess()){
+      status.textContent='You are already signed in. Opening your member workspace…';
+      enterMemberSpace();
+    }else{
+      await supabase.auth.signOut();
+      setMode('signin');
+      status.textContent='Your account exists, but member access is not active yet.';
+    }
   }
+}catch(err){
+  setMode('signin');
+  status.textContent='We could not verify your member access right now. Please try signing in again shortly.';
 }
 
 form.addEventListener('submit',async e=>{
