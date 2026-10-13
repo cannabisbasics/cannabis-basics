@@ -1,4 +1,4 @@
-const CACHE='cb-app-v10-20261012-comfort';
+const CACHE='cb-app-v11-20261012-reader-final3';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
