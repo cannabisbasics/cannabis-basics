@@ -43,3 +43,6 @@ body.ie-reader.light-theme #ie-comfort-panel,body.ie-reader:is([data-comfort-sha
 body.ie-reader #ie-comfort-panel .comfort-panel-head h2{color:inherit!important}
 body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray])::before{background:var(--paper)!important}
 body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray])::after{opacity:.015!important;animation:none!important}
+/* Centered reading dialogs stay in front of the host's sticky header. */
+body.ie-reader #page-tools{z-index:1300}
+body.ie-reader .ie-tooltip{z-index:1400}
