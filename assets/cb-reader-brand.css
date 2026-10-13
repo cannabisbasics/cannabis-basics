@@ -35,3 +35,9 @@ body.ie-reader #break-visual .lung-lobe{stroke:#8caf63;fill:#b8d87630}
 #ie-comfort-panel [hidden],#page-tools [hidden]{display:none!important}
 @media(max-width:380px){body.ie-reader #page-tools{padding-inline:6px;gap:4px}body.ie-reader #page-tools .reader-utilities,body.ie-reader #page-tools .reader-right{gap:4px}}
 @media(prefers-reduced-motion:reduce){body.ie-reader *,body.ie-reader *::before,body.ie-reader *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* Override the host's global button spacing and transparent-section rules. */
+body.ie-reader #page-tools :is(.light-toggle,.reader-utilities>button,.reader-right>button){margin:0!important}
+body.ie-reader #page-tools :is(.reader-utilities,.reader-right){align-items:center}
+body.ie-reader #ie-comfort-panel{background:linear-gradient(135deg,#17251a,#080d09)!important;color:#e6eddb!important}
+body.ie-reader.light-theme #ie-comfort-panel,body.ie-reader:is([data-comfort-shade=warm],[data-comfort-shade=gray]) #ie-comfort-panel{background:var(--paper)!important;color:var(--text)!important}
+body.ie-reader #ie-comfort-panel .comfort-panel-head h2{color:inherit!important}
