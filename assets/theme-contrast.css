@@ -1,0 +1,19 @@
+/* Bright brand accents on dark pages; hunter green on light reading surfaces.
+   Keep bright button fills separate from text accents. */
+body.light-theme{--cb-text-accent:#185333;--cb-readable-muted:#465648}
+body.light-theme :is(h1,h2,h3,h4,h5,h6):not(#cbMusicPanel *):not(#memberInvite *):not(.auth-transition *){color:var(--cb-text-accent)!important}
+body.light-theme :is(h1,h2,h3,h4) :is(em,span,strong):not(#cbMusicPanel *):not(#memberInvite *):not(.auth-transition *){color:inherit!important}
+body.light-theme :is(.kicker,.eyebrow,.tool-name,.basic b,.read-link,.article-cat,.hero h1 em,.feature strong,.result-chips span,.faq-arrow,.learn-subtitle,.about-first100,.about-member-offer strong,.about-price-stack strong,.cb-back,.article-content a,.cb-design-block>span,.cb-diagram-steps span):not(#cbMusicPanel *):not(#memberInvite *){color:var(--cb-text-accent)!important}
+body.light-theme :is(.footer-links a:hover,.footer-links button:hover),body.light-theme .about-member-grid span::before{color:var(--cb-text-accent)!important}
+body.light-theme :is(.article-meta,.article-byline,.article-dek,.contact-note,.cb-email-optin,.cb-resource-error,.member-deal-card p,.member-deal-disclosure,.member-deal-meta span,.cloud-status){color:var(--cb-readable-muted)!important}
+body.light-theme .result-chips span{background:#e2eadc!important;border-color:#a5b79e!important}
+body.light-theme :is(.member-deal-card .deal-kicker,.member-deal-code){color:var(--cb-text-accent)!important}
+body.light-theme .member-deal-meta span{background:#e2eadc}
+body.light-theme :where(a,button,input,select,textarea,[tabindex]):focus-visible{outline-color:#185333!important}
+/* These media surfaces deliberately stay dark in both page themes. */
+body.light-theme #cbMusicPanel :is(h3,p,label,summary,li){color:#e3edcb}
+body.light-theme #cbMusicPanel .cb-music-heading h2{color:#c2cf32!important}
+body.light-theme #cbMusicPanel .cb-control,body.light-theme #cbMusicPanel .cb-control :is(strong,small){color:#10200e!important}
+body.light-theme #cbMusicPanel :is(.cb-time,#cbMusicStatus,.cb-jukebox-credit){color:#c7d5ad}
+body.light-theme #cbMusicPanel :where(a,button,summary,input):focus-visible{outline-color:#e1f1b0!important}
+body.light-theme.ie-reader{--copy:#185333}

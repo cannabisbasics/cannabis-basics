@@ -14,7 +14,7 @@ body.light-theme #cbMusicPanel .cb-music-heading h2{color:#476320}
 #cbMusicPanel [hidden]{display:none!important}
 #cbMusicPanel :is(h2,h3,p,label,summary,li){color:inherit;font-family:Georgia,serif}
 #cbMusicPanel :is(button,a){box-sizing:border-box}
-#cbMusicPanel .cb-control{position:relative;background:linear-gradient(120deg,#a4c461,#d4e896 43%,#b9d675 65%,#91b555)!important;color:#10200e!important;border:1px solid #d2e69b;border-radius:10px;font-family:Georgia,serif;cursor:pointer;text-decoration:none;box-shadow:inset 0 1px #f1ffd1aa,0 2px 8px #0003;transition:transform .25s ease,filter .25s ease;overflow:hidden;margin:0;min-height:42px}
+#cbMusicPanel .cb-control{position:relative;background:#c2cf32!important;color:#10200e!important;border:1px solid #d2e69b;border-radius:10px;font-family:Georgia,serif;cursor:pointer;text-decoration:none;box-shadow:inset 0 1px #f1ffd1aa,0 2px 8px #0003;transition:transform .25s ease,filter .25s ease;overflow:hidden;margin:0;min-height:42px}
 #cbMusicPanel .cb-control::after{content:'';position:absolute;inset:-100% -65%;background:linear-gradient(105deg,transparent 40%,#f6ffce77 50%,transparent 60%);transform:translateX(-75%);animation:cbJukeShine 7s ease-in-out infinite;pointer-events:none}
 #cbMusicPanel .cb-control:hover{transform:translateY(-3px) rotate(-.5deg);filter:brightness(1.08)}
 #cbMusicPanel .cb-control:focus-visible,#cbMusicPanel summary:focus-visible{outline:3px solid #e1f1b0;outline-offset:3px}
@@ -77,3 +77,24 @@ body.light-theme #cbMusicPanel .cb-music-heading h2{color:#476320}
 @media(prefers-reduced-motion:reduce){#cbMusicPanel .cb-control,#cbMusicPanel .cb-control::after,.cb-sound-bars i{animation:none!important;transition:none!important}#cbMusicPanel .cb-control:hover{transform:none}#cbMusicPanel{transition:none!important}}
 body.comfort-still #cbMusicPanel *,body.comfort-still #cbMusicPanel *::after{animation:none!important;transition:none!important}
 body.cb-article-page #cbMusicPanel{max-height:calc(100dvh - 128px - env(safe-area-inset-bottom))}
+
+/* Centered brand wordmark and a slow, decorative loop divider. */
+#cbMusicPanel .cb-music-heading{display:grid;grid-template-columns:38px minmax(0,1fr) 38px;gap:8px}
+#cbMusicPanel .cb-juke-identity{grid-column:2;justify-content:center;min-width:0;gap:12px}
+#cbMusicPanel .cb-juke-wordmark{text-align:center}
+#cbMusicPanel .cb-juke-wordmark>span{display:block;color:#e7edcf;font:.82rem/1.5 Georgia,serif;letter-spacing:.035em}
+#cbMusicPanel .cb-music-heading h2{color:#c2cf32!important;line-height:1.15}
+#cbMusicPanel .cb-close{grid-column:3;grid-row:1;margin:0}
+#cbMusicPanel .cb-juke-divider{display:block;width:100%;height:32px;margin:12px 0 0;overflow:hidden;color:#c2cf32}
+.cb-juke-divider path{fill:none;stroke:currentColor;stroke-width:1.2;vector-effect:non-scaling-stroke}
+.cb-divider-base{opacity:.25}
+.cb-divider-loop{animation:cbDividerLoop 14s ease-in-out infinite;transform-box:view-box;transform-origin:center}
+@keyframes cbDividerLoop{0%{transform:translateX(-100%);opacity:0}15%{opacity:.8}75%{opacity:.8}100%{transform:translateX(100%);opacity:0}}
+#cbMusicPanel .cb-juke-motto{margin-top:8px}
+#cbMusicPanel .cb-control :is(strong,small){color:#10200e}
+/* Keep the jukebox's dark surface readable when the surrounding page is light. */
+body.light-theme #cbMusicPanel #cbNowPlaying{color:#e3edcb}
+#cbMusicPanel .cb-stage{content-visibility:visible;contain-intrinsic-size:none}
+@media(max-width:420px){#cbMusicPanel .cb-music-heading{grid-template-columns:24px minmax(0,1fr) 32px;gap:4px}#cbMusicPanel .cb-close{width:32px;min-height:32px}#cbMusicPanel .cb-juke-identity{gap:7px}#cbMusicPanel .cb-music-heading .cb-ie-logo{width:42px;height:42px}#cbMusicPanel .cb-juke-wordmark>span{font-size:.72rem}}
+@media(prefers-reduced-motion:reduce){.cb-divider-loop{animation:none;transform:none;opacity:.75}}
+body.comfort-still .cb-divider-loop{animation:none!important;transform:none;opacity:.75}

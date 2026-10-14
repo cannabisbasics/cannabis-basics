@@ -1,9 +1,9 @@
-const CACHE='cb-app-v12-20261013-jukebox';
+const CACHE='cb-app-v13-20261013-contrast';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
   './assets/reader-setup.js','./assets/read-aloud.js','./assets/read-aloud.css','./assets/reader-comfort.js','./assets/reader-comfort.css','./assets/page-tools.css','./assets/cb-reader-brand.css','./assets/articles.css','./assets/shared-theme.js','./assets/article-learning.js','./assets/article-base.css','./assets/listening.css','./assets/listening.js','./assets/jukebox-catalog.json','./assets/pwa.js','./assets/public-data.js','./assets/site-announcements.js',
-  './assets/member-deals.js','./assets/quality-pass.css','./assets/quality-pass.js'
+  './assets/member-deals.js','./assets/theme-contrast.css','./assets/quality-pass.css','./assets/quality-pass.js'
 ];
 
 async function precache(){
