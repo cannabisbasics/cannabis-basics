@@ -17,3 +17,6 @@ body.light-theme #cbMusicPanel .cb-control,body.light-theme #cbMusicPanel .cb-co
 body.light-theme #cbMusicPanel :is(.cb-time,#cbMusicStatus,.cb-jukebox-credit){color:#c7d5ad}
 body.light-theme #cbMusicPanel :where(a,button,summary,input):focus-visible{outline-color:#e1f1b0!important}
 body.light-theme.ie-reader{--copy:#185333}
+/* Labels and supporting links on the pale public tool cards. */
+body.light-theme :is(.hero-free-vnext-kicker,.decoder-result-icon,.decoder-result-empty small,.decoder-after-note a,.contact-info-cards strong,.locator-source a,.locator-attribution a){color:#185333!important}
+body.light-theme :is(.contact-info-cards span,.contact-section label,.contact-section label span){color:#465648!important}

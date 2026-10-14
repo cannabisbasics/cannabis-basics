@@ -1,4 +1,4 @@
-const CACHE='cb-app-v13-20261013-contrast';
+const CACHE='cb-app-v14-20261013-contrast-final';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
