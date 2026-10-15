@@ -1,4 +1,4 @@
-const CACHE='cb-app-quiet-20261015';
+const CACHE='cb-app-green-install-20261015';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
