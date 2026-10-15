@@ -1,4 +1,4 @@
-const CACHE='cb-app-v14-20261013-contrast-final';
+const CACHE='cb-app-install-20261015';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
@@ -14,7 +14,7 @@ self.addEventListener('install',event=>{
   event.waitUntil(precache());
 });
 self.addEventListener('activate',event=>{
-  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
+  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('cb-app-')&&k!==CACHE).map(k=>caches.delete(k)))));
   self.clients.claim();
 });
 async function networkFirst(req){
