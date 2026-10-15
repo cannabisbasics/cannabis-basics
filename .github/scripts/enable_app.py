@@ -14,7 +14,7 @@ manifest.write_text(json.dumps(m,indent=2)+'\n')
 js=r'''(() => {
   if (window.__siteAppSupport || window.top !== window.self) return;
   window.__siteAppSupport = true;
-  const brand = {"name": "Cannabis Basics", "high": "#b2d183", "mid": "#6e9a47", "low": "#436d31", "ink": "#10230c", "desktop": ".public-top-actions", "mobile": "[data-no-mobile-menu]", "paper": "#f0eee8", "copy": "#242424"};
+  const brand = {"name": "Cannabis Basics", "high": "#b2d183", "mid": "#6e9a47", "low": "#436d31", "ink": "#10230c", "desktop": ".public-top-actions", "mobile": ".hero-copy-wrap, main .article-topbar", "paper": "#f0eee8", "copy": "#242424"};
   let pending = null, installed = false;
   const controls = [];
   const standalone = () => installed || matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
