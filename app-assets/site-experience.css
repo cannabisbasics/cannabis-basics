@@ -26,3 +26,9 @@ body #musicPanel#musicPanel.x-native-panel :is(.jb-choices,.jb-grid,.jb-transpor
 body[data-site-slug=cannabis-basics] #cbMusicPanel#cbMusicPanel button.cb-control{background:#b2d183!important;background-image:none!important;color:#10230c!important;border-color:#749746!important}
 .x-native-panel.x-native-panel.x-native-panel.x-native-panel .etp-player-controls button{background:linear-gradient(125deg,var(--x-high),var(--x-mid),var(--x-low))!important;color:var(--x-ink)!important;border-color:var(--x-mid)!important}
 .x-native-panel.x-native-panel.x-native-panel.x-native-panel .etp-jukebox-brand h2{font:normal 27px/1.2 Georgia,serif!important}.x-native-panel.x-native-panel.x-native-panel.x-native-panel .etp-jukebox-brand span{font:12px/1.3 Georgia,serif!important}
+
+/* Footer installation is a plain navigation label, including hover/focus. */
+body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text{translate:none!important;rotate:none!important;scale:none!important;outline-offset:3px}
+body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text:is(:hover,:focus-visible){background:none!important;background-image:none!important;box-shadow:none!important;animation:none!important;transform:none!important;translate:none!important;text-decoration:none!important}
+body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text::before,body footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text::after{content:none!important;display:none!important}
+body[data-site-app-installed] footer button.site-app-footer-text.site-app-footer-text.site-app-footer-text.site-app-footer-text{display:none!important}
