@@ -65,10 +65,18 @@ print(slug+': site-specific refinements complete')
 # Activate new controls for visitors whose previous app cached the installer.
 sw=root/'sw.js'
 if sw.exists():
- text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='cb-app-green-install-20261015'",text,count=1);sw.write_text(text)
+ text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='cb-app-title-green-exact-20261015'",text,count=1);sw.write_text(text)
 
 # Refresh only the installer after its solid-green presentation update.
 for page in root.rglob('*.html'):
  text=page.read_text()
- clean=re.sub(r'(src=["\'](?:\.\./)*app-assets/install\.js)(?:\?[^"\']*)?',lambda m:m[1]+'?v=20261015-solid-green',text)
+ clean=re.sub(r'(src=["\'](?:\.\./)*app-assets/install\.js)(?:\?[^"\']*)?',lambda m:m[1]+'?v=20261015-title-green-exact',text)
+ if clean!=text:page.write_text(clean)
+
+# Match the measured title color even if a previous installer is still cached.
+button_css='<style id="cb-install-title-green">body button.site-app-button.site-app-button.site-app-button.site-app-button.site-app-button{background:#c2cf32!important;background-image:none!important;border-color:#c2cf32!important}</style>'
+for page in root.rglob('*.html'):
+ text=page.read_text()
+ clean=re.sub(r'<style id="cb-install-title-green">.*?</style>\s*','',text,flags=re.S)
+ clean=clean.replace('</head>',button_css+'\n</head>',1)
  if clean!=text:page.write_text(clean)
