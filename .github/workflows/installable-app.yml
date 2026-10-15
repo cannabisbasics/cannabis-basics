@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - 'app-assets/**'
+      - '*.webmanifest'
+      - '.github/scripts/update_icon_links.py'
       - '.github/scripts/refine_experience.py'
       - '.github/scripts/enable_app.py'
       - '.github/scripts/app-config.json'
@@ -30,6 +32,8 @@ jobs:
           test -f manifest.webmanifest || test -f site.webmanifest || python .github/scripts/enable_app.py
       - name: Refine navigation and media experience
         run: python .github/scripts/refine_experience.py
+      - name: Update app icon links
+        run: python .github/scripts/update_icon_links.py
       - name: Check installation script syntax
         run: |
           node --check app-assets/install.js

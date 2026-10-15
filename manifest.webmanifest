@@ -17,16 +17,28 @@
   ],
   "icons": [
     {
-      "src": "app-assets/icon-192.png",
+      "src": "app-assets/icon-192-large-20261015.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "app-assets/icon-512.png",
+      "src": "app-assets/icon-512-large-20261015.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "app-assets/icon-maskable-192-large-20261015.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "app-assets/icon-maskable-512-large-20261015.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
