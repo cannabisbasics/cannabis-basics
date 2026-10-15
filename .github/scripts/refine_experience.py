@@ -65,4 +65,10 @@ print(slug+': site-specific refinements complete')
 # Activate new controls for visitors whose previous app cached the installer.
 sw=root/'sw.js'
 if sw.exists():
- text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='cb-app-quiet-20261015'",text,count=1);sw.write_text(text)
+ text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='cb-app-green-install-20261015'",text,count=1);sw.write_text(text)
+
+# Refresh only the installer after its solid-green presentation update.
+for page in root.rglob('*.html'):
+ text=page.read_text()
+ clean=re.sub(r'(src=["\'](?:\.\./)*app-assets/install\.js)(?:\?[^"\']*)?',lambda m:m[1]+'?v=20261015-solid-green',text)
+ if clean!=text:page.write_text(clean)
