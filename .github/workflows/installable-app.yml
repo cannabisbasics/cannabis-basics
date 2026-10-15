@@ -34,6 +34,7 @@ jobs:
         run: |
           node --check app-assets/install.js
           node --check app-assets/site-experience.js
+          node --check sw.js
       - name: Save app support
         run: |
           git config user.name "github-actions[bot]"

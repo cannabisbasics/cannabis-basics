@@ -65,4 +65,4 @@ print(slug+': site-specific refinements complete')
 # Activate new controls for visitors whose previous app cached the installer.
 sw=root/'sw.js'
 if sw.exists():
- text=sw.read_text();text=re.sub(r"const CACHE='[^']+'", "const CACHE=cb-app-experience-20261015'",text,count=1);sw.write_text(text)
+ text=sw.read_text();text=re.sub(r"const CACHE=[^\n;]+", "const CACHE='cb-app-quiet-20261015'",text,count=1);sw.write_text(text)
