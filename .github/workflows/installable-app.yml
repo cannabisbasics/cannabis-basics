@@ -49,6 +49,9 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
+          name: pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: '.'
       - uses: actions/deploy-pages@v4
         id: deploy
+        with:
+          artifact_name: pages-${{ github.run_id }}-${{ github.run_attempt }}
