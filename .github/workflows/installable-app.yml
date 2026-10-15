@@ -1,0 +1,45 @@
+name: Enable installable website app
+on:
+  push:
+    paths:
+      - '.github/scripts/enable_app.py'
+      - '.github/scripts/app-config.json'
+      - '.github/workflows/installable-app.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: installable-app
+  cancel-in-progress: false
+jobs:
+  app:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add and validate app metadata
+        run: python .github/scripts/enable_app.py
+      - name: Check installation script syntax
+        run: node --check app-assets/install.js
+      - name: Save app support
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html' '*.webmanifest' app-assets
+          if [ -f sw.js ]; then git add sw.js; fi
+          if ! git diff --cached --quiet; then
+            git commit -m "Enable branded installable website app support"
+            git push
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - uses: actions/deploy-pages@v4
+        id: deploy
