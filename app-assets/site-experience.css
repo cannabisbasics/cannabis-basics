@@ -46,3 +46,6 @@ body[data-site-slug=cannabis-basics] .x-menu-items .x-membership{margin-top:6px!
 body[data-site-slug=cannabis-basics] #memberInvite .member-invite-card{background:#000!important}
 body[data-site-slug=cannabis-basics] #memberInvite .member-invite-card::before,body[data-site-slug=cannabis-basics] #memberInvite .member-invite-card::after{content:none!important}
 @media(max-width:600px){body[data-site-slug=cannabis-basics] .x-menu-item{min-height:38px!important}body[data-site-slug=cannabis-basics] dialog.x-menu{width:min(330px,calc(100vw - 20px))}}
+
+/* Keep the CB ownership credit as the final jukebox element in every view. */
+#cbMusicPanel .x-explore-footer{display:none!important}#cbMusicPanel .cb-jukebox-credit{display:flex!important}

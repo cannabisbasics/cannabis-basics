@@ -54,7 +54,7 @@ function brandNative(){
  if(cfg.slug==='divine-shades-of-brown'&&heading&&!heading.querySelector('.x-brand-name')){const small=el('small','x-brand-name',cfg.name);heading.querySelector('h2')?.before(small);}
  if(cfg.slug==='examine-the-past-home'){const copy=heading?.querySelector('div');if(copy){const h=copy.querySelector('h2'),s=copy.querySelector('span');if(h&&s){h.textContent='Jukebox';s.textContent=cfg.name;copy.prepend(s);}}}
  const summary=panel.querySelector('.jb-personal summary,.cb-favorites summary');if(summary){summary.textContent='› My playlists';}
- if(!panel.querySelector('.x-explore-footer')){const link=el('a','x-action x-wide x-explore-footer','Explore '+cfg.name);link.href=new URL('../',base).href;panel.append(link);}
+ if(cfg.slug!=='cannabis-basics'&&!panel.querySelector('.x-explore-footer')){const link=el('a','x-action x-wide x-explore-footer','Explore '+cfg.name);link.href=new URL('../',base).href;panel.append(link);}
 }
 async function genericPlayer(){
  if(!cfg.generic)return;
