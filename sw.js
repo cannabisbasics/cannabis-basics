@@ -1,4 +1,4 @@
-const CACHE='cb-app-v15-20261015-black-jukebox';
+const CACHE='cb-app-v16-20261015-menu-popup';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
