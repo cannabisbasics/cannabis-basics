@@ -98,3 +98,8 @@ body.light-theme #cbMusicPanel #cbNowPlaying{color:#e3edcb}
 @media(max-width:420px){#cbMusicPanel .cb-music-heading{grid-template-columns:24px minmax(0,1fr) 32px;gap:4px}#cbMusicPanel .cb-close{width:32px;min-height:32px}#cbMusicPanel .cb-juke-identity{gap:7px}#cbMusicPanel .cb-music-heading .cb-ie-logo{width:42px;height:42px}#cbMusicPanel .cb-juke-wordmark>span{font-size:.72rem}}
 @media(prefers-reduced-motion:reduce){.cb-divider-loop{animation:none;transform:none;opacity:.75}}
 body.comfort-still .cb-divider-loop{animation:none!important;transform:none;opacity:.75}
+
+/* Cannabis Basics jukebox: pitch-black surface and brand-green Play. */
+#cbMusicPanel,body.light-theme #cbMusicPanel{background:#000!important}
+#cbMusicPanel #cbVideoHost,#cbMusicPanel .cb-audio-scene{background:#000!important}
+#cbMusicPanel #cbPlay{background:#c2cf32!important;color:#10200e!important}
