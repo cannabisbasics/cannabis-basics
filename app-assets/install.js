@@ -2,7 +2,7 @@
   if (window.__siteAppSupport || window.top !== window.self) return;
   window.__siteAppSupport = true;
   const brand = {"name": "Cannabis Basics", "high": "#b2d183", "mid": "#b2d183", "low": "#b2d183", "ink": "#10230c", "desktop": ".public-top-actions", "mobile": ".hero-copy-wrap, main .article-topbar", "paper": "#f0eee8", "copy": "#242424", "navSources": ".public-bubble-nav", "header": ".public-top-actions", "mediaTrigger": "#musicBtn", "nativePanel": "#cbMusicPanel", "slug": "cannabis-basics", "divider": 3};
-  let pending = null, installed = false;
+  let pending = window.__cbInstallPrompt || null, installed = false;
   const controls = [];
   const standalone = () => installed || matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   const style = document.createElement('style');
@@ -26,33 +26,21 @@
     document.documentElement.toggleAttribute('data-site-app-installed', hide);
     controls.forEach(control => control.hidden = hide);
   }
-  addEventListener('beforeinstallprompt', event => { event.preventDefault(); pending = event; });
-  addEventListener('appinstalled', () => { installed = true; pending = null; sync(); });
+  addEventListener('beforeinstallprompt', event => { event.preventDefault(); pending = event; window.__cbInstallPrompt=event; });
+  addEventListener('appinstalled', () => { installed = true; pending = null; window.__cbInstallPrompt=null; sync(); });
   matchMedia('(display-mode: standalone)').addEventListener('change', sync);
-  function guide() {
-    let dialog = document.getElementById('site-app-install-help');
-    if (!dialog) {
-      dialog = document.createElement('dialog'); dialog.id = 'site-app-install-help';
-      dialog.setAttribute('aria-labelledby', 'site-app-install-title');
-      Object.assign(dialog.style, {maxWidth:'min(440px, calc(100vw - 48px))', padding:'24px', border:`1px solid ${brand.mid}`, borderRadius:'14px', background:brand.paper, color:brand.copy, font:'17px/1.6 Georgia, serif'});
-      const title = document.createElement('h2'); title.id = 'site-app-install-title'; title.textContent = `Install ${brand.name}`; title.style.cssText = 'font:600 1.3em/1.3 Georgia,serif;color:inherit';
-      const text = document.createElement('p'); text.style.color = 'inherit';
-      const ua = navigator.userAgent;
-      text.textContent = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-        ? 'In Safari, tap Share, choose Add to Home Screen, then Add. Leave Open as Web App turned on if offered.'
-        : /android/i.test(ua) ? 'Open this page in Chrome or Samsung Internet. In the browser menu, choose Install app or Add to Home screen, then confirm.'
-        : 'In Chrome, open the three-dot menu, then Cast, save, and share → Install page as app. In Edge, choose More tools → Apps → Install this site as an app. In Safari on a Mac, choose File → Add to Dock. Browser labels may vary. If this app is already installed, open it from your apps list.';
-      const close = makeButton('Close'); close.addEventListener('click', () => dialog.close());
-      dialog.append(title, text, close); document.body.append(dialog);
-      dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
-    }
-    dialog.showModal();
+  function unavailable() {
+    let note=document.getElementById('cb-install-status');
+    if(!note){note=document.createElement('p');note.id='cb-install-status';note.setAttribute('role','status');note.style.cssText='position:fixed;z-index:2147483647;bottom:max(18px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 36px);padding:14px 18px;background:#000;color:#eee;border:1px solid #c2cf32;border-radius:10px;font:14px/1.5 Georgia,serif';document.body.append(note);}
+    note.textContent='Installation is not available in this browser right now. You can keep using Cannabis Basics here.';
+    clearTimeout(unavailable.timer);unavailable.timer=setTimeout(()=>note.remove(),7000);
   }
   async function install() {
     if (standalone()) return;
-    if (!pending) { guide(); return; }
-    const event = pending; pending = null;
-    try { await event.prompt(); await event.userChoice; } catch (_) { guide(); }
+    pending=pending||window.__cbInstallPrompt;
+    if (!pending) { unavailable(); return; }
+    const event = pending; pending = null; window.__cbInstallPrompt=null;
+    try { await event.prompt(); await event.userChoice; } catch (_) { unavailable(); }
   }
   function makeButton(label = 'Install App', kind = '') {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'site-app-button '+kind;
@@ -65,7 +53,7 @@
   }
   window.siteInstallApp=install;
   window.__siteExperienceConfig=brand;
-  const experience=document.createElement("script");experience.src=new URL("site-experience.js?v=20261015-cb-night-final",document.currentScript.src).href;document.head.append(experience);
+  const experience=document.createElement("script");experience.src=new URL("site-experience.js?v=20261016-cb-menu",document.currentScript.src).href;document.head.append(experience);
   function init() {
     const desktopHost = document.querySelector(brand.desktop);
     const desktop = makeButton('Install App','site-app-desktop');

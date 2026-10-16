@@ -49,3 +49,17 @@ body[data-site-slug=cannabis-basics] #memberInvite .member-invite-card::before,b
 
 /* Keep the CB ownership credit as the final jukebox element in every view. */
 #cbMusicPanel .x-explore-footer{display:none!important}#cbMusicPanel .cb-jukebox-credit{display:flex!important}
+
+/* CB menu: one brand green, distinct symbols, tighter rows and a simple close X. */
+body[data-site-slug=cannabis-basics] dialog.x-menu{--x-high:#c2cf32;--x-mid:#c2cf32;--x-low:#c2cf32;--x-ink:#10200e;padding:14px}
+body[data-site-slug=cannabis-basics] .x-menu .x-menu-item{position:relative;overflow:hidden;padding:3px 8px!important;min-height:30px!important;line-height:1.25!important;gap:9px!important;border-color:transparent!important}
+body[data-site-slug=cannabis-basics] .x-menu-item svg{width:17px;height:17px;flex-basis:17px;stroke:#c2cf32}
+body[data-site-slug=cannabis-basics] .x-menu .x-menu-item:hover,body[data-site-slug=cannabis-basics] .x-menu .x-menu-item:focus-visible{border-color:#c2cf32!important;background:#c2cf321c!important;animation:x-touch .5s ease}
+body[data-site-slug=cannabis-basics] .x-menu .x-membership,body[data-site-slug=cannabis-basics] .x-menu .x-membership:hover,body[data-site-slug=cannabis-basics] .x-menu .x-membership:focus-visible{background:#c2cf32!important;background-image:none!important;color:#10200e!important;border-color:#c2cf32!important;margin-top:4px!important}
+body[data-site-slug=cannabis-basics] .x-menu .x-membership svg{stroke:#10200e}
+body[data-site-slug=cannabis-basics] .x-menu-item::after{content:'';position:absolute;inset:-60% auto -60% -60%;width:26%;background:linear-gradient(90deg,transparent,#fff3,transparent);pointer-events:none;transform:skewX(-22deg);animation:x-shine 7s ease-in-out infinite}
+body[data-site-slug=cannabis-basics] .x-menu .x-dialog-heading .x-action{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;min-height:28px;min-width:28px;width:28px;padding:0;color:#fff!important;-webkit-text-fill-color:#fff!important;font:28px/1 Georgia,serif;animation:none!important}
+body[data-site-slug=cannabis-basics] .x-menu .x-dialog-heading .x-action::after{content:none!important}
+body[data-site-slug=cannabis-basics] .x-menu .x-dialog-heading .x-action:hover,body[data-site-slug=cannabis-basics] .x-menu .x-dialog-heading .x-action:focus-visible{color:#c2cf32!important;-webkit-text-fill-color:#c2cf32!important}
+@media(max-width:600px){body[data-site-slug=cannabis-basics] .x-menu .x-menu-item{min-height:34px!important}}
+@media(prefers-reduced-motion:reduce){body[data-site-slug=cannabis-basics] .x-menu .x-menu-item,body[data-site-slug=cannabis-basics] .x-menu-item::after{animation:none!important;transition:none!important}}

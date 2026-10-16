@@ -10,6 +10,24 @@ function action(text,fn,cls=''){const b=el('button','x-action '+cls,text);b.type
 const icon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>';
 function dialog(type,title){const d=el('dialog',type),head=el('div','x-dialog-heading'),img=el('img');img.src=cfg.slug==='cannabis-basics'?new URL('../assets/logo-green.webp',base).href:asset('icon-192.png');img.alt=cfg.slug==='cannabis-basics'?'Cannabis Basics logo':'';const copy=el('div');copy.append(el('small','',cfg.name),el('h2','',title));const close=action('×',()=>d.close());close.setAttribute('aria-label','Close '+title);head.append(img,copy,close);d.append(head);d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});document.body.append(d);return d;}
 function divider(index=0){const n=document.createElementNS('http://www.w3.org/2000/svg','svg');n.setAttribute('class','x-divider');n.setAttribute('viewBox','0 0 420 20');n.setAttribute('aria-hidden','true');const designs=['M0 10H100Q130 -5 160 10T220 10T280 10H420','M0 10H140C165 10 160 -6 180 4S170 25 200 10H420','M0 10Q70 2 140 10T280 10T420 10','M0 10H90L110 5L130 15L150 10H280Q300 0 320 10H420'];const start=65+index*11,bend=start+32;const unique='M0 10H'+start+'C'+bend+' 10 '+bend+' '+(1+index%4)+' '+(bend+18)+' '+(1+index%4)+'S'+(bend+7)+' '+(19-index%4)+' '+(bend+40)+' 10H420';n.innerHTML='<path d="M0 10H420" opacity=".3"/><path class="x-flow" d="'+unique+'"/>';n.querySelector('.x-flow').style.animationDuration=(10+index)+'s';n.style.setProperty('--x-divider-speed',(10+index)+'s');return n;}
+
+function cbMenuIcon(label){
+ const key=label.toLowerCase(),paths={
+ learn:'M3 5c3-1 6-1 9 1v15c-3-2-6-2-9-1V5Zm18 0c-3-1-6-1-9 1v15c3-2 6-2 9-1V5Z',
+ locator:'M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0ZM12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z',
+ decoder:'M4 3H2v5M20 3h2v5M4 21H2v-5M20 21h2v-5M6 7v10M9 7v10M12 7v10M16 7v10M19 7v10M4 12h16',
+ resource:'M6 3h9l4 4v14H6V3Zm9 0v5h4M12 10v7m-3-3 3 3 3-3',
+ journal:'M6 3h14v18H6V3ZM3 7h5M3 12h5M3 17h5M11 8h6M11 12h6M11 16h4',
+ articles:'M4 3h16v18H4V3ZM8 7h8M8 11h8M8 15h3M14 15h2M8 18h8',
+ faq:'M4 3h16v14h-8l-5 4v-4H4V3Zm6 5a2 2 0 1 1 3 2c-1 0-1 1-1 2M12 14v1',
+ about:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM12 10v7M12 6v1',
+ contact:'M3 5h18v14H3V5Zm0 0 9 8 9-8',
+ members:'M8 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM2 21v-4c0-4 12-4 12 0v4M17 12v9M14 16h7',
+ install:'M12 3v11m-4-4 4 4 4-4M5 16v5h14v-5'};
+ const type=/learn/.test(key)?'learn':/locator/.test(key)?'locator':/decoder/.test(key)?'decoder':/resource/.test(key)?'resource':/journal/.test(key)?'journal':/article/.test(key)?'articles':/frequently|faq/.test(key)?'faq':/about/.test(key)?'about':/contact/.test(key)?'contact':/member/.test(key)?'members':'install';
+ return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="'+paths[type]+'" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+
 function addMenu(){
  if(cfg.slug==='perennial-home-and-gardens')return;
  if(cfg.slug==='ie')return; // i.e. already uses the approved compact dropdown.
@@ -24,13 +42,13 @@ function addMenu(){
    const label=n.getAttribute('data-label')||n.querySelector('.label,.nav-label,.wdw-sr-only')?.textContent||n.closest('.etp-nav-item')?.querySelector('.etp-tip')?.textContent||n.getAttribute('aria-label')||n.querySelector('span:last-child')?.textContent||n.textContent;
    const contextLabel=cfg.slug==='ie-casino-games'&&n.dataset.rule?(n.dataset.rule==='time'?'Time Travel Slots':'Casa 21')+' · House Rules':label;
    const text=String(contextLabel||'').replace(/\s+/g,' ').trim();if(!text||/^(close|close menu|close navigation)$/i.test(text)||text==='Install App'||seen.has(text))continue;seen.add(text);
-   const b=el(n.tagName==='A'?'a':'button','x-menu-item');if(n.tagName==='A')b.href=n.href;else{b.type='button';b.disabled=n.disabled;}b.innerHTML=icon;const span=el('span','',text);b.append(span);
+   const b=el(n.tagName==='A'?'a':'button','x-menu-item');if(n.tagName==='A')b.href=n.href;else{b.type='button';b.disabled=n.disabled;}b.innerHTML=cfg.slug==='cannabis-basics'?cbMenuIcon(text):icon;const span=el('span','',text);b.append(span);
    b.addEventListener('click',e=>{e.preventDefault();menu.close();n.click();});
    if(/membership|members only|join|subscribe/i.test(text)){b.classList.add('x-membership');members.push(b);}else items.append(b);
   }
   if(cfg.slug==='basketball-brilliance'&&!items.children.length){for(const role of ['coach','player','parent']){const b=el('button','x-menu-item',role[0].toUpperCase()+role.slice(1));b.type='button';b.onclick=()=>{menu.close();document.querySelector('.hs-'+role)?.click();};items.append(b);}}
   members.forEach(n=>items.append(n));
-  const install=el('button','x-menu-item','Install App');install.type='button';install.onclick=()=>{menu.close();window.siteInstallApp?.();};items.insertBefore(install,members[0]||null);
+  const install=el('button','x-menu-item','Install App');install.type='button';if(cfg.slug==='cannabis-basics')install.innerHTML=cbMenuIcon('install')+'<span>Install App</span>';install.onclick=()=>{menu.close();window.siteInstallApp?.();};items.insertBefore(install,members[0]||null);
  }
  all(cfg.preserve||'[data-no-preserve]').forEach(n=>{if(sources.some(s=>s.contains(n)))host.append(n);});
  sources.forEach(n=>{n.classList.add('x-hidden-nav');n.style.setProperty('display','none','important');new MutationObserver(refresh).observe(n,{childList:true,subtree:true});});refresh();
@@ -120,7 +138,7 @@ async function genericPlayer(){
 }
 function init(){
  const body=document.body;body.dataset.siteSlug=cfg.slug;for(const [key,value] of Object.entries({high:cfg.high,mid:cfg.mid,low:cfg.low,ink:cfg.ink}))body.style.setProperty('--x-'+key,value);
- const link=el('link');link.rel='stylesheet';link.href=asset('site-experience.css?v=20261015-cb-night-final');document.head.append(link);
+ const link=el('link');link.rel='stylesheet';link.href=asset('site-experience.css?v=20261016-cb-menu');document.head.append(link);
  function syncTheme(){const m=getComputedStyle(document.body).color.match(/[\d.]+/g)||[240,240,240];const light=cfg.slug!=='ie'&&(+m[0]*.2126 + +m[1]*.7152 + +m[2]*.0722)<145;body.style.setProperty('--x-panel',light?'#f1eee7':'#0c100f');body.style.setProperty('--x-text',light?'#262923':'#eee');}
  syncTheme();for(const n of [document.body,document.documentElement])new MutationObserver(syncTheme).observe(n,{attributes:true,attributeFilter:['class','data-theme']});
  addMenu();brandNative();genericPlayer();

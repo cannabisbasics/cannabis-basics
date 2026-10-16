@@ -46,7 +46,7 @@
     btn.setAttribute('aria-hidden',installed?'true':'false');
   });
 
-  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;sync()});
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;window.__cbInstallPrompt=e;sync()});
   window.addEventListener('appinstalled',()=>{installPrompt=null;sync()});
 
   document.addEventListener('click',async e=>{
@@ -54,6 +54,7 @@
     if(!btn)return;
     e.preventDefault();
     if(isStandalone())return;
+    if(window.siteInstallApp){window.siteInstallApp();return;}
     if(installPrompt){
       installPrompt.prompt();
       try{await installPrompt.userChoice}catch(_){}
