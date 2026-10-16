@@ -102,4 +102,4 @@ body.comfort-still .cb-divider-loop{animation:none!important;transform:none;opac
 /* Cannabis Basics jukebox: pitch-black surface and brand-green Play. */
 #cbMusicPanel,body.light-theme #cbMusicPanel{background:#000!important}
 #cbMusicPanel #cbVideoHost,#cbMusicPanel .cb-audio-scene{background:#000!important}
-#cbMusicPanel #cbPlay{background:#c2cf32!important;color:#10200e!important}
+#cbMusicPanel#cbMusicPanel #cbPlay{background:#c2cf32!important;color:#10200e!important}
