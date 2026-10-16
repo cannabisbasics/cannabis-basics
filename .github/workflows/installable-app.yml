@@ -32,6 +32,8 @@ jobs:
           test -f manifest.webmanifest || test -f site.webmanifest || python .github/scripts/enable_app.py
       - name: Refine navigation and media experience
         run: python .github/scripts/refine_experience.py
+      - name: Verify preserved articles before deployment
+        run: python .github/scripts/check_articles.py
       - name: Update app icon links
         run: python .github/scripts/update_icon_links.py
       - name: Check installation script syntax

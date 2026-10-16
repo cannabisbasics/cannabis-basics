@@ -1,0 +1,11 @@
+name: Preserve Cannabis Basics articles
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  articles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify article library and preserved article inventory
+        run: python .github/scripts/check_articles.py
