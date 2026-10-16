@@ -36,8 +36,8 @@ body[data-site-app-installed] footer button.site-app-footer-text.site-app-footer
 /* Cannabis Basics only: clean menu, transparent brand logo and black invitation. */
 body[data-site-slug=cannabis-basics] .x-menu-toggle{background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:inherit;padding:8px;overflow:visible}
 body[data-site-slug=cannabis-basics] .x-menu-toggle svg{width:24px;height:24px;stroke-width:1.7}
-body[data-site-slug=cannabis-basics] dialog.x-menu{background:#000!important;color:#eee!important;padding:16px;width:min(330px,calc(100vw - 28px))}
-body[data-site-slug=cannabis-basics] #site-experience-menu h2{color:#eee!important}
+body[data-site-slug=cannabis-basics] dialog.x-menu{--x-text:#eee;--x-panel:#000;background:#000!important;color:#eee!important;padding:16px;width:min(330px,calc(100vw - 28px))}
+body[data-site-slug=cannabis-basics] #site-experience-menu#site-experience-menu#site-experience-menu#site-experience-menu h2{color:#eee!important}
 body[data-site-slug=cannabis-basics] .x-menu .x-dialog-heading{margin-bottom:7px;gap:9px}
 body[data-site-slug=cannabis-basics] .x-menu .x-dialog-heading img{background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:contain}
 body[data-site-slug=cannabis-basics] .x-menu-items{gap:0}
