@@ -1,4 +1,4 @@
-const CACHE='cb-app-v16-20261015-menu-popup';
+const CACHE='cb-app-title-green-exact-20261015';
 const CORE=[
   './','./index.html','./offline.html','./manifest.webmanifest',
   './assets/logo-green.webp','./assets/locator.css','./assets/locator.js',
