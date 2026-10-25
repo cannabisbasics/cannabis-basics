@@ -1,0 +1,35 @@
+name: Cannabis Basics Free Access Release QA
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - '.github/workflows/free-access-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  free-public-access:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify free downloads, intact record book and disabled marketing popup
+        run: |
+          node - <<'JS'
+          const fs=require('fs'),assert=require('node:assert/strict');
+          const page=fs.readFileSync('index.html','utf8');
+          assert(page.includes('My Saved Records</a>'));
+          assert(page.includes('Free Saved-Records Account'));
+          assert(page.includes('Open My Saved Journal'));
+          assert(page.includes('window.open(FREE_DOWNLOAD_URL'));
+          assert(page.includes('cb-no-marketing-email-gate'));
+          assert(page.includes('suppress promotional signup overlay'));
+          assert(fs.existsSync('join.html'));
+          assert(fs.existsSync('members.html'));
+          let scripts=[...page.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)]
+            .filter(m=>!/\bsrc\s*=/.test(m[1])&&!/application\/ld\+json/.test(m[1]));
+          for(const s of scripts)new Function(s[2]);
+          console.log('Free resource links, record book and homepage scripts passed');
+          JS
