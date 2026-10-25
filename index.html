@@ -3903,6 +3903,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
 
   function showInvite(){
+    /* Free-first transition: suppress promotional signup overlay, preserving private record book code. */
+    return;
     if (open || shouldSuppress() || window.cbFoundingSignupAllowed===false) return;
     open = true;
     invite.classList.add('open');
