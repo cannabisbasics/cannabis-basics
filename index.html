@@ -3747,7 +3747,7 @@ if(faqAccordion){faqItems.forEach(([q,a],i)=>{const item=document.createElement(
 // Freebie gate
 // Freebie gate
 const emailModal=document.getElementById('emailModal'),emailForm=document.getElementById('emailForm'),formStatus=document.getElementById('formStatus');
-document.querySelectorAll('[data-freebie]').forEach(b=>b.addEventListener('click',()=>openModal(emailModal)));
+document.querySelectorAll('[data-freebie]').forEach(b=>b.addEventListener('click',()=>{window.open(FREE_DOWNLOAD_URL,'_blank','noopener');}));
 emailForm.addEventListener('submit',async e=>{e.preventDefault();const email=document.getElementById('emailInput').value.trim();if(!email)return;formStatus.textContent='Unlocking your session log…';try{if(LEAD_ENDPOINT){await fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,source:'Cannabis Basics Live',timestamp:new Date().toISOString()})});}else{localStorage.setItem('cannabisBasicsLead',email);}formStatus.textContent='Unlocked. Opening the session log…';setTimeout(()=>{window.open(FREE_DOWNLOAD_URL,'_blank','noopener');closeModal(emailModal);formStatus.textContent='';},500);}catch(err){formStatus.textContent='The log is ready, but the signup connection needs attention.';window.open(FREE_DOWNLOAD_URL,'_blank','noopener');}});
 
 // Legal modal
