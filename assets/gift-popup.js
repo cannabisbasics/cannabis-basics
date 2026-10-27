@@ -34,13 +34,15 @@
   let activeMs=0,last=performance.now(),shown=false,done=false,ticker;
   const busy=()=>document.hidden||document.querySelector('.modal.open,.article-modal.open,.member-invite.open,.member-overlay.open,[role=dialog][aria-modal=true]:not(.cb-gift-dialog),.contact-form:focus-within,form:focus-within,textarea:focus,.tool-shell:focus-within,#journal:focus-within')||document.activeElement?.matches('input,textarea,select,[contenteditable=true]');
   const close=()=>{
+    try{sessionStorage.setItem('cb_popup_last_closed',String(Date.now()))}catch{}
     overlay.remove();document.body.classList.remove('cb-gift-open');
     write(STORAGE);
     document.removeEventListener('keydown',escape);
   };
   const escape=(e)=>{if(e.key==='Escape')close()};
   function show(){
-    if(shown||done||busy()||read(STORAGE)||read(COMPLETE))return;
+    let lastClose=0;try{lastClose=Number(sessionStorage.getItem('cb_popup_last_closed')||0)}catch{}
+    if(shown||done||busy()||read(STORAGE)||read(COMPLETE)||(lastClose&&Date.now()-lastClose<60000))return;
     shown=true;clearInterval(ticker);write(STORAGE);
     document.body.appendChild(overlay);
     document.querySelector('#cbGiftName')?.focus();
