@@ -116,7 +116,7 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
 <body>
 <main class="gate">
   <div class="top"><img src="assets/logo-green.webp" alt="Cannabis Basics transparent leaf logo"><div class="brand">Cannabis Basics<small>Members Only</small></div></div>
-  <span class="eyebrow">Founding Members Only</span>
+  <span class="eyebrow">Free Private Account</span>
   <h1>Your personal cannabis record book, built for your phone.</h1>
   <p class="lede">Members Only is the private side of Cannabis Basics—a personal workspace for session logs, inventory, wish lists, saved products, dispensaries, favorites, and printable records. The goal is simple: help you build a useful cannabis history you can actually return to.</p>
   <div class="features">
@@ -125,8 +125,8 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
     <div class="feature"><b>Mobile first</b><span>Designed for quick phone entry while still producing clean printable records later.</span></div>
   </div>
   <div class="offer">
-    <div class="price"><s>$69</s><strong>$27</strong><span>grand-opening lifetime price</span></div>
-    <p class="preview"><strong id="founderOfferCopy">Limited founding access is free while spots remain.</strong> <span id="founderSpotsCopy">Checking opening spots…</span></p>
+    <div class="price"><strong>FREE</strong><span>Private record-keeping account • no membership fee</span></div>
+    <p class="preview"><strong id="founderOfferCopy">Create a free private account to save your cannabis records.</strong> <span id="founderSpotsCopy">Checking account availability…</span></p>
     <div class="auth-mode" role="tablist" aria-label="Member access">
       <button type="button" class="auth-tab active" id="signupTab">Create Account</button>
       <button type="button" class="auth-tab" id="signinTab">Sign In</button>
@@ -134,7 +134,7 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
     <form class="join-form" id="joinForm">
       <input id="joinEmail" type="email" autocomplete="email" aria-label="Email address" placeholder="Email for private account access" required>
       <div class="password-wrap"><input id="joinPassword" type="password" autocomplete="new-password" minlength="8" aria-label="Password" placeholder="Create a password (8+ characters)" required><button class="password-eye" id="passwordEye" type="button" aria-label="Show password" title="Show password">◉</button></div>
-      <button type="submit" id="joinSubmit">Claim Free Lifetime Access →</button>
+      <button type="submit" id="joinSubmit">Create My Free Account →</button>
     </form>
     <div class="status" id="joinStatus" aria-live="polite"></div>
     <div class="claim-panel" id="claimPanel" aria-live="polite" hidden>
@@ -143,7 +143,7 @@ h1{font-weight:400;font-size:clamp(2.8rem,7vw,5.8rem);line-height:.92;margin:16p
       <span id="claimCopy">Check your email to confirm your address, then return here to sign in.</span>
       <button type="button" id="claimSignin">I Confirmed — Sign Me In</button>
     </div>
-    <p class="note"><strong>Your account is private.</strong> Other members cannot see your profile, journal, inventory, wish list, saved dispensaries, or profile photo. Your email is used privately for sign-in and account recovery and is not displayed on your Cannabis Basics profile. Current opening offer: founding lifetime access is $0 while the remaining free spots last.</p>
+    <p class="note"><strong>Your account is private.</strong> Other members cannot see your profile, journal, inventory, wish list, saved dispensaries, or profile photo. Your email is used privately for sign-in and account recovery and is not displayed on your Cannabis Basics profile. Creating a private account is free; public learning tools require no account.</p>
   </div>
   <a class="back" href="index.html">← Back to Cannabis Basics</a>
 </main>
@@ -184,12 +184,12 @@ function setMode(next){
   const signup=mode==='signup';
   signupTab.classList.toggle('active',signup);
   signinTab.classList.toggle('active',!signup);
-  submit.textContent=signup?'Claim Free Lifetime Access →':'Sign In →';
+  submit.textContent=signup?'Create My Free Account →':'Sign In →';
   passwordInput.autocomplete=signup?'new-password':'current-password';
   passwordInput.placeholder=signup?'Create a password (8+ characters)':'Enter your password';
   status.textContent='';
 }
-signupTab.addEventListener('click',()=>{if(!signupAllowed){status.textContent='New free founding claims are currently closed. Existing members can still sign in.';return}setMode('signup')});
+signupTab.addEventListener('click',()=>{if(!signupAllowed){status.textContent='Free account registration is temporarily unavailable. Existing users can still sign in.';return}setMode('signup')});
 signinTab.addEventListener('click',()=>setMode('signin'));
 passwordEye?.addEventListener('click',()=>{
   const showing=passwordInput.type==='text';
@@ -210,16 +210,16 @@ const remaining=Number(spotsData);
 const offer=document.getElementById('founderOfferCopy');
 const copy=document.getElementById('founderSpotsCopy');
 const priceEl=document.querySelector('.price strong');
-if(priceEl)priceEl.textContent=String.fromCharCode(36)+Number(membershipSettings.standard_lifetime_price||0).toFixed(0);
+// Free-first display: never replace the free label with old paid pricing.
 signupAllowed=!!membershipSettings.founding_offer_enabled&&Number.isFinite(remaining)&&remaining>0;
-if(offer)offer.textContent=membershipSettings.founding_offer_copy||'Limited founding access is free while spots remain.';
-if(copy&&Number.isFinite(remaining))copy.textContent=signupAllowed?(remaining+' spot'+(remaining===1?' remains.':'s remain.')):'New free founding claims are currently closed.';
+if(offer)offer.textContent='Private account access is free. Public learning tools do not require sign-in.';
+if(copy)copy.textContent=signupAllowed?'Free account signup is available.':'Free account registration temporarily unavailable; existing users can sign in.';
 if(!signupAllowed){
   signupTab.disabled=true;
   signupTab.setAttribute('aria-disabled','true');
   if(mode==='signup')setMode('signin');
   const note=document.querySelector('.note');
-  if(note)note.innerHTML='<strong>Existing members can still sign in.</strong> New free founding claims are currently closed. The standard lifetime price shown above is reserved for a future paid-access phase and is not being collected here yet.';
+  if(note)note.innerHTML='<strong>Free account registration is temporarily unavailable.</strong> Existing users can sign in. Public Cannabis Basics educational resources remain free. No payment is required.';
 }
 
 function successSound(){
