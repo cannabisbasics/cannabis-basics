@@ -3191,6 +3191,7 @@ body.light-theme .decoder-preview-grid span{background:#f1f5ed;color:#57655b;bor
       <div class="hero-free-vnext-kicker">Free Resource</div>
       <div class="hero-free-vnext-copy">
         <h2>Cannabis Logbook Worksheet</h2>
+        <label class="hero-free-vnext-email" for="freebieName"><span>Your name</span><input type="text" id="freebieName" placeholder="Your name" autocomplete="name" required maxlength="120"></label>
         <label class="hero-free-vnext-email" for="freebieEmail">
           <span>Enter your email</span>
           <input type="email" id="freebieEmail" placeholder="you@example.com" autocomplete="email">
@@ -3790,21 +3791,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const freebieStatus = document.getElementById('freebieInlineStatus');
   const openFreebie = async () => {
     if(!freebieEmail || !freebieBtn) return;
-    const email = freebieEmail.value.trim();
-    const basicEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!basicEmail.test(email)){
-      freebieStatus.textContent = 'Please enter a valid email address first.';
-      freebieEmail.focus();
-      return;
-    }
-    freebieStatus.textContent = 'Unlocking your free cannabis log…';
+    const nameField=document.getElementById('freebieName');
+    const name=(nameField?.value||'').trim(), email=freebieEmail.value.trim();
+    if(!name){freebieStatus.textContent='Please enter your name first.';nameField?.focus();return;}
+    if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){freebieStatus.textContent='Please enter a valid email address.';freebieEmail.focus();return;}
+    freebieBtn.disabled=true;
+    freebieStatus.textContent='Submitting your free worksheet request…';
     try {
-      localStorage.setItem('cannabisBasicsLead', email);
-    } catch(e) {}
-    setTimeout(() => {
-      freebieStatus.textContent = 'Opening your worksheet…';
-      window.open(typeof FREE_DOWNLOAD_URL !== 'undefined' ? FREE_DOWNLOAD_URL : 'https://drive.google.com/drive/folders/1UYWmibttbqRCd749NMAc0bEDdVH8s5jg?usp=drive_link', '_blank', 'noopener');
-    }, 250);
+      const result=await window.cbSubmitOffer({
+        brand:'Cannabis Basics',request_type:'gift',source:'homepage-inline-worksheet',
+        name,email,marketing_consent:!!document.getElementById('freebieMarketingConsent')?.checked,
+        consent_text:'Send me occasional Cannabis Basics education and updates. Optional.'
+      });
+      if(!result?.accepted)throw new Error('Request not accepted');
+      const file='https://drive.google.com/file/d/11efxKfnsFlGeMB35HMp1ePcOzs0MTe2a/view';
+      const link=document.createElement('a');link.href=file;link.target='_blank';link.rel='noopener noreferrer';
+      link.textContent='Open your free Cannabis Log Worksheet';link.style.textDecoration='underline';
+      freebieStatus.replaceChildren(document.createTextNode('Request accepted. '),link);
+      freebieBtn.textContent='Worksheet Ready';
+      try{localStorage.setItem('cb_gift_offer_completed_v1','1')}catch(_){}
+    }catch(_){freebieStatus.textContent='Request was not accepted. Please try again.';freebieBtn.disabled=false;}
   };
   if(freebieBtn) freebieBtn.addEventListener('click', openFreebie);
   if(freebieEmail) freebieEmail.addEventListener('keydown', (e) => { if(e.key === 'Enter'){ e.preventDefault(); openFreebie(); } });
