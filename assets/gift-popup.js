@@ -1,21 +1,21 @@
-/* Cannabis Basics Phase 2: prepared, inactive gift invitation.
-   Activate only after an approved single-file download URL AND a tested delivery adapter exist.
+/* Cannabis Basics free worksheet offer.
+   Uses the approved existing worksheet and the site's own Supabase acceptance check.
    The separate magazine subscription will have its own consent and endpoint. */
 (()=>{
   'use strict';
   const SETTINGS=Object.freeze({
-    enabled:false,
-    approvedGiftUrl:'',
+    enabled:true,
+    approvedGiftUrl:'https://drive.google.com/file/d/11efxKfnsFlGeMB35HMp1ePcOzs0MTe2a/view',
     recipient:'cannabisbasics@gmail.com',
     requestEndpoint:'', // HTTPS endpoint that returns {accepted:true} only after durable storage.
     activeSeconds:25
   });
-  if(!SETTINGS.enabled||!SETTINGS.approvedGiftUrl||!SETTINGS.requestEndpoint)return;
+  if(!SETTINGS.enabled||!SETTINGS.approvedGiftUrl)return;
   const STORAGE='cb_gift_offer_seen_v1';
   const COMPLETE='cb_gift_offer_completed_v1';
   const read=(key)=>{try{return sessionStorage.getItem(key)==='1'}catch{return false}};
   const write=(key)=>{try{sessionStorage.setItem(key,'1')}catch{}};
-  if(read(STORAGE)||read(COMPLETE))return;
+  if(read(STORAGE)||read(COMPLETE)||(()=>{try{return localStorage.getItem(COMPLETE)==='1'}catch{return false}})())return;
   const style=document.createElement('style');
   style.textContent=`
   .cb-gift-overlay{position:fixed;inset:0;z-index:145;background:rgba(0,0,0,.82);display:grid;place-items:center;padding:18px}
@@ -32,7 +32,7 @@
   `;
   document.head.appendChild(style);
   let activeMs=0,last=performance.now(),shown=false,done=false,ticker;
-  const busy=()=>document.hidden||document.querySelector('.modal.open,.article-modal.open,.member-invite.open,.member-overlay.open,[role=dialog][aria-modal=true]:not(.cb-gift-dialog),.contact-form:focus-within,form:focus-within,textarea:focus,.tool-shell:focus-within,#journal:focus-within')||document.activeElement?.matches('input,textarea,select,[contenteditable=true]');
+  const busy=()=>document.hidden||!!document.querySelector('.modal.open,.article-modal.open,.member-invite.open,.member-overlay.open,.cb-mag-backdrop,.contact-form:focus-within,form:focus-within,textarea:focus,.tool-shell:focus-within,#journal:focus-within')||!!document.activeElement?.matches('input,textarea,select,[contenteditable=true]');
   const close=()=>{
     try{sessionStorage.setItem('cb_popup_last_closed',String(Date.now()))}catch{}
     overlay.remove();document.body.classList.remove('cb-gift-open');
@@ -70,17 +70,16 @@
     if(!form.reportValidity())return;
     btn.disabled=true;status.textContent='Submitting your request…';
     try{
-      const res=await fetch(SETTINGS.requestEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      const data=await window.cbSubmitOffer({
         brand:'Cannabis Basics',request_type:'gift',source:'homepage-25-second-popup',
         name:form.querySelector('#cbGiftName').value.trim(),
         email:form.querySelector('#cbGiftEmail').value.trim(),
         marketing_consent:form.querySelector('#cbGiftConsent').checked,
         consent_text:'Yes, send me occasional Cannabis Basics educational updates. Optional; not required for this gift.',
         date:new Date().toISOString()
-      })});
-      const data=await res.json();
-      if(!res.ok||data?.accepted!==true)throw new Error('Request not accepted');
-      write(COMPLETE);done=true;status.textContent='Request accepted. Your worksheet is ready.';
+      });
+      if(data?.accepted!==true)throw new Error('Request not accepted');
+      write(COMPLETE);try{localStorage.setItem(COMPLETE,'1')}catch{}done=true;status.textContent='Request accepted. Your worksheet is ready.';
       const link=document.createElement('a');link.href=SETTINGS.approvedGiftUrl;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Open approved worksheet';link.className='cb-gift-submit';link.style.display='block';link.style.textAlign='center';form.appendChild(link);btn.remove();
     }catch(_){status.textContent='We could not accept your request. Nothing has been unlocked. Please try again.';btn.disabled=false}
   });
