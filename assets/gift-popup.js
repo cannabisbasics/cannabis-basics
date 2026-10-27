@@ -14,8 +14,9 @@
   const STORAGE='cb_gift_offer_seen_v1';
   const COMPLETE='cb_gift_offer_completed_v1';
   const read=(key)=>{try{return sessionStorage.getItem(key)==='1'}catch{return false}};
+  const locallyCompleted=()=>{try{return localStorage.getItem(COMPLETE)==='1'}catch{return false}};
   const write=(key)=>{try{sessionStorage.setItem(key,'1')}catch{}};
-  if(read(STORAGE)||read(COMPLETE)||(()=>{try{return localStorage.getItem(COMPLETE)==='1'}catch{return false}})())return;
+  if(read(STORAGE)||read(COMPLETE)||locallyCompleted())return;
   const style=document.createElement('style');
   style.textContent=`
   .cb-gift-overlay{position:fixed;inset:0;z-index:145;background:rgba(0,0,0,.82);display:grid;place-items:center;padding:18px}
@@ -42,7 +43,7 @@
   const escape=(e)=>{if(e.key==='Escape')close()};
   function show(){
     let lastClose=0;try{lastClose=Number(sessionStorage.getItem('cb_popup_last_closed')||0)}catch{}
-    if(shown||done||busy()||read(STORAGE)||read(COMPLETE)||(lastClose&&Date.now()-lastClose<60000))return;
+    if(shown||done||busy()||read(STORAGE)||read(COMPLETE)||locallyCompleted()||(lastClose&&Date.now()-lastClose<60000))return;
     shown=true;clearInterval(ticker);write(STORAGE);
     document.body.appendChild(overlay);
     document.querySelector('#cbGiftName')?.focus();
