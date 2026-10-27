@@ -3794,7 +3794,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameField=document.getElementById('freebieName');
     const name=(nameField?.value||'').trim(), email=freebieEmail.value.trim();
     if(!name){freebieStatus.textContent='Please enter your name first.';nameField?.focus();return;}
-    if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){freebieStatus.textContent='Please enter a valid email address.';freebieEmail.focus();return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){freebieStatus.textContent='Please enter a valid email address.';freebieEmail.focus();return;}
     freebieBtn.disabled=true;
     freebieStatus.textContent='Submitting your free worksheet request…';
     try {
