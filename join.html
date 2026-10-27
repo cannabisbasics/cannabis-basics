@@ -170,7 +170,7 @@ const claimCopy=document.getElementById('claimCopy');
 const authTransition=document.getElementById('authTransition');
 let mode='signup';
 let signupAllowed=true;
-let membershipSettings={founding_offer_enabled:true,founding_offer_copy:'Limited founding access is free while spots remain.',standard_lifetime_price:27};
+let membershipSettings={founding_offer_enabled:true,founding_offer_copy:'Free private record accounts, with no membership fee.',standard_lifetime_price:0};
 
 const params=new URLSearchParams(location.search);
 if(params.get('signin')==='1')mode='signin';
@@ -281,7 +281,7 @@ form.addEventListener('submit',async e=>{
   status.textContent=mode==='signup'?'Creating your private member account…':'Signing you in…';
   try{
     if(mode==='signup'){
-      if(!signupAllowed){status.textContent='New free founding claims are currently closed. Existing members can still sign in.';return}
+      if(!signupAllowed){status.textContent='Free account registration is temporarily unavailable. Existing users can still sign in.';return}
       const {data,error}=await supabase.auth.signUp({
         email,password,
         options:{emailRedirectTo:'https://cannabisbasics.github.io/cannabis-basics/join.html?confirmed=1'+(returnTarget?'&return='+encodeURIComponent(returnTarget):'')}
