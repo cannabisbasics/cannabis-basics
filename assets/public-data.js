@@ -32,17 +32,7 @@ document.addEventListener('click',e=>{
   if(e.target.closest('[data-pwa-install]'))track('pwa_install_click');
 },{passive:true});
 
-const emailInput=document.getElementById('freebieEmail');
-const freebieBtn=document.getElementById('freebieInlineBtn');
-freebieBtn?.addEventListener('click',async()=>{
-  const email=(emailInput?.value||'').trim().toLowerCase();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return;
-  try{
-    const {error}=await sb.from('email_leads').insert({email,source:'free-cannabis-log',marketing_consent:!!document.getElementById('freebieMarketingConsent')?.checked});
-    if(error&&error.code!=='23505')throw error;
-    await track('free_resource_open');
-  }catch(_){}
-},{passive:true});
+// Inline worksheet requests now use cbSubmitOffer() and only save on confirmed acceptance.
 
 const contactForm=document.getElementById('contactForm');
 const status=document.getElementById('contactStatus');
