@@ -95,3 +95,25 @@ modalEmailForm?.addEventListener('submit',async()=>{
     await track('free_resource_modal_submit');
   }catch(_){}
 },{passive:true});
+
+/* Shared offer submission: keeps database integration separate from popup styling. */
+window.cbSubmitOffer=async function(request){
+  const name=String(request.name||'').trim();
+  const email=String(request.email||'').trim().toLowerCase();
+  const requestType=String(request.request_type||'');
+  if(!name||name.length>160||!email||email.length>254)throw new Error('Enter name and email');
+  if(!['gift','seasonal-magazine'].includes(requestType))throw new Error('Unsupported request');
+  if(requestType==='seasonal-magazine'&&request.consent!==true)throw new Error('Consent required');
+  const record={
+    subscriber_name:name,
+    email,
+    source:String(request.source||'homepage').slice(0,80),
+    request_type:requestType,
+    marketing_consent:requestType==='seasonal-magazine'?true:!!request.marketing_consent,
+    consent_wording:String(request.consent_wording||request.consent_text||'').slice(0,600),
+    requested_at:new Date().toISOString()
+  };
+  const {error}=await sb.from('email_leads').insert(record);
+  if(error)throw error;
+  return {accepted:true};
+};
