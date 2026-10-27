@@ -1154,7 +1154,7 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
   </div>
   <div class="nav-group" id="sideNav"></div>
   <div class="nav-sep"></div>
-  <div class="member-price"><b>Founding Lifetime Member</b><span data-membership-offer-copy>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span><strong>Free founding access</strong></div>
+  <div class="member-price"><b>Free Private Account</b><span data-membership-offer-copy>Secure journal and saved records — no account fee.</span><strong>Free access</strong></div>
 </aside>
 <main class="main">
 <section class="screen active" id="screen-dashboard">
@@ -1432,14 +1432,14 @@ body.light-theme .stash-meter button.active{background:#dce8d4;color:#23452b;bor
   </div>
 
   <div class="member-identity-card">
-    <div class="identity-item"><span>Membership</span><strong>Founding Lifetime Member</strong></div>
+    <div class="identity-item"><span>Account</span><strong>Free Private Account</strong></div>
     <div class="identity-item"><span>Member ID</span><strong id="profileMemberId">—</strong></div>
     <div class="identity-item"><span>Member since</span><strong id="profileJoined">—</strong></div>
     <div class="identity-item"><span>Profile completion</span><strong id="profileCompletion">0%</strong><div class="profile-progress"><i id="profileProgressBar"></i></div></div>
   </div>
   <div class="profile-status-line" id="profileStatus" aria-live="polite"></div><div class="cloud-status" id="cloudStatus"><i></i><span>Secure member cloud connected</span></div>
 
-  <div class="account-card"><div><b>Founding Lifetime Membership</b><span data-membership-offer-copy>Limited founding access is free while spots remain. Standard lifetime price after that: $27.</span></div><strong>Founding access</strong></div>
+  <div class="account-card"><div><b>Free Private Account</b><span data-membership-offer-copy>Your saved personal records remain associated with this account.</span></div><strong>Free access</strong></div>
   <div class="account-card"><div><b>Journal Backup</b><span>Download a personal copy of your current profile, sessions, My Stash, My Products, wish list, and saved dispensaries as a JSON backup.</span></div><span>Member backup</span></div>
   <div class="backup-actions"><button class="secondary" id="exportMemberData">Export My Data</button><button class="secondary" id="importMemberData">Import Backup</button><input class="backup-file" id="importMemberFile" type="file" aria-label="Import Cannabis Basics backup file" accept="application/json"><button class="secondary" type="button" data-pwa-install>Install App</button><button class="secondary danger-button" id="clearMemberData">Clear Local Journal</button></div>
   <div class="backup-status" id="backupStatus" aria-live="polite"></div><div class="signout-row"><button class="secondary" id="signOutBtn" type="button">Sign Out</button></div>
@@ -2659,7 +2659,7 @@ async function loadCloud(){
   if(membership?.membership_type==='founding'){
     const label=document.getElementById('dashboardMemberLabel');
     if(label)label.textContent=membership.founding_number?'Founding Member #'+membership.founding_number:'Founding Member';
-    document.querySelectorAll('.member-price strong').forEach(el=>el.textContent=membership.founding_number?'Founding #'+membership.founding_number:'Founding Member');
+    document.querySelectorAll('.member-price strong').forEach(el=>el.textContent='Free access');
   }
 
   window.renderAll?.();
