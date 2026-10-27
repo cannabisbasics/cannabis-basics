@@ -1,23 +1,22 @@
 /* Cannabis Basics — Phase 3, prepared seasonal magazine invitation.
    Confirmed magazine title and concept cover; deliberately INACTIVE until
-   first-issue readiness and verified consent-submission endpoint.
+   the first published issue; signups are stored in Supabase only, with no campaigns sent.
    Does not modify gift requests, member auth, payment or journal. */
 (()=>{
 'use strict';
 const CONFIG={
-  enabled:false,
+  enabled:true,
   titleApproved:true,
   issueAvailable:false,
-  endpoint:'',
   title:'Cannabis Basics Magazine', // approved publication name
   waitActiveMs:120000
 };
-if(!CONFIG.enabled||!CONFIG.titleApproved||!CONFIG.endpoint)return;
+if(!CONFIG.enabled||!CONFIG.titleApproved)return;
 const seenKey='cb_magazine_invite_seen_v1',completedKey='cb_magazine_invite_completed_v1';
 const get=k=>{try{return sessionStorage.getItem(k)==='1'||localStorage.getItem(k)==='1'}catch{return false}};
 const mark=(k,persistent=false)=>{try{(persistent?localStorage:sessionStorage).setItem(k,'1')}catch{}};
 if(get(seenKey)||get(completedKey))return;
-const consentWords='Yes, I want Cannabis Basics seasonal magazine emails and occasional promotional emails about Cannabis Basics articles, tools, products, and offers. I can unsubscribe at any time.';
+const consentWords='Yes, I want Cannabis Basics Magazine seasonal issues by email and occasional promotional emails about Cannabis Basics articles, tools, products, and offers. I can unsubscribe at any time.';
 const css=document.createElement('style');css.textContent=`
 .cb-mag-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.84);z-index:146;display:grid;place-items:center;padding:16px}
 .cb-mag-panel{position:relative;width:min(960px,100%);max-height:92dvh;overflow:auto;display:grid;grid-template-columns:.8fr 1fr;gap:25px;border:1px solid #7dff57;border-radius:27px;padding:clamp(22px,4vw,42px);background:linear-gradient(145deg,#102318,#050b07);box-shadow:0 32px 100px #000;color:#eaf7e9;font-family:Georgia,serif}
@@ -52,7 +51,7 @@ overlay.innerHTML=`<section class="cb-mag-panel" role="dialog" aria-modal="true"
 <div class="cb-mag-teaser">CANNABINOIDS • TERPENES • PERSONAL JOURNALING</div><div class="cb-mag-preview">PREVIEW ONLY • NOT AN ISSUED EDITION</div></div></div>
 <div><div style="font:800 .72rem Arial,sans-serif;letter-spacing:.14em;color:#7dff57">CANNABIS BASICS • SEASONAL READING</div>
 <h2 id="cbMagTitle">Be first to hear about Cannabis Basics Magazine.</h2>
-<p>We're planning a seasonal Cannabis Basics magazine with educational articles and practical learning resources. <strong>No issue is available yet.</strong> Sign up to hear when the first issue is ready, plus occasional Cannabis Basics promotional emails.</p>
+<p>We're planning Cannabis Basics Magazine with seasonal educational articles and practical learning resources. <strong>No issue is available yet.</strong> Sign up to hear when the first issue is ready, plus occasional Cannabis Basics promotional emails.</p>
 <form class="cb-mag-form" id="cbMagForm"><label>Name<input name="name" maxlength="120" autocomplete="name" required></label>
 <label>Email<input name="email" type="email" maxlength="254" autocomplete="email" required></label>
 <label class="cb-mag-consent"><input type="checkbox" name="consent" required><span>${consentWords}</span></label>
@@ -70,7 +69,7 @@ overlay.querySelector('form').addEventListener('submit',async e=>{
 e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;
 const status=form.querySelector('.cb-mag-state'),button=form.querySelector('button');button.disabled=true;status.textContent='Saving your request…';
 try{const payload={brand:'Cannabis Basics',request_type:'seasonal-magazine',source:'seasonal-popup-120-seconds',date:new Date().toISOString(),name:form.elements.name.value.trim(),email:form.elements.email.value.trim(),consent:true,consent_wording:consentWords,magazine_title:CONFIG.title};
-const response=await fetch(CONFIG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const result=await response.json();if(!response.ok||result?.accepted!==true)throw Error('Not accepted');
+const result=await window.cbSubmitOffer(payload);if(result?.accepted!==true)throw Error('Not accepted');
 mark(completedKey,true);status.textContent='You are on the magazine update list. The first issue is not yet available.';button.textContent='Subscribed';
 }catch(_){status.textContent='Signup could not be verified. Please try again.';button.disabled=false}
 });
