@@ -1,15 +1,15 @@
 /* Cannabis Basics — Phase 3, prepared seasonal magazine invitation.
-   Provisional title and issue preview; deliberately INACTIVE until title approval,
+   Confirmed magazine title and concept cover; deliberately INACTIVE until
    first-issue readiness and verified consent-submission endpoint.
    Does not modify gift requests, member auth, payment or journal. */
 (()=>{
 'use strict';
 const CONFIG={
   enabled:false,
-  titleApproved:false,
+  titleApproved:true,
   issueAvailable:false,
   endpoint:'',
-  title:'Cannabis Basics Seasonal Review', // WORKING TITLE ONLY
+  title:'Cannabis Basics Magazine', // approved publication name
   waitActiveMs:120000
 };
 if(!CONFIG.enabled||!CONFIG.titleApproved||!CONFIG.endpoint)return;
@@ -47,11 +47,11 @@ const overlay=document.createElement('div');overlay.className='cb-mag-backdrop';
 overlay.innerHTML=`<section class="cb-mag-panel" role="dialog" aria-modal="true" aria-labelledby="cbMagTitle">
 <button class="cb-mag-close" type="button" aria-label="Close magazine invitation">×</button>
 <div class="cb-mag-cover-wrap"><div class="cb-mag-cover" role="img" aria-label="Illustrative preview of a possible Cannabis Basics seasonal educational magazine cover; not a published issue">
-<div class="cb-mag-masthead">CANNABIS<br>BASICS</div><div class="cb-mag-edition">SEASONAL REVIEW • CONCEPT COVER</div>
+<div class="cb-mag-masthead">CANNABIS<br>BASICS<br><span style="font-size:.55em;letter-spacing:.16em">MAGAZINE</span></div><div class="cb-mag-edition">CANNABIS BASICS MAGAZINE • CONCEPT COVER</div>
 <div class="cb-mag-leaf" aria-hidden="true">✦</div><div class="cb-mag-headline">Read the label.<br>Know the basics.</div>
 <div class="cb-mag-teaser">CANNABINOIDS • TERPENES • PERSONAL JOURNALING</div><div class="cb-mag-preview">PREVIEW ONLY • NOT AN ISSUED EDITION</div></div></div>
 <div><div style="font:800 .72rem Arial,sans-serif;letter-spacing:.14em;color:#7dff57">CANNABIS BASICS • SEASONAL READING</div>
-<h2 id="cbMagTitle">Be first to hear about the magazine.</h2>
+<h2 id="cbMagTitle">Be first to hear about Cannabis Basics Magazine.</h2>
 <p>We're planning a seasonal Cannabis Basics magazine with educational articles and practical learning resources. <strong>No issue is available yet.</strong> Sign up to hear when the first issue is ready, plus occasional Cannabis Basics promotional emails.</p>
 <form class="cb-mag-form" id="cbMagForm"><label>Name<input name="name" maxlength="120" autocomplete="name" required></label>
 <label>Email<input name="email" type="email" maxlength="254" autocomplete="email" required></label>
